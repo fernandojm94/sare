@@ -1,0 +1,5 @@
+2019-02-18 22:02:04Error: No se pudo conectar a MySQL.
+
+errno de depuración: 2002
+
+error de depuración: Connection refused

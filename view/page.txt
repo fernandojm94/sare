@@ -1,0 +1,1 @@
+https://stackoverflow.com/questions/11999371/access-to-the-requested-object-is-only-available-from-the-local-network-phpmyadm
