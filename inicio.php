@@ -66,39 +66,42 @@
 	</head>
 
 	<body class="no-skin">
-		<div id="navbar" class="navbar navbar-default ace-save-state navbar-fixed-top">
+
+		<div id="navbar" class="navbar navbar-default ace-save-state">
 			<div class="navbar-container ace-save-state" id="navbar-container">
 				<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
 					<span class="sr-only">Toggle sidebar</span>
- 					<span class="icon-bar"></span>
+
+					<span class="icon-bar"></span>
+
+					<span class="icon-bar"></span>
+
 					<span class="icon-bar"></span>
 				</button>
 
 				<div class="navbar-header pull-left">
 					<a href="inicio.php" class="navbar-brand">
 						<small>
-							<div class="nin">
-								<p><i>&nbsp;<img src="img/2.png" width="30"></i> Sistema de Apertura Rápida de Empresas (SARE)</p>
-							 </div>
+							<img src="img/2.png" width="30">
+							Sistema de Apertura Rápida de Empresas (SARE)
 						</small>
 					</a>
 				</div>
 
 				<div class="navbar-buttons navbar-header pull-right" role="navigation">
 					<ul class="nav ace-nav">
-						
 						<li class="light-blue dropdown-modal">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<span class="xxx">
-									<small>Bienvenido(a),</small>
-									<?php echo $_SESSION['nombre_completo']; ?>
+								
+								<span class="user-info">
+									<small>Bienvenido,</small>
+									<?= $_SESSION['nombre_completo']; ?>
 								</span>
 
 								<i class="ace-icon fa fa-caret-down"></i>
 							</a>
 
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-								<!--<li class="divider"></li>-->
 								<li>
 									<a href="index.php?modo=desconectar">
 										<i class="ace-icon fa fa-power-off"></i>
@@ -109,24 +112,102 @@
 						</li>
 					</ul>
 				</div>
-			</div><!-- /.navbar-container -->
+			</div>
 		</div>
 
-		<div class="main-container ace-save-state" id="main-container">
+		<!-- <div class="main-container ace-save-state" id="main-container">
+
 			<script type="text/javascript">
 				try{ace.settings.loadState('main-container')}catch(e){}
 			</script>
 
-			<div id="sidebar" class="sidebar                  responsive-min                    ace-save-state sidebar-fixed sidebar-scroll">
+			<div id="sidebar" class="sidebar responsive ace-save-state">
 				<script type="text/javascript">
 					try{ace.settings.loadState('sidebar')}catch(e){}
 				</script>
 
+				<ul class="nav nav-list">
+					<li class="active">
+						<a href="inicio.php">
+							<i class="menu-icon fa fa-home"></i>
+							<span class="menu-text"> Inicio </span>
+						</a>
 
+						<b class="arrow"></b>
+					</li>
 
+					<li class="">
+						<a href="javascript:cambiarcont('view/productos/listado.php')">
+							<i class="menu-icon fa fa-cubes"></i>
+							<span class="menu-text"> Productos </span>
+						</a>
+
+						<b class="arrow"></b>
+					</li>
+
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-bar-chart"></i>
+							<span class="menu-text"> Reportes </span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="javascript:cambiarcont('view/reportes/personal_prod.php')">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Concentrado
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="">
+								<a href="javascript:cambiarcont('view/reportes/personal.php')">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Por Personal
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+							<li class="">
+								<a href="javascript:cambiarcont('view/reportes/producto.php')">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Por Productos
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>
+
+					<li class="">
+						<a href="javascript:cambiarcont('view/usuarios/listado.php')">
+							<i class="menu-icon fa fa-users"></i>
+							<span class="menu-text"> Usuarios </span>
+						</a>
+						<b class="arrow"></b>
+					</li>
+				</ul>
+			</div>
+		</div> -->			
+
+		 <div class="main-container ace-save-state" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.loadState('main-container')}catch(e){}
+			</script>
+
+			<div id="sidebar" class="sidebar responsive ace-save-state">
+				<script type="text/javascript">
+					try{ace.settings.loadState('sidebar')}catch(e){}
+				</script>
 
 				<ul class="nav nav-list">
-					<li class="">
+					<li class="active">
 						<a href="inicio.php">
 							<i class="menu-icon fa fa-home"></i>
 							<span class="menu-text"> Inicio </span>
@@ -202,32 +283,14 @@
 					<li class="nav-divider"></li>
 
 					<li class="">
-						<a href="#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-user"></i>
-
-							<span class="menu-text">
-								Usuarios
-							</span>
-
-							<b class="arrow fa fa-angle-down"></b>
+						<a href="javascript:cambiarcont('view/usuarios/listado.php')">
+							<i class="menu-icon fa fa-users"></i>
+							<span class="menu-text"> Usuarios </span>
 						</a>
-
 						<b class="arrow"></b>
-
-						<ul class="submenu">
-							<li class="">
-								<a href="javascript:cambiarcont('view/usuarios/listado.php');">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Listado de Usuarios
-								</a>
-
-								<b class="arrow"></b>
-							</li>							
-						</ul>
 					</li>
 					
-					
-				</ul><!-- /.nav-list -->
+				</ul>
 
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
 					<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
@@ -238,7 +301,7 @@
 
 				<div class="main-content-inner" id="body_content" name="body_content"></div>
 			</div>
-		</div><!-- /.main-content -->
+		</div>
 
 		<div class="footer">
 			<div class="footer-inner">

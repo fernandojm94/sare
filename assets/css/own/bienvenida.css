@@ -1,5 +1,5 @@
-@media only screen and (max-width: 738.99px){
-	.xxx{/*ESTE ES EL DROPDOWN DEL USUARIO QUE ACCEDIÓ*/
+/*@media only screen and (max-width: 738.99px){
+	.xxx{
 		display: none !important;
 	}
 }
@@ -36,8 +36,6 @@
 	float: none !important;
 }
 
-/*ESTILOS PARA HACER LA ELLIPSIS DEL TEXTO QUE YA NO CABE EN EL MENEO*/
-
 #navbar{
 	height: 50px;
 }
@@ -73,4 +71,4 @@ li.bene a{
 
 div.footer-content{
 	padding-left: 40px !important;
-}
+}*/
