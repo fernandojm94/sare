@@ -952,5 +952,12 @@
 				$("#body_content").fadeIn(10000);
 			});
 		</script>
+
+		<script type="text/javascript">
+			$("#sidebar ul.nav li").click(function(){
+				$("#sidebar ul.nav li.active").removeClass("active");
+				$(this).addClass("active");
+			});
+		</script>
 	</body>
 </html>
