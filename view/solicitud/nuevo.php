@@ -50,18 +50,16 @@
                                 <fieldset>
                                     <legend class="center">Selecciona el tipo de persona</legend>
 
-                                    <div class="form-group">
-                                        <label class="col-xs-2 col-md-4 control-label"></label>  
-                                        <div class="col-xs-6 col-md-6 inputGroupContainer">
-                                            <div class="input-group center">
-                                                <label>
+                                    <div class="form-group" style="text-align: center;">
+                                        <!-- <label class="col-xs-2 col-md-4 control-label"></label>   -->
+                                        <div class="inputGroupContainer" style="display: flex; justify-content: center;">
+                                            <div class="input-group">
+                                                <label style="margin: 5px;">
                                                     <input id="tipo_persona" name="tipo_persona" type="radio" class="ace input-lg" value="p_fisica"/>
                                                     <span class="lbl bigger-120"> Persona Física</span>
                                                 </label>
 
-                                                &nbsp;&nbsp;&nbsp;&nbsp;
-
-                                                 <label>
+                                                 <label style="margin: 5px;">
                                                     <input id="tipo_persona" name="tipo_persona" type="radio" class="ace input-lg" value="p_moral"/>
                                                     <span class="lbl bigger-120"> Persona Moral</span>
                                                 </label>
@@ -309,15 +307,14 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label">Manzana</label>  
+                                        <label class="col-md-4 control-label">Manzana y Lote</label>  
                                         <div class="col-md-2 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
                                                 <input  name="manzana" id="manzana" placeholder="Manzana" class="form-control" type="text" required/>
                                             </div>
                                         </div>
-
-                                        <label class="col-md-1 control-label">Lote</label>  
+ 
                                         <div class="col-md-2 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
