@@ -8,12 +8,26 @@ function fill_usuarios()
 function fill_tabla_usuarios($usuarios)
 {
 	$tr_usuarios='';
+	$id_tipo='';
 	foreach ($usuarios as $usuario) 
 	{
+		$id_tipo = $usuario['id_tipo_usuario'];
+		
+		if ($id_tipo == 1) 
+		{
+			$id_tipo="Administrador";
+		}if ($id_tipo == 2) 
+		{
+			$id_tipo="Cajero";
+		}if ($id_tipo == 3)
+		{
+			$id_tipo="Verificador";
+		}
+
 		$tr_usuarios.=' <tr>
 							<td>'.$usuario['nombre_usuario'].'</td>
 							<td>'.$usuario['usuario'].'</td>
-							<td>'.$usuario['id_tipo_usuario'].'</td>
+							<td>'.$id_tipo.'</td>
 								<td>
 									<div class="hidden-sm hidden-xs btn-group">
 										<a href="#modal-editar-'.$usuario['id_usuario'].'" role="button" class="btn btn-xs btn-info" data-toggle="modal" title="Editar Usuario">
