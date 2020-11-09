@@ -34,13 +34,10 @@ function create_usuario($nombre, $usuario, $psw, $tipo_usuario, $secretaria, $ca
 function get_usuarios()
 {
 	
-	$sql = "SELECT DISTINCT u.id_usuario, u.nombre_usuario, u.usuario, tu.tipo_usuario, u.id_tipo_usuario
-				FROM usuarios AS u
-				JOIN tipo_usuario AS tu ON tu.id_tipo_usuario = u.id_tipo_usuario
-			WHERE u.status IS NULL";
-
+	$sql = "SELECT id_usuario, nombre_usuario, usuario, id_tipo_usuario
+				FROM usuarios
+			WHERE status = 1";
 	$result = querys($sql);
-
 	return $result;
 }
 
