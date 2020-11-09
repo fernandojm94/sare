@@ -1,7 +1,7 @@
 <?php
 include ('../../controller/usuarios/funciones_usuarios.php');
-include ('../../controller/secretarias/funciones_secretarias.php');
-include ('../../controller/cargo/funciones_cargos.php');
+// include ('../../controller/secretarias/funciones_secretarias.php');
+// include ('../../controller/cargo/funciones_cargos.php');
 
 function fill_tipo_usuarios()
 {

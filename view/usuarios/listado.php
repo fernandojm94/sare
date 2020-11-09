@@ -52,23 +52,18 @@
 								<th>Tipo de Usuario</th>
 								<th>Acciones</th>
 							</tr>
-
 						</thead>
 
 						<tbody>
 						<!-- INICIA LLENADO DE TABLA-->
 						<?php echo $tr_usuarios;?>
 						<!-- FINALIZA LLENADO DE TABLA-->
-
 						</tbody>
 					</table>
 
 					<!-- COMIENZA CREACION DE MODALES-->
-					<?php 
-						echo $modal_usuarios ; 
-					?>
-					
-						<!-- FINALIZA CREACION DE MODALES-->
+					<?php echo $modal_usuarios ;?>
+					<!-- FINALIZA CREACION DE MODALES-->
 				</div>
 			</div>
 	</div>
@@ -208,9 +203,6 @@ function delete_usuario(id_usuario)
 						confirmButtonText: "Aceptar"
 					});
 				}
-
-				
-							
 			}
 		});
 

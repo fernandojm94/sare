@@ -1,12 +1,13 @@
 <?php 
 	include('../../controller/funciones.php'); 
 	include('../../model/usuarios/fill_selects.php'); 
-	$option_tipo = fill_tipo_usuarios();
-	$option_secretarias = fill_secretarias();
-	$option_cargos = fill_cargos_select();
+	// $option_tipo = fill_tipo_usuarios();
+	// $option_secretarias = fill_secretarias();
+	// $option_cargos = fill_cargos_select();
+
 ?>
  
-<div class="breadcrumbs ace-save-state breadcrumbs-fixed" id="breadcrumbs">
+<div class="breadcrumbs ace-save-state" id="breadcrumbs">
 	<ul class="breadcrumb">
 		<li>
 			<i class="ace-icon fa fa-home home-icon"></i>
@@ -97,50 +98,9 @@
 									<span class="input-group-addon"><i class="fa fa-user"></i></span>
 									<select name="id_tipo_usuario" id="id_tipo_usuario" class="form-control selectpicker" required>
 										<option value="">Seleccione una opción</option>
-										<?php echo $option_tipo;?>
-									</select>
-								</div>
-						  	</div>
-						</div>
-
-						<div class="form-group">
-						  	<label class="col-md-4 control-label">Secretaría<FONT COLOR="red">*</FONT></label>  
-						  	<div class="col-md-4 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-briefcase"></i></span>
-									<select name="id_dependencia" id="id_dependencia" class="form-control selectpicker" required>
-										<option value="">Seleccione una opción</option>
-										<?php echo $option_secretarias;?>
-										<option value="0">Todas</option>
-									</select>
-								</div>
-						  	</div>
-						</div>
-
-						<div class="form-group">
-						  	<label class="col-md-4 control-label">Cargo<FONT COLOR="red">*</FONT></label>  
-						  	<div class="col-md-4 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-sitemap"></i></span>
-									<select name="id_cargo" id="id_cargo" class="form-control selectpicker" required>
-										<option value="">Seleccione una opción</option>
-										<?php echo $option_cargos;?>
-									</select>
-								</div>
-						  	</div>
-						</div>
-
-
-						<div class="form-group">
-						  	<label class="col-md-4 control-label">Status<FONT COLOR="red">*</FONT></label>  
-						  	<div class="col-md-4 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-power-off"></i></span>
-									<select name="status" id="status" class="form-control selectpicker" required>
-										<option value="">Seleccione una opción</option>
-										<option value="NULL">Activo</option>
-										<option value="<?php date_default_timezone_set('America/Monterrey'); echo date("Y-m-d")?>">Inactivo</option>
-										
+										<option value="1">Administrador</option>
+										<option value="2">Cajero</option>
+										<option value="3">Verificador</option>
 									</select>
 								</div>
 						  	</div>
@@ -179,50 +139,37 @@
 			},
 			password: {
 				required: true,
-				minlength: 5
+				minlength: 6
 			},
 			repassword: {
 				required: true,
 				equalTo: "#password"
 			},
-			status: {
-				required: true
-			},
 			id_tipo_usuario: {
-				required: true
-			},
-			id_dependencia: {
-				required: true
-			},
-			id_cargo: {
 				required: true
 			}
 		},
 
 		messages: {
 			nombre_usuario: {
-				required: "Favor de ingresar su nombre completo.",
-				minlength: "Favor de ingresar su nombre completo."
+				required: "Ingresar su nombre completo.",
+				minlength: "Nombre demasiado corto."
 			},
 			usuario: {
-				required: "Favor de ingresar el nombre de usuario para entrar al sistema",
-				minlength: "El nombre de usuario es muy corto."
+				required: "Ingresar el nombre de usuario para entrar al sistema.",
+				minlength: "Nombre de usuario muy corto."
 			},
 			
 			password: {
-				required: "Favor de ingresar una contraseña para entrar al sistema",
+				required: "Ingresar una contraseña para entrar al sistema.",
 				minlength: "La contraseña es muy corta."
 			},
 			
 			repassword: {
-				required: "Favor de repetir la contraseña",
+				required: "Repetir la contraseña.",
 				equalTo: "Las contraseñas no coinciden."
 			},
-			status: "Favor de seleccionar el status del usuario",
-			id_tipo_usuario: "Favor de seleccionar el tipo de usuario",
-			id_dependencia: "Favor de seleccionar la dependencia a la que pertenece el usuario",
-			id_cargo: "Favor de seleccionar el cargo del usuario"
-			
+			id_tipo_usuario: "Seleccionar el tipo de usuario."
 		},
 
 
@@ -256,9 +203,6 @@
 				"usuario" : $('#usuario').val(),
 				"password" : $('#password').val(),
 				"id_tipo_usuario" : $('#id_tipo_usuario').val(),
-				"status" : $('#status').val(),
-				"id_dependencia" : $('#id_dependencia').val(),
-				"id_cargo" : $('#id_cargo').val()
 			};
 			
 			$.ajax({

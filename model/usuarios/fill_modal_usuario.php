@@ -81,7 +81,7 @@ function fill_modal_usuario($usuarios)
 													<div class="input-group">
 														<span class="input-group-addon">	<i class="fa fa-users"></i></span>
 														<select name="id_tipo_usuario-'.$usuario['id_usuario'].'" id="id_tipo_usuario-'.$usuario['id_usuario'].'" placeholder="Tipo de Usuario" class="col-xs-12 col-sm-10" type="text" required>
-															<option value="'.$usuario['id_tipo_usuario'].'">'.$usuario['tipo_usuario'].'</option>
+															<option value="'.$usuario['id_tipo_usuario'].'">'.$usuario['id_tipo_usuario'].'</option>
 															
 														</select>
 													</div>

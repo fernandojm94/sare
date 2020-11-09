@@ -13,7 +13,7 @@ function fill_tabla_usuarios($usuarios)
 		$tr_usuarios.=' <tr>
 							<td>'.$usuario['nombre_usuario'].'</td>
 							<td>'.$usuario['usuario'].'</td>
-							<td>'.$usuario['tipo_usuario'].'</td>
+							<td>'.$usuario['id_tipo_usuario'].'</td>
 								<td>
 									<div class="hidden-sm hidden-xs btn-group">
 										<a href="#modal-editar-'.$usuario['id_usuario'].'" role="button" class="btn btn-xs btn-info" data-toggle="modal" title="Editar Usuario">
