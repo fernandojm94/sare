@@ -176,9 +176,9 @@
 
 						<ul class="submenu">
 							<li class="">
-								<a href="javascript:cambiarcont('view/sedatum/listado.php');">
+								<a href="javascript:cambiarcont('view/sedatum/ventanilla.php');">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Listado de Solicitudes
+									Ventanilla Única
 								</a>
 
 								<b class="arrow"></b>
@@ -187,9 +187,31 @@
 
 						<ul class="submenu">
 							<li class="">
-								<a href="javascript:cambiarcont('view/sedatum/orden_pago.php');">
+								<a href="javascript:cambiarcont('view/sedatum/uso_suelo.php');">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Orden de Pago
+									Uso de Suelo
+								</a>
+
+								<b class="arrow"></b>
+							</li>							
+						</ul>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="javascript:cambiarcont('view/sedatum/director.php');">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Director
+								</a>
+
+								<b class="arrow"></b>
+							</li>							
+						</ul>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="javascript:cambiarcont('view/sedatum/secretario.php');">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Secretario
 								</a>
 
 								<b class="arrow"></b>
