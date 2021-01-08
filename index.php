@@ -260,7 +260,7 @@ include('./controller/conexion.php');
 									location.reload();
 								}
 								
-							if (data==='error1'){
+							if (data==='error'){
 								swal({
 								  title: "¡Error!",
 								  text: "¡Nombre de usuario y/o contraseña incorrectos!",

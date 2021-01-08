@@ -36,6 +36,11 @@
                                 <span class="step">4</span>
                                 <span class="title">Dimensiones del establecimiento</span>
                             </li>
+
+                            <li data-step="5" onclick="salto(5)">
+                                <span class="step">5</span>
+                                <span class="title">Carga de documentos</span>
+                            </li>
                         </ul>
                     </div>
 
@@ -397,7 +402,7 @@
 
                                     <div class="form-group">
                                         <div class="col-sm-1"></div>
-                                        <label for="form-field-2" class="col-sm-2 control-label no-padding-right"> Frente</label>
+                                        <label for="frente" class="col-sm-2 control-label no-padding-right"> Frente</label>
 
                                         <div class="col-sm-2">
                                             <input type="text" id="frente" name="frente" placeholder="Frente" class="col-xs-10 col-sm-10">
@@ -407,10 +412,10 @@
                                         </div>
 
 
-                                         <label for="form-field-2" class="col-sm-2 control-label no-padding-right"> Fondo</label>
+                                         <label for="fondo" class="col-sm-2 control-label no-padding-right"> Fondo</label>
 
                                         <div class="col-sm-2">
-                                            <input type="text" id="form-field-2" placeholder="Fondo" class="col-xs-12 col-sm-10">
+                                            <input type="text" id="fondo" name="fondo" placeholder="Fondo" class="col-xs-12 col-sm-10">
                                             <span class="help-inline col-xs-11 col-sm-1">
                                                 <span class="middle">m</span>
                                             </span>
@@ -423,20 +428,20 @@
                                     
                                     <div class="form-group">
                                         <div class="col-sm-1"></div>
-                                        <label for="form-field-2" class="col-sm-2 control-label no-padding-right"> Derecho</label>
+                                        <label for="derecho" class="col-sm-2 control-label no-padding-right"> Derecho</label>
 
                                         <div class="col-sm-2">
-                                            <input type="text" id="form-field-2" placeholder="Fondo" class="col-xs-12 col-sm-10">
+                                            <input type="text" id="derecho" name="derecho" placeholder="Derecho" class="col-xs-12 col-sm-10">
                                             <span class="help-inline col-xs-1 col-sm-1">
                                                 <span class="middle">m</span>
                                             </span>
                                         </div>
 
 
-                                         <label for="form-field-2" class="col-sm-2 control-label no-padding-right"> Izquierdo</label>
+                                         <label for="izquierdo" class="col-sm-2 control-label no-padding-right"> Izquierdo</label>
 
                                         <div class="col-sm-2">
-                                            <input type="text" id="form-field-2" placeholder="Fondo" class="col-xs-12 col-sm-10">
+                                            <input type="text" id="izquierdo" name="izquierdo" placeholder="Izquierdo" class="col-xs-12 col-sm-10">
                                             <span class="help-inline col-xs-11 col-sm-1">
                                                 <span class="middle">m</span>
                                             </span>
@@ -449,20 +454,20 @@
 
                                     <div class="form-group">
                                         <div class="col-sm-1"></div>
-                                        <label for="form-field-2" class="col-sm-2 control-label no-padding-right"> Del terreno</label>
+                                        <label for="terreno" class="col-sm-2 control-label no-padding-right"> Del terreno</label>
 
                                         <div class="col-sm-2">
-                                            <input type="text" id="form-field-2" placeholder="Fondo" class="col-xs-12 col-sm-10">
+                                            <input type="text" id="terreno" name="terreno" placeholder="Del terreno" class="col-xs-12 col-sm-10">
                                             <span class="help-inline col-xs-1 col-sm-1">
                                                 <span class="middle">m<sup>2</sup></span>
                                             </span>
                                         </div>
 
 
-                                         <label for="form-field-2" class="col-sm-2 control-label no-padding-right"> Del local</label>
+                                         <label for="local" class="col-sm-2 control-label no-padding-right"> Del local</label>
 
                                         <div class="col-sm-2">
-                                            <input type="text" id="form-field-2" placeholder="Fondo" class="col-xs-12 col-sm-10">
+                                            <input type="text" id="local" name="local" placeholder="Del local" class="col-xs-12 col-sm-10">
                                             <span class="help-inline col-xs-11 col-sm-1">
                                                 <span class="middle">m<sup>2</sup></span>
                                             </span>
@@ -485,7 +490,53 @@
                                     </div>                                
                                 </fieldset>
                             </form>
-                        </div>   
+                        </div>
+
+<!-- ------------------------------------ COMIENZA PASO 5 ---------------------------------------------------- -->
+
+                        <div class="step-pane" data-step="5">
+                            <form class="well form-horizontal" method="post"  id="form_dimensiones" name="form_dg">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Escritura o titulo de propiedad (en su caso carta notariada de escritura en trámite).</label>  
+                                        <div class="col-md-4 inputGroupContainer">
+                                            <input type="file" id="titulo" name="titulo" />                                            
+                                        </div>
+                                    </div> 
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Recibo predial actual (2020).</label>  
+                                        <div class="col-md-4 inputGroupContainer">
+                                            <input type="file" id="pred" name="pred" />                                            
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Identificación oficial (de los implicados).</label>  
+                                        <div class="col-md-4 inputGroupContainer">
+                                            <input type="file" id="ine" name="ine"/>                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Contrato de arrendamiento (en donde se especifiquen las medidas rentadas, el giro comercial, la ubicación del local y la vigencia del contrato).</label>  
+                                        <div class="col-md-4 inputGroupContainer">
+                                            <input type="file" id="contrato" name="contrato"/>                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Número oficial.</label>  
+                                        <div class="col-md-4 inputGroupContainer">
+                                            <input type="file" id="no" name="no" />                                            
+                                        </div>
+                                    </div>
+
+                                    <div id="upmoral"></div>                  
+                                </fieldset>
+                            </form>
+                        </div> 
                     </div>
 
                  </div>
@@ -545,8 +596,89 @@
         }
     
         $('#catastral').mask('**-**-**-***-***-***');
-    
-    
+
+        $('#titulo').ace_file_input({
+            no_file:'Seleccione un documento ...',
+            btn_choose:'Seleccionar',
+            btn_change:'Cambiar',
+            droppable:false,
+            onchange:null,
+            thumbnail:true
+        }).on('change', function() {
+            swal({
+                title: "¿El documento cumple con lo siguiente?:",
+                text: "La escritura o titulo de propiedad debe coincidir con el comprobante de domicilio, el predial actual y el contrato de arrendamiento en cuanto a dueño de la propiedad, ubicación de la propiedad, área de la propiedad total y de uso comercial, asi como la vigencia del contrato de arrendamiento.",
+                icon: "info",
+                button: "Aceptar"
+            });
+        });
+
+        $('#pred').ace_file_input({
+            no_file:'Seleccione un documento ...',
+            btn_choose:'Seleccionar',
+            btn_change:'Cambiar',
+            droppable:false,
+            onchange:null,
+            thumbnail:true
+        }).on('change', function() {
+            swal({
+                title: "¿El documento cumple con lo siguiente?:",
+                text: "Recibo del predial actual (2020).",
+                icon: "info",
+                button: "Aceptar"
+            });
+        });
+
+        $('#contrato').ace_file_input({
+            no_file:'Seleccione un documento ...',
+            btn_choose:'Seleccionar',
+            btn_change:'Cambiar',
+            droppable:false,
+            onchange:null,
+            thumbnail:true
+        }).on('change', function() {
+            swal({
+                title: "¿El documento cumple con lo siguiente?:",
+                text: "El contrato de arrendamiento debe coincidir en cuanto a dueño de la propiedad, ubicación de la propiedad, área de la propiedad total y de uso comercial, asi como la vigencia del mismo.",
+                icon: "info",
+                button: "Aceptar"
+            });
+        });
+
+        $('#ine').ace_file_input({
+            no_file:'Seleccione un documento ...',
+            btn_choose:'Seleccionar',
+            btn_change:'Cambiar',
+            droppable:false,
+            onchange:null,
+            thumbnail:true
+        }).on('change', function() {
+            swal({
+                title: "¿El documento cumple con lo siguiente?:",
+                text: "Las identificaciones oficiales de los implicados debe coincidir con la escritura o titulo de propiedad, uso de suelo, numero oficial, comprobante de domicilio, recibo predial actual, contrato de arrendamiento, acta constitutiva, poder notarial y formato único para sistema de apertura.",
+                icon: "info",
+                button: "Aceptar"
+            });
+        });
+
+        $('#no').ace_file_input({
+            no_file:'Seleccione un documento ...',
+            btn_choose:'Seleccionar',
+            btn_change:'Cambiar',
+            droppable:false,
+            onchange:null,
+            thumbnail:true
+        });
+
+        $('#terreno').on('change', function() {
+            if ($('#terreno').val() >= 150){
+                swal({
+                    title: "Este terreno no aplica para S.A.R.E.",
+                    icon: "warning",
+                    button: "Aceptar"
+                });
+            }
+        });    
     });
 </script>
 
@@ -903,8 +1035,6 @@
     }       
 </script>
 
-
-
 <script type="text/javascript">
 
     $.mask.definitions['~']='[+-]';
@@ -957,7 +1087,6 @@
     })
 
     
-
     //var $validation = false;
         $('#fuelux-wizard-container')
         .ace_wizard({
@@ -1209,13 +1338,45 @@
             }
 
 
-
             if(info.step == 4) {
                 if(info.direction == 'next')
                 {
-                    
+                    if(tipo_persona!="p_fisica")
+                    {
+                        var codehtml='<h3 class="header smaller lighter center"><small>Persona Moral</small></h3><div class="form-group"><label class="col-md-4 control-label">Acta constitutiva de la empresa.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="acta" name="acta"/></div></div><div class="form-group"><label class="col-md-4 control-label">Poder notarial.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="poder" name="poder"/></div></div><div class="form-group"><label class="col-md-4 control-label">Solicitud firmada por el representante legal de la empresa.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="solicitud" name="solicitud" /></div></div>';
+                        document.getElementById("upmoral").innerHTML=codehtml;
+
+                        $('#acta').ace_file_input({
+                            no_file:'Seleccione un documento ...',
+                            btn_choose:'Seleccionar',
+                            btn_change:'Cambiar',
+                            droppable:false,
+                            onchange:null,
+                            thumbnail:true
+                        });
+
+                        $('#poder').ace_file_input({
+                            no_file:'Seleccione un documento ...',
+                            btn_choose:'Seleccionar',
+                            btn_change:'Cambiar',
+                            droppable:false,
+                            onchange:null,
+                            thumbnail:true
+                        });
+
+                        $('#solicitud').ace_file_input({
+                            no_file:'Seleccione un documento ...',
+                            btn_choose:'Seleccionar',
+                            btn_change:'Cambiar',
+                            droppable:false,
+                            onchange:null,
+                            thumbnail:true
+                        });
+                    }
+
+
                     if(!$('#form_dg').valid()){
-                        e.preventDefault();
+                       // e.preventDefault();
                     }
                     else{
                         e.preventDefault();
@@ -1237,12 +1398,15 @@
                                         timer: 3000,
                                         icon: "success",
                                         button: "Aceptar"
-                                    });                  
+                                    });
+
+                                    step: 5;
+
 
                                                       
                                 }
                                 
-                                if (data==='error2'){
+                                if (data==='error'){
                                     swal({
                                         title: "¡Error Grave!",
                                         text: "¡Ocurrio algo al guardar!",
@@ -1251,20 +1415,10 @@
                                         button: "Aceptar"
                                     });
                                 }
-
-                                if (data==='error1'){
-                                    swal({
-                                        title: "¡Error!",
-                                        text: "¡Este usuario ya registró con anterioridad!",
-                                        timer: 3000,
-                                        icon: "warning",
-                                        button: "Aceptar"
-                                    });
-                                }
                             }
 
                         });
-                        /*swal({
+                        /* swal({
                             title: "¿Desea finalizar el alta del título?",
                             icon: "info",
                             buttons: true,
@@ -1288,6 +1442,54 @@
                                 e.preventDefault();
                             }
                         });*/
+                    }
+                }                
+            }
+
+
+            if(info.step == 5) {
+                if(info.direction == 'next')
+                {
+                    if(!$('#form_dg').valid()){
+                        e.preventDefault();
+                    }
+                    else{
+                        e.preventDefault();
+
+                        //poner el formdata
+                                                
+                        $.ajax({
+                                data:  parametros_conyugue,
+                                url:   './model/solicitud/create_dg.php',
+                                type:  'post',
+                                
+                                success:  function (data) {
+                                                                        
+                                    if (data==='correcto'){
+                                        swal({
+                                            title: "¡Datos guardados correctamente!",
+                                            timer: 3000,
+                                            icon: "success",
+                                            button: "Aceptar"
+                                        });                  
+
+                                        $('#fuelux-wizard-container').wizard('selectedItem', {
+                                            step: 3
+                                        });                     
+                                    }
+                                    
+                                    if (data==='error'){
+                                        swal({
+                                            title: "¡Error!",
+                                            text: "¡Ocurrio algo al guardar!",
+                                            timer: 3000,
+                                            icon: "error",
+                                            button: "Aceptar"
+                                        });
+                                    }
+                                }
+
+                        });
                     }
                 }                
             }

@@ -1,5 +1,0 @@
-2019-02-22 20:02:35Error: No se pudo conectar a MySQL.
-
-errno de depuración: 1049
-
-error de depuración: Unknown database 'administrador_expedientes'

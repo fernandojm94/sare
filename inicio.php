@@ -82,7 +82,7 @@
 				<div class="navbar-header pull-left">
 					<a href="inicio.php" class="navbar-brand">
 						<small>
-							<img src="img/2.png" width="30">
+							<!-- <img src="img/2.png" width="30"> -->
 							Sistema de Apertura Rápida de Empresas (SARE)
 						</small>
 					</a>
@@ -114,89 +114,8 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- <div class="main-container ace-save-state" id="main-container">
-
-			<script type="text/javascript">
-				try{ace.settings.loadState('main-container')}catch(e){}
-			</script>
-
-			<div id="sidebar" class="sidebar responsive ace-save-state">
-				<script type="text/javascript">
-					try{ace.settings.loadState('sidebar')}catch(e){}
-				</script>
-
-				<ul class="nav nav-list">
-					<li class="active">
-						<a href="inicio.php">
-							<i class="menu-icon fa fa-home"></i>
-							<span class="menu-text"> Inicio </span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-
-					<li class="">
-						<a href="javascript:cambiarcont('view/productos/listado.php')">
-							<i class="menu-icon fa fa-cubes"></i>
-							<span class="menu-text"> Productos </span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-
-					<li class="">
-						<a href="#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-bar-chart"></i>
-							<span class="menu-text"> Reportes </span>
-
-							<b class="arrow fa fa-angle-down"></b>
-						</a>
-
-						<b class="arrow"></b>
-
-						<ul class="submenu">
-							<li class="">
-								<a href="javascript:cambiarcont('view/reportes/personal_prod.php')">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Concentrado
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="javascript:cambiarcont('view/reportes/personal.php')">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Por Personal
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="javascript:cambiarcont('view/reportes/producto.php')">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Por Productos
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-						</ul>
-					</li>
-
-					<li class="">
-						<a href="javascript:cambiarcont('view/usuarios/listado.php')">
-							<i class="menu-icon fa fa-users"></i>
-							<span class="menu-text"> Usuarios </span>
-						</a>
-						<b class="arrow"></b>
-					</li>
-				</ul>
-			</div>
-		</div> -->			
-
-		 <div class="main-container ace-save-state" id="main-container">
+		
+		<div class="main-container ace-save-state" id="main-container">
 			<script type="text/javascript">
 				try{ace.settings.loadState('main-container')}catch(e){}
 			</script>
@@ -221,7 +140,7 @@
 							<i class="menu-icon fa fa-book"></i>
 
 							<span class="menu-text">
-								Solicitud
+								Solicitudes
 							</span>
 
 							<b class="arrow fa fa-angle-down"></b>
@@ -231,9 +150,9 @@
 
 						<ul class="submenu">
 							<li class="">
-								<a href="javascript:cambiarcont('view/solicitud/nuevo.php');">
+								<a href="javascript:cambiarcont('view/solicitud/listado.php');">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Alta de Solicitud
+									Listado de solicitudes
 								</a>
 
 								<b class="arrow"></b>

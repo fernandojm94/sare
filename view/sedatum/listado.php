@@ -52,14 +52,14 @@
 												
 					<ul id="inbox-tabs" class="nav nav-tabs padding-16 tab-size-bigger tab-space-1">
 						
-						<li class="active">
+						<!-- <li class="active">
 							<a data-toggle="tab" href="#bandeja_sin_pago">
 								<i class="red ace-icon fa fa-money bigger-150"></i>
 								<span id="ban_con">Sin orden de pago</span>
 							</a>
 						</li>
-
-						<li >
+ -->
+						<li class="active">
 							<a data-toggle="tab" href="#bandeja_sin_atender">
 								<i class="red ace-icon fa fa-eye-slash bigger-150"></i>
 								<span id="ban_con">Sin atender</span>
@@ -85,10 +85,10 @@
 
 					<div class="tab-content no-border no-padding">
 
-						<div id="bandeja_sin_pago" class="tab-pane fade in active">
-						</div>
+						<!-- <div id="bandeja_sin_pago" class="tab-pane fade in active">
+						</div> -->
 
-						<div id="bandeja_sin_atender" class="tab-pane fade">
+						<div id="bandeja_sin_atender" class="tab-pane fade fade in active">
 
 							<div class="message-container">
 								<div id="id-message-list-navbar" class="message-navbar clearfix">
@@ -198,6 +198,71 @@
 												<span>Nuevo Responsable</span>
 												</a>
 											</div>
+
+											<hr style="border-width: 1px; border-color: #b3bbc9;">
+
+											<div class="pull-right tableTools-container2"></div>
+										
+										</div>
+									</div>
+								</div>
+
+								<div>
+									<table id="dynamic-table2" class="table table-striped table-bordered table-hover">
+
+										<thead>
+											<tr>
+												<th class="hidden">
+													<label class="pos-rel">
+														<input type="checkbox" class="ace" />
+														<span class="lbl"></span>
+													</label>
+												</th>
+
+												<th class="hidden"></th>
+
+												<th>
+													<i class="ace-icon fa fa-user bigger-110 ico_hid"></i>
+													Nombre
+												</th>
+
+												<th class="hid_xs">
+													<i class="ace-icon fa fa-map-marker bigger-110 ico_hid"></i>
+													Dirección
+												</th>
+
+												<th class="hid hid_xs">
+													<i class="ace-icon fa fa-at bigger-110 ico_hid"></i>
+													Correo
+												</th>
+
+												<th class="hid_xs">
+													<i class="ace-icon fa fa-phone bigger-110 ico_hid"></i>
+													Número
+												</th>
+
+												<th style="min-width: 94px !important;">
+													<i class="ace-icon fa fa-cogs bigger-110 ico_hid"></i>
+													Acciones
+												</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<?php echo $tr_propietarios; ?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+
+						<div id="bandeja_aprobados" class="tab-pane fade">
+							<div class="message-container">
+								<div id="id-message-list-navbar" class="message-navbar clearfix">
+									<div class="">
+										<div class="message-infobar" id="id-message-infobar">
+											<span style="display: block;" class="blue bigger-170"></span>
+											<span style="display: inline-block;" class="grey bigger-140">Expedientes aprobados</span>
 
 											<hr style="border-width: 1px; border-color: #b3bbc9;">
 
@@ -653,27 +718,27 @@
 
 <script type="text/javascript">
 	$( document ).ready(function() {
-	var screen = $( window ).width();
-	if (screen < 916) {
-		$('#dynamic-table_info, #dynamic-table_paginate').parent().removeClass('col-xs-6').addClass('col-xs-12'); 	
-	}
-	
-	else{
-		$('#dynamic-table_info, #dynamic-table_paginate').parent().removeClass('col-xs-12').addClass('col-xs-6');
-	}
-	
-});
+		var screen = $( window ).width();
+		if (screen < 916) {
+			$('#dynamic-table_info, #dynamic-table_paginate').parent().removeClass('col-xs-6').addClass('col-xs-12'); 	
+		}
+		
+		else{
+			$('#dynamic-table_info, #dynamic-table_paginate').parent().removeClass('col-xs-12').addClass('col-xs-6');
+		}
+		
+	});
 
 
-$( window ).resize(function() {
-	var screen = $( window ).width();
-	if (screen < 916) {
-		$('#dynamic-table_info, #dynamic-table_paginate').parent().removeClass('col-xs-6').addClass('col-xs-12'); 	
-	 }
+	$( window ).resize(function() {
+		var screen = $( window ).width();
+		if (screen < 916) {
+			$('#dynamic-table_info, #dynamic-table_paginate').parent().removeClass('col-xs-6').addClass('col-xs-12'); 	
+		 }
 
-	else{
-		$('#dynamic-table_info, #dynamic-table_paginate').parent().removeClass('col-xs-12').addClass('col-xs-6');
-	}
+		else{
+			$('#dynamic-table_info, #dynamic-table_paginate').parent().removeClass('col-xs-12').addClass('col-xs-6');
+		}
 
-});
+	});
 </script>

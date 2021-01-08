@@ -2,7 +2,7 @@
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h1 class="blue">Expediente 1</h1>
+				<h1 class="blue">Solicitud SARE 66524</h1>
 			</div>
 
 			<div class="modal-body">
