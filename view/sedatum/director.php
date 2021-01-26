@@ -11,10 +11,13 @@
 
 <style type="text/css">
 
-	@media only screen and (max-width: 520px){
-		i + span{
-			display: none;
-		}
+	#span_director{
+		padding: 5px;
+		border-radius: 5px;
+	}
+
+	#span_director h4{
+		color: white;
 	}
 
 </style>
@@ -49,8 +52,19 @@
 					<div id="id-message-list-navbar" class="message-navbar clearfix">
 						<div class="">
 							<div class="message-infobar clearfix" id="id-message-infobar">
+
+								<div style="display: inline-block; float: left;">
+									<div>
+										<label>
+											<input id="switch_director" value="1" class="hidden">
+											<div id="span_director"></div>
+										</label>
+									</div>
+								</div>
+
 								<span style="display: block;" class="blue bigger-170"></span>
 								<span style="display: inline-block;" class="grey bigger-140">Solicitudes Recibidas</span>
+
 								 <!-- <div style="display: inline-block; float: right;">
 									<a href="javascript:cambiarcont('view/solicitud/nuevo.php');" class="btn btn-primary">
 										<i class="ace-icon fa fa-book"></i>
@@ -159,6 +173,18 @@
 </div>
 
 <script>
+
+	var check = document.getElementById("switch_director").value;
+
+	if (check == 1) {
+		document.getElementById("switch_director").checked = true;
+		document.getElementById("span_director").style.backgroundColor = "#87b87f";
+		document.getElementById("span_director").innerHTML = "&nbsp;<h4 style='display:inline'>Última Aprobación Activada</h4>";
+	}else{
+		document.getElementById("switch_director").checked = false;
+		document.getElementById("span_director").style.backgroundColor = "#d15b47";
+		document.getElementById("span_director").innerHTML = "&nbsp;<h4 style='display:inline'>Última Aprobación Desactivada</h4>";
+	}
 
 	function fill_modal_info(id)
     {
