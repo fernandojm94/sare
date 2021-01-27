@@ -25,19 +25,19 @@
 			<a href="inicio.php">Inicio</a>
 		</li>
 		<li>
-			<a href="#">Solicitudes</a>
+			<a href="#">Ventanilla Única</a>
 		</li>
-		<li class="active">Listado de solicitudes</li>
+		<li class="active">Listado de solicitudes ventanilla única </li>
 	</ul><!-- /.breadcrumb -->	
 </div>
 
 <div class="page-content"> 
 	<div class="page-header">		
 		<h1>
-			Solicitudes
+			Ventanilla Única
 			<small>
 				<i class="ace-icon fa fa-angle-double-right"></i>
-				Listado de solicitudes
+				Listado de solicitudes ventanilla única
 			</small>
 		</h1>
 	</div><!-- /.page-header -->
@@ -49,13 +49,7 @@
 						<div class="">
 							<div class="message-infobar clearfix" id="id-message-infobar">
 								<span style="display: block;" class="blue bigger-170"></span>
-								<span style="display: inline-block;" class="grey bigger-140">Solicitudes registradas</span>
-								 <div style="display: inline-block; float: right;">
-									<a href="javascript:cambiarcont('view/solicitud/nuevo.php');" class="btn btn-primary">
-										<i class="ace-icon fa fa-book"></i>
-										<span>Nueva Solicitud</span>
-									</a>
-								</div> 
+								<span style="display: inline-block;" class="grey bigger-140">Solicitudes entrantes</span> 
 
 								<hr style="border-width: 1px; border-color: #b3bbc9;">
 								<div class="pull-right tableTools-container"></div>									
@@ -85,16 +79,11 @@
 											</th>
 
 											<th class="hidden"></th>
-
+											<th class="hidden"></th>
 
 											<th class="hid_xs">
 												<i class="ace-icon fa fa-phone bigger-110 ico_hid"></i>
 												Número de teléfono
-											</th>
-
-											<th>
-												<i class="ace-icon fa fa-sliders bigger-110 ico_hid"></i>
-												Estatus de la solicitud
 											</th>
 
 											<th style="min-width: 94px !important;">
@@ -112,8 +101,8 @@
 												Emiliano Zapata 109 Centro, Jesús María
 											</td> 
 											<td class="hidden"></td>
+											<td class="hidden"></td>
 											<td class="hid_xs">449 121 1213</td>
-											<td class="center"><span class="label label-warning arrowed-right">3. Departamento de uso de suelo.</span></td>
 											<td class="center">
 												<div class="btn-group">
 													<a class="btn btn-xs btn-info" onclick="fill_modal_info(1)" role="button" data-toggle="modal">
@@ -122,31 +111,9 @@
 												</div>
 											</td>
 										</tr>
-										<tr>
-											<td>2 de diciembre 2020 12:04:55</td>
-											<td>Cadena Comercial Oxxo</td>
-											<td class="hid_xs">
-												Av. López Mateos 1024, Lomas de Jesús María
-											</td> 
-											<td class="hidden"></td>
-											<td class="hid_xs">449 895 7852</td>
-											<td class="center"><span class="label label-danger arrowed-right">2. Comprobante de pago.</span></td>
-											<td class="center">
-												<div class="btn-group">
-													<a class="btn btn-xs btn-info" onclick="fill_modal_info(2)" role="button" data-toggle="modal">
-														<i class="ace-icon fa fa-info-circle bigger-130"></i>
-													</a>
-
-													<a class="btn btn-xs btn-success" onclick="fill_modal_upcomprobante(2)" role="button" data-toggle="modal">
-														<i class="ace-icon fa fa-upload bigger-130"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
 									</tbody>
 								</table>
 								<div id="load_modal_info"></div>
-								<div id="load_modal_upcomprobante"></div>
 							</div>
 						</div>
 					</div>
@@ -186,76 +153,42 @@
         var datos_modal = id;
 
         waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
-        xmlhttp.open("POST","./model/solicitud/modal_info_sol.php",true);
+        xmlhttp.open("POST","./model/sedatum/modal_info_vent.php",true);
         xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
         xmlhttp.send(datos_modal);
     }
 
-
-    function fill_modal_upcomprobante(id)
+    function rechazar_solicitud(id_solicitud)
     {
-        var xmlhttp;
-
-        if (window.XMLHttpRequest){
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp=new XMLHttpRequest();
-        }
-        
-        else{// code for IE6, IE5
-            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-        }
-
-        xmlhttp.onreadystatechange=function(){
-            
-            if (xmlhttp.readyState==4 && xmlhttp.status==200){
-                document.getElementById("load_modal_upcomprobante").innerHTML=xmlhttp.responseText;                
-                waitingDialog.hide();
-                $('#modal_upcomprobante').modal('show');
-                dropzone();
-            }
-        }
-
-        var datos_modal = id;
-
-        waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
-        xmlhttp.open("POST","./model/solicitud/modal_upcomprobante.php",true);
-        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        xmlhttp.send(datos_modal);
+    	swal({
+            title: "Describa la razón del rechazo de la solicitud:",
+            icon: "info",
+            button: "Rechazar solicitud",
+            dangerMode: true,
+            content: "input",
+        })
+        .then((value) => {
+        	swal("¡Correcto!", "Se ha rechazado la solicitud", "success");
+        });
     }
 
-    function dropzone(){
-    	$('#comprobante').ace_file_input({
-			style: 'well',
-			btn_choose: 'Arrastra o da click para agregar archivos',
-			btn_change: null,
-			no_icon: 'ace-icon fa fa-cloud-upload',
-			droppable: true,
-			thumbnail: 'small'//large | fit
-			//,icon_remove:null//set null, to hide remove/reset button
-			/**,before_change:function(files, dropped) {
-				//Check an example below
-				//or examples/file-upload.html
-				return true;
-			}*/
-			/**,before_remove : function() {
-				return true;
-			}*/
-			,
-			preview_error : function(filename, error_code) {
-				//name of the file that failed
-				//error_code values
-				//1 = 'FILE_LOAD_FAILED',
-				//2 = 'IMAGE_LOAD_FAILED',
-				//3 = 'THUMBNAIL_FAILED'
-				//alert(error_code);
-			}
-	
-		}).on('change', function(){
-			//console.log($(this).data('ace_input_files'));
-			//console.log($(this).data('ace_input_method'));
-		});
+    function aprobar_solicitud(id_solicitud)
+    {
+    	swal({
+		  	title: "Esta solicitud será aprobada, ¿desea continuar?",
+		  	icon: "info",
+		  	buttons: true,
+		})
+		.then((willDelete) => {
+		  	if (willDelete) {
+		    	swal("Solicitud aprobada correctamente", {
+		      		icon: "success",
+		    	});
+		  	} else {
+		    	swal("La solicitud no ha sufrido cambios.");
+		  	}
+		});    	
     }
-
 </script>
 
 <script type="text/javascript">
