@@ -212,10 +212,10 @@
             }
         }
 
-        var datos_modal = id;
+        var datos_modal = "id=" + id;
 
         waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
-        xmlhttp.open("POST","./model/solicitud/modal_info_sol.php",true);
+        xmlhttp.open("POST","./model/sedatum/modal_info.php",true);
         xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
         xmlhttp.send(datos_modal);
     }

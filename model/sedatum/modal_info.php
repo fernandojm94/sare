@@ -1,7 +1,12 @@
+<?php
+	$id = $_POST['id'];
+?>
+
 <div id="modal_info" class="modal" tabindex="-1" style="overflow-y:auto;">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h1 class="blue">Solicitud SARE 66524</h1>
 			</div>
 
@@ -11,8 +16,8 @@
 					<div class="col-xs-12">
 
 						<div class="tabbable">
-				
-							<ul id="inbox-tabs" class="nav nav-tabs padding-16 tab-size-bigger tab-space-1">		
+
+							<ul id="inbox-tabs" class="nav nav-tabs padding-16 tab-size-bigger tab-space-1">
 								<li class="active">
 									<a data-toggle="tab" href="#datos">
 										<i class="blue ace-icon fa fa-user bigger-130"></i>
@@ -43,7 +48,7 @@
 
 							</ul>
 
-							<div class="tab-content no-padding">		
+							<div class="tab-content no-padding">
 								<div id="datos" class="tab-pane fade in active">
 									<div class="message-container">
 										<div id="id-message-list-navbar" class="message-navbar clearfix">
@@ -52,7 +57,7 @@
 													<span style="display: block;" class="blue bigger-150">Datos de la persona "X"</span>
 												</div>
 											</div>
-										</div>		
+										</div>
 										<div class="profile-user-info profile-user-info-striped">
 											<div class="profile-info-row">
 												<div class="profile-info-name"> Nombre: </div>
@@ -88,7 +93,7 @@
 												<i class="fa fa-user blue bigger-110"></i>&nbsp;
 													<span>XXXX000000XXXXXX0</span>
 												</div>
-											</div>									
+											</div>
 
 											<div class="profile-info-row">
 												<div class="profile-info-name"> Teléfono: </div>
@@ -111,7 +116,7 @@
 										</div>
 									</div>
 								</div>
-								
+
 								<div id="establecimiento" class="tab-pane fade">
 									<div class="message-container">
 										<div id="id-message-list-navbar" class="message-navbar clearfix">
@@ -120,7 +125,7 @@
 													<span style="display: block;" class="blue bigger-150">Datos del establecimiento</span>
 												</div>
 											</div>
-										</div>		
+										</div>
 										<div class="profile-user-info profile-user-info-striped">
 											<div class="profile-info-row">
 												<div class="profile-info-name"> Nombre comercial: </div>
@@ -165,7 +170,7 @@
 												<i class="fa fa-user green bigger-110"></i>&nbsp;
 													<span>Comercial</span>
 												</div>
-											</div>									
+											</div>
 
 											<div class="profile-info-row">
 												<div class="profile-info-name"> Teléfono: </div>
@@ -232,7 +237,7 @@
 														'.$tr_responsable.'
 													</table>
 												</div>
-											</div>	
+											</div>
 										</div>
 									</div>
 								</div>
@@ -262,7 +267,7 @@
 														'.$tr_responsable.'
 													</table>
 												</div>
-											</div>	
+											</div>
 										</div>
 									</div>
 								</div>
@@ -272,12 +277,16 @@
 						</div><!-- /.tabbable -->
 					</div>
 				</div>
-			</div>	
-
-			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times">&nbsp;</i>Cerrar</button>
 			</div>
 
-		</div>	
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary pull-left" data-dismiss="modal"><i class="fa fa-times">&nbsp;</i>Cerrar</button>
+
+				<button type="button" class="btn btn-danger" onclick="rechazar(<?=$id?>);"><i class="fa fa-ban">&nbsp;</i>Rechazar Solicitud</button>
+
+				<button type="button" class="btn btn-success" onclick="aprobar(<?=$id?>);"><i class="fa fa-check">&nbsp;</i>Aprobar Solicitud</button>
+			</div>
+
+		</div>
 	</div>
 </div>
