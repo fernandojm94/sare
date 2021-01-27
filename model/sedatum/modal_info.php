@@ -1,5 +1,6 @@
 <?php
 	$id = $_POST['id'];
+	$ausencia = $_POST['ausencia'];
 ?>
 
 <div id="modal_info" class="modal" tabindex="-1" style="overflow-y:auto;">
@@ -45,7 +46,6 @@
 										<span class="hid_spa">Documentación</span>
 									</a>
 								</li>
-
 							</ul>
 
 							<div class="tab-content no-padding">
@@ -167,7 +167,7 @@
 												<div class="profile-info-name"> Uso actual: </div>
 
 												<div class="profile-info-value">
-												<i class="fa fa-user green bigger-110"></i>&nbsp;
+												<i class="fa fa-building green bigger-110"></i>&nbsp;
 													<span>Comercial</span>
 												</div>
 											</div>
@@ -185,7 +185,7 @@
 												<div class="profile-info-name"> Cuenta catastral: </div>
 
 												<div class="profile-info-value">
-												<i class="fa fa-envelope green bigger-110"></i>&nbsp;
+												<i class="fa fa-map-marker green bigger-110"></i>&nbsp;
 													<span>32131321312</span>
 												</div>
 											</div>
@@ -194,8 +194,8 @@
 												<div class="profile-info-name"> Manzana - Lote: </div>
 
 												<div class="profile-info-value">
-												<i class="fa fa-envelope green bigger-110"></i>&nbsp;
-													<span>algo@dasd.com</span>
+												<i class="fa fa-map-marker green bigger-110"></i>&nbsp;
+													<span>256-21</span>
 												</div>
 											</div>
 
@@ -203,8 +203,8 @@
 												<div class="profile-info-name">Servicios existentes: </div>
 
 												<div class="profile-info-value">
-												<i class="fa fa-envelope green bigger-110"></i>&nbsp;
-													<span>algo@dasd.com</span>
+												<i class="fa fa-cogs green bigger-110"></i>&nbsp;
+													<span>Agua, Alumbrado, Drenaje</span>
 												</div>
 											</div>
 
@@ -217,25 +217,62 @@
 										<div id="id-message-list-navbar" class="message-navbar clearfix">
 											<div class="message-bar">
 												<div class="message-infobar" id="id-message-infobar">
-													<span class="blue bigger-150">Activar Responsable</span>
+													<span style="display: block;" class="blue bigger-150">Dimensiones del establecimiento</span>
+												</div>
+											</div>
+										</div>
+										<div class="profile-user-info profile-user-info-striped">
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Frente x Fondo: </div>
+
+												<div class="profile-info-value">
+													<i class="fa fa-map-marker red bigger-110"></i>&nbsp;
+													<span>10 mts. x 10 mts.</span>
 												</div>
 											</div>
 
-											<a role="button" class="btn btn-xs btn-primary pull-right" onclick="fill_modal_create_responsable('.$titulo[0].' , '.$titulo[3].' , '.$par_nombre.')"><i class="ace-icon fa fa-plus"></i> Nuevo Responsable </a>
-										</div>
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Costado derecho: </div>
 
-										<div class="message-footer clearfix">
-											<div style="overflow-x: auto;">
-												<div style="overflow-x: auto;" id="tabla_responsables">
-													<table class="table table-striped table-bordered table-hover">
-														<thead>
-															<th>Nombre</th>
-															<th>Teléfono</th>
-															<th>Status</th>
-															<th>Acciones</th>
-														</thead>
-														'.$tr_responsable.'
-													</table>
+												<div class="profile-info-value">
+													<i class="fa fa-map-marker red bigger-110"></i>&nbsp;
+													<span>10 mts.</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Costado izquierdo: </div>
+
+												<div class="profile-info-value">
+													<i class="fa fa-map-marker red bigger-110"></i>&nbsp;
+													<span>10 mts.</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Superficie del terreno: </div>
+
+												<div class="profile-info-value">
+												<i class="fa fa-map-marker red bigger-110"></i>&nbsp;
+													<span>100 mts<sup>2</sup>.</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Superficie del local: </div>
+
+												<div class="profile-info-value">
+												<i class="fa fa-map-marker red bigger-110"></i>&nbsp;
+													<span>50 mts<sup>2</sup>.</span>
+												</div>
+											</div>
+
+											<div class="profile-info-row">
+												<div class="profile-info-name"> Cuenta predial: </div>
+
+												<div class="profile-info-value">
+												<i class="fa fa-home red bigger-110"></i>&nbsp;
+													<span>9895652323164</span>
 												</div>
 											</div>
 										</div>
@@ -247,28 +284,74 @@
 										<div id="id-message-list-navbar" class="message-navbar clearfix">
 											<div class="message-bar">
 												<div class="message-infobar" id="id-message-infobar">
-													<span class="blue bigger-150">Activar Responsable</span>
-												</div>
-											</div>
-
-											<a role="button" class="btn btn-xs btn-primary pull-right" onclick="fill_modal_create_responsable('.$titulo[0].' , '.$titulo[3].' , '.$par_nombre.')"><i class="ace-icon fa fa-plus"></i> Nuevo Responsable </a>
-										</div>
-
-										<div class="message-footer clearfix">
-											<div style="overflow-x: auto;">
-												<div style="overflow-x: auto;" id="tabla_responsables">
-													<table class="table table-striped table-bordered table-hover">
-														<thead>
-															<th>Nombre</th>
-															<th>Teléfono</th>
-															<th>Status</th>
-															<th>Acciones</th>
-														</thead>
-														'.$tr_responsable.'
-													</table>
+													<span class="blue bigger-150">Documentación</span>
 												</div>
 											</div>
 										</div>
+
+										<div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+											<div class="center">
+												<h1>
+													<a href="">
+														<span class="danger bigger-125">
+															<i class="ace-icon fa fa-file-pdf-o"></i>
+														</span>
+													</a>
+													<br>
+												</h1>
+												<h6 class="center"><a href="">Escrituras</a></h6>
+											</div>
+
+											<div class="center">
+												<h1>
+													<a href="">
+														<span class="danger bigger-125">
+															<i class="ace-icon fa fa-file-image-o"></i>
+														</span>
+													</a>
+													<br>
+												</h1>
+												<h6 class="center"><a href="">Recibo predial</a></h6>
+											</div>
+
+											<div class="center">
+												<h1>
+													<a href="">
+														<span class="danger bigger-125">
+															<i class="ace-icon fa fa-file-pdf-o"></i>
+														</span>
+													</a>
+													<br>
+												</h1>
+												<h6 class="center"><a href="">Contrato de arrendamiento</a></h6>
+											</div>
+
+											<div class="center">
+												<h1>
+													<a href="">
+														<span class="danger bigger-125">
+															<i class="ace-icon fa fa-file-image-o"></i>
+														</span>
+													</a>
+													<br>
+												</h1>
+												<h6 class="center"><a href="">INE</a></h6>
+											</div>
+
+											<div class="center">
+												<h1>
+													<a href="">
+														<span class="danger bigger-125">
+															<i class="ace-icon fa fa-file-image-o"></i>
+														</span>
+													</a>
+													<br>
+												</h1>
+												<h6 class="center"><a href="">Número oficial</a></h6>
+											</div>
+										</div>
+
+										<div class="message-footer clearfix"></div>
 									</div>
 								</div>
 
@@ -284,7 +367,7 @@
 
 				<button type="button" class="btn btn-danger" onclick="rechazar(<?=$id?>);"><i class="fa fa-ban">&nbsp;</i>Rechazar Solicitud</button>
 
-				<button type="button" class="btn btn-success" onclick="aprobar(<?=$id?>);"><i class="fa fa-check">&nbsp;</i>Aprobar Solicitud</button>
+				<button type="button" class="btn btn-success" onclick="aprobar(<?=$id?>, <?=$ausencia?>);"><i class="fa fa-check">&nbsp;</i>Aprobar Solicitud</button>
 			</div>
 
 		</div>

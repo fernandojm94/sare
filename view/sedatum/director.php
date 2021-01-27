@@ -22,7 +22,7 @@
 
 </style>
 
-<div class="breadcrumbs ace-save-state breadcrumbs-fixed" id="breadcrumbs">
+<div class="breadcrumbs ace-save-state" id="breadcrumbs">
 	<ul class="breadcrumb">
 		<li>
 			<i class="ace-icon fa fa-home home-icon"></i>
@@ -169,7 +169,7 @@
         xmlhttp.send(datos_modal);
     }
 
-	function fill_modal_info(id)
+	function fill_modal_info(id, ausencia)
     {
         var xmlhttp;
 
@@ -193,7 +193,7 @@
             }
         }
 
-        var datos_modal = "id=" + id;
+        var datos_modal = "id=" + id + "&ausencia=" + ausencia;
 
         waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
         xmlhttp.open("POST","./model/sedatum/modal_info.php",true);

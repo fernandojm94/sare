@@ -942,27 +942,48 @@
 				});
 			}
 
-			function aprobar(tipo){
-				var user = "";
-				if (tipo == 1) {
-					user = "Secretario";
-				}else if(tipo == 2){
-					user = "Director";
+			function aprobar(tipo, ausencia){
+				if (ausencia == 1) {
+					swal({
+					  title: "Última Aprobación Activada",
+					  text: "¿Desea continuar?",
+					  icon: "info",
+					  customClass: "wider",
+					  buttons: ["Cancelar", "Ok"],
+					}).then((value) => {
+						if(value){
+							doble_aprob();
+						}else{
+							swal("¡Cancelado!", "No se ha aprobado la solicitud", "error");
+						}
+					});
 				}
 
-				swal({
-				  title: "¿Aprobar?",
-				  text: "¿Seguro que desea aprobar la solicutud?",
-				  icon: "warning",
-				  buttons: ["Cancelar", "Ok"],
-				  dangerMode: true,
-				}).then((value) => {
-					if (value) {
-						swal("¡Correcto!", "Solicitud aprobada", "success");
-					}else{
-						swal("¡Cancelado!", "No se ha aprobado la solicitud", "error");
+				function doble_aprob(){
+
+					var user = "";
+					if (tipo == 1) {
+						user = "Secretario";
+					}else if(tipo == 2){
+						user = "Director";
 					}
-				});
+
+					swal({
+					  title: "¿Aprobar?",
+					  text: "¿Seguro que desea aprobar la solicutud?",
+					  icon: "warning",
+					  buttons: ["Cancelar", "Ok"],
+					  dangerMode: true,
+					}).then((value) => {
+						if (value) {
+							swal("¡Correcto!", "Solicitud aprobada", "success");
+						}else{
+							swal("¡Cancelado!", "No se ha aprobado la solicitud", "error");
+						}
+					});
+				}
+
+
 			}
 		</script>
 	</body>

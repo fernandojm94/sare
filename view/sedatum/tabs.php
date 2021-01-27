@@ -3,6 +3,7 @@
 
 	// $sec_or_dir = $_POST['algo']; SIRVE PARA IDENTIFICAR DESDE DONDE LLAMAN AL MODAL, DESDE DIRECTOR O DESDE SECRETARIO
 	$sec_or_dir = 2; //ASIGNACION PARA QUE NO MARQUE ERROR
+	$ausencia = 1;
 ?>
 
 <div id="<?=$id_tab;?>" class="tab-pane in active">
@@ -64,7 +65,7 @@
 								<td class="center"><span class="label label-warning arrowed-right">3. Departamento de uso de suelo.</span></td>
 								<td class="center">
 									<div class="btn-group">
-										<a class="btn btn-xs btn-info" onclick="fill_modal_info(<?= $sec_or_dir; ?>)" role="button" data-toggle="modal">
+										<a class="btn btn-xs btn-info" onclick="fill_modal_info(<?= $sec_or_dir; ?>, <?= $ausencia; ?>)" role="button" data-toggle="modal">
 											<i class="ace-icon fa fa-info-circle bigger-130"></i>
 										</a>
 									</div>
