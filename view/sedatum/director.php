@@ -160,8 +160,6 @@
 										</tr>
 									</tbody>
 								</table>
-								<div id="load_modal_info"></div>
-								<div id="load_modal_upcomprobante"></div>
 							</div>
 						</div>
 					</div>
@@ -170,6 +168,10 @@
 			</div>
 		</div>
 	</div>
+
+	<div id="load_modal_info"></div>
+	<div id="load_modal_upcomprobante"></div>
+
 </div>
 
 <script>
