@@ -58,7 +58,7 @@
 								</div>
 
 								<!-- <span style="display: block;" class="blue bigger-170"></span> -->
-								<span style="display: inline-block;" class="grey bigger-140">Solicitudes registradas</span>
+								<span style="display: inline-block;" class="grey bigger-140">Listado de Solicutudes</span>
 
 								<hr style="border-width: 1px; border-color: #b3bbc9;">
 

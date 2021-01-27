@@ -45,6 +45,7 @@
 			</small>
 		</h1>
 	</div><!-- /.page-header -->
+
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="container" style="width: 100%;">
@@ -52,7 +53,6 @@
 					<div id="id-message-list-navbar" class="message-navbar clearfix">
 						<div class="">
 							<div class="message-infobar clearfix" id="id-message-infobar">
-
 								<div style="display: inline-block; float: left;">
 									<div>
 										<label>
@@ -63,103 +63,44 @@
 								</div>
 
 								<span style="display: block;" class="blue bigger-170"></span>
-								<span style="display: inline-block;" class="grey bigger-140">Solicitudes Recibidas</span>
-
-								 <!-- <div style="display: inline-block; float: right;">
-									<a href="javascript:cambiarcont('view/solicitud/nuevo.php');" class="btn btn-primary">
-										<i class="ace-icon fa fa-book"></i>
-										<span>Nueva Solicitud</span>
-									</a>
-								</div> -->
+								<span style="display: inline-block;" class="grey bigger-140">Listado de Solicutudes</span>
 
 								<hr style="border-width: 1px; border-color: #b3bbc9;">
-								<div class="pull-right tableTools-container"></div>
-							</div>
-						</div>
-					</div>
-
-					<div class="message-list-container">
-						<div class="message-list" id="message-list">
-							<div>
-								<table id="dynamic-table" class="table table-striped table-bordered table-hover">
-									<thead>
-										<tr>
-											<th>
-												<i class="ace-icon fa fa-clock-o bigger-110 ico_hid"></i>
-												Fecha y hora de creación
-											</th>
-
-											<th>
-												<i class="ace-icon fa fa-building bigger-110 ico_hid"></i>
-												Nombre establecimiento
-											</th>
-
-											<th class="hid_xs">
-												<i class="ace-icon fa fa-map-marker bigger-110 ico_hid"></i>
-												Dirección
-											</th>
-
-											<th class="hidden"></th>
 
 
-											<th class="hid_xs">
-												<i class="ace-icon fa fa-phone bigger-110 ico_hid"></i>
-												Número de teléfono
-											</th>
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="row">
+											<div class="col-xs-12">
+												<div class="tabbable">
+													<ul id="inbox-tabs" class="inbox-tabs nav nav-tabs padding-16 tab-size-bigger tab-space-1">
 
-											<th>
-												<i class="ace-icon fa fa-sliders bigger-110 ico_hid"></i>
-												Estatus de la solicitud
-											</th>
+														<li class="active" onclick="fill_tabs(this)">
+															<a data-toggle="tab" href="#pendientes" data-target="pendientes">
+																<i class="blue ace-icon fa fa-clock-o bigger-130"></i>
+																<span class="bigger-110">Pendientes</span>
+															</a>
+														</li>
 
-											<th style="min-width: 94px !important;">
-												<i class="ace-icon fa fa-cogs bigger-110 ico_hid"></i>
-												Acciones
-											</th>
-										</tr>
-									</thead>
+														<li class="" onclick="fill_tabs(this)">
+															<a data-toggle="tab" href="#atendidas" data-target="atendidas">
+																<i class="orange ace-icon fa fa-check bigger-130"></i>
+																<span class="bigger-110">Atendidas</span>
+															</a>
+														</li>
 
-									<tbody>
-										<tr>
-											<td>10 de noviembre 2020 15:34:21</td>
-											<td>Abarrotes Mi casita</td>
-											<td class="hid_xs">
-												Emiliano Zapata 109 Centro, Jesús María
-											</td>
-											<td class="hidden"></td>
-											<td class="hid_xs">449 121 1213</td>
-											<td class="center"><span class="label label-warning arrowed-right">3. Departamento de uso de suelo.</span></td>
-											<td class="center">
-												<div class="btn-group">
-													<a class="btn btn-xs btn-info" onclick="fill_modal_info(1)" role="button" data-toggle="modal">
-														<i class="ace-icon fa fa-info-circle bigger-130"></i>
-													</a>
+													</ul>
+
+													<div class="tab-content no-border no-padding" id="tabs">
+														<!--AQUI SE IMPRIMEN LAS TABS-->
+													</div>
+
 												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>2 de diciembre 2020 12:04:55</td>
-											<td>Cadena Comercial Oxxo</td>
-											<td class="hid_xs">
-												Av. López Mateos 1024, Lomas de Jesús María
-											</td>
-											<td class="hidden"></td>
-											<td class="hid_xs">449 895 7852</td>
-											<td class="center"><span class="label label-danger arrowed-right">2. Comprobante de pago.</span></td>
-											<td class="center">
-												<div class="btn-group">
-													<a class="btn btn-xs btn-info" onclick="fill_modal_info(2)" role="button" data-toggle="modal">
-														<i class="ace-icon fa fa-info-circle bigger-130"></i>
-													</a>
+											</div>
+										</div>
+									</div>
+								</div>
 
-													<a class="btn btn-xs btn-success" onclick="fill_modal_upcomprobante(2)" role="button" data-toggle="modal">
-														<i class="ace-icon fa fa-upload bigger-130"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-									</tbody>
-								</table>
 							</div>
 						</div>
 					</div>
@@ -187,6 +128,46 @@
 		document.getElementById("span_director").style.backgroundColor = "#d15b47";
 		document.getElementById("span_director").innerHTML = "&nbsp;<h4 style='display:inline'>Última Aprobación Desactivada</h4>";
 	}
+
+	$(document).ready(fill_tabs());
+
+	function fill_tabs(li)
+    {
+    	var id = '';
+    	if (!li) {
+    		id = 'pendientes';
+    	}else{
+	    	id = li.childNodes[1].getAttribute('href').split('#')[1];
+    	}
+
+        var xmlhttp;
+
+        if (window.XMLHttpRequest){
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp=new XMLHttpRequest();
+        }
+
+        else{// code for IE6, IE5
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        xmlhttp.onreadystatechange=function(){
+
+            if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                //document.getElementById("loading").innerHTML = ''; // Hide the image after the response from the
+                document.getElementById("tabs").innerHTML=xmlhttp.responseText;
+                waitingDialog.hide();
+                dynamic();
+            }
+        }
+
+        var datos_modal = 'id=' + id;
+
+        waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
+        xmlhttp.open("POST","./view/sedatum/tabs.php",true);
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xmlhttp.send(datos_modal);
+    }
 
 	function fill_modal_info(id)
     {
@@ -288,185 +269,173 @@
 </script>
 
 <script type="text/javascript">
-	jQuery(function($) {
-		//initiate dataTables plugin
-		var myTable =
-		$('#dynamic-table')
-		//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-		.DataTable( {
-			bAutoWidth: false,
-			"aoColumns": [
-			  { "bSortable": false },
-			  null, null,null, null, null,
-			  { "bSortable": false }
-			],
-			"aaSorting": [],
+	function dynamic(){
+		jQuery(function($) {
+			//initiate dataTables plugin
+			var myTable =
+			$('#dynamic-table')
+			//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
+			.DataTable({
+				bAutoWidth: false,
+				"aoColumns": [
+				  { "bSortable": false },
+				  null, null,null, null, null,
+				  { "bSortable": false }
+				],
+				"aaSorting": [],
 
 
-			//"bProcessing": true,
-	        //"bServerSide": true,
-	        //"sAjaxSource": "http://127.0.0.1/table.php"	,
+				//"bProcessing": true,
+		        //"bServerSide": true,
+		        //"sAjaxSource": "http://127.0.0.1/table.php"	,
 
-			//,
-			//"sScrollY": "200px",
-			//"bPaginate": false,
+				//,
+				//"sScrollY": "200px",
+				//"bPaginate": false,
 
-			//"sScrollX": "100%",
-			//"sScrollXInner": "120%",
-			//"bScrollCollapse": true,
-			//Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-			//you may want to wrap the table inside a "div.dataTables_borderWrap" element
+				//"sScrollX": "100%",
+				//"sScrollXInner": "120%",
+				//"bScrollCollapse": true,
+				//Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
+				//you may want to wrap the table inside a "div.dataTables_borderWrap" element
 
-			//"iDisplayLength": 50
-
-
-			select: {
-				style: 'multi'
-			}
-	    } );
+				//"iDisplayLength": 50
 
 
+				select: {
+					style: 'multi'
+				}
+		    });
 
-		$.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
+			$.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
 
-		new $.fn.dataTable.Buttons( myTable, {
-			buttons: [
-			  {
-				"extend": "colvis",
-				"text": "<i class='fa fa-search bigger-110 blue'></i> <span>Columnas</span>",
-				"className": "btn btn-white btn-primary btn-bold",
-				columns: ':not(:first):not(:last)'
-			  },
-			  {
-				"extend": "copy",
-				"text": "<i class='fa fa-copy bigger-110 pink'></i> <span>Copiar</span>",
-				"className": "btn btn-white btn-primary btn-bold"
-			  },
-			  {
-				"extend": "csv",
-				"text": "<i class='fa fa-table bigger-110 orange'></i> <span>Tablas</span>",
-				"className": "btn btn-white btn-primary btn-bold"
-			  },
-			  {
-				"extend": "excel",
-				"text": "<i class='fa fa-file-excel-o bigger-110 green'></i> <span class='hidden'>Export to Excel</span>",
-				"className": "btn btn-white btn-primary btn-bold"
-			  },
-			  {
-				"extend": "pdf",
-				"text": "<i class='fa fa-file-pdf-o bigger-110 red'></i> <span class='hidden'>Export to PDF</span>",
-				"className": "btn btn-white btn-primary btn-bold"
-			  },
-			  {
-				"extend": "print",
-				"text": "<i class='fa fa-print bigger-110 grey'></i> <span>Imprimir</span>",
-				"className": "btn btn-white btn-primary btn-bold",
-				autoPrint: false,
-				message: 'This print was produced using the Print button for DataTables'
-			  }
-			]
-		} );
-		myTable.buttons().container().appendTo( $('.tableTools-container') );
-
-		//style the message box
-		var defaultCopyAction = myTable.button(1).action();
-		myTable.button(1).action(function (e, dt, button, config) {
-			defaultCopyAction(e, dt, button, config);
-			$('.dt-button-info').addClass('gritter-item-wrapper gritter-info gritter-center white');
-		});
-
-
-		var defaultColvisAction = myTable.button(0).action();
-		myTable.button(0).action(function (e, dt, button, config) {
-
-			defaultColvisAction(e, dt, button, config);
-
-
-			if($('.dt-button-collection > .dropdown-menu').length == 0) {
-				$('.dt-button-collection')
-				.wrapInner('<ul class="dropdown-menu dropdown-light dropdown-caret dropdown-caret" />')
-				.find('a').attr('href', '#').wrap("<li />")
-			}
-			$('.dt-button-collection').appendTo('.tableTools-container .dt-buttons')
-		});
-
-		////
-
-		setTimeout(function() {
-			$($('.tableTools-container')).find('a.dt-button').each(function() {
-				var div = $(this).find(' > div').first();
-				if(div.length == 1) div.tooltip({container: 'body', title: div.parent().text()});
-				else $(this).tooltip({container: 'body', title: $(this).text()});
+			new $.fn.dataTable.Buttons( myTable, {
+				buttons: [
+				  {
+					"extend": "colvis",
+					"text": "<i class='fa fa-search bigger-110 blue'></i> <span>Columnas</span>",
+					"className": "btn btn-white btn-primary btn-bold",
+					columns: ':not(:first):not(:last)'
+				  },
+				  {
+					"extend": "copy",
+					"text": "<i class='fa fa-copy bigger-110 pink'></i> <span>Copiar</span>",
+					"className": "btn btn-white btn-primary btn-bold"
+				  },
+				  {
+					"extend": "csv",
+					"text": "<i class='fa fa-table bigger-110 orange'></i> <span>Tablas</span>",
+					"className": "btn btn-white btn-primary btn-bold"
+				  },
+				  {
+					"extend": "excel",
+					"text": "<i class='fa fa-file-excel-o bigger-110 green'></i> <span class='hidden'>Export to Excel</span>",
+					"className": "btn btn-white btn-primary btn-bold"
+				  },
+				  {
+					"extend": "pdf",
+					"text": "<i class='fa fa-file-pdf-o bigger-110 red'></i> <span class='hidden'>Export to PDF</span>",
+					"className": "btn btn-white btn-primary btn-bold"
+				  },
+				  {
+					"extend": "print",
+					"text": "<i class='fa fa-print bigger-110 grey'></i> <span>Imprimir</span>",
+					"className": "btn btn-white btn-primary btn-bold",
+					autoPrint: false,
+					message: 'This print was produced using the Print button for DataTables'
+				  }
+				]
 			});
-		}, 500);
+			myTable.buttons().container().appendTo( $('.tableTools-container'));
 
-
-
-
-
-		myTable.on( 'select', function ( e, dt, type, index ) {
-			if ( type === 'row' ) {
-				$( myTable.row( index ).node() ).find('input:checkbox').prop('checked', true);
-			}
-		} );
-		myTable.on( 'deselect', function ( e, dt, type, index ) {
-			if ( type === 'row' ) {
-				$( myTable.row( index ).node() ).find('input:checkbox').prop('checked', false);
-			}
-		} );
-
-
-
-
-		/////////////////////////////////
-		//table checkboxes
-		$('th input[type=checkbox], td input[type=checkbox]').prop('checked', false);
-
-		//select/deselect all rows according to table header checkbox
-		$('#dynamic-table > thead > tr > th input[type=checkbox], #dynamic-table_wrapper input[type=checkbox]').eq(0).on('click', function(){
-			var th_checked = this.checked;//checkbox inside "TH" table header
-
-			$('#dynamic-table').find('tbody > tr').each(function(){
-				var row = this;
-				if(th_checked) myTable.row(row).select();
-				else  myTable.row(row).deselect();
+			//style the message box
+			var defaultCopyAction = myTable.button(1).action();
+			myTable.button(1).action(function (e, dt, button, config) {
+				defaultCopyAction(e, dt, button, config);
+				$('.dt-button-info').addClass('gritter-item-wrapper gritter-info gritter-center white');
 			});
+
+			var defaultColvisAction = myTable.button(0).action();
+			myTable.button(0).action(function (e, dt, button, config) {
+
+				defaultColvisAction(e, dt, button, config);
+
+
+				if($('.dt-button-collection > .dropdown-menu').length == 0) {
+					$('.dt-button-collection')
+					.wrapInner('<ul class="dropdown-menu dropdown-light dropdown-caret dropdown-caret" />')
+					.find('a').attr('href', '#').wrap("<li />")
+				}
+				$('.dt-button-collection').appendTo('.tableTools-container .dt-buttons')
+			});
+
+			setTimeout(function() {
+				$($('.tableTools-container')).find('a.dt-button').each(function() {
+					var div = $(this).find(' > div').first();
+					if(div.length == 1) div.tooltip({container: 'body', title: div.parent().text()});
+					else $(this).tooltip({container: 'body', title: $(this).text()});
+				});
+			}, 500);
+
+			myTable.on( 'select', function ( e, dt, type, index ) {
+				if ( type === 'row' ) {
+					$( myTable.row( index ).node() ).find('input:checkbox').prop('checked', true);
+				}
+			});
+			myTable.on( 'deselect', function ( e, dt, type, index ) {
+				if ( type === 'row' ) {
+					$( myTable.row( index ).node() ).find('input:checkbox').prop('checked', false);
+				}
+			});
+
+			/////////////////////////////////
+			//table checkboxes
+			$('th input[type=checkbox], td input[type=checkbox]').prop('checked', false);
+
+			//select/deselect all rows according to table header checkbox
+			$('#dynamic-table > thead > tr > th input[type=checkbox], #dynamic-table_wrapper input[type=checkbox]').eq(0).on('click', function(){
+				var th_checked = this.checked;//checkbox inside "TH" table header
+
+				$('#dynamic-table').find('tbody > tr').each(function(){
+					var row = this;
+					if(th_checked) myTable.row(row).select();
+					else  myTable.row(row).deselect();
+				});
+			});
+
+			//select/deselect a row when the checkbox is checked/unchecked
+			$('#dynamic-table').on('click', 'td input[type=checkbox]' , function(){
+				var row = $(this).closest('tr').get(0);
+				if(this.checked) myTable.row(row).deselect();
+				else myTable.row(row).select();
+			});
+
+			$(document).on('click', '#dynamic-table .dropdown-toggle', function(e) {
+				e.stopImmediatePropagation();
+				e.stopPropagation();
+				e.preventDefault();
+			});
+
+			/********************************/
+			//add tooltip for small view action buttons in dropdown menu
+			$('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+
+			//tooltip placement on right or left
+			function tooltip_placement(context, source) {
+				var $source = $(source);
+				var $parent = $source.closest('table')
+				var off1 = $parent.offset();
+				var w1 = $parent.width();
+
+				var off2 = $source.offset();
+				//var w2 = $source.width();
+
+				if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+				return 'left';
+			}
+
 		});
-
-		//select/deselect a row when the checkbox is checked/unchecked
-		$('#dynamic-table').on('click', 'td input[type=checkbox]' , function(){
-			var row = $(this).closest('tr').get(0);
-			if(this.checked) myTable.row(row).deselect();
-			else myTable.row(row).select();
-		});
-
-
-
-		$(document).on('click', '#dynamic-table .dropdown-toggle', function(e) {
-			e.stopImmediatePropagation();
-			e.stopPropagation();
-			e.preventDefault();
-		});
-
-		/********************************/
-		//add tooltip for small view action buttons in dropdown menu
-		$('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
-
-		//tooltip placement on right or left
-		function tooltip_placement(context, source) {
-			var $source = $(source);
-			var $parent = $source.closest('table')
-			var off1 = $parent.offset();
-			var w1 = $parent.width();
-
-			var off2 = $source.offset();
-			//var w2 = $source.width();
-
-			if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
-			return 'left';
-		}
-
-	})
+	}
 </script>
 <script type="text/javascript">
 	$( document ).ready(function() {
