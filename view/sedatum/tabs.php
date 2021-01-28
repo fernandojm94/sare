@@ -3,7 +3,7 @@
 
 	// $sec_or_dir = $_POST['algo']; SIRVE PARA IDENTIFICAR DESDE DONDE LLAMAN AL MODAL, DESDE DIRECTOR O DESDE SECRETARIO
 	$sec_or_dir = 2; //ASIGNACION PARA QUE NO MARQUE ERROR
-	$ausencia = 1;
+	$ausencia = 0;
 ?>
 
 <div id="<?=$id_tab;?>" class="tab-pane in active">

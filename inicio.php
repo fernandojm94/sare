@@ -957,6 +957,8 @@
 							swal("¡Cancelado!", "No se ha aprobado la solicitud", "error");
 						}
 					});
+				}else{
+					doble_aprob();
 				}
 
 				function doble_aprob(){
