@@ -53,7 +53,7 @@
 
 		<!-- ace settings handler -->
 		<script src="assets/js/ace-extra.min.js"></script>
-		
+
 
 		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
@@ -61,8 +61,8 @@
 		<script src="assets/js/html5shiv.min.js"></script>
 		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
-		
-		
+
+
 	</head>
 
 	<body class="no-skin">
@@ -92,7 +92,7 @@
 					<ul class="nav ace-nav">
 						<li class="light-blue dropdown-modal">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								
+
 								<span class="user-info">
 									<small>Bienvenido,</small>
 									<?= $_SESSION['nombre_completo']; ?>
@@ -114,7 +114,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="main-container ace-save-state" id="main-container">
 			<script type="text/javascript">
 				try{ace.settings.loadState('main-container')}catch(e){}
@@ -156,7 +156,7 @@
 								</a>
 
 								<b class="arrow"></b>
-							</li>							
+							</li>
 						</ul>
 					</li>
 
@@ -182,7 +182,7 @@
 								</a>
 
 								<b class="arrow"></b>
-							</li>							
+							</li>
 						</ul>
 
 						<ul class="submenu">
@@ -193,7 +193,7 @@
 								</a>
 
 								<b class="arrow"></b>
-							</li>							
+							</li>
 						</ul>
 
 						<ul class="submenu">
@@ -204,7 +204,7 @@
 								</a>
 
 								<b class="arrow"></b>
-							</li>							
+							</li>
 						</ul>
 
 						<ul class="submenu">
@@ -215,7 +215,7 @@
 								</a>
 
 								<b class="arrow"></b>
-							</li>							
+							</li>
 						</ul>
 
 					</li>
@@ -230,7 +230,7 @@
 						</a>
 						<b class="arrow"></b>
 					</li>
-					
+
 				</ul>
 
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
@@ -261,7 +261,7 @@
 			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
 				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
 			</a>
-		
+
 
 		<!-- basic scripts -->
 
@@ -286,9 +286,9 @@
 
 		<!--[if lte IE 8]>
 		  <script src="assets/js/excanvas.min.js"></script>
-		<![endif]-->	
-			
-		<script src="assets/js/jquery-ui.min.js"></script>	
+		<![endif]-->
+
+		<script src="assets/js/jquery-ui.min.js"></script>
 		<script src="assets/js/jquery.dataTables.min.js"></script>
 		<script src="assets/js/jquery.dataTables.bootstrap.min.js"></script>
 		<script src="assets/js/dataTables.buttons.min.js"></script>
@@ -313,15 +313,15 @@
 		<script src="assets/js/jquery.inputlimiter.min.js"></script>
 		<script src="assets/js/jquery.maskedinput.min.js"></script>
 		<script src="assets/js/bootstrap-tag.min.js"></script>
-		<script src="assets/js/jquery.gritter.min.js"></script> 
+		<script src="assets/js/jquery.gritter.min.js"></script>
 		<script src="assets/js/jquery.easypiechart.min.js"></script>
 		<script src="assets/js/jquery.sparkline.index.min.js"></script>
 		<script src="assets/js/jquery.flot.min.js"></script>
 		<script src="assets/js/jquery.flot.pie.min.js"></script>
 		<script src="assets/js/jquery.flot.resize.min.js"></script>
-		<script src="assets/js/bootbox.js"></script>	
+		<script src="assets/js/bootbox.js"></script>
 		<script src="assets/js/spin.js"></script>
-		<script src="assets/js/jquery.hotkeys.index.min.js"></script>	
+		<script src="assets/js/jquery.hotkeys.index.min.js"></script>
 		<script src="assets/js/bootstrap-wysiwyg.min.js"></script>
 		<script src="assets/js/jquery.colorbox.min.js"></script>
 		<script src="assets/js/wizard.min.js"></script>
@@ -331,7 +331,7 @@
 
 
 		 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmCJzMWkI-k9bUNAOMQ5jBtP55PI0aqNc&callback=initMap" async defer></script> -->
-	
+
 		<!-- SCRIPTS HERE MAPS -->
 
 		<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
@@ -345,35 +345,35 @@
 		<!-- ace scripts -->
 		<script src="assets/js/ace-elements.min.js"></script>
 		<script src="assets/js/ace.min.js"></script>
-		
+
 		<!--Alert-->
 		<script src="https://unpkg.com/sweetalert@2.1.0/dist/sweetalert.min.js"></script>
 
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
-			jQuery(function($) {						
+			jQuery(function($) {
 				setTimeout(function() {
 					$($('.tableTools-container')).find('a.dt-button').each(function() {
 						var div = $(this).find(' > div').first();
 						if(div.length == 1) div.tooltip({container: 'body', title: div.parent().text()});
 						else $(this).tooltip({container: 'body', title: $(this).text()});
 					});
-				}, 500);				
-				
-				
+				}, 500);
+
+
 				//And for the first simple table, which doesn't have TableTools or dataTables
 				//select/deselect all rows according to table header checkbox
 				var active_class = 'active';
 				$('#simple-table > thead > tr > th input[type=checkbox]').eq(0).on('click', function(){
 					var th_checked = this.checked;//checkbox inside "TH" table header
-					
+
 					$(this).closest('table').find('tbody > tr').each(function(){
 						var row = this;
 						if(th_checked) $(row).addClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', true);
 						else $(row).removeClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', false);
 					});
 				});
-				
+
 				//select/deselect a row when the checkbox is checked/unchecked
 				$('#simple-table').on('click', 'td input[type=checkbox]' , function(){
 					var $row = $(this).closest('tr');
@@ -381,30 +381,30 @@
 					if(this.checked) $row.addClass(active_class);
 					else $row.removeClass(active_class);
 				});
-			
-				
-			
+
+
+
 				/********************************/
 				//add tooltip for small view action buttons in dropdown menu
 				$('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
-				
+
 				//tooltip placement on right or left
 				function tooltip_placement(context, source) {
 					var $source = $(source);
 					var $parent = $source.closest('table')
 					var off1 = $parent.offset();
 					var w1 = $parent.width();
-			
+
 					var off2 = $source.offset();
 					//var w2 = $source.width();
-			
+
 					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
 					return 'left';
 				}
-				
-				
-				
-				
+
+
+
+
 				/***************/
 				$('.show-details-btn').on('click', function(e) {
 					e.preventDefault();
@@ -412,12 +412,12 @@
 					$(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
 				});
 				/***************/
-			
-			
+
+
 			})
-			
-			
-			
+
+
+
 			jQuery(function($) {
 				$('.easy-pie-chart.percentage').each(function(){
 					var $box = $(this).closest('.infobox');
@@ -434,7 +434,7 @@
 						size: size
 					});
 				})
-			
+
 				$('.sparkline').each(function(){
 					var $box = $(this).closest('.infobox');
 					var barColor = !$box.hasClass('infobox-dark') ? $box.css('color') : '#FFF';
@@ -454,20 +454,20 @@
 					var $parent = $source.closest('.tab-content')
 					var off1 = $parent.offset();
 					var w1 = $parent.width();
-			
+
 					var off2 = $source.offset();
 					//var w2 = $source.width();
-			
+
 					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
 					return 'left';
 				}
-			
-			
+
+
 				$('.dialogs,.comments').ace_scroll({
 					size: 300
 			    });
-				
-				
+
+
 				//Android's default browser somehow is confused when tapping on label which will lead to dragging the task
 				//so disable dragging when clicking on label
 				var agent = navigator.userAgent.toLowerCase();
@@ -479,7 +479,7 @@
 					if(label == e.target || $.contains(label, e.target)) e.stopImmediatePropagation() ;
 				  });
 				}
-			
+
 				$('#tasks').sortable({
 					opacity:0.8,
 					revert:true,
@@ -498,21 +498,21 @@
 					if(this.checked) $(this).closest('li').addClass('selected');
 					else $(this).closest('li').removeClass('selected');
 				});
-			
-			
+
+
 				//show the dropdowns on top or bottom depending on window height and menu position
 				$('#task-tab .dropdown-hover').on('mouseenter', function(e) {
 					var offset = $(this).offset();
-			
+
 					var $w = $(window)
-					if (offset.top > $w.scrollTop() + $w.innerHeight() - 100) 
+					if (offset.top > $w.scrollTop() + $w.innerHeight() - 100)
 						$(this).addClass('dropup');
 					else $(this).removeClass('dropup');
 				});
-			
+
 			})
-			
-			
+
+
 			jQuery(function($) {
 				$('#id-disable-check').on('click', function() {
 					var inp = $('#form-input-readonly').get(0);
@@ -527,12 +527,12 @@
 						inp.value="This text field is disabled!";
 					}
 				});
-			
-			
+
+
 				if(!ace.vars['touch']) {
-					$('.chosen-select').chosen({allow_single_deselect:true}); 
+					$('.chosen-select').chosen({allow_single_deselect:true});
 					//resize the chosen on window resize
-			
+
 					$(window)
 					.off('resize.chosen')
 					.on('resize.chosen', function() {
@@ -549,8 +549,8 @@
 							 $this.next().css({'width': $this.parent().width()});
 						})
 					});
-			
-			
+
+
 					$('#chosen-multiple-style .btn').on('click', function(e){
 						var target = $(this).find('input[type=radio]');
 						var which = parseInt(target.val());
@@ -558,26 +558,26 @@
 						 else $('#form-field-select-4').removeClass('tag-input-style');
 					});
 				}
-			
-			
+
+
 				$('[data-rel=tooltip]').tooltip({container:'body'});
 				$('[data-rel=popover]').popover({container:'body'});
-			
+
 				autosize($('textarea[class*=autosize]'));
-				
+
 				$('textarea.limited').inputlimiter({
 					remText: '%n character%s remaining...',
 					limitText: 'max allowed : %n.'
 				});
-			
+
 				$.mask.definitions['~']='[+-]';
 				$('.input-mask-date').mask('99/99/9999');
 				$('.input-mask-phone').mask('(999) 999-9999');
 				$('.input-mask-eyescript').mask('~9.99 ~9.99 999');
 				$(".input-mask-product").mask("a*-999-a999",{placeholder:" ",completed:function(){alert("You typed the following: "+this.val());}});
-			
-			
-			
+
+
+
 				$( "#input-size-slider" ).css('width','200px').slider({
 					value:1,
 					range: "min",
@@ -590,7 +590,7 @@
 						$('#form-field-4').attr('class', sizing[val]).attr('placeholder', '.'+sizing[val]);
 					}
 				});
-			
+
 				$( "#input-span-slider" ).slider({
 					value:1,
 					range: "min",
@@ -602,9 +602,9 @@
 						$('#form-field-5').attr('class', 'col-xs-'+val).val('.col-xs-'+val);
 					}
 				});
-			
-			
-				
+
+
+
 				//"jQuery UI Slider"
 				//range slider tooltip example
 				$( "#slider-range" ).css('height','200px').slider({
@@ -615,7 +615,7 @@
 					values: [ 17, 67 ],
 					slide: function( event, ui ) {
 						var val = ui.values[$(ui.handle).index()-1] + "";
-			
+
 						if( !ui.handle.firstChild ) {
 							$("<div class='tooltip right in' style='display:none;left:16px;top:-6px;'><div class='tooltip-arrow'></div><div class='tooltip-inner'></div></div>")
 							.prependTo(ui.handle);
@@ -625,15 +625,15 @@
 				}).find('span.ui-slider-handle').on('blur', function(){
 					$(this.firstChild).hide();
 				});
-				
-				
+
+
 				$( "#slider-range-max" ).slider({
 					range: "max",
 					min: 1,
 					max: 10,
 					value: 2
 				});
-				
+
 				$( "#slider-eq > span" ).css({width:'90%', 'float':'left', margin:'15px'}).each(function() {
 					// read initial values from markup and remove that
 					var value = parseInt( $( this ).text(), 10 );
@@ -641,13 +641,13 @@
 						value: value,
 						range: "min",
 						animate: true
-						
+
 					});
 				});
-				
+
 				$("#slider-eq > span.ui-slider-purple").slider('disable');//disable third item
-			
-				
+
+
 				$('#id-input-file-1 , #id-input-file-2').ace_file_input({
 					no_file:'No File ...',
 					btn_choose:'Choose',
@@ -662,8 +662,8 @@
 				});
 				//pre-show a file name, for example a previously selected file
 				//$('#id-input-file-1').ace_file_input('show_file_list', ['myfile.txt'])
-			
-			
+
+
 				$('#id-input-file-3').ace_file_input({
 					style: 'well',
 					btn_choose: 'Drop files here or click to choose',
@@ -689,22 +689,22 @@
 						//3 = 'THUMBNAIL_FAILED'
 						//alert(error_code);
 					}
-			
+
 				}).on('change', function(){
 					//console.log($(this).data('ace_input_files'));
 					//console.log($(this).data('ace_input_method'));
 				});
-				
-				
+
+
 				//$('#id-input-file-3')
 				//.ace_file_input('show_file_list', [
 					//{type: 'image', name: 'name of image', path: 'http://path/to/image/for/preview'},
 					//{type: 'file', name: 'hello.txt'}
 				//]);
-			
-				
-				
-			
+
+
+
+
 				//dynamically change allowed formats by changing allowExt && allowMime function
 				$('#id-file-format').removeAttr('checked').on('change', function() {
 					var whitelist_ext, whitelist_mime;
@@ -713,14 +713,14 @@
 					if(this.checked) {
 						btn_choose = "Drop images here or click to choose";
 						no_icon = "ace-icon fa fa-picture-o";
-			
+
 						whitelist_ext = ["jpeg", "jpg", "png", "gif" , "bmp"];
 						whitelist_mime = ["image/jpg", "image/jpeg", "image/png", "image/gif", "image/bmp"];
 					}
 					else {
 						btn_choose = "Drop files here or click to choose";
 						no_icon = "ace-icon fa fa-cloud-upload";
-						
+
 						whitelist_ext = null;//all extensions are acceptable
 						whitelist_mime = null;//all mimes are acceptable
 					}
@@ -734,21 +734,21 @@
 						'allowMime': whitelist_mime
 					})
 					file_input.ace_file_input('reset_input');
-					
+
 					file_input
 					.off('file.error.ace')
 					.on('file.error.ace', function(e, info) {
-						
+
 					});
-					
-					
-					
-				
+
+
+
+
 				});
-			
-				
-				
-				
+
+
+
+
 				;(function($){
 					$.fn.datepicker.dates['es'] = {
 						days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
@@ -763,8 +763,8 @@
 						format: "dd/mm/yyyy"
 					};
 				}(jQuery));
-			
-			
+
+
 				//datepicker plugin
 				//link
 				$('.date-picker').datepicker({
@@ -776,11 +776,11 @@
 				.next().on(ace.click_event, function(){
 					$(this).prev().focus();
 				});
-			
+
 				//or change it into a date range picker
 				$('.input-daterange').datepicker({autoclose:true});
-			
-			
+
+
 				//to translate the daterange picker, please copy the "examples/daterange-fr.js" contents here before initialization
 				$('input[name=date-range-picker]').daterangepicker({
 					'applyClass' : 'btn-sm btn-success',
@@ -793,11 +793,11 @@
 				.prev().on(ace.click_event, function(){
 					$(this).next().focus();
 				});
-			
-			
+
+
 				$(".knob").knob();
-				
-				
+
+
 				var tag_input = $('#form-field-tags');
 				try{
 					tag_input.tag(
@@ -816,11 +816,11 @@
 						*/
 					  }
 					)
-			
+
 					//programmatically add/remove a tag
 					var $tag_obj = $('#form-field-tags').data('tag');
 					$tag_obj.add('Programmatically Added');
-					
+
 					var index = $tag_obj.inValues('some tag');
 					$tag_obj.remove(index);
 				}
@@ -829,8 +829,8 @@
 					tag_input.after('<textarea id="'+tag_input.attr('id')+'" name="'+tag_input.attr('name')+'" rows="3">'+tag_input.val()+'</textarea>').remove();
 					//autosize($('#form-field-tags'));
 				}
-				
-				
+
+
 				/////////
 				$('#modal-form input[type=file]').ace_file_input({
 					style:'well',
@@ -840,7 +840,7 @@
 					droppable:true,
 					thumbnail:'large'
 				})
-				
+
 				//chosen plugin inside a modal will have a zero width because the select element is originally hidden
 				//and its width cannot be determined.
 				//so we set the width after modal is show
@@ -860,32 +860,32 @@
 					$(this).find('.modal-chosen').chosen();
 				})
 				*/
-			
-				
-				
+
+
+
 				$(document).one('ajaxloadstart.page', function(e) {
 					autosize.destroy('textarea[class*=autosize]')
-					
+
 					$('.limiterBox,.autosizejs').remove();
 					$('.daterangepicker.dropdown-menu,.colorpicker.dropdown-menu,.bootstrap-datetimepicker-widget.dropdown-menu').remove();
 				});
-			
+
 			});
 		</script>
 
-		<!--Aquí comienzan mis script--> 
+		<!--Aquí comienzan mis script-->
 		<script>
 			/*funcion para cambiar el contenido a mostrar*/
-			function cambiarcont(pagina) 
-			{			
+			function cambiarcont(pagina)
+			{
 			    $("#body_content").html("<img src='img/exit.gif' class='img-responsive center-block' alt='Cargando...' />");
 			    $("#body_content").load(pagina);
 				$("#body_content").fadeIn(10000);
 			}
-		
+
 		</script>
-		
-		
+
+
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$("#body_content").html("<img src='img/exit.gif' class='img-responsive center-block' alt='Cargando...' />");
@@ -899,6 +899,156 @@
 				$("#sidebar ul.nav li.active").removeClass("active");
 				$(this).addClass("active");
 			});
+		</script>
+
+		<script type="text/javascript">
+			function rechazar(tipo){
+				var user = "";
+				if (tipo == 1) {
+					user = "secretario";
+				}else if(tipo == 2){
+					user = "director";
+				}
+
+				swal({
+				  title: "¿Está seguro?",
+				  text: "¿Seguro que desea rechazar la solicutud?",
+				  icon: "warning",
+				  buttons: ["Cancelar", "Ok"],
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+				  if (willDelete) {
+				    swal({
+					  title: "Descripción",
+					  text: "Describa el motivo del rechazo:",
+					  buttons: ["Cancelar", "Enviar"],
+					  icon: "info",
+					  content: "input",
+				    }).then((value) => {
+				    	if (value) {
+
+				    		var data = {
+								'usuario' : user,
+								'descripcion' : value,
+							}
+
+							$.ajax({
+								data:  data,
+								url:   './model/sedatum/rechazos.php',
+								type:  'post',
+
+								success:  function (data) {
+
+										if (data==='correcto'){
+											swal({
+											  title: "¡Datos guardados correctamente!",
+											  icon: "success",
+											}).then( (value) => {
+												$("#modal_info").modal('hide');
+												cambiarcont('view/sedatum/'+user+'.php');
+											});
+
+										}
+
+										if (data==='error'){
+											swal({
+											  title: "¡Error!",
+											  text: "¡Ocurrio algo al guardar!",
+											  icon: "error",
+											});
+										}
+								}
+							});
+
+				    	}else{
+				    		swal("¡Cancelado!", "No se ha rechazado la solicutud", "error");
+				    	}
+				    });
+				  } else {
+				    swal("¡Cancelado!", "No se ha rechazado la solicutud", "error");
+				  }
+				});
+			}
+
+			function aprobar(tipo, ausencia){
+
+				if (ausencia == 1) {
+					swal({
+					  title: "Última Aprobación Activada",
+					  text: "¿Desea continuar?",
+					  icon: "info",
+					  customClass: "wider",
+					  buttons: ["Cancelar", "Ok"],
+					}).then((value) => {
+						if(value){
+							doble_aprob(tipo,ausencia);
+						}else{
+							swal("¡Cancelado!", "No se ha aprobado la solicitud", "error");
+						}
+					});
+				}else{
+					doble_aprob(tipo,ausencia);
+				}
+
+				function doble_aprob(tipo, ausencia){
+
+					var user = "";
+					if (tipo == 1) {
+						user = "secretario";
+					}else if(tipo == 2){
+						user = "director";
+					}
+
+					swal({
+					  title: "¿Aprobar?",
+					  text: "¿Seguro que desea aprobar la solicutud?",
+					  icon: "warning",
+					  buttons: ["Cancelar", "Ok"],
+					  dangerMode: true,
+					}).then((value) => {
+						if (value) {
+
+							var data = {
+								'usuario' : user,
+								'ausencia' : ausencia,
+							}
+
+							$.ajax({
+								data:  data,
+								url:   './model/sedatum/aprobaciones.php',
+								type:  'post',
+
+								success:  function (data) {
+
+										if (data==='correcto'){
+											swal({
+											  title: "¡Datos guardados correctamente!",
+											  icon: "success",
+											}).then( (value) => {
+												$("#modal_info").modal('hide');
+												cambiarcont('view/sedatum/'+user+'.php');
+											});
+
+										}
+
+										if (data==='error'){
+											swal({
+											  title: "¡Error!",
+											  text: "¡Ocurrio algo al guardar!",
+											  icon: "error",
+											});
+										}
+								}
+							});
+						}else{
+							swal("¡Cancelado!", "No se ha aprobado la solicitud", "error");
+						}
+					});
+				}
+
+
+			}
 		</script>
 	</body>
 </html>

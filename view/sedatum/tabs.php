@@ -1,8 +1,12 @@
 <?php
-	$id = $_POST['id'];
+	$id_tab = $_POST['id'];
+
+	// $sec_or_dir = $_POST['algo']; SIRVE PARA IDENTIFICAR DESDE DONDE LLAMAN AL MODAL, DESDE DIRECTOR O DESDE SECRETARIO
+	$sec_or_dir = 2; //ASIGNACION PARA QUE NO MARQUE ERROR
+	$ausencia = 0;
 ?>
 
-<div id="<?=$id;?>" class="tab-pane in active">
+<div id="<?=$id_tab;?>" class="tab-pane in active">
 	<div class="message-container">
 		<div id="id-message-list-navbar" class="message-navbar clearfix">
 			<div class="pull-right tableTools-container"></div>
@@ -42,7 +46,7 @@
 									Estatus de la solicitud
 								</th>
 
-								<th style="min-width: 94px !important;">
+								<th>
 									<i class="ace-icon fa fa-cogs bigger-110 ico_hid"></i>
 									Acciones
 								</th>
@@ -61,13 +65,14 @@
 								<td class="center"><span class="label label-warning arrowed-right">3. Departamento de uso de suelo.</span></td>
 								<td class="center">
 									<div class="btn-group">
-										<a class="btn btn-xs btn-info" onclick="fill_modal_info(1)" role="button" data-toggle="modal">
+										<a class="btn btn-xs btn-info" onclick="fill_modal_info(<?= $sec_or_dir; ?>, <?= $ausencia; ?>)" role="button" data-toggle="modal">
 											<i class="ace-icon fa fa-info-circle bigger-130"></i>
 										</a>
 									</div>
 								</td>
 							</tr>
-							<tr>
+
+							<!-- <tr>
 								<td>2 de diciembre 2020 12:04:55</td>
 								<td>Cadena Comercial Oxxo</td>
 								<td class="hid_xs">
@@ -87,7 +92,8 @@
 										</a>
 									</div>
 								</td>
-							</tr>
+							</tr> -->
+
 						</tbody>
 					</table>
 				</div>

@@ -18,7 +18,7 @@
 	}
 
 </style>
-<div class="breadcrumbs ace-save-state breadcrumbs-fixed" id="breadcrumbs">
+<div class="breadcrumbs ace-save-state" id="breadcrumbs">
 	<ul class="breadcrumb">
 		<li>
 			<i class="ace-icon fa fa-home home-icon"></i>
@@ -58,7 +58,7 @@
 								</div>
 
 								<!-- <span style="display: block;" class="blue bigger-170"></span> -->
-								<span style="display: inline-block;" class="grey bigger-140">Solicitudes registradas</span>
+								<span style="display: inline-block;" class="grey bigger-140">Listado de Solicutudes</span>
 
 								<hr style="border-width: 1px; border-color: #b3bbc9;">
 
@@ -232,10 +232,10 @@
             }
         }
 
-        var datos_modal = id;
+        var datos_modal = "id=" + id;
 
         waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
-        xmlhttp.open("POST","./model/solicitud/modal_info_sol.php",true);
+        xmlhttp.open("POST","./model/sedatum/modal_info.php",true);
         xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
         xmlhttp.send(datos_modal);
     }
