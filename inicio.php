@@ -905,9 +905,9 @@
 			function rechazar(tipo){
 				var user = "";
 				if (tipo == 1) {
-					user = "Secretario";
-				}else if(user == 2){
-					user = "Director";
+					user = "secretario";
+				}else if(tipo == 2){
+					user = "director";
 				}
 
 				swal({
@@ -927,11 +927,40 @@
 					  content: "input",
 				    }).then((value) => {
 				    	if (value) {
-					    	swal({
-							  title: "Correcto",
-							  text: "Solicitud rechazada por: "+value,
-							  icon: "success",
+
+				    		var data = {
+								'usuario' : user,
+								'descripcion' : value,
+							}
+
+							$.ajax({
+								data:  data,
+								url:   './model/sedatum/rechazos.php',
+								type:  'post',
+
+								success:  function (data) {
+
+										if (data==='correcto'){
+											swal({
+											  title: "¡Datos guardados correctamente!",
+											  icon: "success",
+											}).then( (value) => {
+												$("#modal_info").modal('hide');
+												cambiarcont('view/sedatum/'+user+'.php');
+											});
+
+										}
+
+										if (data==='error'){
+											swal({
+											  title: "¡Error!",
+											  text: "¡Ocurrio algo al guardar!",
+											  icon: "error",
+											});
+										}
+								}
 							});
+
 				    	}else{
 				    		swal("¡Cancelado!", "No se ha rechazado la solicutud", "error");
 				    	}
@@ -981,7 +1010,7 @@
 						if (value) {
 
 							var data = {
-								'ususario' : user,
+								'usuario' : user,
 								'ausencia' : ausencia,
 							}
 
