@@ -1,6 +1,8 @@
 <?php
+
 	$id = $_POST['id'];
 	$ausencia = $_POST['ausencia'];
+
 ?>
 
 <div id="modal_info" class="modal" tabindex="-1" style="overflow-y:auto;">

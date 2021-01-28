@@ -943,6 +943,7 @@
 			}
 
 			function aprobar(tipo, ausencia){
+
 				if (ausencia == 1) {
 					swal({
 					  title: "Última Aprobación Activada",
@@ -952,22 +953,22 @@
 					  buttons: ["Cancelar", "Ok"],
 					}).then((value) => {
 						if(value){
-							doble_aprob();
+							doble_aprob(tipo,ausencia);
 						}else{
 							swal("¡Cancelado!", "No se ha aprobado la solicitud", "error");
 						}
 					});
 				}else{
-					doble_aprob();
+					doble_aprob(tipo,ausencia);
 				}
 
-				function doble_aprob(){
+				function doble_aprob(tipo, ausencia){
 
 					var user = "";
 					if (tipo == 1) {
-						user = "Secretario";
+						user = "secretario";
 					}else if(tipo == 2){
-						user = "Director";
+						user = "director";
 					}
 
 					swal({
@@ -978,7 +979,39 @@
 					  dangerMode: true,
 					}).then((value) => {
 						if (value) {
-							swal("¡Correcto!", "Solicitud aprobada", "success");
+
+							var data = {
+								'ususario' : user,
+								'ausencia' : ausencia,
+							}
+
+							$.ajax({
+								data:  data,
+								url:   './model/sedatum/aprobaciones.php',
+								type:  'post',
+
+								success:  function (data) {
+
+										if (data==='correcto'){
+											swal({
+											  title: "¡Datos guardados correctamente!",
+											  icon: "success",
+											}).then( (value) => {
+												$("#modal_info").modal('hide');
+												cambiarcont('view/sedatum/'+user+'.php');
+											});
+
+										}
+
+										if (data==='error'){
+											swal({
+											  title: "¡Error!",
+											  text: "¡Ocurrio algo al guardar!",
+											  icon: "error",
+											});
+										}
+								}
+							});
 						}else{
 							swal("¡Cancelado!", "No se ha aprobado la solicitud", "error");
 						}
