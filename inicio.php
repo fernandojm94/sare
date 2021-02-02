@@ -902,12 +902,49 @@
 		</script>
 
 		<script type="text/javascript">
-			function rechazar(tipo){
+			function fill_modal_info(id, tipo, ausencia)
+		    {
+		        var xmlhttp;
+
+		        if (window.XMLHttpRequest){
+		            // code for IE7+, Firefox, Chrome, Opera, Safari
+		            xmlhttp=new XMLHttpRequest();
+		        }
+
+		        else{// code for IE6, IE5
+		            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		        }
+
+		        xmlhttp.onreadystatechange=function(){
+
+		            if (xmlhttp.readyState==4 && xmlhttp.status==200){
+		                //document.getElementById("loading").innerHTML = ''; // Hide the image after the response from the
+		                document.getElementById("load_modal_info").innerHTML=xmlhttp.responseText;
+
+		                waitingDialog.hide();
+		                $('#modal_info').modal('show');
+		            }
+		        }
+
+		        var datos_modal = "id=" + id + "&tipo=" + tipo + "&ausencia=" + ausencia;
+
+		        waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
+		        xmlhttp.open("POST","./model/sedatum/modal_info.php",true);
+		        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		        xmlhttp.send(datos_modal);		    
+		    }
+
+
+			function rechazar(id, tipo){
 				var user = "";
 				if (tipo == 1) {
 					user = "secretario";
 				}else if(tipo == 2){
 					user = "director";
+				}else if(tipo == 3){
+					user = "uso_suelo";
+				}else if(tipo == 4){
+					user = "ventanilla";
 				}
 
 				swal({
@@ -971,8 +1008,8 @@
 				});
 			}
 
-			function aprobar(tipo, ausencia){
 
+			function aprobar(id, tipo, ausencia){
 				if (ausencia == 1) {
 					swal({
 					  title: "Última Aprobación Activada",
@@ -992,13 +1029,18 @@
 				}
 
 				function doble_aprob(tipo, ausencia){
-
 					var user = "";
 					if (tipo == 1) {
 						user = "secretario";
 					}else if(tipo == 2){
 						user = "director";
+					}else if(tipo == 3){
+						user = "uso_suelo";
+					}else if(tipo == 4){
+						user = "ventanilla";
 					}
+
+					
 
 					swal({
 					  title: "¿Aprobar?",
@@ -1046,8 +1088,6 @@
 						}
 					});
 				}
-
-
 			}
 		</script>
 	</body>
