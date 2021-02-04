@@ -370,7 +370,7 @@
 
 				<button type="button" class="btn btn-danger" onclick="rechazar(<?=$id?>,<?=$tipo?>);"><i class="fa fa-ban">&nbsp;</i>Rechazar Solicitud</button>
 
-				<button type="button" class="btn btn-success" onclick="aprobar(<?=$id?>,<?=$ausencia?>);"><i class="fa fa-check">&nbsp;</i>Aprobar Solicitud</button>
+				<button type="button" class="btn btn-success" onclick="aprobar(<?=$id?>,<?=$tipo?>,<?=$ausencia?>);"><i class="fa fa-check">&nbsp;</i>Aprobar Solicitud</button>
 			</div>
 
 		</div>

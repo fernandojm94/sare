@@ -935,6 +935,151 @@
 		    }
 
 
+		    function fill_modal_comp_uso(id)
+		    {
+		    	var xmlhttp;
+
+		        if (window.XMLHttpRequest){
+		            // code for IE7+, Firefox, Chrome, Opera, Safari
+		            xmlhttp=new XMLHttpRequest();
+		        }
+		        
+		        else{// code for IE6, IE5
+		            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		        }
+
+		        xmlhttp.onreadystatechange=function(){
+		            
+		            if (xmlhttp.readyState==4 && xmlhttp.status==200){
+		                //document.getElementById("loading").innerHTML = ''; // Hide the image after the response from the
+		                document.getElementById("load_modal_comp").innerHTML=xmlhttp.responseText;
+		                
+		                waitingDialog.hide();
+		                show_hide_modals();
+		                wysiwyg();
+		                $('#modal_comp').modal('show');
+		            }
+		        }
+
+		        var datos_modal = id;
+
+		        waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
+		        xmlhttp.open("POST","./model/sedatum/modal_com_uso.php",true);
+		        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		        xmlhttp.send(datos_modal);
+		    }
+
+		    function wysiwyg()
+		    {
+		    	$('#complemento').ace_wysiwyg().prev().addClass('wysiwyg-style2');;
+
+				$('[data-toggle="buttons"] .btn').on('click', function(e){
+					var target = $(this).find('input[type=radio]');
+					var which = parseInt(target.val());
+					var toolbar = $('#editor1').prev().get(0);
+					if(which >= 1 && which <= 4) {
+						toolbar.className = toolbar.className.replace(/wysiwyg\-style(1|2)/g , '');
+						if(which == 1) $(toolbar).addClass('wysiwyg-style1');
+						else if(which == 2) $(toolbar).addClass('wysiwyg-style2');
+						if(which == 4) {
+							$(toolbar).find('.btn-group > .btn').addClass('btn-white btn-round');
+						} else $(toolbar).find('.btn-group > .btn-white').removeClass('btn-white btn-round');
+					}
+				});
+
+				var enableImageResize = function() {
+					$('.wysiwyg-editor')
+					.on('mousedown', function(e) {
+						var target = $(e.target);
+						if( e.target instanceof HTMLImageElement ) {
+							if( !target.data('resizable') ) {
+								target.resizable({
+									aspectRatio: e.target.width / e.target.height,
+								});
+								target.data('resizable', true);
+								
+								if( lastResizableImg != null ) {
+									//disable previous resizable image
+									lastResizableImg.resizable( "destroy" );
+									lastResizableImg.removeData('resizable');
+								}
+								lastResizableImg = target;
+							}
+						}
+					})
+					.on('click', function(e) {
+						if( lastResizableImg != null && !(e.target instanceof HTMLImageElement) ) {
+							destroyResizable();
+						}
+					})
+					.on('keydown', function() {
+						destroyResizable();
+					});
+			    }
+		    }
+
+		    function show_hide_modals()
+		    {
+				$('#modal_comp').on('shown.bs.modal', function (e) {
+		  			$('#modal_info').modal('hide');
+				});
+
+				$('#modal_comp').on('hide.bs.modal', function (e) {
+		  			$('#modal_info').modal('show');
+				});
+			}
+
+			function guardar_complemento(complemento,id,user){
+				console.log(complemento+" "+id+" "+user);
+				swal({
+				  title: "¿Aprobar?",
+				  text: "¿Seguro que desea aprobar la solicutud?",
+				  icon: "warning",
+				  buttons: ["Cancelar", "Ok"],
+				  dangerMode: true,
+				}).then((value) => {
+					if (value) {
+
+						var data = {
+							'id' : id,
+							'usuario' : user,
+							'complemento' : complemento,
+						}
+
+						$.ajax({
+							data:  data,
+							url:   './model/sedatum/aprobaciones.php',
+							type:  'post',
+
+							success:  function (data) {
+
+									if (data==='correcto'){
+										swal({
+										  title: "¡Datos guardados correctamente!",
+										  icon: "success",
+										}).then( (value) => {
+											$("#modal_info").modal('hide');
+											cambiarcont('view/sedatum/'+user+'.php');
+										});
+
+									}
+
+									if (data==='error'){
+										swal({
+										  title: "¡Error!",
+										  text: "¡Ocurrio algo al guardar!",
+										  icon: "error",
+										});
+									}
+							}
+						});
+					}else{
+						swal("¡Cancelado!", "No se ha aprobado la solicitud", "error");
+					}
+				});
+			}
+
+
 			function rechazar(id, tipo){
 				var user = "";
 				if (tipo == 1) {
@@ -1008,7 +1153,6 @@
 				});
 			}
 
-
 			function aprobar(id, tipo, ausencia){
 				if (ausencia == 1) {
 					swal({
@@ -1019,28 +1163,29 @@
 					  buttons: ["Cancelar", "Ok"],
 					}).then((value) => {
 						if(value){
-							doble_aprob(tipo,ausencia);
+							doble_aprob(id,tipo,ausencia);
 						}else{
 							swal("¡Cancelado!", "No se ha aprobado la solicitud", "error");
 						}
 					});
 				}else{
-					doble_aprob(tipo,ausencia);
+					doble_aprob(id,tipo,ausencia);
 				}
 
-				function doble_aprob(tipo, ausencia){
+				function doble_aprob(id,tipo,ausencia){
 					var user = "";
+					
 					if (tipo == 1) {
 						user = "secretario";
 					}else if(tipo == 2){
 						user = "director";
 					}else if(tipo == 3){
 						user = "uso_suelo";
+						fill_modal_comp_uso(id);
+						return;
 					}else if(tipo == 4){
 						user = "ventanilla";
-					}
-
-					
+					}					
 
 					swal({
 					  title: "¿Aprobar?",
@@ -1052,6 +1197,7 @@
 						if (value) {
 
 							var data = {
+								'id' : id,
 								'usuario' : user,
 								'ausencia' : ausencia,
 							}
@@ -1088,7 +1234,7 @@
 						}
 					});
 				}
-			}
+			}			
 		</script>
 	</body>
 </html>
