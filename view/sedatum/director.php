@@ -29,19 +29,19 @@
 			<a href="inicio.php">Inicio</a>
 		</li>
 		<li>
-			<a href="#">Solicitudes</a>
+			<a href="#">Director</a>
 		</li>
-		<li class="active">Listado de solicitudes</li>
+		<li class="active">Listado de solicitudes del Director</li>
 	</ul><!-- /.breadcrumb -->
 </div>
 
 <div class="page-content">
 	<div class="page-header">
 		<h1>
-			Solicitudes
+			Director
 			<small>
 				<i class="ace-icon fa fa-angle-double-right"></i>
-				Listado de solicitudes
+				Listado de solicitudes del Director
 			</small>
 		</h1>
 	</div><!-- /.page-header -->
@@ -168,104 +168,6 @@
         xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
         xmlhttp.send(datos_modal);
     }
-
-	function fill_modal_info(id, ausencia)
-    {
-        var xmlhttp;
-
-        if (window.XMLHttpRequest){
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp=new XMLHttpRequest();
-        }
-
-        else{// code for IE6, IE5
-            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-        }
-
-        xmlhttp.onreadystatechange=function(){
-
-            if (xmlhttp.readyState==4 && xmlhttp.status==200){
-                //document.getElementById("loading").innerHTML = ''; // Hide the image after the response from the
-                document.getElementById("load_modal_info").innerHTML=xmlhttp.responseText;
-
-                waitingDialog.hide();
-                $('#modal_info').modal('show');
-            }
-        }
-
-        var datos_modal = "id=" + id + "&ausencia=" + ausencia;
-
-        waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
-        xmlhttp.open("POST","./model/sedatum/modal_info.php",true);
-        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        xmlhttp.send(datos_modal);
-    }
-
-
-    function fill_modal_upcomprobante(id)
-    {
-        var xmlhttp;
-
-        if (window.XMLHttpRequest){
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp=new XMLHttpRequest();
-        }
-
-        else{// code for IE6, IE5
-            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-        }
-
-        xmlhttp.onreadystatechange=function(){
-
-            if (xmlhttp.readyState==4 && xmlhttp.status==200){
-                document.getElementById("load_modal_upcomprobante").innerHTML=xmlhttp.responseText;
-                waitingDialog.hide();
-                $('#modal_upcomprobante').modal('show');
-                dropzone();
-            }
-        }
-
-        var datos_modal = id;
-
-        waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
-        xmlhttp.open("POST","./model/solicitud/modal_upcomprobante.php",true);
-        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        xmlhttp.send(datos_modal);
-    }
-
-    function dropzone(){
-    	$('#comprobante').ace_file_input({
-			style: 'well',
-			btn_choose: 'Arrastra o da click para agregar archivos',
-			btn_change: null,
-			no_icon: 'ace-icon fa fa-cloud-upload',
-			droppable: true,
-			thumbnail: 'small'//large | fit
-			//,icon_remove:null//set null, to hide remove/reset button
-			/**,before_change:function(files, dropped) {
-				//Check an example below
-				//or examples/file-upload.html
-				return true;
-			}*/
-			/**,before_remove : function() {
-				return true;
-			}*/
-			,
-			preview_error : function(filename, error_code) {
-				//name of the file that failed
-				//error_code values
-				//1 = 'FILE_LOAD_FAILED',
-				//2 = 'IMAGE_LOAD_FAILED',
-				//3 = 'THUMBNAIL_FAILED'
-				//alert(error_code);
-			}
-
-		}).on('change', function(){
-			//console.log($(this).data('ace_input_files'));
-			//console.log($(this).data('ace_input_method'));
-		});
-    }
-
 </script>
 
 <script type="text/javascript">

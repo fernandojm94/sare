@@ -355,8 +355,8 @@
 			</div>	
 
 			<div class="modal-footer">
-				<button type="button" class="btn btn-danger pull-left" data-dismiss="modal"><i class="fa fa-times">&nbsp;</i>Cancelar</button>
-				<button type="button" class="btn" data-dismiss="modal" onclick="rechazar_solicitud(1)"><i class="fa fa-ban">&nbsp;</i>Rechazar solicitud</button>
+				<button type="button" class="btn pull-left" data-dismiss="modal"><i class="fa fa-times">&nbsp;</i>Cancelar</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="rechazar_solicitud(1)"><i class="fa fa-ban">&nbsp;</i>Rechazar solicitud</button>
 				<button type="button" class="btn btn-success" data-dismiss="modal" onclick="aprobar_solicitud(1)"><i class="fa fa-check">&nbsp;</i>Aprobar solicitud</button>
 			</div>
 

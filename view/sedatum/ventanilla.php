@@ -105,7 +105,7 @@
 											<td class="hid_xs">449 121 1213</td>
 											<td class="center">
 												<div class="btn-group">
-													<a class="btn btn-xs btn-info" onclick="fill_modal_info(1)" role="button" data-toggle="modal">
+													<a class="btn btn-xs btn-info" onclick="fill_modal_info(1,4,0)" role="button" data-toggle="modal">
 														<i class="ace-icon fa fa-info-circle bigger-130"></i>
 													</a>
 												</div>
@@ -123,73 +123,6 @@
 		</div>	
 	</div>
 </div>
-
-<script>
-
-	function fill_modal_info(id)
-    {
-        var xmlhttp;
-
-        if (window.XMLHttpRequest){
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp=new XMLHttpRequest();
-        }
-        
-        else{// code for IE6, IE5
-            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-        }
-
-        xmlhttp.onreadystatechange=function(){
-            
-            if (xmlhttp.readyState==4 && xmlhttp.status==200){
-                //document.getElementById("loading").innerHTML = ''; // Hide the image after the response from the
-                document.getElementById("load_modal_info").innerHTML=xmlhttp.responseText;
-                
-                waitingDialog.hide();
-                $('#modal_info').modal('show');
-            }
-        }
-
-        var datos_modal = id;
-
-        waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
-        xmlhttp.open("POST","./model/sedatum/modal_info_vent.php",true);
-        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        xmlhttp.send(datos_modal);
-    }
-
-    function rechazar_solicitud(id_solicitud)
-    {
-    	swal({
-            title: "Describa la razón del rechazo de la solicitud:",
-            icon: "info",
-            button: "Rechazar solicitud",
-            dangerMode: true,
-            content: "input",
-        })
-        .then((value) => {
-        	swal("¡Correcto!", "Se ha rechazado la solicitud", "success");
-        });
-    }
-
-    function aprobar_solicitud(id_solicitud)
-    {
-    	swal({
-		  	title: "Esta solicitud será aprobada, ¿desea continuar?",
-		  	icon: "info",
-		  	buttons: true,
-		})
-		.then((willDelete) => {
-		  	if (willDelete) {
-		    	swal("Solicitud aprobada correctamente", {
-		      		icon: "success",
-		    	});
-		  	} else {
-		    	swal("La solicitud no ha sufrido cambios.");
-		  	}
-		});    	
-    }
-</script>
 
 <script type="text/javascript">
 	jQuery(function($) {

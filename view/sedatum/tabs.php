@@ -1,8 +1,8 @@
 <?php
 	$id_tab = $_POST['id'];
 
-	// $sec_or_dir = $_POST['algo']; SIRVE PARA IDENTIFICAR DESDE DONDE LLAMAN AL MODAL, DESDE DIRECTOR O DESDE SECRETARIO
-	$sec_or_dir = 2; //ASIGNACION PARA QUE NO MARQUE ERROR
+	// $tipo = $_POST['algo']; SIRVE PARA IDENTIFICAR DESDE DONDE LLAMAN AL MODAL, DESDE DIRECTOR O DESDE SECRETARIO
+	$tipo = 2; //ASIGNACION PARA QUE NO MARQUE ERROR
 	$ausencia = 0;
 ?>
 
@@ -34,16 +34,12 @@
 								</th>
 
 								<th class="hidden"></th>
+								<th class="hidden"></th>
 
 
 								<th class="hid_xs">
 									<i class="ace-icon fa fa-phone bigger-110 ico_hid"></i>
 									Número de teléfono
-								</th>
-
-								<th>
-									<i class="ace-icon fa fa-sliders bigger-110 ico_hid"></i>
-									Estatus de la solicitud
 								</th>
 
 								<th>
@@ -61,11 +57,11 @@
 									Emiliano Zapata 109 Centro, Jesús María
 								</td>
 								<td class="hidden"></td>
+								<td class="hidden"></td>
 								<td class="hid_xs">449 121 1213</td>
-								<td class="center"><span class="label label-warning arrowed-right">3. Departamento de uso de suelo.</span></td>
 								<td class="center">
 									<div class="btn-group">
-										<a class="btn btn-xs btn-info" onclick="fill_modal_info(<?= $sec_or_dir; ?>, <?= $ausencia; ?>)" role="button" data-toggle="modal">
+										<a class="btn btn-xs btn-info" onclick="fill_modal_info(1,<?= $tipo; ?>,<?= $ausencia; ?>)" role="button" data-toggle="modal">
 											<i class="ace-icon fa fa-info-circle bigger-130"></i>
 										</a>
 									</div>
