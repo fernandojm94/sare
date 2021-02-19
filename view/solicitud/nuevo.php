@@ -171,7 +171,7 @@
                                         <div class="col-md-2 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                                <input  name="no_ex_dg" id="no_ex_dg" placeholder="No. Exterior" class="form-control" type="text" required/>
+                                                <input  name="no_ex_dg" id="no_ex_dg" placeholder="No. Exterior" class="form-control" type="number" required/>
                                             </div>
                                         </div>
                                         
@@ -1262,11 +1262,13 @@
                 {
                     if(!$('#form_dg').valid()){
                         e.preventDefault();
+                        console.log("segun no esta completo el form");
                     }
                     else{
+                        console.log("si entro");
                         e.preventDefault();
 
-                        var parametros_conyugue = {                     
+                        var parametros_dg = {                     
                             "id_solicitud" : $('#id_solicitud').val(),
                             "nombre_comercial" : $('#nombre_comercial').val(), 
                             "horario_trabajo" : $('#horario_trabajo').val(),
@@ -1292,7 +1294,7 @@
                         };
                         
                         $.ajax({
-                                data:  parametros_conyugue,
+                                data:  parametros_dg,
                                 url:   './model/solicitud/create_dg.php',
                                 type:  'post',
                                 
