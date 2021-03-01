@@ -34,8 +34,7 @@
 <div class="page-content"> 
 	<div class="page-header">		
 		<h1>
-			Ventanilla Única
-			<small>
+			
 				<i class="ace-icon fa fa-angle-double-right"></i>
 				Listado de solicitudes ventanilla única
 			</small>

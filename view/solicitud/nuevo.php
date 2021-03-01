@@ -687,7 +687,7 @@
     function tags_fisica(){
     
         var tag_input = $('#nombre');
-        var mis_datos = ["pancho","pedro","juan"] ;
+        var mis_datos = <?=$tag_pfisica?>;
         
         
         try{
@@ -781,7 +781,7 @@
     function tags_moral(){
     
         var tag_input = $('#nombre_empresa');
-        var mis_datos = ["COCA COLA","OXXO","COPPEL"] ;
+        var mis_datos = <?=$tag_pmoral?>;
         
         
         try{
