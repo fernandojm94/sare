@@ -22,7 +22,7 @@
 	$cajones = $_POST['cajones'];
 	$inversion = $_POST['inversion'];
 	$personal_ocupado = $_POST['personal_ocupado'];
-	$servicios_chosen = $_POST['servicios_chosen'];
+	$servicios_chosen = $_POST['servicios'];
 	if(create_dg_establecimiento($nombre_comercial, $horario_trabajo, $calle_dg, $no_ex_dg, $no_int_dg, $colonia_dg, $entre_calles, $municipio_dg, $localidad_dg, $cp_dg, $latlong, $telefono_dg, $uso, $scian, $catastral, $manzana, $lote, $distancia_esquina, $cajones, $inversion, $personal_ocupado, $servicios_chosen))
 	{
 		$mensaje = "correcto";

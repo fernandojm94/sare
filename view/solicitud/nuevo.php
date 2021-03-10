@@ -1291,6 +1291,8 @@
                             "inversion" : $('#inversion').val(),
                             "personal_ocupado" : $('#personal_ocupado').val(),
                             "servicios" : $('#servicios').val(),
+                            "latlong" : $('#latlong').val(),
+
                         };
                         
                         $.ajax({

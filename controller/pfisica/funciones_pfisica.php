@@ -34,7 +34,7 @@ function compare_pfisica($nombre, $rfc, $curp, $telefono)
 
 function create_pfisica($nombre, $calle, $exterior, $interior, $colonia, $municipio, $localidad, $cp, $rfc, $curp, $telefono, $email)
 {
-	$sql = "INSERT INTO personas_fisicas (nombre_completo, calle, no_exterior, no_interior, colonia, municipio, localidad, c_p, rfc, curp, telefono, email)
+		$sql = "INSERT INTO personas_fisicas (nombre_completo, calle, no_exterior, no_interior, colonia, municipio, localidad, c_p, rfc, curp, telefono, email)
 										VALUES('".$nombre."', '".$calle."', '".$exterior."', '".$interior."', '".$colonia."', '".$municipio."', '".$localidad."', '".$cp."', '".$rfc."', '".$curp."', '".$telefono."', '".$email."')";
 		$result = querys($sql);
 
