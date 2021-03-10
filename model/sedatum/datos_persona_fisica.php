@@ -1,4 +1,5 @@
 <?php
+include("../../model/solicitud/fill.php");
  $select_municipio = ' <option value="">Seleccionar una opción</option>
                 <option value="Aguascalientes">Aguascalientes</option>
                 <option value="Asientos">Asientos</option>
@@ -11,10 +12,12 @@
                 <option value="Tepezala">Tepezala</option>
                 <option value="El Llano">El Llano</option>
                 <option value="San Francisco de los Romo">San Francisco de los Romo</option>';
-    if(count($_GET))
-    {
-        $pfisica = $_GET[''];
-        $pfisica = split('-', $pfisica);
+
+    $persona =array_keys($_POST);
+
+    if(strpos($persona[0], '-'))
+    {        
+        $pfisica = explode('-', $persona[0]);        
         $pfisica = fill_pfisica_rfc($pfisica[1]);
         $select_municipio.= "<option value='".$pfisica['municipio']."' selected>".$pfisica['municipio']."</option>'";
     }else{

@@ -1291,6 +1291,8 @@
                             "inversion" : $('#inversion').val(),
                             "personal_ocupado" : $('#personal_ocupado').val(),
                             "servicios" : $('#servicios').val(),
+                            "latlong" : $('#latlong').val(),
+
                         };
                         
                         $.ajax({
@@ -1387,7 +1389,7 @@
 
                         $.ajax({
                             data:  fd,
-                            url:   './model/beneficiario/create_dimensiones.php',
+                            url:   './model/solicitud/create_dimensiones.php',
                             type: "POST",
                             processData: false,
                             contentType: false,

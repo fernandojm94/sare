@@ -16,7 +16,7 @@
 
 	if(compare_pfisica($nombre, $rfc, $curp, $telefono))
 	{
-		$mensaje = "error1";
+		$mensaje = "correcto";
 	}else{
 		if(create_pfisica($nombre, $calle, $exterior, $interior, $colonia, $municipio, $localidad, $cp, $rfc, $curp, $telefono, $email))
 		{

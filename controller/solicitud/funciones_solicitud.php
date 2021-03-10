@@ -26,7 +26,7 @@ function get_pfisica_rfc($rfc)
 	$sql = "SELECT id, nombre_completo, calle, no_exterior, no_interior, colonia, municipio, localidad, c_p, rfc, curp, telefono, email
 				FROM personas_fisicas
 				WHERE  rfc = '".$rfc."'";
-	$results = query_row_id($sql);
+	$result = query_row_id($sql);
 
 	return $result;
 }

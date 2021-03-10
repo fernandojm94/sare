@@ -1,6 +1,27 @@
 <?php
 include('../../controller/exe.php');
 
+function get_nombre_rfc_pmoral()
+ {
+ 	$sql = "SELECT nombre_empresa, rfc_empresa
+ 				FROM personas_morales
+ 			WHERE 1";
+
+ 	$result = querys($sql);
+
+ 	return $result;
+ }
+
+ function get_pmoral_rfc($rfc)
+{
+	$sql = "SELECT id, nombre_empresa, fecha_constitucion, rfc_empresa, email_empresa, telefono_empresa, nombre_rl, rfc_rl, curp, calle, no_exterior, no_interior, colonia, estado, municipio, localidad, cp, telefono_rl, email_rl
+				FROM personas_morales
+				WHERE  rfc_empresa = '".$rfc."'";
+	$result = query_row_id($sql);
+
+	return $result;
+}
+ 
 function compare_pmoral($nombre_empresa, $rfc_pm)
 {
 	$sql = "SELECT id 
