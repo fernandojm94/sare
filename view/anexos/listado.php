@@ -25,21 +25,21 @@
 			<a href="inicio.php">Inicio</a>
 		</li>
 		<li>
-			<a href="#">Ventanilla Única</a>
+			<a href="#">Dependencia</a>
 		</li>
-		<li class="active">Listado de solicitudes ventanilla única </li>
+		<!--<li class="active">Listado de Apertura de Empresas</li>-->
 	</ul><!-- /.breadcrumb -->	
 </div>
 
 <div class="page-content"> 
+	
 	<div class="page-header">		
 		<h1>
-			
-				<i class="ace-icon fa fa-angle-double-right"></i>
-				Listado de solicitudes ventanilla única
-			</small>
+			<i class="ace-icon fa fa-angle-double-right"></i>
+			Listado de Apertura de Empresas			
 		</h1>
-	</div><!-- /.page-header -->
+	</div>
+	
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="container" style="width: 100%;">
@@ -48,7 +48,7 @@
 						<div class="">
 							<div class="message-infobar clearfix" id="id-message-infobar">
 								<span style="display: block;" class="blue bigger-170"></span>
-								<span style="display: inline-block;" class="grey bigger-140">Solicitudes entrantes</span> 
+								<span style="display: inline-block;" class="grey bigger-140">Listado de Apertura de Empresas</span> 
 
 								<hr style="border-width: 1px; border-color: #b3bbc9;">
 								<div class="pull-right tableTools-container"></div>									
@@ -110,9 +110,31 @@
 												</div>
 											</td>
 										</tr>
+
+										<tr>
+											<td>10 de noviembre 2020 15:34:21</td>
+											<td>Abarrotes Mi casita</td>
+											<td class="hid_xs">
+												Emiliano Zapata 109 Centro, Jesús María
+											</td> 
+											<td class="hidden"></td>
+											<td class="hidden"></td>
+											<td class="hid_xs">449 121 1213</td>
+											<td class="center">
+												<div class="btn-group">
+													<a class="btn btn-xs btn-info" onclick="fill_modal_info(1,4,0)" role="button" data-toggle="modal">
+														<i class="ace-icon fa fa-info-circle bigger-130"></i>
+													</a>
+
+													<a class="btn btn-xs btn-success" onclick="fill_modal_anexos(1)" role="button" data-toggle="modal">
+														<i class="ace-icon fa fa-cloud-upload bigger-130"></i>
+													</a>
+
+												</div>
+											</td>
+										</tr>
 									</tbody>
 								</table>
-								<div id="load_modal_info"></div>
 							</div>
 						</div>
 					</div>
@@ -121,9 +143,78 @@
 			</div>
 		</div>	
 	</div>
+	
+	<div id="load_modal_info"></div>
+	<div id="load_modal_anexo"></div>
+
 </div>
 
 <script type="text/javascript">
+
+	function fill_modal_anexos(id)
+    {
+        var xmlhttp;
+
+        if (window.XMLHttpRequest){
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp=new XMLHttpRequest();
+        }
+        
+        else{// code for IE6, IE5
+            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        xmlhttp.onreadystatechange=function(){
+            
+            if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                document.getElementById("load_modal_anexo").innerHTML=xmlhttp.responseText;                
+                waitingDialog.hide();
+                $('#modal_anexo').modal('show');
+                dropzone();
+            }
+        }
+
+        var datos_modal = id;
+
+        waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
+        xmlhttp.open("POST","./view/anexos/modal_upload_anexos.php",true);
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xmlhttp.send(datos_modal);
+    }
+
+    function dropzone(){
+    	$('#anexo').ace_file_input({
+			style: 'well',
+			btn_choose: 'Arrastra o da click para agregar archivos',
+			btn_change: null,
+			no_icon: 'ace-icon fa fa-cloud-upload',
+			droppable: true,
+			thumbnail: 'small'//large | fit
+			//,icon_remove:null//set null, to hide remove/reset button
+			/**,before_change:function(files, dropped) {
+				//Check an example below
+				//or examples/file-upload.html
+				return true;
+			}*/
+			/**,before_remove : function() {
+				return true;
+			}*/
+			,
+			preview_error : function(filename, error_code) {
+				//name of the file that failed
+				//error_code values
+				//1 = 'FILE_LOAD_FAILED',
+				//2 = 'IMAGE_LOAD_FAILED',
+				//3 = 'THUMBNAIL_FAILED'
+				//alert(error_code);
+			}
+	
+		}).on('change', function(){
+			//console.log($(this).data('ace_input_files'));
+			//console.log($(this).data('ace_input_method'));
+		});
+    }
+
 	jQuery(function($) {
 		//initiate dataTables plugin
 		var myTable = 

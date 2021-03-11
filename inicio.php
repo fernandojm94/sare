@@ -225,7 +225,7 @@
 							<i class="menu-icon fa fa-folder-open"></i>
 
 							<span class="menu-text">
-								Carga de Archivos
+								Anexos
 							</span>
 
 							<b class="arrow fa fa-angle-down"></b>
@@ -235,46 +235,14 @@
 
 						<ul class="submenu">
 							<li class="">
-								<a href="javascript:cambiarcont('view/otras_dependencias/carga_archivos.php');">
+								<a href="javascript:cambiarcont('view/anexos/listado.php');">
 									<i class="menu-icon fa fa-caret-right"></i>
-									Capas
+									Listado
 								</a>
 
 								<b class="arrow"></b>
 							</li>
-						</ul>
-
-						<ul class="submenu">
-							<li class="">
-								<a href="javascript:cambiarcont('view/otras_dependencias/carga_archivos.php');">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Medio Ambiente
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-						</ul>
-
-						<ul class="submenu">
-							<li class="">
-								<a href="javascript:cambiarcont('view/otras_dependencias/carga_archivos.php');">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Salud
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-						</ul>
-
-						<ul class="submenu">
-							<li class="">
-								<a href="javascript:cambiarcont('view/otras_dependencias/carga_archivos.php');">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Protección Civil
-								</a>
-
-								<b class="arrow"></b>
-							</li>
+							
 						</ul>
 
 					</li>
