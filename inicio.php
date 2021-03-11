@@ -220,6 +220,33 @@
 
 					</li>
 
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-folder-open"></i>
+
+							<span class="menu-text">
+								Anexos
+							</span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="javascript:cambiarcont('view/anexos/listado.php');">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Listado
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+							
+						</ul>
+
+					</li>
+
 					<li class="nav-divider"></li>
 					<li class="nav-divider"></li>
 
