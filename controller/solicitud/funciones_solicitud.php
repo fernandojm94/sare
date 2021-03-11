@@ -46,17 +46,17 @@ function create_dg_establecimiento($nombre_comercial, $horario_trabajo, $calle_d
 	$sql= "INSERT INTO dg_establecimiento(nombre_comercial, horario_trabajo, calle, no_exterior, no_interior, colonia, entre_calles, municipio, localidad, cp, latitud_longitud, telefono, uso_actual, giro_scian, cuenta_catastral, manzana, lote, distancia_esquina, cajones_estacionamiento, monto_inversion, pesonal_ocupado, servicios_existentes) 
 			VALUES ('".$nombre_comercial."', '".$horario_trabajo."', '".$calle_dg."', ".$no_ex_dg.", ".$no_int_dg.", '".$colonia_dg."', '".$entre_calles."', '".$municipio_dg."', '".$localidad_dg."', ".$cp_dg.", '".$latlong."', '".$telefono_dg."', '".$uso."', '".$scian."', '".$catastral."', '".$manzana."', '".$lote."', '".$distancia_esquina."', '".$cajones."', '".$inversion."', '".$personal_ocupado."', '".$servicios_chosen."')";
 
-	$result = querys($sql);
+	$result = query_last_id($sql);
 
 	return $result;
 }
 
-function create_dimensiones_establecimiento($frentel, $fondo, $derecho, $izquierdo, $delterreno, $dellocal)
+function create_dimensiones_establecimiento($frentel, $fondo, $derecho, $izquierdo, $delterreno, $dellocal, $predial)
 {
 	$sql = "INSERT INTO dimensiones_establecimiento(frente, fondo, derecho, izquierdo, sup_terreno, sup_local, cuenta_predial) 
-				VALUES('".$frentel."', '".$fondo."', '".$derecho."', '".$izquierdo."', '".$delterreno."', '".$dellocal."')";
+				VALUES('".$frentel."', '".$fondo."', '".$derecho."', '".$izquierdo."', '".$delterreno."', '".$dellocal."', '".$predial."')";
 
-				$result = querys($sql);
+				$result = query_last_id($sql);
 
 	return $result;
 }
