@@ -16,7 +16,9 @@
 					<div class="col-xs-12">
 						<div class="form-group">
 							<div class="col-xs-12">
-								<input multiple="" type="file" id="anexo" />
+								<form id="form_anexo">
+									<input multiple type="file" id="anexo" name="anexo" />
+								</form>
 							</div>
 						</div>
 					</div>
