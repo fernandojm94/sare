@@ -505,7 +505,7 @@
                                     </div> 
 
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label">Recibo predial actual (2020).</label>  
+                                        <label class="col-md-4 control-label">Recibo predial año en curso.</label>  
                                         <div class="col-md-4 inputGroupContainer">
                                             <input type="file" id="pred" name="pred" />                                            
                                         </div>
@@ -1464,7 +1464,7 @@
                                                 
                         $.ajax({
                                 data:  parametros_conyugue,
-                                url:   './model/solicitud/create_dg.php',
+                                url:   './model/solicitud/create_documentos.php',
                                 type:  'post',
                                 
                                 success:  function (data) {
