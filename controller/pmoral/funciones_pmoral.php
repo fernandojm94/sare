@@ -26,7 +26,7 @@ function compare_pmoral($nombre_empresa, $rfc_pm)
 {
 	$sql = "SELECT id 
 				FROM personas_morales
-				WHERE nombre_empresa = '".$nombre_empresa."' AND rfc_empresa = '".$rfc_pm;
+				WHERE nombre_empresa = '".$nombre_empresa."' AND rfc_empresa = '".$rfc_pm."'";
 
 	$result = query_num_rows($sql);
 
