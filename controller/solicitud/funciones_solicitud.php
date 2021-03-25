@@ -56,7 +56,15 @@ function create_dimensiones_establecimiento($frentel, $fondo, $derecho, $izquier
 	$sql = "INSERT INTO dimensiones_establecimiento(frente, fondo, derecho, izquierdo, sup_terreno, sup_local, cuenta_predial) 
 				VALUES('".$frentel."', '".$fondo."', '".$derecho."', '".$izquierdo."', '".$delterreno."', '".$dellocal."', '".$predial."')";
 
-				$result = query_last_id($sql);
+	$result = query_last_id($sql);
+
+	return $result;
+}
+function create_expediente($folio, $tipo_persona, $id_persona, $id_dg, $id_dimensiones)
+{
+	$sql = "INSERT INTO expedientes(folio, fecha_apertura, tipo_persona, id_persona, id_dg_establecimiento, id_dimensiones_establecimiento, status)
+					VALUES('".$folio."','now()',".$tipo_persona.", ".$id_persona.", ".$id_dg.", ".$id_dimensiones.")";
+	$result = querys($sql);
 
 	return $result;
 }
