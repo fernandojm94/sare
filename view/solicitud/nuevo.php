@@ -48,7 +48,7 @@
 
                     <div class="step-content pos-rel">
 
-<!-- ------------------------------------ COMIENZA PASO 1 ---------------------------------------------------- -->   
+<!-- ------------------------------------ COMIENZA PASO 1 ---------------------------------------------------- -->
 
                         <div class="step-pane active" data-step="1">
                             <form class="well form-horizontal" method="post"  id="form_inicio" name="form_inicio">
@@ -124,14 +124,13 @@
                             </form>
                         </div>
 
-
 <!-- ------------------------------------ COMIENZA PASO 3 ---------------------------------------------------- -->
 
 
                         <div class="step-pane" data-step="3">
                             <form class="well form-horizontal" method="post"  id="form_dg" name="form_dg">
                                 <fieldset>
-                                    <legend class="center">Ubicación y Datos Generales del Establecimiento</legend>
+                                    <legend class="center">Ubicación y Datos Generales del Establecimiento</legend>                                    
 
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Nombre comercial</label>  
@@ -210,21 +209,7 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                               <select name="municipio_dg" id="municipio_dg" placeholder="Municipio" class="form-control" type="text" required>
-
-                                                    <option value="">Seleccionar una opción</option>
-                                                    <option value="Aguascalientes">Aguascalientes</option>
-                                                    <option value="Asientos">Asientos</option>
-                                                    <option value="Calvillo">Calvillo</option>
-                                                    <option value="Cosio">Cosio</option>
-                                                    <option value="Jesus Maria">Jesus Maria</option>
-                                                    <option value="Pabellon de Arteaga">Pabellon de Arteaga</option>
-                                                    <option value="Rincon de Romos">Rincon de Romos</option>
-                                                    <option value="San Jose de Gracia">San Jose de Gracia</option>
-                                                    <option value="Tepezala">Tepezala</option>
-                                                    <option value="El Llano">El Llano</option>
-                                                    <option value="San Francisco de los Romo">San Francisco de los Romo</option>
-                                                </select>
+                                                <input  name="municipio_dg" id="municipio_dg" placeholder="Municipio" class="form-control" type="text" value="Jesús María" required readonly/>
                                             </div>
                                         </div>
                                     </div>
@@ -396,7 +381,7 @@
 <!-- ------------------------------------ COMIENZA PASO 4 ---------------------------------------------------- -->
                     
                         <div class="step-pane" data-step="4">
-                            <form class="well form-horizontal" method="post"  id="form_dimensiones" name="form_dg">
+                            <form class="well form-horizontal" method="post"  id="form_dimensiones" name="form_dimensiones">
                                 <fieldset>
                                     <legend class="center">Dimensiones del establecimiento</legend>
 
@@ -405,17 +390,17 @@
                                         <label for="frente" class="col-sm-2 control-label no-padding-right"> Frente</label>
 
                                         <div class="col-sm-2">
-                                            <input type="text" id="frente" name="frente" placeholder="Frente" class="col-xs-10 col-sm-10">
+                                            <input type="number" id="frente" name="frente" placeholder="Frente" class="col-xs-10 col-sm-10">
                                             <span class="help-inline col-xs-1 col-sm-1">
                                                 <span class="middle">m</span>
                                             </span>
                                         </div>
 
 
-                                         <label for="fondo" class="col-sm-2 control-label no-padding-right"> Fondo</label>
+                                        <label for="fondo" class="col-sm-2 control-label no-padding-right"> Fondo</label>
 
                                         <div class="col-sm-2">
-                                            <input type="text" id="fondo" name="fondo" placeholder="Fondo" class="col-xs-12 col-sm-10">
+                                            <input type="number" id="fondo" name="fondo" placeholder="Fondo" class="col-xs-12 col-sm-10">
                                             <span class="help-inline col-xs-11 col-sm-1">
                                                 <span class="middle">m</span>
                                             </span>
@@ -431,7 +416,7 @@
                                         <label for="derecho" class="col-sm-2 control-label no-padding-right"> Derecho</label>
 
                                         <div class="col-sm-2">
-                                            <input type="text" id="derecho" name="derecho" placeholder="Derecho" class="col-xs-12 col-sm-10">
+                                            <input type="number" id="derecho" name="derecho" placeholder="Derecho" class="col-xs-12 col-sm-10">
                                             <span class="help-inline col-xs-1 col-sm-1">
                                                 <span class="middle">m</span>
                                             </span>
@@ -441,7 +426,7 @@
                                          <label for="izquierdo" class="col-sm-2 control-label no-padding-right"> Izquierdo</label>
 
                                         <div class="col-sm-2">
-                                            <input type="text" id="izquierdo" name="izquierdo" placeholder="Izquierdo" class="col-xs-12 col-sm-10">
+                                            <input type="number" id="izquierdo" name="izquierdo" placeholder="Izquierdo" class="col-xs-12 col-sm-10">
                                             <span class="help-inline col-xs-11 col-sm-1">
                                                 <span class="middle">m</span>
                                             </span>
@@ -457,7 +442,7 @@
                                         <label for="terreno" class="col-sm-2 control-label no-padding-right"> Del terreno</label>
 
                                         <div class="col-sm-2">
-                                            <input type="text" id="terreno" name="terreno" placeholder="Del terreno" class="col-xs-12 col-sm-10">
+                                            <input type="number" id="terreno" name="terreno" placeholder="Del terreno" class="col-xs-12 col-sm-10">
                                             <span class="help-inline col-xs-1 col-sm-1">
                                                 <span class="middle">m<sup>2</sup></span>
                                             </span>
@@ -467,7 +452,7 @@
                                          <label for="local" class="col-sm-2 control-label no-padding-right"> Del local</label>
 
                                         <div class="col-sm-2">
-                                            <input type="text" id="local" name="local" placeholder="Del local" class="col-xs-12 col-sm-10">
+                                            <input type="number" id="local" name="local" placeholder="Del local" class="col-xs-12 col-sm-10">
                                             <span class="help-inline col-xs-11 col-sm-1">
                                                 <span class="middle">m<sup>2</sup></span>
                                             </span>
@@ -495,8 +480,12 @@
 <!-- ------------------------------------ COMIENZA PASO 5 ---------------------------------------------------- -->
 
                         <div class="step-pane" data-step="5">
-                            <form class="well form-horizontal" method="post"  id="form_dimensiones" name="form_dg">
+                            <form class="well form-horizontal" method="post"  id="form_documentos" name="form_documentos">
                                 <fieldset>
+                                    <div id=inst_idpf></div>
+                                    <div id=inst_iddg></div>
+                                    <div id=inst_iddim></div>
+
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Escritura o titulo de propiedad (en su caso carta notariada de escritura en trámite).</label>  
                                         <div class="col-md-4 inputGroupContainer">
@@ -770,8 +759,10 @@
                 if ($('input', form_fisica).is('[readonly]')) 
                 {
                     $('input', form_fisica).removeAttr("readonly");
+                    $('select', form_fisica).prop("disabled", false);
                 } else {
                     $('input', form_fisica).attr("readonly","readonly");
+                    $('select', form_fisica).attr("disabled","disabled");
                 }
             });
         }
@@ -1118,6 +1109,36 @@
                             step: 2
                         });
                         tags_moral();
+
+                        var codehtml='<h3 class="header smaller lighter center"><small>Persona Moral</small></h3><div class="form-group"><label class="col-md-4 control-label">Acta constitutiva de la empresa.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="acta" name="acta"/></div></div><div class="form-group"><label class="col-md-4 control-label">Poder notarial.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="poder" name="poder"/></div></div><div class="form-group"><label class="col-md-4 control-label">Solicitud firmada por el representante legal de la empresa.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="solicitud" name="solicitud" /></div></div>';
+                        document.getElementById("upmoral").innerHTML=codehtml;
+
+                        $('#acta').ace_file_input({
+                            no_file:'Seleccione un documento ...',
+                            btn_choose:'Seleccionar',
+                            btn_change:'Cambiar',
+                            droppable:false,
+                            onchange:null,
+                            thumbnail:true
+                        });
+
+                        $('#poder').ace_file_input({
+                            no_file:'Seleccione un documento ...',
+                            btn_choose:'Seleccionar',
+                            btn_change:'Cambiar',
+                            droppable:false,
+                            onchange:null,
+                            thumbnail:true
+                        });
+
+                        $('#solicitud').ace_file_input({
+                            no_file:'Seleccione un documento ...',
+                            btn_choose:'Seleccionar',
+                            btn_change:'Cambiar',
+                            droppable:false,
+                            onchange:null,
+                            thumbnail:true
+                        });
                     }
 
                 } else{
@@ -1157,6 +1178,8 @@
                                 "telefono" : $('#telefono').val(),
                                 "email" : $('#email').val(),
                             };
+
+                            var id_pfi= $('#id_pfisica').val();
                             
                             $.ajax({
                                     data:  parametros_conyugue,
@@ -1175,7 +1198,12 @@
 
                                             $('#fuelux-wizard-container').wizard('selectedItem', {
                                                 step: 3
-                                            });                     
+                                            });
+
+                                            var code_idpf='<input type="text" name="id_pf" id="id_pf" value="'+id_pfi+'"/>';
+                                            document.getElementById("inst_idpf").innerHTML=code_idpf;
+
+                                            mapa_inicial();               
                                         }
                                         
                                         if (data==='error2'){
@@ -1236,7 +1264,8 @@
 
                                             $('#fuelux-wizard-container').wizard('selectedItem', {
                                                 step: 3
-                                            });                     
+                                            });
+                                            mapa_inicial();                 
                                         }
                                         
                                         if (data==='error2'){
@@ -1292,7 +1321,6 @@
                             "personal_ocupado" : $('#personal_ocupado').val(),
                             "servicios" : $('#servicios').val(),
                             "latlong" : $('#latlong').val(),
-
                         };
                         
                         $.ajax({
@@ -1301,8 +1329,11 @@
                                 type:  'post',
                                 
                                 success:  function (data) {
+                                    var datadiv = data.split(",", 3);
+                                    var mensaje = datadiv[0];
+                                    var id_dg = datadiv[1];
                                                                         
-                                    if (data==='correcto'){
+                                    if (mensaje==='correcto'){
                                         swal({
                                             title: "¡Datos guardados correctamente!",
                                             timer: 3000,
@@ -1311,26 +1342,19 @@
                                         });                  
 
                                         $('#fuelux-wizard-container').wizard('selectedItem', {
-                                            step: 3
-                                        });                     
+                                            step: 4
+                                        });        
+
+                                        var code_iddg='<input type="text" name="id_dg" id="id_dg" value="'+id_dg+'"/>';
+                                        document.getElementById("inst_iddg").innerHTML=code_iddg;             
                                     }
                                     
-                                    if (data==='error2'){
+                                    if (mensaje==='error1'){
                                         swal({
-                                            title: "¡Error Grave!",
+                                            title: "¡Error!",
                                             text: "¡Ocurrio algo al guardar!",
                                             timer: 3000,
                                             icon: "error",
-                                            button: "Aceptar"
-                                        });
-                                    }
-
-                                    if (data==='error1'){
-                                        swal({
-                                            title: "¡Error!",
-                                            text: "¡Este usuario ya registró con anterioridad!",
-                                            timer: 3000,
-                                            icon: "warning",
                                             button: "Aceptar"
                                         });
                                     }
@@ -1345,58 +1369,35 @@
             if(info.step == 4) {
                 if(info.direction == 'next')
                 {
-                    if(tipo_persona!="p_fisica")
-                    {
-                        var codehtml='<h3 class="header smaller lighter center"><small>Persona Moral</small></h3><div class="form-group"><label class="col-md-4 control-label">Acta constitutiva de la empresa.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="acta" name="acta"/></div></div><div class="form-group"><label class="col-md-4 control-label">Poder notarial.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="poder" name="poder"/></div></div><div class="form-group"><label class="col-md-4 control-label">Solicitud firmada por el representante legal de la empresa.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="solicitud" name="solicitud" /></div></div>';
-                        document.getElementById("upmoral").innerHTML=codehtml;
-
-                        $('#acta').ace_file_input({
-                            no_file:'Seleccione un documento ...',
-                            btn_choose:'Seleccionar',
-                            btn_change:'Cambiar',
-                            droppable:false,
-                            onchange:null,
-                            thumbnail:true
-                        });
-
-                        $('#poder').ace_file_input({
-                            no_file:'Seleccione un documento ...',
-                            btn_choose:'Seleccionar',
-                            btn_change:'Cambiar',
-                            droppable:false,
-                            onchange:null,
-                            thumbnail:true
-                        });
-
-                        $('#solicitud').ace_file_input({
-                            no_file:'Seleccione un documento ...',
-                            btn_choose:'Seleccionar',
-                            btn_change:'Cambiar',
-                            droppable:false,
-                            onchange:null,
-                            thumbnail:true
-                        });
-                    }
-
-
-                    if(!$('#form_dg').valid()){
-                       // e.preventDefault();
+                    if(!$('#form_dimensiones').valid()){
+                        e.preventDefault();
+                        console.log("segun no esta completo el form");
                     }
                     else{
+                        console.log("si entro");
                         e.preventDefault();
-                        var myForm = document.getElementById('form_dimensiones');
-                        var fd = new FormData(myForm);
+
+                        var parametros_dim = {                     
+                            "frente" : $('#frente').val(),
+                            "fondo" : $('#fondo').val(), 
+                            "derecho" : $('#derecho').val(),
+                            "izquierdo" : $('#izquierdo').val(),
+                            "terreno" : $('#terreno').val(),
+                            "local" : $('#local').val(),
+                            "predial" : $('#predial').val()
+                        };
 
                         $.ajax({
-                            data:  fd,
+                            data:  parametros_dim,
                             url:   './model/solicitud/create_dimensiones.php',
                             type: "POST",
-                            processData: false,
-                            contentType: false,
                             
                             success:  function (data) {
+                                var datadiv4 = data.split(",", 3);
+                                var mensaje4 = datadiv4[0];
+                                var id_dime = datadiv4[1];
                                                                     
-                                if (data==='correcto'){
+                                if (mensaje4=='correcto'){
                                     swal({
                                         title: "¡Datos guardados correctamente!",
                                         timer: 3000,
@@ -1404,15 +1405,17 @@
                                         button: "Aceptar"
                                     });
 
-                                    step: 5;
+                                    var code_iddim='<input type="text" name="id_dim" id="id_dim" value="'+id_dime+'"/>';
+                                    document.getElementById("inst_iddim").innerHTML=code_iddim;
 
-
-                                                      
+                                    $('#fuelux-wizard-container').wizard('selectedItem', {
+                                        step: 5
+                                    });                                                   
                                 }
                                 
-                                if (data==='error'){
+                                if (mensaje4=='error1'){
                                     swal({
-                                        title: "¡Error Grave!",
+                                        title: "¡Error!",
                                         text: "¡Ocurrio algo al guardar!",
                                         timer: 3000,
                                         icon: "error",
@@ -1421,31 +1424,7 @@
                                 }
                             }
 
-                        });
-                        /* swal({
-                            title: "¿Desea finalizar el alta del título?",
-                            icon: "info",
-                            buttons: true,
-                            buttons: ["No", "Si"],
-                            dangerMode: true,
-                        })
-                        .then((value) => {
-                            if (value) {
-
-                                swal({
-                                    title: "Título creado correctamente",
-                                    timer: 3000,
-                                    icon: "success",
-                                    button: "Aceptar"
-                                });
-
-                                $('#modal_add_title').modal('hide');
-                                cargar_pack(id_panteon, nombre_panteon);
-                            }
-                            else{
-                                e.preventDefault();
-                            }
-                        });*/
+                        });                        
                     }
                 }                
             }
@@ -1527,7 +1506,7 @@
         //wizard.selectedItem().step
 
 
-       $('#form_fisica').validate({
+        $('#form_fisica').validate({
             errorElement: 'div',
             errorClass: 'help-block',
             focusInvalid: false,
@@ -1666,6 +1645,7 @@
             }
         
         });
+
 
 
         $('#form_moral').validate({
@@ -1856,7 +1836,6 @@
             }
         
         });
-
 
 
         $('#form_dg').validate({
@@ -2076,112 +2055,82 @@
 
 
 
-
         $('#form_dimensiones').validate({
             errorElement: 'div',
             errorClass: 'help-block',
             focusInvalid: false,
             ignore: "",
             rules: {
-                nombre: {
-                    required: true
-                },
-
-                calle: {
-                    required: true
-                },
-
-                no_ex: {
+                frente: {
                     required: true,
                     number: true
                 },
 
-                no_int: {
+                fondo: {
+                    required: true,
                     number: true
                 },
 
-                colonia: {
-                    required: true
-                },
-
-                municipio: {
-                    required: true
-                },
-
-                localidad: {
-                    required: true
-                },
-
-                cp: {
-                    required: true
-                },
-
-                rfc: {
-                    required: true
-                },
-
-                curp_fis: {
-                    required: true
-                },
-
-                telefono: {
-                    required: true
-                },
-
-                email: {
+                derecho: {
                     required: true,
-                    email: true
+                    number: true
+                },
+
+                izquierdo: {
+                    required: true,
+                    number: true
+                },
+
+                terreno: {
+                     required: true,
+                    number: true
+                },
+
+                local: {
+                     required: true,
+                    number: true
+                },
+
+                predial: {
+                    required: true,
+                    number: true
                 }
             },     
 
             messages: {
-                nombre: {
-                    required: "Favor de ingresar el nombre."
-                },
-
-                calle: {
-                    required: "Favor de ingresar la calle."
-                },
-
-                no_ex: {
-                    required: "Favor de ingresar el número exterior.",
+                frente: {
+                    required: "Favor de ingresar los metros de frente.",
                     number: "Favor de ingresar solo números."
                 },
 
-                no_int: {
+                fondo: {
+                    required: "Favor de ingresar los metros de fondo.",
                     number: "Favor de ingresar solo números."
                 },
 
-                colonia: {
-                    required: "Favor de ingresar la colonia."
+                derecho: {
+                    required: "Favor de ingresar los metros del lado derecho.",
+                    number: "Favor de ingresar solo números."
                 },
 
-                municipio: {
-                    required: "Favor de seleccionar el municipio."
+                izquierdo: {
+                    required: "Favor de ingresar los metros del lado izquierdo.",
+                    number: "Favor de ingresar solo números."
                 },
 
-                localidad: {
-                    required: "Favor de ingresar la localidad."
+                terreno: {
+                    required: "Favor de ingresar el área del terreno.",
+                    number: "Favor de ingresar solo números."
                 },
 
-                cp: {
-                    required: "Favor de ingresar el código postal."
+                local: {
+                    required: "Favor de ingresar el área del local.",
+                    number: "Favor de ingresar solo números."
                 },
 
-                rfc: {
-                    required: "Favor de ingresar el RFC."
-                },
-
-                curp_fis: {
-                    required: "Favor de ingresar la CURP."
-                },
-
-                telefono: {
-                    required: "Favor de ingresar el teléfono."
-                },
-
-                email: {
-                    required: "Favor de ingresar el correo electrónico."
+                predial: {
+                    required: "Favor de ingresar su cuenta predial.",
+                    number: "Favor de ingresar solo números."
                 }
             },
 

@@ -20,8 +20,10 @@ include("../../model/solicitud/fill.php");
         $pfisica = explode('-', $persona[0]);        
         $pfisica = fill_pfisica_rfc($pfisica[1]);
         $select_municipio.= "<option value='".$pfisica['municipio']."' selected>".$pfisica['municipio']."</option>'";
+        $readonly = "readonly";
+        $disabled = "disabled";
     }else{
-        $pfisica['id'] = $pfisica['nombre_completo'] = $pfisica['calle'] = $pfisica['no_exterior'] = $pfisica['no_interior'] = $pfisica['colonia'] = $pfisica['municipio'] = $pfisica['localidad'] = $pfisica['c_p'] = $pfisica['rfc'] = $pfisica['curp'] = $pfisica['telefono'] = $pfisica['email'] = '';        
+        $pfisica['id'] = $pfisica['nombre_completo'] = $pfisica['calle'] = $pfisica['no_exterior'] = $pfisica['no_interior'] = $pfisica['colonia'] = $pfisica['municipio'] = $pfisica['localidad'] = $pfisica['c_p'] = $pfisica['rfc'] = $pfisica['curp'] = $pfisica['telefono'] = $pfisica['email'] = $readonly = $disabled = '';        
     }
 ?>
 <div class="form-group">
@@ -41,7 +43,8 @@ include("../../model/solicitud/fill.php");
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-            <input  name="calle" id="calle" placeholder="Calle" class="form-control" type="text" value="<?php echo $pfisica['calle'];?>" required/>
+            <input  name="id_pfisica" id="id_pfisica" type="hidden" value="<?php echo $pfisica['id'];?>"/>
+            <input  name="calle" id="calle" placeholder="Calle" class="form-control" type="text" value="<?php echo $pfisica['calle'];?>" required <?=$readonly?>/>
         </div>
     </div>
 </div>
@@ -51,14 +54,14 @@ include("../../model/solicitud/fill.php");
     <div class="col-md-2 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-            <input  name="no_ex" id="no_ex" placeholder="No. Exterior" class="form-control" type="number" value="<?php echo $pfisica['no_exterior'];?>" required/>
+            <input  name="no_ex" id="no_ex" placeholder="No. Exterior" class="form-control" type="number" value="<?php echo $pfisica['no_exterior'];?>" required <?=$readonly?>/>
         </div>
     </div>
     
     <div class="col-md-2 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-            <input  name="no_int" id="no_int" placeholder="No. Interior" value="<?php echo $pfisica['no_interior'];?>" class="form-control" type="number"/>
+            <input  name="no_int" id="no_int" placeholder="No. Interior" value="<?php echo $pfisica['no_interior'];?>" class="form-control" type="number" <?=$readonly?>/>
         </div>
     </div>
 
@@ -69,7 +72,7 @@ include("../../model/solicitud/fill.php");
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-            <input  name="colonia" id="colonia" placeholder="Colonia" value="<?php echo $pfisica['colonia'];?>" class="form-control" type="text" required/>
+            <input  name="colonia" id="colonia" placeholder="Colonia" value="<?php echo $pfisica['colonia'];?>" class="form-control" type="text" required <?=$readonly?>/>
         </div>
     </div>
 </div>
@@ -79,7 +82,7 @@ include("../../model/solicitud/fill.php");
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-            <select name="municipios" name="municipio" id="municipio" placeholder="Municipio" class="form-control" type="text" required>
+            <select name="municipios" name="municipio" id="municipio" placeholder="Municipio" class="form-control" type="text" required <?=$disabled?>>
 
                <?php echo $select_municipio;?> 
             </select>
@@ -92,7 +95,7 @@ include("../../model/solicitud/fill.php");
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-            <input  name="localidad" id="localidad" placeholder="Localidad" value="<?php echo $pfisica['localidad'];?>" class="form-control" type="text" required/>
+            <input  name="localidad" id="localidad" placeholder="Localidad" value="<?php echo $pfisica['localidad'];?>" class="form-control" type="text" required <?=$readonly?>/>
         </div>
     </div>
 </div>
@@ -102,7 +105,7 @@ include("../../model/solicitud/fill.php");
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-            <input name="cp" id="cp" placeholder="Código Postal" value="<?php echo $pfisica['c_p'];?>" class="form-control mask_cp" type="text" required/>
+            <input name="cp" id="cp" placeholder="Código Postal" value="<?php echo $pfisica['c_p'];?>" class="form-control mask_cp" type="text" required <?=$readonly?>/>
         </div>
     </div>
 </div>
@@ -112,7 +115,7 @@ include("../../model/solicitud/fill.php");
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-user"></i></span>
-            <input name="rfc" id="rfc" placeholder="RFC" class="form-control mask_rfc_fis" value="<?php echo $pfisica['rfc'];?>" type="text" onchange="mayus(this);" required/>
+            <input name="rfc" id="rfc" placeholder="RFC" class="form-control mask_rfc_fis" value="<?php echo $pfisica['rfc'];?>" type="text" onchange="mayus(this);" required <?=$readonly?>/>
         </div>
     </div>
 </div>
@@ -123,7 +126,7 @@ include("../../model/solicitud/fill.php");
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-user"></i></span>
-            <input name="curp_fis" id="curp_fis" placeholder="CURP" value="<?php echo $pfisica['curp'];?>" class="form-control mask_curp" type="text" onchange="mayus(this);" required/>
+            <input name="curp_fis" id="curp_fis" placeholder="CURP" value="<?php echo $pfisica['curp'];?>" class="form-control mask_curp" type="text" onchange="mayus(this);" required <?=$readonly?>/>
         </div>
     </div>
 </div>
@@ -133,7 +136,7 @@ include("../../model/solicitud/fill.php");
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-            <input name="telefono" id="telefono" placeholder="Teléfono" value="<?php echo $pfisica['telefono'];?>" class="form-control mask_tel" type="tel" required/>
+            <input name="telefono" id="telefono" placeholder="Teléfono" value="<?php echo $pfisica['telefono'];?>" class="form-control mask_tel" type="tel" required <?=$readonly?>/>
         </div>
     </div>
 </div>
@@ -145,7 +148,7 @@ include("../../model/solicitud/fill.php");
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-at"></i></span>
-            <input name="email" id="email" placeholder="Email" value="<?php echo $pfisica['email'];?>" class="form-control" type="email" required/>
+            <input name="email" id="email" placeholder="Email" value="<?php echo $pfisica['email'];?>" class="form-control" type="email" required <?=$readonly?>/>
         </div>
     </div>
 </div>
