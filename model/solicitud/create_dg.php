@@ -34,7 +34,7 @@
 	{
 		$mensaje = "correcto, ".$id_dg;
 	}else{
-		$mensaje = "error1";
+		$mensaje = "error1,0";
 	}
 
 	echo $mensaje;
