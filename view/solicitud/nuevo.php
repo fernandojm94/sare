@@ -8,6 +8,12 @@
     
 ?>
 
+<style type="text/css">
+    #servicios_chosen{
+        width: 100% !important;
+    }
+</style>
+
 <div class="page-content">    
     <div class="row">
         <div class="col-xs-12">
@@ -360,7 +366,7 @@
                                                 <!-- <span class="input-group-addon"><i class="fa fa-check-circle-o"></i></span>
                                                 <input  name="servicios" id="servicios" placeholder="Servicios existentes" class="form-control" type="text" required/> -->
                                                 <span class="input-group-addon"><i class="fa fa-check-circle-o"></i></span>
-                                                <select multiple="" class="chosen-select form-control tag-input-style" name="servicios" id="servicios" data-placeholder="Escoge los servicios...">
+                                                <select multiple="" class="chosen-select form-control tag-input-style" name="servicios" id="servicios" data-placeholder="Seleccionar los servicios...">
                                                     <option value="Agua">Agua</option>
                                                     <option value="Drenaje">Drenaje</option>
                                                     <option value="Alumbrado">Alumbrado</option>
@@ -662,8 +668,9 @@
         $('#terreno').on('change', function() {
             if ($('#terreno').val() >= 150){
                 swal({
-                    title: "Este terreno no aplica para S.A.R.E.",
-                    icon: "warning",
+                    title: "Este terreno no aplica para SARE",
+                    text: "La superficie del terreno excede el tamaño establecido para SARE.",
+                    icon: "error",
                     button: "Aceptar"
                 });
             }
@@ -864,7 +871,8 @@
 
 
     function mapa_inicial(){
-        $(map).empty();
+        document.getElementById("map").innerHTML = "";
+        //$(map).empty();
 
         var calle = document.getElementById('calle_dg');
         var num_ext = document.getElementById('no_ex_dg');
@@ -1203,7 +1211,7 @@
                                             var code_idpf='<input type="text" name="id_pf" id="id_pf" value="'+id_pfi+'"/>';
                                             document.getElementById("inst_idpf").innerHTML=code_idpf;
 
-                                            mapa_inicial();               
+                                            mapa_inicial();             
                                         }
                                         
                                         if (data==='error2'){
