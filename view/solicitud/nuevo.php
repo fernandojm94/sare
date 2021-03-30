@@ -871,7 +871,8 @@
 
 
     function mapa_inicial(){
-        $(map).empty();
+        document.getElementById("map").innerHTML = "";
+        //$(map).empty();
 
         var calle = document.getElementById('calle_dg');
         var num_ext = document.getElementById('no_ex_dg');
@@ -1210,7 +1211,7 @@
                                             var code_idpf='<input type="text" name="id_pf" id="id_pf" value="'+id_pfi+'"/>';
                                             document.getElementById("inst_idpf").innerHTML=code_idpf;
 
-                                            mapa_inicial();               
+                                            mapa_inicial();             
                                         }
                                         
                                         if (data==='error2'){
