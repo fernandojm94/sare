@@ -249,6 +249,10 @@
                                         <div class="col-sm-8 col-sm-offset-2" id="map" style="height:400px; background: grey;">
                                         </div>
                                     </div>
+
+                                    <div style="display: flex; justify-content: center;">
+                                        <a role="button" onclick="mapa_inicial();" class="btn btn-success"><i class="fa fa-refresh"></i>&nbsp;Refrescar Mapa</a>
+                                    </div>
                                     
                                     <div class="form-group"></div>
                                     <h3 class="header smaller lighter center"></h3>
@@ -886,6 +890,7 @@
             map.setZoom(14);
 
             map.addEventListener('tap', function (evt) {
+
                 //map.removeObjects();
                 var coord = map.screenToGeo(evt.currentPointer.viewportX, evt.currentPointer.viewportY);
                 var laticlick = coord.lat;
