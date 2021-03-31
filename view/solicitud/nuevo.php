@@ -499,14 +499,14 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Escritura o titulo de propiedad (en su caso carta notariada de escritura en trámite).</label>  
                                         <div class="col-md-4 inputGroupContainer">
-                                            <input type="file" id="titulo" name="titulo" />                                            
+                                            <input type="file" id="titulo" name="titulo" required/>                                            
                                         </div>
                                     </div> 
 
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Recibo predial año en curso.</label>  
                                         <div class="col-md-4 inputGroupContainer">
-                                            <input type="file" id="pred" name="pred" />                                            
+                                            <input type="file" id="pred" name="pred" required/>                                            
                                         </div>
                                     </div>
 
@@ -514,21 +514,21 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Identificación oficial (de los implicados).</label>  
                                         <div class="col-md-4 inputGroupContainer">
-                                            <input type="file" id="ine" name="ine"/>                                            
+                                            <input type="file" id="ine" name="ine" required/>                                            
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Contrato de arrendamiento (en donde se especifiquen las medidas rentadas, el giro comercial, la ubicación del local y la vigencia del contrato).</label>  
                                         <div class="col-md-4 inputGroupContainer">
-                                            <input type="file" id="contrato" name="contrato"/>                                            
+                                            <input type="file" id="contrato" name="contrato" required/>                                            
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Número oficial.</label>  
                                         <div class="col-md-4 inputGroupContainer">
-                                            <input type="file" id="no" name="no" />                                            
+                                            <input type="file" id="no" name="no" required/>                                            
                                         </div>
                                     </div>
 
@@ -597,6 +597,7 @@
         $('#catastral').mask('**-**-**-***-***-***');
 
         $('#titulo').ace_file_input({
+
             no_file:'Seleccione un documento ...',
             btn_choose:'Seleccionar',
             btn_change:'Cambiar',
@@ -608,7 +609,13 @@
                 title: "¿El documento cumple con lo siguiente?:",
                 text: "La escritura o titulo de propiedad debe coincidir con el comprobante de domicilio, el predial actual y el contrato de arrendamiento en cuanto a dueño de la propiedad, ubicación de la propiedad, área de la propiedad total y de uso comercial, asi como la vigencia del contrato de arrendamiento.",
                 icon: "info",
-                button: "Aceptar"
+                buttons: true,
+                dangerMode: true,
+                buttons: ["Sí", "No"]
+            }).then((value) => {
+                if (value) {
+                    alert("Quitar el archivo desde que da click en 'NO'");
+                }
             });
         });
 
@@ -1452,12 +1459,15 @@
                     else{
                         e.preventDefault();
 
-                        //poner el formdata
+                        var myForm = document.getElementById('form_documentos');
+                        var formData = new FormData(myForm);
                                                 
                         $.ajax({
-                                data:  parametros_conyugue,
+                                data:  formData,
                                 url:   './model/solicitud/create_documentos.php',
                                 type:  'post',
+                                processData: false,
+                                contentType: false,
                                 
                                 success:  function (data) {
                                                                         
