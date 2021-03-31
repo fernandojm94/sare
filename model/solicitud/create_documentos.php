@@ -1,4 +1,6 @@
 <?php
+
+	var_dump($_FILES);
 	include('../../controller/solicitud/funciones_solicitud.php');
 
 	$folio = "SARE/".date("Y/m/d H:m:s");
