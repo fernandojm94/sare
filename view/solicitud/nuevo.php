@@ -9,7 +9,7 @@
 ?>
 
 <style type="text/css">
-    #servicios_chosen{
+    #servicios_chosen, .chosen-container-multi .chosen-choices li.search-field input[type="text"]{
         width: 100% !important;
     }
 </style>
