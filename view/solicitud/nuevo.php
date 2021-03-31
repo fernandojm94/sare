@@ -155,7 +155,7 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-building"></i></span>
-                                                <input  name="horario_trabajo" id="horario_trabajo" placeholder="Fecha de constitución" class="form-control date_picker" type="text" required/>
+                                                <input  name="horario_trabajo" id="horario_trabajo" placeholder="Fecha de construcción" class="form-control date_picker" type="text" required/>
                                             </div>
                                         </div>
                                     </div>
