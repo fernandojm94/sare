@@ -547,7 +547,7 @@
                         Anterior
                     </button>
 
-                    <button class="btn btn-success btn-next" data-last="Finalizar">
+                    <button class="btn btn-success btn-next" data-last="Finalizar" form="form_documentos">
                         Continuar
                         <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
                     </button>
@@ -1077,6 +1077,110 @@
         weekStart: 0,
         format: "yyyy-mm-dd"
     };
+
+    $('#form_documentos').validate({
+            errorElement: 'div',
+            errorClass: 'help-block',
+            focusInvalid: false,
+            ignore: "",
+            rules: {
+                titulo: {
+                    required: true
+                },
+
+                pred: {
+                    required: true
+                },
+
+                ine: {
+                    required: true
+                },
+
+                contrato: {
+                    required: true
+                },
+
+                no: {
+                    required: true
+                },
+
+                acta: {
+                    required: true
+                },
+
+                poder: {
+                    required: true
+                },
+
+                solicitud: {
+                    required: true
+                }
+            },     
+
+            messages: {
+                titulo: {
+                    required: "Favor de seleccionar el documento."
+                },
+
+                pred: {
+                    required: "Favor de seleccionar el documento."
+                },
+                
+                ine: {
+                    required: "Favor de seleccionar el documento."
+                },
+                
+                contrato: {
+                    required: "Favor de seleccionar el documento."
+                },
+                
+                no: {
+                    required: "Favor de seleccionar el documento."
+                },
+
+                acta: {
+                    required: "Favor de seleccionar el documento."
+                },
+
+                poder: {
+                    required: "Favor de seleccionar el documento."
+                },
+
+                solicitud: {
+                    required: "Favor de seleccionar el documento."
+                }
+            },
+
+
+            highlight: function (e) {
+                $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+            },
+
+            success: function (e) {
+                $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+                $(e).remove();
+            },
+
+            errorPlacement: function (error, element) {
+                if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+                    var controls = element.closest('div[class*="col-"]');
+                    if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
+                    else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+                }
+                else if(element.is('.select2')) {
+                    error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+                }
+                else if(element.is('.chosen-select')) {
+                    error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+                }
+                else error.insertAfter(element.parent());
+            },
+
+            submitHandler: function (form) {
+            
+            }
+        
+        });
 
     function cambia_especifique(value)
     {
