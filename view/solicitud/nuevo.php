@@ -547,11 +547,12 @@
                         Anterior
                     </button>
 
-                    <button class="btn btn-success btn-next" data-last="Finalizar" form="form_documentos">
+                    <button class="btn btn-success btn-next" data-last="Finalizar">
                         Continuar
                         <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
                     </button>
                 </div>
+        
             </div>    
             
         </div>
@@ -1078,110 +1079,6 @@
         format: "yyyy-mm-dd"
     };
 
-    $('#form_documentos').validate({
-            errorElement: 'div',
-            errorClass: 'help-block',
-            focusInvalid: false,
-            ignore: "",
-            rules: {
-                titulo: {
-                    required: true
-                },
-
-                pred: {
-                    required: true
-                },
-
-                ine: {
-                    required: true
-                },
-
-                contrato: {
-                    required: true
-                },
-
-                no: {
-                    required: true
-                },
-
-                acta: {
-                    required: true
-                },
-
-                poder: {
-                    required: true
-                },
-
-                solicitud: {
-                    required: true
-                }
-            },     
-
-            messages: {
-                titulo: {
-                    required: "Favor de seleccionar el documento."
-                },
-
-                pred: {
-                    required: "Favor de seleccionar el documento."
-                },
-                
-                ine: {
-                    required: "Favor de seleccionar el documento."
-                },
-                
-                contrato: {
-                    required: "Favor de seleccionar el documento."
-                },
-                
-                no: {
-                    required: "Favor de seleccionar el documento."
-                },
-
-                acta: {
-                    required: "Favor de seleccionar el documento."
-                },
-
-                poder: {
-                    required: "Favor de seleccionar el documento."
-                },
-
-                solicitud: {
-                    required: "Favor de seleccionar el documento."
-                }
-            },
-
-
-            highlight: function (e) {
-                $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
-            },
-
-            success: function (e) {
-                $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
-                $(e).remove();
-            },
-
-            errorPlacement: function (error, element) {
-                if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
-                    var controls = element.closest('div[class*="col-"]');
-                    if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
-                    else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
-                }
-                else if(element.is('.select2')) {
-                    error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
-                }
-                else if(element.is('.chosen-select')) {
-                    error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
-                }
-                else error.insertAfter(element.parent());
-            },
-
-            submitHandler: function (form) {
-            
-            }
-        
-        });
-
     function cambia_especifique(value)
     {
         console.log(value);
@@ -1267,9 +1164,9 @@
 
                 } else{
                     swal({
-                        title: "¡Error!",
+                        title: "¡Atención!",
                         text: "Favor de seleccionar una opción",
-                        icon: "warning",
+                        icon: "info",
                         button: "Aceptar"
                     });
                 }
@@ -1292,7 +1189,6 @@
                                 "calle" : $('#calle').val(),
                                 "no_ex" : $('#no_ex').val(),
                                 "no_int" : $('#no_int').val(),
-                                "curp_fis" : $('#curp_fis').val(),
                                 "colonia" : $('#colonia').val(),
                                 "municipio" : $('#municipio').val(),
                                 "localidad" : $('#localidad').val(),
@@ -1563,41 +1459,52 @@
                     else{
                         e.preventDefault();
 
-                        var myForm = document.getElementById('form_documentos');
-                        var formData = new FormData(myForm);
-                                                
-                        $.ajax({
-                                data:  formData,
-                                url:   './model/solicitud/create_documentos.php',
-                                type:  'post',
-                                processData: false,
-                                contentType: false,
-                                
-                                success:  function (data) {
-                                                                        
-                                    if (data==='correcto'){
-                                        swal({
-                                            title: "¡Datos guardados correctamente!",
-                                            timer: 3000,
-                                            icon: "success",
-                                            button: "Aceptar"
-                                        });                  
+                        // PARA SELECCIONAR EL INPUT QUE SE ENVIARÁ DE LOS RADIOBUTTONS
+                        var radio_fisica = document.getElementsByName("tipo_persona")[0];
+                        var radio_moral = document.getElementsByName("tipo_persona")[1];
+                        
+                        if (radio_fisica.checked == true) {
+                            $(radio_fisica).appendTo('#form_documentos');
+                        }else if(radio_moral.checked == true){
+                            $(radio_moral).appendTo('#form_documentos');
+                        }
 
-                                        $('#fuelux-wizard-container').wizard('selectedItem', {
-                                            step: 3
-                                        });                     
-                                    }
-                                    
-                                    if (data==='error'){
-                                        swal({
-                                            title: "¡Error!",
-                                            text: "¡Ocurrio algo al guardar!",
-                                            timer: 3000,
-                                            icon: "error",
-                                            button: "Aceptar"
-                                        });
-                                    }
+                        var myForm = document.getElementById('form_documentos');
+
+                        var formData = new FormData(myForm);
+                     
+                        $.ajax({
+                            data:  formData,
+                            url:   './model/solicitud/create_documentos.php',
+                            type:  'post',
+                            processData: false,
+                            contentType: false,
+                            
+                            success:  function (data) {
+                                                                    
+                                if (data==='correcto'){
+                                    swal({
+                                        title: "¡Datos guardados correctamente!",
+                                        timer: 3000,
+                                        icon: "success",
+                                        button: "Aceptar"
+                                    });                  
+
+                                    $('#fuelux-wizard-container').wizard('selectedItem', {
+                                        step: 3
+                                    });                     
                                 }
+                                
+                                if (data==='error'){
+                                    swal({
+                                        title: "¡Error!",
+                                        text: "¡Ocurrio algo al guardar!",
+                                        timer: 3000,
+                                        icon: "error",
+                                        button: "Aceptar"
+                                    });
+                                }
+                            }
 
                         });
                     }
@@ -1669,7 +1576,8 @@
                 },
 
                 cp: {
-                    required: true
+                    required: true,
+                    maxlength: 5
                 },
 
                 rfc: {
@@ -1681,7 +1589,8 @@
                 },
 
                 telefono: {
-                    required: true
+                    required: true,
+                    maxlength: 10
                 },
 
                 email: {
@@ -2289,6 +2198,111 @@
             submitHandler: function (form) {
                 
                 
+            }
+        
+        });
+
+        $('#form_documentos').validate({
+
+            errorElement: 'div',
+            errorClass: 'help-block',
+            focusInvalid: false,
+            ignore: "",
+            rules: {
+                titulo: {
+                    required: true
+                },
+
+                pred: {
+                    required: true
+                },
+
+                ine: {
+                    required: true
+                },
+
+                contrato: {
+                    required: true
+                },
+
+                no: {
+                    required: true
+                },
+
+                acta: {
+                    required: true
+                },
+
+                poder: {
+                    required: true
+                },
+
+                solicitud: {
+                    required: true
+                }
+            },     
+
+            messages: {
+                titulo: {
+                    required: "Favor de seleccionar el documento."
+                },
+
+                pred: {
+                    required: "Favor de seleccionar el documento."
+                },
+                
+                ine: {
+                    required: "Favor de seleccionar el documento."
+                },
+                
+                contrato: {
+                    required: "Favor de seleccionar el documento."
+                },
+                
+                no: {
+                    required: "Favor de seleccionar el documento."
+                },
+
+                acta: {
+                    required: "Favor de seleccionar el documento."
+                },
+
+                poder: {
+                    required: "Favor de seleccionar el documento."
+                },
+
+                solicitud: {
+                    required: "Favor de seleccionar el documento."
+                }
+            },
+
+
+            highlight: function (e) {
+                $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+            },
+
+            success: function (e) {
+                $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+                $(e).remove();
+            },
+
+            errorPlacement: function (error, element) {
+                if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+                    var controls = element.closest('div[class*="col-"]');
+                    if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
+                    else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+                }
+                else if(element.is('.select2')) {
+                    error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+                }
+                else if(element.is('.chosen-select')) {
+                    error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+                }
+                else error.insertAfter(element.parent());
+            },
+
+            submitHandler: function (form) {
+            
             }
         
         });

@@ -26,6 +26,9 @@ include("../../model/solicitud/fill.php");
         $pfisica['id'] = $pfisica['nombre_completo'] = $pfisica['calle'] = $pfisica['no_exterior'] = $pfisica['no_interior'] = $pfisica['colonia'] = $pfisica['municipio'] = $pfisica['localidad'] = $pfisica['c_p'] = $pfisica['rfc'] = $pfisica['curp'] = $pfisica['telefono'] = $pfisica['email'] = $readonly = $disabled = '';        
     }
 ?>
+
+<input  name="id_pfisica" id="id_pfisica" type="hidden" value="<?php echo $pfisica['id'];?>"/>
+
 <div class="form-group">
     <label class="col-md-4 control-label">¿Editar datos?<FONT COLOR="red">*</FONT></label>
     <div class="col-md-4 inputGroupContainer">
@@ -43,7 +46,6 @@ include("../../model/solicitud/fill.php");
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-            <input  name="id_pfisica" id="id_pfisica" type="hidden" value="<?php echo $pfisica['id'];?>"/>
             <input  name="calle" id="calle" placeholder="Calle" class="form-control" type="text" value="<?php echo $pfisica['calle'];?>" required <?=$readonly?>/>
         </div>
     </div>
@@ -105,7 +107,7 @@ include("../../model/solicitud/fill.php");
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-            <input name="cp" id="cp" placeholder="Código Postal" value="<?php echo $pfisica['c_p'];?>" class="form-control mask_cp" type="text" required <?=$readonly?>/>
+            <input name="cp" id="cp" placeholder="Código Postal" value="<?php echo $pfisica['c_p'];?>" class="form-control mask_cp" type="number" maxlength="5" required <?=$readonly?>/>
         </div>
     </div>
 </div>
@@ -136,7 +138,7 @@ include("../../model/solicitud/fill.php");
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-            <input name="telefono" id="telefono" placeholder="Teléfono" value="<?php echo $pfisica['telefono'];?>" class="form-control mask_tel" type="tel" required <?=$readonly?>/>
+            <input name="telefono" id="telefono" placeholder="Teléfono" value="<?php echo $pfisica['telefono'];?>" class="form-control mask_tel" type="tel" maxlength="10" required <?=$readonly?>/>
         </div>
     </div>
 </div>
