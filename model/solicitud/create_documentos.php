@@ -6,9 +6,9 @@
 	$folio = "SARE/".date("Y/m/d H:m:s");
 	$docs =str_replace(' ', '-', str_replace(':', '-',str_replace('/', '-', $folio)));
 	$tipo_persona = $_POST['tipo_persona'];
-	$id_persona = $_POST['id_persona'];
+	$id_persona = $_POST['id_pf'];
 	$id_dg = $_POST['id_dg'];
-	$id_dimensiones = $_POST['id_dimensiones'];
+	$id_dimensiones = $_POST['id_dim'];
 	$ruta = "../../assets/expedientes/".$docs."/docs";
 	$titulo = $ruta.basename($_FILES['titulo']['name']);
 	$predia = $ruta.basename($_FILES['pred']['name']);
