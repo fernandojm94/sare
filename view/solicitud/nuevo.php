@@ -774,15 +774,26 @@
 
 
         function switch_edit(){
+
             $("#switch_edit",).change(function() {
-                if ($('input', form_fisica).is('[readonly]')) 
-                {
-                    $('input', form_fisica).removeAttr("readonly");
-                    $('select', form_fisica).prop("disabled", false);
-                } else {
-                    $('input', form_fisica).attr("readonly","readonly");
-                    $('select', form_fisica).attr("disabled","disabled");
-                }
+
+                var $inputs = $('#form_fisica :input');
+
+                $inputs.each(function() {
+
+                    if ($(this).is('[readonly]') && this.id != 'rfc' && this.id != 'curp_fis' && this.id != '') {
+                        
+                        $(this).removeAttr("readonly");
+                        $('select', form_fisica).removeAttr("readonly");
+                        $('select', form_fisica).prop("disabled", false);
+                    
+                    }else{
+                        $(this).attr("readonly","readonly");
+                        $('select', form_fisica).attr("readonly");
+                        $('select', form_fisica).prop("disabled",true);
+                    }
+                });
+
             });
         }
     }
@@ -1198,12 +1209,18 @@
                                 "telefono" : $('#telefono').val(),
                                 "email" : $('#email').val(),
                             };
+                            
+                            if($("#switch_edit").is('[readonly]')){
+                                var url_fisica = './model/solicitud/update_pfisica.php';    
+                            }else{
+                                url_fisica = './model/solicitud/create_pfisica.php';
+                            }
 
                             var id_pfi= $('#id_pfisica').val();
                             
                             $.ajax({
                                     data:  parametros_conyugue,
-                                    url:   './model/solicitud/create_pfisica.php',
+                                    url:   url_fisica,
                                     type:  'post',
                                     
                                     success:  function (data) {

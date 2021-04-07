@@ -22,24 +22,28 @@ include("../../model/solicitud/fill.php");
         $select_municipio.= "<option value='".$pfisica['municipio']."' selected>".$pfisica['municipio']."</option>'";
         $readonly = "readonly";
         $disabled = "disabled";
+
+        $switch = '<div class="form-group">
+                        <label class="col-md-4 control-label">¿Editar datos?<FONT COLOR="red">*</FONT></label>
+                        <div class="col-md-4 inputGroupContainer">
+                            <div class="input-group">
+                                <label>
+                                    <input name="switch_edit" id="switch_edit" class="ace ace-switch ace-switch-7" type="checkbox" />
+                                    <span class="lbl"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>';
+
     }else{
-        $pfisica['id'] = $pfisica['nombre_completo'] = $pfisica['calle'] = $pfisica['no_exterior'] = $pfisica['no_interior'] = $pfisica['colonia'] = $pfisica['municipio'] = $pfisica['localidad'] = $pfisica['c_p'] = $pfisica['rfc'] = $pfisica['curp'] = $pfisica['telefono'] = $pfisica['email'] = $readonly = $disabled = '';        
+        $pfisica['id'] = $pfisica['nombre_completo'] = $pfisica['calle'] = $pfisica['no_exterior'] = $pfisica['no_interior'] = $pfisica['colonia'] = $pfisica['municipio'] = $pfisica['localidad'] = $pfisica['c_p'] = $pfisica['rfc'] = $pfisica['curp'] = $pfisica['telefono'] = $pfisica['email'] = $readonly = $disabled = $switch = '';        
     }
 ?>
 
 <input  name="id_pfisica" id="id_pfisica" type="hidden" value="<?php echo $pfisica['id'];?>"/>
 
-<div class="form-group">
-    <label class="col-md-4 control-label">¿Editar datos?<FONT COLOR="red">*</FONT></label>
-    <div class="col-md-4 inputGroupContainer">
-        <div class="input-group">
-            <label>
-                <input name="switch_edit" id="switch_edit" class="ace ace-switch ace-switch-7" type="checkbox" />
-                <span class="lbl"></span>
-            </label>
-        </div>
-    </div>
-</div>
+<!-- Imprime el switch según sea el caso -->
+<?= $switch; ?>
 
 <div class="form-group">
     <label class="col-md-4 control-label">Calle</label>
