@@ -37,4 +37,57 @@ function fill_pfisica_rfc($rfc)
 
 	return $result;
 }
+
+function pendientes()
+{
+	$result = get_pendientes();
+
+	return $result;
+}
+
+function fill_pendientes($solicitudes)
+{
+	$tr_pendientes = "";
+
+	foreach ($solicitudes as $solicitud) 
+	{	
+		$comprobante = "";
+		if($solicitud['status'] == 0)
+		{
+			$status = "1. Pendiente de pago";
+			$comprobante = '<a class="btn btn-xs btn-success" onclick="fill_modal_upcomprobante('.$solicitud['id'].')" role="button" data-toggle="modal">
+														<i class="ace-icon fa fa-upload bigger-130"></i>
+													</a>';
+		}
+		if($solicitud['status'] == 1)
+		{
+			$status = "2. En revicion";
+		}
+		if($solicitud['status'] == 3)
+		{
+			$status = "3. Rechazado";
+		}
+		$tr_pendientes.='
+							<tr>
+											<td>'.$solicitud['fecha_apertura'].'</td>
+											<td>'.$solicitud['nombre_comercial'].'</td>
+											<td class="hid_xs">
+												'.$solicitud['domicilio'].'
+											</td> 
+											<td class="hidden"></td>
+											<td class="hid_xs">'.$solicitud['telefono'].'</td>
+											<td class="center"><span class="label label-warning arrowed-right">'.$status.'</span></td>
+											<td class="center">
+												<div class="btn-group">
+													<a class="btn btn-xs btn-info" onclick="fill_modal_info('.$solicitud['id'].')" role="button" data-toggle="modal">
+														<i class="ace-icon fa fa-info-circle bigger-130"></i>
+													</a>
+													'.$comprobante.'
+												</div>
+											</td>
+										</tr>
+						';
+	}
+	return $tr_pendientes;
+}
 ?>
