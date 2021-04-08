@@ -183,9 +183,7 @@
 
 								<b class="arrow"></b>
 							</li>
-						</ul>
 
-						<ul class="submenu">
 							<li class="">
 								<a href="javascript:cambiarcont('view/sedatum/uso_suelo.php');">
 									<i class="menu-icon fa fa-caret-right"></i>
@@ -194,9 +192,7 @@
 
 								<b class="arrow"></b>
 							</li>
-						</ul>
 
-						<ul class="submenu">
 							<li class="">
 								<a href="javascript:cambiarcont('view/sedatum/director.php');">
 									<i class="menu-icon fa fa-caret-right"></i>
@@ -205,9 +201,7 @@
 
 								<b class="arrow"></b>
 							</li>
-						</ul>
 
-						<ul class="submenu">
 							<li class="">
 								<a href="javascript:cambiarcont('view/sedatum/secretario.php');">
 									<i class="menu-icon fa fa-caret-right"></i>
@@ -216,6 +210,7 @@
 
 								<b class="arrow"></b>
 							</li>
+
 						</ul>
 
 					</li>
