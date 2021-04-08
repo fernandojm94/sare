@@ -804,7 +804,6 @@
         var tag_input = $('#nombre_empresa');
         var mis_datos = <?=$tag_pmoral?>;
         
-        
         try{
             tag_input.tag(
               {
@@ -863,6 +862,7 @@
                     document.getElementById("ocultos_moral").innerHTML=xmlhttp.responseText;
                     $("#editar").css("display", "block");
                     switch_edit();
+                    date_pick();
                 }
             }
 
@@ -881,14 +881,28 @@
 
 
         function switch_edit(){
+
             $("#switch_edit",).change(function() {
-                if ($('input', form_moral).is('[readonly]')) 
-                {
-                    $('input', form_moral).removeAttr("readonly");
-                } else {
-                    $('input', form_moral).attr("readonly","readonly");
-                }
+
+                var $inputs = $('#form_moral :input');
+                $inputs.each(function() {
+
+                    if ($(this).is('[readonly]') && this.id != 'rfc_pm' && this.id != 'rfc_rl' && this.id != 'curp_rl' && this.id != '') {
+                        
+                        $(this).removeAttr("readonly");
+                        $('select', form_moral).removeAttr("readonly");
+                        $('select', form_moral).prop("disabled", false);
+
+                    
+                    }else{
+                        $(this).attr("readonly","readonly");
+                        $('select', form_moral).attr("readonly");
+                        $('select', form_moral).prop("disabled",true);
+                    }
+                });
+
             });
+
         }
     }
 
@@ -1103,11 +1117,19 @@
 
     //datepicker plugin
     //link
+    function date_pick(){
+        $('.date_picker').datepicker({
+            language: 'es',
+            autoclose: true,
+            todayHighlight: true
+        });    
+    }
+    
     $('.date_picker').datepicker({
         language: 'es',
         autoclose: true,
         todayHighlight: true
-    })
+    });
 
     
     //var $validation = false;
