@@ -1230,6 +1230,7 @@
                                 "curp_fis" : $('#curp_fis').val(),
                                 "telefono" : $('#telefono').val(),
                                 "email" : $('#email').val(),
+                                "id" : $('#id_pfisica').val(),
                             };
                             
                             if($("#switch_edit").is('[readonly]')){
@@ -1237,8 +1238,6 @@
                             }else{
                                 url_fisica = './model/solicitud/create_pfisica.php';
                             }
-
-                            var id_pfi= $('#id_pfisica').val();
                             
                             $.ajax({
                                     data:  parametros_conyugue,
@@ -1246,8 +1245,10 @@
                                     type:  'post',
                                     
                                     success:  function (data) {
-                                                                            
-                                        if (data==='correcto'){
+
+                                        var datos = data.split(',');
+                                                                     
+                                        if (datos[0]==='correcto'){
                                             swal({
                                                 title: "¡Datos guardados correctamente!",
                                                 timer: 3000,
@@ -1259,7 +1260,7 @@
                                                 step: 3
                                             });
 
-                                            var code_idpf='<input type="text" name="id_pf" id="id_pf" value="'+id_pfi+'"/>';
+                                            var code_idpf='<input type="text" name="id_pf" id="id_pf" value="'+datos[1]+'"/>';
                                             document.getElementById("inst_idpf").innerHTML=code_idpf;
 
                                             mapa_inicial();             

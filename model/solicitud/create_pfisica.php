@@ -1,7 +1,7 @@
 <?php
 	include('../../controller/pfisica/funciones_pfisica.php');
-	
-	$nombre = $_POST['nombre'];
+
+	$nombre = explode('-', $_POST['nombre']);
 	$calle = $_POST['calle'];
 	$exterior = $_POST['no_ex'];
 	$interior = $_POST['no_int'];
@@ -13,16 +13,16 @@
 	$curp = $_POST['curp_fis'];
 	$telefono = $_POST['telefono'];
 	$email = $_POST['email'];
-	$id = 0;
+	$id = $_POST['id'];
 
-	if(compare_pfisica($nombre, $rfc, $curp, $telefono))
+	if(compare_pfisica($nombre[0], $rfc, $curp, $telefono))
 	{
-		$mensaje = "correcto";
+		$mensaje = "correcto,".$id;
 	}else{
-		$id = create_pfisica($nombre, $calle, $exterior, $interior, $colonia, $municipio, $localidad, $cp, $rfc, $curp, $telefono, $email);
+		$id = create_pfisica($nombre[0], $calle, $exterior, $interior, $colonia, $municipio, $localidad, $cp, $rfc, $curp, $telefono, $email);
 		if($id)
 		{
-			$mensaje = "correcto, ".$id;
+			$mensaje = "correcto,".$id;
 		}else{
 			$mensaje = "error2";
 		}	
