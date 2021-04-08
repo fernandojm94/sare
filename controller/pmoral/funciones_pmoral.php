@@ -38,7 +38,7 @@ function create_pmoral($nombre_empresa, $fecha_constitucion, $rfc_pm, $telefono_
 	$sql = "INSERT INTO personas_morales(nombre_empresa, fecha_constitucion, rfc_empresa, telefono_empresa, email_empresa, nombre_rl, rfc_rl, curp, calle, no_exterior, no_interior, colonia, estado, municipio, localidad, cp, telefono_rl, email_rl) 
 	VALUES('".$nombre_empresa."', '".$fecha_constitucion."','".$rfc_pm."', '".$telefono_pm."', '".$email_pm."', '".$nombre_rl."', '".$rfc_rl."', '".$curp_rl."', '".$calle_rl."', ".$no_ex_rl.", ".$no_int_rl.", '".$colonia_rl."', '".$estado_rl."', '".$municipio_rl."', '".$localidad_rl."', ".$cp_rl.", '".$telefono_rl."', '".$email_rl."')";
 
-	$result = querys($sql);
+	$result = query_last_id($sql);
 
 	return $result;
 }

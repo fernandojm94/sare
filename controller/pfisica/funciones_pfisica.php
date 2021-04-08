@@ -36,7 +36,7 @@ function create_pfisica($nombre, $calle, $exterior, $interior, $colonia, $munici
 {
 		$sql = "INSERT INTO personas_fisicas (nombre_completo, calle, no_exterior, no_interior, colonia, municipio, localidad, c_p, rfc, curp, telefono, email)
 										VALUES('".$nombre."', '".$calle."', '".$exterior."', '".$interior."', '".$colonia."', '".$municipio."', '".$localidad."', '".$cp."', '".$rfc."', '".$curp."', '".$telefono."', '".$email."')";
-		$result = querys($sql);
+		$result = query_last_id($sql);
 
 		return $result;
 }

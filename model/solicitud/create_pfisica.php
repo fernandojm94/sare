@@ -13,14 +13,16 @@
 	$curp = $_POST['curp_fis'];
 	$telefono = $_POST['telefono'];
 	$email = $_POST['email'];
+	$id = 0;
 
 	if(compare_pfisica($nombre, $rfc, $curp, $telefono))
 	{
 		$mensaje = "correcto";
 	}else{
-		if(create_pfisica($nombre, $calle, $exterior, $interior, $colonia, $municipio, $localidad, $cp, $rfc, $curp, $telefono, $email))
+		$id = create_pfisica($nombre, $calle, $exterior, $interior, $colonia, $municipio, $localidad, $cp, $rfc, $curp, $telefono, $email);
+		if($id)
 		{
-			$mensaje = "correcto";
+			$mensaje = "correcto, ".$id;
 		}else{
 			$mensaje = "error2";
 		}	
