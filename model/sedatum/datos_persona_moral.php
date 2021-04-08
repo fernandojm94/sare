@@ -1,3 +1,7 @@
+<?php
+    $read = "readonly";
+?>
+
 <div class="form-group">
     <label class="col-md-4 control-label">¿Editar datos?<FONT COLOR="red">*</FONT></label>
     <div class="col-md-4 inputGroupContainer">
@@ -15,7 +19,7 @@
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-building"></i></span>
-            <input  name="fecha_constitucion" id="fecha_constitucion" placeholder="Fecha de constitución" class="form-control date_picker" type="text" required/>
+            <input  name="fecha_constitucion" id="fecha_constitucion" placeholder="Fecha de constitución" class="form-control date_picker" type="text" required <?= $read; ?>/>
         </div>
     </div>
 </div>
@@ -26,7 +30,7 @@
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-building"></i></span>
-            <input name="rfc_pm" id="rfc_pm" placeholder="RFC" class="form-control mask_rfc_mor" type="text" onchange="mayus(this);" required/>
+            <input name="rfc_pm" id="rfc_pm" placeholder="RFC" class="form-control mask_rfc_mor" type="text" onchange="mayus(this);" required <?= $read; ?>/>
         </div>
     </div>
 </div>
@@ -36,7 +40,7 @@
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-            <input name="telefono_pm" id="telefono_pm" placeholder="Teléfono" class="form-control mask_tel" type="tel" required/>
+            <input name="telefono_pm" id="telefono_pm" placeholder="Teléfono" class="form-control mask_tel" type="tel" required <?= $read; ?>/>
         </div>
     </div>
 </div>
@@ -46,7 +50,7 @@
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-at"></i></span>
-            <input name="email_pm" id="email_pm" placeholder="Email" class="form-control" type="email" required/>
+            <input name="email_pm" id="email_pm" placeholder="Email" class="form-control" type="email" required <?= $read; ?>/>
         </div>
     </div>
 </div>
@@ -61,7 +65,7 @@
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-user"></i></span>
-            <input  name="nombre_rl" id="nombre_rl" placeholder="Nombre completo" class="form-control" type="text" required/>
+            <input  name="nombre_rl" id="nombre_rl" placeholder="Nombre completo" class="form-control" type="text" required <?= $read; ?>/>
         </div>
     </div>
 </div>
@@ -72,7 +76,7 @@
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-user"></i></span>
-            <input name="rfc_rl" id="rfc_rl" placeholder="RFC" class="form-control mask_rfc_fis" type="text" onchange="mayus(this);" required/>
+            <input name="rfc_rl" id="rfc_rl" placeholder="RFC" class="form-control mask_rfc_fis" type="text" onchange="mayus(this);" required <?= $read; ?>/>
         </div>
     </div>
 </div>
@@ -83,7 +87,7 @@
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-user"></i></span>
-            <input name="curp_rl" id="curp_rl" placeholder="CURP" class="form-control mask_curp" type="text" onchange="mayus(this);" required/>
+            <input name="curp_rl" id="curp_rl" placeholder="CURP" class="form-control mask_curp" type="text" onchange="mayus(this);" required <?= $read; ?>/>
         </div>
     </div>
 </div>
@@ -93,7 +97,7 @@
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-            <input  name="calle_rl" id="calle_rl" placeholder="Calle" class="form-control" type="text" required/>
+            <input  name="calle_rl" id="calle_rl" placeholder="Calle" class="form-control" type="text" required <?= $read; ?>/>
         </div>
     </div>
 </div>
@@ -103,14 +107,14 @@
     <div class="col-md-2 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-            <input  name="no_ex_rl" id="no_ex_rl" placeholder="No. Exterior" class="form-control" type="number" required/>
+            <input  name="no_ex_rl" id="no_ex_rl" placeholder="No. Exterior" class="form-control" type="number" required <?= $read; ?>/>
         </div>
     </div>
     
     <div class="col-md-2 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-            <input  name="no_int_rl" id="no_int_rl" placeholder="No. Interior" class="form-control" type="number" required/>
+            <input  name="no_int_rl" id="no_int_rl" placeholder="No. Interior" class="form-control" type="number" required <?= $read; ?>/>
         </div>
     </div>
 
@@ -121,7 +125,7 @@
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-            <input  name="colonia_rl" id="colonia_rl" placeholder="Colonia" class="form-control" type="text" required/>
+            <input  name="colonia_rl" id="colonia_rl" placeholder="Colonia" class="form-control" type="text" required <?= $read; ?>/>
         </div>
     </div>
 </div>
@@ -131,7 +135,7 @@
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-            <select name="estado_rl" id="estado_rl" placeholder="Localidad" class="form-control" type="text" required>
+            <select name="estado_rl" id="estado_rl" placeholder="Localidad" class="form-control" type="text" required <?= $read; ?>>
                 <option value="">Seleccionar una opción</option>
                 <option value="Aguascalientes">Aguascalientes</option>
                 <option value="Baja California">Baja California</option>
@@ -175,7 +179,7 @@
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-            <input  name="municipio_rl" id="municipio_rl" placeholder="Municipio" class="form-control" type="text" required/>
+            <input  name="municipio_rl" id="municipio_rl" placeholder="Municipio" class="form-control" type="text" required <?= $read; ?>/>
         </div>
     </div>
 </div>
@@ -185,7 +189,7 @@
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-            <input  name="localidad_rl" id="localidad_rl" placeholder="Localidad" class="form-control" type="text" required/>
+            <input  name="localidad_rl" id="localidad_rl" placeholder="Localidad" class="form-control" type="text" required <?= $read; ?>/>
         </div>
     </div>
 </div>
@@ -195,7 +199,7 @@
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-            <input name="cp_rl" id="cp_rl" placeholder="Código Postal" class="form-control mask_cp" type="text" required/>
+            <input name="cp_rl" id="cp_rl" placeholder="Código Postal" class="form-control mask_cp" type="text" required <?= $read; ?>/>
         </div>
     </div>
 </div>
@@ -206,7 +210,7 @@
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-            <input name="telefono_rl" id="telefono_rl" placeholder="Teléfono" class="form-control mask_tel" type="tel" required/>
+            <input name="telefono_rl" id="telefono_rl" placeholder="Teléfono" class="form-control mask_tel" type="tel" required <?= $read; ?>/>
         </div>
     </div>
 </div>
@@ -218,7 +222,7 @@
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-at"></i></span>
-            <input name="email_rl" id="email_rl" placeholder="Email" class="form-control" type="email" required/>
+            <input name="email_rl" id="email_rl" placeholder="Email" class="form-control" type="email" required <?= $read; ?>/>
         </div>
     </div>
 </div>
