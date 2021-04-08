@@ -804,7 +804,6 @@
         var tag_input = $('#nombre_empresa');
         var mis_datos = <?=$tag_pmoral?>;
         
-        
         try{
             tag_input.tag(
               {
@@ -863,6 +862,7 @@
                     document.getElementById("ocultos_moral").innerHTML=xmlhttp.responseText;
                     $("#editar").css("display", "block");
                     switch_edit();
+                    date_pick();
                 }
             }
 
@@ -1117,11 +1117,19 @@
 
     //datepicker plugin
     //link
+    function date_pick(){
+        $('.date_picker').datepicker({
+            language: 'es',
+            autoclose: true,
+            todayHighlight: true
+        });    
+    }
+    
     $('.date_picker').datepicker({
         language: 'es',
         autoclose: true,
         todayHighlight: true
-    })
+    });
 
     
     //var $validation = false;
