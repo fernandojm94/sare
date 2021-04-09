@@ -1,3 +1,23 @@
 <?php
+include('../../controller/pfisica/funciones_pfisica.php');
+	
+	$calle = $_POST['calle'];
+	$exterior = $_POST['no_ex'];
+	$interior = $_POST['no_int'];
+	$colonia = $_POST['colonia'];
+	$municipio = $_POST['municipio'];
+	$localidad = $_POST['localidad'];
+	$cp = $_POST['cp'];	
+	$telefono = $_POST['telefono'];
+	$email = $_POST['email'];
+	$id = $_POST['id'];
 
-var_dump($_POST);
+	if(update_pfisica($calle, $exterior, $interior, $colonia, $municipio, $localidad, $cp, $telefono, $email, $id))
+	{
+		$mensaje = "correcto, ".$id;
+	}else{
+		$mensaje = "error2";
+	}	
+	
+
+	echo $mensaje;

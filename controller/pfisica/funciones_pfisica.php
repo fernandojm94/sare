@@ -40,3 +40,12 @@ function create_pfisica($nombre, $calle, $exterior, $interior, $colonia, $munici
 
 		return $result;
 }
+
+function update_pfisica( $calle, $exterior, $interior, $colonia, $municipio, $localidad, $cp, $telefono, $email, $id)
+{
+	$sql = "UPDATE personas_fisicas SET calle = '".$calle."', no_exterior = '".$exterior."', no_interior = '".$interior."', colonia = '".$colonia."', municipio = '".$municipio."', localidad = '".$localidad."', c_p = '".$cp."', telefono = '".$telefono."', email = '".$email."' WHERE id = $id";
+
+	$result = querys($sql);
+
+	return $result;
+}
