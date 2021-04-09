@@ -1354,7 +1354,7 @@
                         console.log("segun no esta completo el form");
                     }
                     else{
-                        console.log("si entro");
+                        // console.log("si entro");
                         e.preventDefault();
 
                         var parametros_dg = {                     
@@ -1431,10 +1431,10 @@
                 {
                     if(!$('#form_dimensiones').valid()){
                         e.preventDefault();
-                        console.log("segun no esta completo el form");
+                        // console.log("segun no esta completo el form");
                     }
                     else{
-                        console.log("si entro");
+                        // console.log("si entro");
                         e.preventDefault();
 
                         var parametros_dim = {                     
@@ -1493,7 +1493,7 @@
             if(info.step == 5) {
                 if(info.direction == 'next')
                 {
-                    if(!$('#form_dg').valid()){
+                    if(!$('#form_documentos').valid()){
                         e.preventDefault();
                     }
                     else{
