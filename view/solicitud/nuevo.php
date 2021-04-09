@@ -604,12 +604,13 @@
             btn_change:'Cambiar',
             droppable:false,
             onchange:null,
-            thumbnail:true
+            thumbnail:true,
+
         }).on('change', function() {
             swal({
                 title: "¿El documento cumple con lo siguiente?:",
                 text: "La escritura o titulo de propiedad debe coincidir con el comprobante de domicilio, el predial actual y el contrato de arrendamiento en cuanto a dueño de la propiedad, ubicación de la propiedad, área de la propiedad total y de uso comercial, asi como la vigencia del contrato de arrendamiento.",
-                icon: "info",
+                icon: "warning",
                 buttons: true,
                 dangerMode: true,
                 buttons: ["Sí", "No"]
@@ -631,8 +632,36 @@
             swal({
                 title: "¿El documento cumple con lo siguiente?:",
                 text: "Recibo del predial actual (2020).",
-                icon: "info",
-                button: "Aceptar"
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                buttons: ["Sí", "No"]
+            }).then((value) => {
+                if (value) {
+                    alert("Quitar el archivo desde que da click en 'NO'");
+                }
+            });
+        });
+
+         $('#ine').ace_file_input({
+            no_file:'Seleccione un documento ...',
+            btn_choose:'Seleccionar',
+            btn_change:'Cambiar',
+            droppable:false,
+            onchange:null,
+            thumbnail:true
+        }).on('change', function() {
+            swal({
+                title: "¿El documento cumple con lo siguiente?:",
+                text: "Las identificaciones oficiales de los implicados debe coincidir con la escritura o titulo de propiedad, uso de suelo, numero oficial, comprobante de domicilio, recibo predial actual, contrato de arrendamiento, acta constitutiva, poder notarial y formato único para sistema de apertura.",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                buttons: ["Sí", "No"]
+            }).then((value) => {
+                if (value) {
+                    alert("Quitar el archivo desde que da click en 'NO'");
+                }
             });
         });
 
@@ -647,24 +676,14 @@
             swal({
                 title: "¿El documento cumple con lo siguiente?:",
                 text: "El contrato de arrendamiento debe coincidir en cuanto a dueño de la propiedad, ubicación de la propiedad, área de la propiedad total y de uso comercial, asi como la vigencia del mismo.",
-                icon: "info",
-                button: "Aceptar"
-            });
-        });
-
-        $('#ine').ace_file_input({
-            no_file:'Seleccione un documento ...',
-            btn_choose:'Seleccionar',
-            btn_change:'Cambiar',
-            droppable:false,
-            onchange:null,
-            thumbnail:true
-        }).on('change', function() {
-            swal({
-                title: "¿El documento cumple con lo siguiente?:",
-                text: "Las identificaciones oficiales de los implicados debe coincidir con la escritura o titulo de propiedad, uso de suelo, numero oficial, comprobante de domicilio, recibo predial actual, contrato de arrendamiento, acta constitutiva, poder notarial y formato único para sistema de apertura.",
-                icon: "info",
-                button: "Aceptar"
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                buttons: ["Sí", "No"]
+            }).then((value) => {
+                if (value) {
+                    alert("Quitar el archivo desde que da click en 'NO'");
+                }
             });
         });
 
@@ -675,6 +694,19 @@
             droppable:false,
             onchange:null,
             thumbnail:true
+        }).on('change', function() {
+            swal({
+                title: "¿Está usted seguro?:",
+                text: "",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                buttons: ["Sí", "No"]
+            }).then((value) => {
+                if (value) {
+                    alert("Quitar el archivo desde que da click en 'NO'");
+                }
+            });
         });
 
         $('#terreno').on('change', function() {
