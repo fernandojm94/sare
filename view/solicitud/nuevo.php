@@ -605,6 +605,9 @@
             droppable:false,
             onchange:null,
             thumbnail:true,
+            remove: function hey(){
+                alert('qué pasa aqui');
+            }
 
         }).on('change', function() {
             swal({
@@ -616,7 +619,7 @@
                 buttons: ["Sí", "No"]
             }).then((value) => {
                 if (value) {
-                    alert("Quitar el archivo desde que da click en 'NO'");
+                    $("#"+this.id).next().next().click();
                 }
             });
         });
@@ -638,7 +641,7 @@
                 buttons: ["Sí", "No"]
             }).then((value) => {
                 if (value) {
-                    alert("Quitar el archivo desde que da click en 'NO'");
+                    $("#"+this.id).next().next().click();
                 }
             });
         });
@@ -660,7 +663,7 @@
                 buttons: ["Sí", "No"]
             }).then((value) => {
                 if (value) {
-                    alert("Quitar el archivo desde que da click en 'NO'");
+                    $("#"+this.id).next().next().click();
                 }
             });
         });
@@ -682,7 +685,7 @@
                 buttons: ["Sí", "No"]
             }).then((value) => {
                 if (value) {
-                    alert("Quitar el archivo desde que da click en 'NO'");
+                    $("#"+this.id).next().next().click();
                 }
             });
         });
@@ -704,7 +707,7 @@
                 buttons: ["Sí", "No"]
             }).then((value) => {
                 if (value) {
-                    alert("Quitar el archivo desde que da click en 'NO'");
+                    $("#"+this.id).next().next().click();
                 }
             });
         });
