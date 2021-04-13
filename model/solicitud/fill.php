@@ -31,6 +31,13 @@ function fill_pmoral()
 	return $result;
 }
 
+function fill_pmoral_rfc($rfc)
+{
+	$result = get_pmoral_rfc($rfc);
+
+	return $result;
+}
+
 function fill_pfisica_rfc($rfc)
 {
 	$result = get_pfisica_rfc($rfc);
