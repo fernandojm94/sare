@@ -1,7 +1,7 @@
 <?php
 	include('../../controller/pmoral/funciones_pmoral.php');
 
-	$nombre_empresa = $_POST['nombre_empresa'];
+	$nombre_empresa = explode('-' , $_POST['nombre_empresa']);
 	$fecha_constitucion = $_POST['fecha_constitucion'];
 	$rfc_pm = $_POST['rfc_pm'];
 	$telefono_pm = $_POST['telefono_pm'];
@@ -19,13 +19,13 @@
 	$cp_rl = $_POST['cp_rl'];
 	$telefono_rl = $_POST['telefono_rl'];
 	$email_rl = $_POST['email_rl'];
-	$id = 0;
+	$id = $_POST['id'];
 
-	if(compare_pmoral($nombre_empresa, $rfc_pm))
+	if(compare_pmoral($nombre_empresa[0], $rfc_pm))
 	{
-		$mensaje = "correcto";
+		$mensaje = "correcto, ".$id;
 	}else{
-		$id =create_pmoral($nombre_empresa, $fecha_constitucion, $rfc_pm, $telefono_pm, $email_pm, $nombre_rl, $rfc_rl, $curp_rl, $calle_rl, $no_ex_rl, $no_int_rl, $colonia_rl, $estado_rl, $municipio_rl, $localidad_rl, $cp_rl, $telefono_rl, $email_rl); 
+		$id =create_pmoral($nombre_empresa[0], $fecha_constitucion, $rfc_pm, $telefono_pm, $email_pm, $nombre_rl, $rfc_rl, $curp_rl, $calle_rl, $no_ex_rl, $no_int_rl, $colonia_rl, $estado_rl, $municipio_rl, $localidad_rl, $cp_rl, $telefono_rl, $email_rl); 
 		if($id)
 		{
 			$mensaje = "correcto, ".$id;
