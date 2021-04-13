@@ -492,9 +492,11 @@
                         <div class="step-pane" data-step="5">
                             <form class="well form-horizontal" method="post"  id="form_documentos" name="form_documentos">
                                 <fieldset>
-                                    <div id=inst_idpf></div>
-                                    <div id=inst_iddg></div>
-                                    <div id=inst_iddim></div>
+                                    <div id="inst_idpf"></div>
+                                    <div id="inst_idpm"></div>
+
+                                    <div id="inst_iddg"></div>
+                                    <div id="inst_iddim"></div>
 
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Escritura o titulo de propiedad (en su caso carta notariada de escritura en trámite).</label>  
@@ -1340,16 +1342,25 @@
                                 "estado_rl" : $('#estado_rl').val(),
                                 "telefono_rl" : $('#telefono_rl').val(),
                                 "email_rl" : $('#email_rl').val(),
+                                "id" : $('#id_pmoral').val(),
                             };
+
+                            if($("#switch_edit").is('[readonly]')){
+                                var url_moral = './model/solicitud/update_pmoral.php';    
+                            }else{
+                                url_moral = './model/solicitud/create_pmoral.php';
+                            }
                             
                             $.ajax({
                                     data:  parametros_moral,
-                                    url:   './model/solicitud/create_pmoral.php',
+                                    url:   url_moral,
                                     type:  'post',
                                     
                                     success:  function (data) {
-                                                                            
-                                        if (data==='correcto'){
+                                        console.log(data);
+                                        var datos = data.split(',');
+
+                                        if (datos[0]==='correcto'){
                                             swal({
                                                 title: "¡Datos guardados correctamente!",
                                                 timer: 3000,
@@ -1360,6 +1371,10 @@
                                             $('#fuelux-wizard-container').wizard('selectedItem', {
                                                 step: 3
                                             });
+
+                                            var code_idpm='<input type="text" name="id_pm" id="id_pm" value="'+datos[1]+'"/>';
+                                            document.getElementById("inst_idpm").innerHTML=code_idpm;
+
                                             mapa_inicial();                 
                                         }
                                         
