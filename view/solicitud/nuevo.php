@@ -1211,6 +1211,19 @@
                             droppable:false,
                             onchange:null,
                             thumbnail:true
+                        }).on('change', function() {
+                            swal({
+                                title: "¿El documento cumple con los requerimientos?:",
+                                text: "",
+                                icon: "warning",
+                                buttons: true,
+                                dangerMode: true,
+                                buttons: ["Sí", "No"]
+                            }).then((value) => {
+                                if (value) {
+                                    $("#"+this.id).next().next().click();
+                                }
+                            });
                         });
 
                         $('#poder').ace_file_input({
@@ -1220,6 +1233,19 @@
                             droppable:false,
                             onchange:null,
                             thumbnail:true
+                        }).on('change', function() {
+                            swal({
+                                title: "¿El documento cumple con los requerimientos?:",
+                                text: "",
+                                icon: "warning",
+                                buttons: true,
+                                dangerMode: true,
+                                buttons: ["Sí", "No"]
+                            }).then((value) => {
+                                if (value) {
+                                    $("#"+this.id).next().next().click();
+                                }
+                            });
                         });
 
                         $('#solicitud').ace_file_input({
@@ -1229,6 +1255,19 @@
                             droppable:false,
                             onchange:null,
                             thumbnail:true
+                        }).on('change', function() {
+                            swal({
+                                title: "¿El documento cumple con los requerimientos?:",
+                                text: "",
+                                icon: "warning",
+                                buttons: true,
+                                dangerMode: true,
+                                buttons: ["Sí", "No"]
+                            }).then((value) => {
+                                if (value) {
+                                    $("#"+this.id).next().next().click();
+                                }
+                            });
                         });
                     }
 
