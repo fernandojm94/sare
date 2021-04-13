@@ -43,9 +43,9 @@ function create_pmoral($nombre_empresa, $fecha_constitucion, $rfc_pm, $telefono_
 	return $result;
 }
  
- function update_pmoral($nombre_empresa, $fecha_constitucion, $telefono_pm, $email_pm, $nombre_rl, $calle_rl, $no_ex_rl, $no_int_rl, $colonia_rl, $estado_rl, $municipio_rl, $localidad_rl, $cp_rl, $telefono_rl, $email_rl, $id)
+ function update_pmoral($fecha_constitucion, $telefono_pm, $email_pm, $nombre_rl, $calle_rl, $no_ex_rl, $no_int_rl, $colonia_rl, $estado_rl, $municipio_rl, $localidad_rl, $cp_rl, $telefono_rl, $email_rl, $id)
  {
- 	$sql = " UPDATE personas_morales SET nombre_empresa ='".$nombre_empresa."', fecha_constitucion = '".$fecha_constitucion."', telefono_pm = '".$telefono_pm."', email_empresa = '".$email_pm."', nombre_rl = '".$nombre_rl."', calle = '".$calle_rl."', no_exterior = '".$no_ex_rl."', no_interior = '".$no_int_rl."', colonia = '".$colonia_rl."', estado = '".$estado_rl."', municipio = '".$municipio_rl."', localidad = '".$localidad_rl."', cp = '".$cp_rl."', telefono_rl = '".$telefono_rl."', email_rl = '".$email_rl."' WHERE id = $id";
+ 	$sql = " UPDATE personas_morales SET fecha_constitucion = '".$fecha_constitucion."', telefono_empresa = '".$telefono_pm."', email_empresa = '".$email_pm."', nombre_rl = '".$nombre_rl."', calle = '".$calle_rl."', no_exterior = '".$no_ex_rl."', no_interior = '".$no_int_rl."', colonia = '".$colonia_rl."', estado = '".$estado_rl."', municipio = '".$municipio_rl."', localidad = '".$localidad_rl."', cp = '".$cp_rl."', telefono_rl = '".$telefono_rl."', email_rl = '".$email_rl."' WHERE id = $id";
  	$result = querys($sql);
 
  	return $result;

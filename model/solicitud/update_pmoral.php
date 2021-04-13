@@ -17,7 +17,7 @@
 	$email_rl = $_POST['email_rl'];
 	$id = $_POST['id'];
 		
-	if(update_pmoral($nombre_empresa, $fecha_constitucion, $telefono_pm, $email_pm, $nombre_rl, $calle_rl, $no_ex_rl, $no_int_rl, $colonia_rl, $estado_rl, $municipio_rl, $localidad_rl, $cp_rl, $telefono_rl, $email_rl, $id))
+	if(update_pmoral($fecha_constitucion, $telefono_pm, $email_pm, $nombre_rl, $calle_rl, $no_ex_rl, $no_int_rl, $colonia_rl, $estado_rl, $municipio_rl, $localidad_rl, $cp_rl, $telefono_rl, $email_rl, $id))
 	{
 		$mensaje = "correcto, ".$id;
 	}else{
