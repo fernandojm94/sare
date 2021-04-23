@@ -985,8 +985,8 @@
                     },
                     success: function (data) {
                         console.log(JSON.stringify(data));
-                        calle.value= data.Response.View[0].Result[0].Location.Address.Street;
-                        num_ext.value= data.Response.View[0].Result[0].Location.Address.HouseNumber;
+                        //calle.value= data.Response.View[0].Result[0].Location.Address.Street;
+                        //num_ext.value= data.Response.View[0].Result[0].Location.Address.HouseNumber;
                         colonia.value= data.Response.View[0].Result[0].Location.Address.District;
                         localidad.value= data.Response.View[0].Result[0].Location.Address.City;
                         cp.value= data.Response.View[0].Result[0].Location.Address.PostalCode;
