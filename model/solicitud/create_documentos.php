@@ -44,7 +44,9 @@
 	if(create_expediente($folio, $tipo_persona, $id_persona, $id_dg, $id_dimensiones))
 	{
 
-
+		$mensaje = "correcto";
 	}else{
 		$mensaje = "error";
 	}
+
+	echo $mensaje;
