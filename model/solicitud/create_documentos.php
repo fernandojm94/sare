@@ -1,11 +1,9 @@
 <?php
 
-	var_dump($_POST);
 	include('../../controller/solicitud/funciones_solicitud.php');
 
 	$folio = "SARE/".date("Y/m/d H:m:s");
 	$docs =str_replace(' ', '-', str_replace(':', '-',str_replace('/', '-', $folio)));
-	$tipo_persona = $_POST['tipo_persona'];
 	$id_persona = $_POST['id_pf'];
 	$id_dg = $_POST['id_dg'];
 	$id_dimensiones = $_POST['id_dim'];
@@ -15,12 +13,22 @@
 	$ine = $ruta.basename($_FILES['ine']['name']);
 	$contrato = $ruta.basename($_FILES['contrato']['name']);
 	$noficial = $ruta.basename($_FILES['no']['name']);
+	
+	$tipo_persona = $_POST['tipo_persona'];
+
+	if ($tipo_persona == 'p_moral') {
+		$tipo_persona = 2;
+	}else{
+		$tipo_persona = 1;
+	}
+
 	if($tipo_persona == 2)
 	{
 		$acta = $ruta.basename($_FILES['acta']['name']);
 		$poder = $ruta.basename($_FILES['poder']['name']);
 		$solicitud = $ruta.basename($_FILES['solicitud']['name']);
 	}
+
 	if(!is_dir($ruta))
 	{
 		if(!mkdir($ruta,0777, true))
