@@ -492,11 +492,11 @@
                         <div class="step-pane" data-step="5">
                             <form class="well form-horizontal" method="post"  id="form_documentos" name="form_documentos">
                                 <fieldset>
-                                    <div id="inst_idpf"></div>
-                                    <div id="inst_idpm"></div>
+                                    <div class="hidden" id="inst_idpf"></div>
+                                    <div class="hidden" id="inst_idpm"></div>
 
-                                    <div id="inst_iddg"></div>
-                                    <div id="inst_iddim"></div>
+                                    <div class="hidden" id="inst_iddg"></div>
+                                    <div class="hidden" id="inst_iddim"></div>
 
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Escritura o titulo de propiedad (en su caso carta notariada de escritura en trámite).</label>  
@@ -1617,7 +1617,11 @@
                                         timer: 3000,
                                         icon: "success",
                                         button: "Aceptar"
-                                    });                  
+                                    }).then((value) => {
+                                        if(value) {
+                                            cambiarcont('view/solicitud/listado.php');
+                                        }
+                                    });  
 
                                     $('#fuelux-wizard-container').wizard('selectedItem', {
                                         step: 3
