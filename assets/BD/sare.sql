@@ -219,6 +219,17 @@ CREATE TABLE IF NOT EXISTS `ventanilla` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
+--
+CREATE VIEW pendientes AS SELECT e.id, e.fecha_apertura, dg.nombre_comercial, CONCAT(dg.calle, " ", dg.no_exterior, " ", dg.no_interior, " ", dg.colonia, " ", dg.localidad ) AS domicilio, dg.telefono, e. status
+  FROM expedientes AS e
+  LEFT JOIN dg_establecimiento AS dg ON dg.id = e.id_dg_establecimiento
+WHERE e.status != 4 
+
+CREATE VIEW resueltas AS SELECT e.id, e.fecha_apertura, dg.nombre_comercial, CONCAT(dg.calle, " ", dg.no_exterior, " ", dg.no_interior, " ", dg.colonia, " ", dg.localidad ) AS domicilio, dg.telefono, e. status
+  FROM expedientes AS e
+  LEFT JOIN dg_establecimiento AS dg ON dg.id = e.id_dg_establecimiento
+WHERE e.status != 4 
+
 -- Volcando datos para la tabla sare.ventanilla: ~0 rows (aproximadamente)
 DELETE FROM `ventanilla`;
 /*!40000 ALTER TABLE `ventanilla` DISABLE KEYS */;
