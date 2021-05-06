@@ -97,4 +97,39 @@ function fill_pendientes($solicitudes)
 	}
 	return $tr_pendientes;
 }
+
+function fill_expediente($id)
+{
+	$expediente = get_expediente($id);
+
+	return $expediente;
+}
+
+function fill_persona_moral($id)
+{
+	$persona_moral = get_pmoral($id);
+
+	return $persona_moral;
+}
+
+function fill_persona_fisica($id)
+{
+	$persona_fisica = get_pfisica($id);
+
+	return $persona_fisica;
+}
+
+function fill_establecimiento($id)
+{
+	$establecimiento = get_establecimiento($id);
+
+	return $establecimiento;
+}
+
+function fill_dimensiones($id)
+{
+	$dimensiones = get_dimensiones($id);
+
+	return $dimensiones;
+}
 ?>
