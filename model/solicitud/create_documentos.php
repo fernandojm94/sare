@@ -34,17 +34,17 @@
 		if(!mkdir($ruta,0777, true))
 		{
 			echo "Fallo la creacion de carpeta";
-		}else{
-			move_uploaded_file($_FILES['titulo']['tmp_name'], $titulo);
-			move_uploaded_file($_FILES['pred']['tmp_name'], $predia);
-			move_uploaded_file($_FILES['ine']['tmp_name'], $ine);
-			move_uploaded_file($_FILES['contrato']['tmp_name'], $contrato);
-			move_uploaded_file($_FILES['no']['tmp_name'], $noficial);
+		}else{			
+			move_uploaded_file($_FILES['titulo']['tmp_name'], $ruta.$titulo);
+			move_uploaded_file($_FILES['pred']['tmp_name'], $ruta.$predia);
+			move_uploaded_file($_FILES['ine']['tmp_name'], $ruta.$ine);
+			move_uploaded_file($_FILES['contrato']['tmp_name'], $ruta.$contrato);
+			move_uploaded_file($_FILES['no']['tmp_name'], $ruta.$noficial);
 			if($tipo_persona == 1)
 			{
-				move_uploaded_file($_FILES['acta']['tmp_name'], $acta);
-				move_uploaded_file($_FILES['poder']['tmp_name'], $poder);
-				move_uploaded_file($_FILES['solicitud']['tmp_name'], $solicitud);
+				move_uploaded_file($_FILES['acta']['tmp_name'], $ruta.$acta);
+				move_uploaded_file($_FILES['poder']['tmp_name'], $ruta.$poder);
+				move_uploaded_file($_FILES['solicitud']['tmp_name'], $ruta.$solicitud);
 			}
 		}
 	}
