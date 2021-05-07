@@ -4,7 +4,7 @@
 
 	$folio = "SARE/".date("Y/m/d H:m:s");
 	$docs =str_replace(' ', '-', str_replace(':', '-',str_replace('/', '-', $folio)));
-	$id_persona = $_POST['id_pf'];
+	$id_persona = $_POST['id_per'];
 	$id_dg = $_POST['id_dg'];
 	$id_dimensiones = $_POST['id_dim'];
 	$ruta = "../../assets/expedientes/".$docs."/docs";
@@ -17,12 +17,12 @@
 	$tipo_persona = $_POST['tipo_persona'];
 
 	if ($tipo_persona == 'p_moral') {
-		$tipo_persona = 2;
-	}else{
 		$tipo_persona = 1;
+	}else{
+		$tipo_persona = 0;
 	}
 
-	if($tipo_persona == 2)
+	if($tipo_persona == 1)
 	{
 		$acta = $ruta.basename($_FILES['acta']['name']);
 		$poder = $ruta.basename($_FILES['poder']['name']);
@@ -40,7 +40,7 @@
 			move_uploaded_file($_FILES['ine']['tmp_name'], $ine);
 			move_uploaded_file($_FILES['contrato']['tmp_name'], $contrato);
 			move_uploaded_file($_FILES['no']['tmp_name'], $noficial);
-			if($tipo_persona == 2)
+			if($tipo_persona == 1)
 			{
 				move_uploaded_file($_FILES['acta']['tmp_name'], $acta);
 				move_uploaded_file($_FILES['poder']['tmp_name'], $poder);
