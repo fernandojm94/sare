@@ -492,11 +492,11 @@
                         <div class="step-pane" data-step="5">
                             <form class="well form-horizontal" method="post"  id="form_documentos" name="form_documentos">
                                 <fieldset>
-                                    <div class="hidden" id="inst_idpf"></div>
-                                    <div class="hidden" id="inst_idpm"></div>
+                                    <div class="text" id="inst_idpf"></div>
+                                    <div class="text" id="inst_idpm"></div>
 
-                                    <div class="hidden" id="inst_iddg"></div>
-                                    <div class="hidden" id="inst_iddim"></div>
+                                    <div class="text" id="inst_iddg"></div>
+                                    <div class="text" id="inst_iddim"></div>
 
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Escritura o titulo de propiedad (en su caso carta notariada de escritura en trámite).</label>  
@@ -1336,7 +1336,7 @@
                                                 step: 3
                                             });
 
-                                            var code_idpf='<input type="text" name="id_pf" id="id_pf" value="'+datos[1]+'"/>';
+                                            var code_idpf='<input type="text" name="id_per" id="id_per" value="'+datos[1]+'"/>';
                                             document.getElementById("inst_idpf").innerHTML=code_idpf;
 
                                             mapa_inicial();             
@@ -1411,7 +1411,7 @@
                                                 step: 3
                                             });
 
-                                            var code_idpm='<input type="text" name="id_pm" id="id_pm" value="'+datos[1]+'"/>';
+                                            var code_idpm='<input type="text" name="id_per" id="id_per" value="'+datos[1]+'"/>';
                                             document.getElementById("inst_idpm").innerHTML=code_idpm;
 
                                             mapa_inicial();                 
@@ -1619,13 +1619,10 @@
                                         button: "Aceptar"
                                     }).then((value) => {
                                         if(value) {
-                                            cambiarcont('view/solicitud/listado.php');
+                                            
                                         }
-                                    });  
-
-                                    $('#fuelux-wizard-container').wizard('selectedItem', {
-                                        step: 3
-                                    });                     
+                                    });   
+                                    cambiarcont('view/solicitud/listado.php');                 
                                 }
                                 
                                 if (data==='error'){

@@ -68,7 +68,7 @@ function fill_pendientes($solicitudes)
 		}
 		if($solicitud['status'] == 1)
 		{
-			$status = "2. En revicion";
+			$status = "2. En revisión";
 		}
 		if($solicitud['status'] == 3)
 		{
