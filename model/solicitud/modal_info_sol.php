@@ -3,6 +3,7 @@
 	$id = array_keys($_POST);
 	$archivos = $documentos = "";
 	$expediente = fill_expediente($id[0]);
+	
 	if($expediente['tipo_persona'])
 	{
 		$datos_generales = fill_persona_moral($expediente['id_persona']);
@@ -16,28 +17,29 @@
 	if(is_dir($ruta))
 	{
 		$archivos = scandir($ruta);
-	}
-	foreach ($archivos as $archivo)
-	{
-		if($archivo != '.')
+	
+		foreach ($archivos as $archivo)
 		{
-			if($archivo != '..')
+			if($archivo != '.')
 			{
+				if($archivo != '..')
+				{
 
-				$link = str_replace('../../', '', $ruta).'/'.$archivo;
-				$documentos.='
-							<div class="col-sm-2 center">
-													<h1>
-														<a href="'.$link.'" target="_blank">
-															<span class="danger bigger-125">
-																<i class="ace-icon fa fa-file-pdf-o"></i>
-															</span>
-														</a>
-														<br>
-													</h1>
-													<h6 class="center"><a href="'.$link.'" target="_blank">'.$archivo.'</a></h6>
-												</div>
-						';	
+					$link = str_replace('../../', '', $ruta).'/'.$archivo;
+					$documentos.='
+								<div class="col-sm-2 center">
+														<h1>
+															<a href="'.$link.'" target="_blank">
+																<span class="danger bigger-125">
+																	<i class="ace-icon fa fa-file-pdf-o"></i>
+																</span>
+															</a>
+															<br>
+														</h1>
+														<h6 class="center"><a href="'.$link.'" target="_blank">'.$archivo.'</a></h6>
+													</div>
+							';	
+				}
 			}
 		}
 	}

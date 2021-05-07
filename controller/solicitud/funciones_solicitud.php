@@ -103,7 +103,7 @@ function  get_pmoral($id)
 
 function  get_pfisica($id)
 {
-	$sql = "SELECT id, nombre_completo AS nombre,CONCAT(calle, ' ', no_exterior, ' ', no_interior, ' ', colonia, ' ', municipio, ' ', localidad, ' ',) AS domicilio c_p, rfc, curp, telefono, email
+	$sql = "SELECT id, nombre_completo AS nombre,CONCAT(calle, ' ', no_exterior, ' ', no_interior, ' ', colonia, ' ', municipio, ' ', localidad, ' ') AS domicilio, c_p, rfc, curp, telefono, email
 				FROM personas_fisicas
 				WHERE  id = '".$id."'";
 	$result = query_row_id($sql);
