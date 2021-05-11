@@ -8,11 +8,11 @@
 	$id_dg = $_POST['id_dg'];
 	$id_dimensiones = $_POST['id_dim'];
 	$ruta = "../../assets/expedientes/".$docs."/docs";
-	$titulo = $ruta.basename($_FILES['titulo']['name']);
-	$predia = $ruta.basename($_FILES['pred']['name']);
-	$ine = $ruta.basename($_FILES['ine']['name']);
-	$contrato = $ruta.basename($_FILES['contrato']['name']);
-	$noficial = $ruta.basename($_FILES['no']['name']);
+	$titulo = $ruta.'/'.basename($_FILES['titulo']['name']);
+	$predia = $ruta.'/'.basename($_FILES['pred']['name']);
+	$ine = $ruta.'/'.basename($_FILES['ine']['name']);
+	$contrato = $ruta.'/'.basename($_FILES['contrato']['name']);
+	$noficial = $ruta.'/'.basename($_FILES['no']['name']);
 	
 	$tipo_persona = $_POST['tipo_persona'];
 
@@ -24,9 +24,9 @@
 
 	if($tipo_persona == 1)
 	{
-		$acta = $ruta.basename($_FILES['acta']['name']);
-		$poder = $ruta.basename($_FILES['poder']['name']);
-		$solicitud = $ruta.basename($_FILES['solicitud']['name']);
+		$acta = $ruta.'/'.basename($_FILES['acta']['name']);
+		$poder = $ruta.'/'.basename($_FILES['poder']['name']);
+		$solicitud = $ruta.'/'.basename($_FILES['solicitud']['name']);
 	}
 
 	if(!is_dir($ruta))
@@ -35,21 +35,21 @@
 		{
 			echo "Fallo la creacion de carpeta";
 		}else{			
-			move_uploaded_file($_FILES['titulo']['tmp_name'], $ruta.$titulo);
-			move_uploaded_file($_FILES['pred']['tmp_name'], $ruta.$predia);
-			move_uploaded_file($_FILES['ine']['tmp_name'], $ruta.$ine);
-			move_uploaded_file($_FILES['contrato']['tmp_name'], $ruta.$contrato);
-			move_uploaded_file($_FILES['no']['tmp_name'], $ruta.$noficial);
+			move_uploaded_file($_FILES['titulo']['tmp_name'], $titulo);
+			move_uploaded_file($_FILES['pred']['tmp_name'], $predia);
+			move_uploaded_file($_FILES['ine']['tmp_name'], $ine);
+			move_uploaded_file($_FILES['contrato']['tmp_name'], $contrato);
+			move_uploaded_file($_FILES['no']['tmp_name'], $noficial);
 			if($tipo_persona == 1)
 			{
-				move_uploaded_file($_FILES['acta']['tmp_name'], $ruta.$acta);
-				move_uploaded_file($_FILES['poder']['tmp_name'], $ruta.$poder);
-				move_uploaded_file($_FILES['solicitud']['tmp_name'], $ruta.$solicitud);
+				move_uploaded_file($_FILES['acta']['tmp_name'], $acta);
+				move_uploaded_file($_FILES['poder']['tmp_name'], $poder);
+				move_uploaded_file($_FILES['solicitud']['tmp_name'], $solicitud);
 			}
 		}
 	}
 
-	if(create_expediente($folio, $tipo_persona, $id_persona, $id_dg, $id_dimensiones))
+	if(create_expediente($docs, $tipo_persona, $id_persona, $id_dg, $id_dimensiones))
 	{
 
 		$mensaje = "correcto";
