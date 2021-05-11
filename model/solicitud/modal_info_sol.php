@@ -12,7 +12,8 @@
 	}
 	$establecimiento = fill_establecimiento($expediente['id_dg_establecimiento']);
 	$dimensiones = fill_dimensiones($expediente['id_dimensiones_establecimiento']);
-	$ruta = '../../assets/expedientes/'.$expediente['folio'].'/docs';
+	$folio_str= str_replace(array("/", " ",":"),array("-","-","-"),$expediente['folio']);
+	$ruta = '../../assets/expedientes/'.$folio_str.'/docs';
 
 	if(is_dir($ruta))
 	{
