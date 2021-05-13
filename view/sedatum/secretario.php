@@ -244,7 +244,7 @@
 
 
 				select: {
-					style: 'multi'
+					// style: 'multi'
 				}
 		    });
 

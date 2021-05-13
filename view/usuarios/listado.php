@@ -149,66 +149,47 @@ function delete_usuario(id_usuario)
 
 	swal({
 		title: "¿Desea eliminar este usuario?",
-		text: "Si continúa no se podrá recuperar.",
-		type: "warning",
-		showCancelButton: true,
-		confirmButtonColor: "#DD6B55",
-		confirmButtonText: "Aceptar",
-		cancelButtonText: "Cancelar",
-		closeOnConfirm: false,
-		closeOnCancel: false
-	},
+		icon: "warning",
+		dangerMode: true,
+		buttons: ["Cancelar", "Borrar"],
+	}).then((value) => {
 
-	function(isConfirm){
-	if (isConfirm) {
-		var parametros = {		               
-			"id_usuario" : id_usuario,
-			"status" : formattedDate
-		};
-				
-				
-		$.ajax({
-			data:  parametros,
-			url:   './model/usuarios/delete_usuario.php',
-			type:  'post',
+        if(value){
+			
+			var parametros = {		               
+				"id_usuario" : id_usuario,
+				"status" : formattedDate,		
+			};
+						
+			$.ajax({
+				data:  parametros,
+				url:   './model/usuarios/delete_usuario.php',
+				type:  'post',
 
-			success:  function (data) {
-				if (data==='correcto'){
-					swal({
-					  title: "¡Datos eliminados correctamente!",
-					  timer: 3000,
-					  type: "success",
-					  confirmButtonText: "Aceptar"
-					});
-					cambiarcont('view/usuarios/listado.php');
+				success:  function (data) {
+					if (data==='correcto'){
+						swal({
+						  title: "¡Datos eliminados correctamente!",
+						  icon: "success",
+						});
+						cambiarcont('view/usuarios/listado.php');
+					}
+
+												
+					if (data==='error'){
+						swal({
+							title: "¡Error!",
+							text: "¡Ocurrio algo al eliminar!",
+							icon: "error",
+						});
+					}
+
 				}
+			});
 
-											
-				if (data==='error'){
-					swal({
-						title: "¡Error Grave!",
-						text: "¡Ocurrio algo al eliminar!",
-						timer: 3000,
-						type: "error",
-						confirmButtonText: "Aceptar"
-					});
-				}
-
-				if (data==='error2'){
-					swal({
-						title: "¡Error!",
-						text: "¡Las contraseñas no coinciden!",
-						timer: 3000,
-						type: "warning",
-						confirmButtonText: "Aceptar"
-					});
-				}
-			}
-		});
-
-		} else {
-			swal("Cancelado", "No hubo cambios en sus datos.", "error");
+		}else{
+			swal("Cancelado", "No hubo cambios en sus datos.", "success");
 		}
-	});
+    });
 }
 </script>
