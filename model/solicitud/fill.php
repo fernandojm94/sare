@@ -76,12 +76,12 @@ function fill_pendientes($solicitudes)
 		}
 		$tr_pendientes.='
 							<tr>
+											<td class="hidden"></td>
 											<td>'.$solicitud['fecha_apertura'].'</td>
 											<td>'.$solicitud['nombre_comercial'].'</td>
 											<td class="hid_xs">
 												'.$solicitud['domicilio'].'
 											</td> 
-											<td class="hidden"></td>
 											<td class="hid_xs">'.$solicitud['telefono'].'</td>
 											<td class="center"><span class="label label-warning arrowed-right">'.$status.'</span></td>
 											<td class="center">
