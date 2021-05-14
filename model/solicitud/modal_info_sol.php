@@ -1,5 +1,10 @@
 <?php
 	include('../../model/solicitud/fill.php');
+
+	$id = $_SESSION['id_usuario'];
+	$tipo = $_POST['tipo'];
+	$ausencia = $_POST['ausencia'];
+
 	$id = array_keys($_POST);
 	$archivos = $documentos = "";
 	$expediente = fill_expediente($id[0]);
@@ -345,7 +350,11 @@
 			</div>	
 
 			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times">&nbsp;</i>Cerrar</button>
+				<button type="button" class="btn btn-secondary pull-left" data-dismiss="modal"><i class="fa fa-times">&nbsp;</i>Cerrar</button>
+
+				<button type="button" class="btn btn-danger" onclick="rechazar(<?=$id?>,<?=$tipo?>);"><i class="fa fa-ban">&nbsp;</i>Rechazar Solicitud</button>
+
+				<button type="button" class="btn btn-success" onclick="aprobar(<?=$id?>,<?=$tipo?>,<?=$ausencia?>);"><i class="fa fa-check">&nbsp;</i>Aprobar Solicitud</button>
 			</div>
 
 		</div>	

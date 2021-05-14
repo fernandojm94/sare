@@ -1,9 +1,8 @@
 <?php
-	include('../../model/solicitud/fill.php');
+	
 	include('../../controller/funciones.php');
 	user_login();
-	$solicitudes  = pendientes();
-	$tr_solicitudes = fill_pendientes($solicitudes);
+	
 	//$modal_editar_propietario = fill_modal_propietario($propietarios);
 	//$modal_info_propietario = fill_modal_info($propietarios);
 ?>
