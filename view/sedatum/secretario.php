@@ -6,6 +6,7 @@
 	$tr_propietarios = fill_propietarios($propietarios);
 	$modal_editar_propietario = fill_modal_propietario($propietarios);
 	$modal_info_propietario = fill_modal_info($propietarios);*/
+	$pantalla = $_GET['pantalla'];
 ?>
 
 
@@ -105,6 +106,7 @@
 		</div>
 	</div>
 
+	<input type="hidden" name="pantalla" id="pantalla" value="<?= $pantalla;?>">
 	<div id="load_modal_info"></div>
 	<div id="load_modal_upcomprobante"></div>
 
@@ -200,7 +202,7 @@
             }
         }
 
-        var datos_modal = 'id=' + id;
+        var datos_modal = id;
 
         waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
         xmlhttp.open("POST","./view/sedatum/tabs.php",true);

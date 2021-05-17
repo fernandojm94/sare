@@ -150,7 +150,7 @@
 
 						<ul class="submenu">
 							<li class="">
-								<a href="javascript:cambiarcont('view/solicitud/listado.php');">
+								<a href="javascript:cambiarcont('view/solicitud/listado.php?pantalla=1');">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Listado de solicitudes
 								</a>
@@ -176,7 +176,7 @@
 
 						<ul class="submenu">
 							<li class="">
-								<a href="javascript:cambiarcont('view/sedatum/ventanilla.php');">
+								<a href="javascript:cambiarcont('view/sedatum/ventanilla.php?pantalla=2');">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Ventanilla Única
 								</a>
@@ -185,7 +185,7 @@
 							</li>
 
 							<li class="">
-								<a href="javascript:cambiarcont('view/sedatum/uso_suelo.php');">
+								<a href="javascript:cambiarcont('view/sedatum/uso_suelo.php?pantalla=3');">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Uso de Suelo
 								</a>
@@ -194,7 +194,7 @@
 							</li>
 
 							<li class="">
-								<a href="javascript:cambiarcont('view/sedatum/director.php');">
+								<a href="javascript:cambiarcont('view/sedatum/director.php?pantalla=4');">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Director
 								</a>
@@ -203,7 +203,7 @@
 							</li>
 
 							<li class="">
-								<a href="javascript:cambiarcont('view/sedatum/secretario.php');">
+								<a href="javascript:cambiarcont('view/sedatum/secretario.php?pantalla=5');">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Secretario
 								</a>
@@ -924,38 +924,6 @@
 		</script>
 
 		<script type="text/javascript">
-			function fill_modal_info(id, tipo, ausencia)
-		    {
-		        var xmlhttp;
-
-		        if (window.XMLHttpRequest){
-		            // code for IE7+, Firefox, Chrome, Opera, Safari
-		            xmlhttp=new XMLHttpRequest();
-		        }
-
-		        else{// code for IE6, IE5
-		            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		        }
-
-		        xmlhttp.onreadystatechange=function(){
-
-		            if (xmlhttp.readyState==4 && xmlhttp.status==200){
-		                //document.getElementById("loading").innerHTML = ''; // Hide the image after the response from the
-		                document.getElementById("load_modal_info").innerHTML=xmlhttp.responseText;
-
-		                waitingDialog.hide();
-		                $('#modal_info').modal('show');
-		            }
-		        }
-
-		        var datos_modal = "id=" + id + "&tipo=" + tipo + "&ausencia=" + ausencia;
-
-		        waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
-		        xmlhttp.open("POST","./model/sedatum/modal_info.php",true);
-		        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		        xmlhttp.send(datos_modal);		    
-		    }
-
 
 		    function fill_modal_comp_uso(id)
 		    {
@@ -1063,6 +1031,7 @@
 		            }
 		        }
 
+		        // var datos_modal = "id_tr=" + id + "&tipo=" + tipo + "&ausencia=" + ausencia;
 		        var datos_modal = id;
 
 		        waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
@@ -1300,17 +1269,8 @@
 			}
 
 
-			function rechazar(id, tipo){
-				var user = "";
-				if (tipo == 1) {
-					user = "secretario";
-				}else if(tipo == 2){
-					user = "director";
-				}else if(tipo == 3){
-					user = "uso_suelo";
-				}else if(tipo == 4){
-					user = "ventanilla";
-				}
+			function rechazar(id_solicitud){
+				var usuario = $("#pantalla").val();
 
 				swal({
 				  title: "¿Está seguro?",
@@ -1331,7 +1291,8 @@
 				    	if (value) {
 
 				    		var data = {
-								'usuario' : user,
+				    			'id_solicitud' : id_solicitud,
+								'usuario' : usuario,
 								'descripcion' : value,
 							}
 
@@ -1348,7 +1309,7 @@
 											  icon: "success",
 											}).then( (value) => {
 												$("#modal_info").modal('hide');
-												cambiarcont('view/sedatum/'+user+'.php');
+												location.reload();
 											});
 
 										}
@@ -1373,7 +1334,9 @@
 				});
 			}
 
-			function aprobar(id, tipo, ausencia){
+			function aprobar(){
+				var usuario = $("#pantalla").val();
+
 				if (ausencia == 1) {
 					swal({
 					  title: "Última Aprobación Activada",
