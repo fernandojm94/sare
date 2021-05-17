@@ -6,6 +6,7 @@
 	$tr_propietarios = fill_propietarios($propietarios);
 	$modal_editar_propietario = fill_modal_propietario($propietarios);
 	$modal_info_propietario = fill_modal_info($propietarios);*/
+	$pantalla = $_GET['pantalla'];
 ?>
 
 
@@ -89,72 +90,12 @@
 
 					</div>
 
-
-
-					<!-- <div class="message-list-container">
-						<div class="message-list" id="message-list">
-							<div>
-								<table id="dynamic-table" class="table table-striped table-bordered table-hover">
-									<thead>
-										<tr>
-											<th>
-												<i class="ace-icon fa fa-clock-o bigger-110 ico_hid"></i>
-												Fecha y hora de creación
-											</th>
-
-											<th>
-												<i class="ace-icon fa fa-building bigger-110 ico_hid"></i>
-												Nombre establecimiento
-											</th>
-
-											<th class="hid_xs">
-												<i class="ace-icon fa fa-map-marker bigger-110 ico_hid"></i>
-												Dirección
-											</th>
-
-											<th class="hidden"></th>
-											<th class="hidden"></th>
-
-											<th class="hid_xs">
-												<i class="ace-icon fa fa-phone bigger-110 ico_hid"></i>
-												Número de teléfono
-											</th>
-
-											<th style="min-width: 94px !important;">
-												<i class="ace-icon fa fa-cogs bigger-110 ico_hid"></i>
-												Acciones
-											</th>
-										</tr>
-									</thead>
-
-									<tbody>
-										<tr>
-											<td>10 de noviembre 2020 15:34:21</td>
-											<td>Abarrotes Mi casita</td>
-											<td class="hid_xs">
-												Emiliano Zapata 109 Centro, Jesús María
-											</td> 
-											<td class="hidden"></td>
-											<td class="hidden"></td>
-											<td class="hid_xs">449 121 1213</td>
-											<td class="center">
-												<div class="btn-group">
-													<a class="btn btn-xs btn-info" onclick="fill_modal_info(1,3,0)" role="button" data-toggle="modal">
-														<i class="ace-icon fa fa-info-circle bigger-130"></i>
-													</a>
-												</div>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div> -->
 				</div>
 				<hr>
 			</div>
 		</div>	
 	</div>
+	<input type="hidden" name="pantalla" id="pantalla" value="<?= $pantalla;?>">
 	<div id="load_modal_info"></div>
 	<div id="load_modal_comp"></div>
 </div>
@@ -192,7 +133,7 @@
             }
         }
 
-        var datos_modal = 'id=' + id;
+        var datos_modal = id;
 
         waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
         xmlhttp.open("POST","./view/sedatum/tabs.php",true);

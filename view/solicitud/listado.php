@@ -5,6 +5,8 @@
 	
 	//$modal_editar_propietario = fill_modal_propietario($propietarios);
 	//$modal_info_propietario = fill_modal_info($propietarios);
+
+	$pantalla = $_GET['pantalla'];
 ?>
 
 
@@ -93,61 +95,13 @@
 							</div>
 						</div>
 					</div>
-
-					<!-- <div class="message-list-container">
-						<div class="message-list" id="message-list">
-							<div>
-								<table id="dynamic-table" class="table table-striped table-bordered table-hover">
-									<thead>
-										<tr>
-											<th>
-												<i class="ace-icon fa fa-clock-o bigger-110 ico_hid"></i>
-												Fecha y hora de creación
-											</th>
-
-											<th>
-												<i class="ace-icon fa fa-building bigger-110 ico_hid"></i>
-												Nombre establecimiento
-											</th>
-
-											<th class="hid_xs">
-												<i class="ace-icon fa fa-map-marker bigger-110 ico_hid"></i>
-												Dirección
-											</th>
-
-											<th class="hidden"></th>
-
-
-											<th class="hid_xs">
-												<i class="ace-icon fa fa-phone bigger-110 ico_hid"></i>
-												Número de teléfono
-											</th>
-
-											<th>
-												<i class="ace-icon fa fa-sliders bigger-110 ico_hid"></i>
-												Estatus de la solicitud
-											</th>
-
-											<th style="min-width: 94px !important;">
-												<i class="ace-icon fa fa-cogs bigger-110 ico_hid"></i>
-												Acciones
-											</th>
-										</tr>
-									</thead>
-
-									<tbody>
-										<?=$tr_solicitudes;?>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div> -->
 				</div>
 				<hr>
 			</div>
 		</div>	
 	</div>
 
+	<input type="hidden" name="pantalla" id="pantalla" value="<?= $pantalla;?>">
 	<div id="load_modal_info"></div>
 	<div id="load_modal_upcomprobante"></div>
 

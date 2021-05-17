@@ -53,7 +53,7 @@ function pendientes()
 }
 
 function fill_pendientes($solicitudes)
-{
+{	
 	$tr_pendientes = "";
 
 	foreach ($solicitudes as $solicitud) 
