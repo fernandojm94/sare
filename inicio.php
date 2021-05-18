@@ -1334,90 +1334,57 @@
 				});
 			}
 
-			function aprobar(){
+			function aprobar(id_solicitud){
 				var usuario = $("#pantalla").val();
+				var ausencia = 1;
 
-				if (ausencia == 1) {
-					swal({
-					  title: "Última Aprobación Activada",
-					  text: "¿Desea continuar?",
-					  icon: "info",
-					  customClass: "wider",
-					  buttons: ["Cancelar", "Ok"],
-					}).then((value) => {
-						if(value){
-							doble_aprob(id,tipo,ausencia);
-						}else{
-							swal("¡Cancelado!", "No se ha aprobado la solicitud", "error");
+				swal({
+				  title: "¿Aprobar?",
+				  text: "¿Seguro que desea aprobar la solicutud?",
+				  icon: "warning",
+				  buttons: ["Cancelar", "Ok"],
+				  dangerMode: true,
+				}).then((value) => {
+					if (value) {
+
+						var data = {
+							'id_solicitud' : id_solicitud,
+							'usuario' : usuario,
 						}
-					});
-				}else{
-					doble_aprob(id,tipo,ausencia);
-				}
 
-				function doble_aprob(id,tipo,ausencia){
-					var user = "";
-					
-					if (tipo == 1) {
-						user = "secretario";
-					}else if(tipo == 2){
-						user = "director";
-					}else if(tipo == 3){
-						user = "uso_suelo";
-						fill_modal_comp_uso(id);
-						return;
-					}else if(tipo == 4){
-						user = "ventanilla";
-					}					
+						$.ajax({
+							data:  data,
+							url:   './model/sedatum/aprobaciones.php',
+							type:  'post',
 
-					swal({
-					  title: "¿Aprobar?",
-					  text: "¿Seguro que desea aprobar la solicutud?",
-					  icon: "warning",
-					  buttons: ["Cancelar", "Ok"],
-					  dangerMode: true,
-					}).then((value) => {
-						if (value) {
+							success:  function (data) {
 
-							var data = {
-								'id' : id,
-								'usuario' : user,
-								'ausencia' : ausencia,
+									if (data==='correcto'){
+										swal({
+										  title: "¡Datos guardados correctamente!",
+										  icon: "success",
+										}).then( (value) => {
+											$("#modal_info").modal('hide');
+											location.reload();
+										});
+
+									}
+
+									if (data==='error'){
+										swal({
+										  title: "¡Error!",
+										  text: "¡Ocurrio algo al guardar!",
+										  icon: "error",
+										});
+									}
 							}
-
-							$.ajax({
-								data:  data,
-								url:   './model/sedatum/aprobaciones.php',
-								type:  'post',
-
-								success:  function (data) {
-
-										if (data==='correcto'){
-											swal({
-											  title: "¡Datos guardados correctamente!",
-											  icon: "success",
-											}).then( (value) => {
-												$("#modal_info").modal('hide');
-												cambiarcont('view/sedatum/'+user+'.php');
-											});
-
-										}
-
-										if (data==='error'){
-											swal({
-											  title: "¡Error!",
-											  text: "¡Ocurrio algo al guardar!",
-											  icon: "error",
-											});
-										}
-								}
-							});
-						}else{
-							swal("¡Cancelado!", "No se ha aprobado la solicitud", "error");
-						}
-					});
-				}
-			}			
+						});
+					}else{
+						swal("¡Cancelado!", "No se ha aprobado la solicitud", "error");
+					}
+				});
+			}	
+				
 		</script>
 	</body>
 </html>
