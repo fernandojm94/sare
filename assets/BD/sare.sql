@@ -146,7 +146,8 @@ CREATE TABLE `pendientes` (
 	`nombre_comercial` VARCHAR(100) NULL COLLATE 'utf8_spanish2_ci',
 	`domicilio` VARCHAR(376) NULL COLLATE 'utf8_spanish2_ci',
 	`telefono` VARCHAR(20) NULL COLLATE 'utf8_spanish2_ci',
-	`status` INT(11) NOT NULL
+	`status` INT(11) NOT NULL,
+	`etapa` VARCHAR(50) NOT NULL COLLATE 'utf8_spanish2_ci'
 ) ENGINE=MyISAM;
 
 -- Volcando estructura para tabla sare.personas_fisicas
@@ -272,6 +273,18 @@ DELETE FROM `suplente`;
 /*!40000 ALTER TABLE `suplente` DISABLE KEYS */;
 /*!40000 ALTER TABLE `suplente` ENABLE KEYS */;
 
+-- Volcando estructura para tabla sare.tipo_usuario
+CREATE TABLE IF NOT EXISTS `tipo_usuario` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tipo` varchar(50) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+-- Volcando datos para la tabla sare.tipo_usuario: ~0 rows (aproximadamente)
+DELETE FROM `tipo_usuario`;
+/*!40000 ALTER TABLE `tipo_usuario` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tipo_usuario` ENABLE KEYS */;
+
 -- Volcando estructura para tabla sare.usuarios
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
@@ -310,7 +323,7 @@ DELETE FROM `ventanilla`;
 -- Volcando estructura para vista sare.pendientes
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `pendientes`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `pendientes` AS SELECT e.id, e.fecha_apertura, dg.nombre_comercial, CONCAT(dg.calle, " ", dg.no_exterior, " ", dg.no_interior, " ", dg.colonia, " ", dg.localidad ) AS domicilio, dg.telefono, e. status
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `pendientes` AS SELECT e.id, e.fecha_apertura, dg.nombre_comercial, CONCAT(dg.calle, " ", dg.no_exterior, " ", dg.no_interior, " ", dg.colonia, " ", dg.localidad ) AS domicilio, dg.telefono, e. status, e.etapa
 	FROM expedientes AS e
 	LEFT JOIN dg_establecimiento AS dg ON dg.id = e.id_dg_establecimiento
 WHERE e.status != 4 ;
