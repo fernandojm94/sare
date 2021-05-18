@@ -259,6 +259,19 @@ DELETE FROM `suelo`;
 /*!40000 ALTER TABLE `suelo` DISABLE KEYS */;
 /*!40000 ALTER TABLE `suelo` ENABLE KEYS */;
 
+-- Volcando estructura para tabla sare.suplente
+CREATE TABLE IF NOT EXISTS `suplente` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_suplente` int(11) NOT NULL DEFAULT '0',
+  `status` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+-- Volcando datos para la tabla sare.suplente: ~0 rows (aproximadamente)
+DELETE FROM `suplente`;
+/*!40000 ALTER TABLE `suplente` DISABLE KEYS */;
+/*!40000 ALTER TABLE `suplente` ENABLE KEYS */;
+
 -- Volcando estructura para tabla sare.usuarios
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
