@@ -1,6 +1,8 @@
 <?php
-	//include('../../model/propietarios/fill_propietarios.php');
+	include('../../model/suplente/fill.php');
 	include('../../controller/funciones.php');
+
+	$suplente = fill_suplente_activo($_SESSION['id_usuario']);
 	user_login();
 	/*$propietarios = propietarios();
 	$tr_propietarios = fill_propietarios($propietarios);
@@ -57,7 +59,7 @@
 								<div style="display: inline-block; float: left;">
 									<div>
 										<label>
-											<input id="switch_director" value="1" class="hidden">
+											<input id="switch_director" value="<?=$suplente;?>" class="hidden">
 											<div id="span_director"></div>
 										</label>
 									</div>

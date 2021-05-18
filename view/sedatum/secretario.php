@@ -1,6 +1,8 @@
 <?php
-	//include('../../model/propietarios/fill_propietarios.php');
+	include('../../model/suplente/fill.php');
 	include('../../controller/funciones.php');
+	$suplente = fill_suplente();
+	echo $suplente['id_usuario'];
 	user_login();
 	/*$propietarios = propietarios();
 	$tr_propietarios = fill_propietarios($propietarios);
@@ -52,7 +54,7 @@
 								 <div style="display: inline-block; float: left;">
 									<div>
 										<label>
-											<input id="switch_director" onchange="switch_director(this.id);" value="1" class="ace ace-switch ace-switch-6" type="checkbox" />
+											<input id="switch_director" onchange="switch_director(this.id);" value="<?=$suplente['id_usuario'];?>" class="ace ace-switch ace-switch-6" type="checkbox" />
 											<span id="span_director" class="lbl"></span>
 										</label>
 									</div>

@@ -71,7 +71,7 @@ function create_expediente($folio, $tipo_persona, $id_persona, $id_dg, $id_dimen
 
 function get_pendientes()
 {
-	$sql = "SELECT id, fecha_apertura, nombre_comercial, domicilio, telefono, status
+	$sql = "SELECT id, fecha_apertura, nombre_comercial, domicilio, telefono, status, etapa
 				FROM pendientes
 			WHERE 1";
 
