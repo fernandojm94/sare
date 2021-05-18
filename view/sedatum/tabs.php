@@ -23,16 +23,14 @@
 					<table id="dynamic-table" class="table table-striped table-bordered table-hover">
 						<thead>
 							<tr>
-								<th class="hidden"></th>
+								<th>
+									<i class="ace-icon fa fa-building bigger-110 ico_hid"></i>
+									Nombre establecimiento
+								</th>
 
 								<th>
 									<i class="ace-icon fa fa-clock-o bigger-110 ico_hid"></i>
 									Fecha y hora de creación
-								</th>
-
-								<th>
-									<i class="ace-icon fa fa-building bigger-110 ico_hid"></i>
-									Nombre establecimiento
 								</th>
 
 								<th class="hid_xs">
@@ -43,6 +41,11 @@
 								<th class="hid_xs">
 									<i class="ace-icon fa fa-phone bigger-110 ico_hid"></i>
 									Número de teléfono
+								</th>
+
+								<th>
+									<i class="ace-icon fa fa-flag bigger-110 ico_hid"></i>
+									Etapa
 								</th>
 
 								<th>
