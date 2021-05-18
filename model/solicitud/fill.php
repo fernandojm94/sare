@@ -76,23 +76,23 @@ function fill_pendientes($solicitudes)
 		}
 		$tr_pendientes.='
 							<tr>
-											<td class="hidden"></td>
-											<td>'.$solicitud['fecha_apertura'].'</td>
-											<td>'.$solicitud['nombre_comercial'].'</td>
-											<td class="hid_xs">
-												'.$solicitud['domicilio'].'
-											</td> 
-											<td class="hid_xs">'.$solicitud['telefono'].'</td>
-											<td class="center"><span class="label label-warning arrowed-right">'.$status.'</span></td>
-											<td class="center">
-												<div class="btn-group">
-													<a class="btn btn-xs btn-info" onclick="fill_modal_info('.$solicitud['id'].')" role="button" data-toggle="modal">
-														<i class="ace-icon fa fa-info-circle bigger-130"></i>
-													</a>
-													'.$comprobante.'
-												</div>
-											</td>
-										</tr>
+								<td>'.$solicitud['nombre_comercial'].'</td>
+								<td>'.$solicitud['fecha_apertura'].'</td>
+								<td class="hid_xs">
+									'.$solicitud['domicilio'].'
+								</td> 
+								<td>'.$solicitud['telefono'].'</td>
+								<td>'.$solicitud['etapa'].'</td>
+								<td class="center"><span class="label label-warning arrowed-right">'.$status.'</span></td>
+								<td class="center">
+									<div class="btn-group">
+										<a class="btn btn-xs btn-info" onclick="fill_modal_info('.$solicitud['id'].')" role="button" data-toggle="modal">
+											<i class="ace-icon fa fa-info-circle bigger-130"></i>
+										</a>
+										'.$comprobante.'
+									</div>
+								</td>
+							</tr>
 						';
 	}
 	return $tr_pendientes;
