@@ -4,7 +4,7 @@
 	$id = $_POST['id'];
 	$status = $_POST['status'];
 
-	if(compare_suplente($id_suplente))
+	if(compare_suplente($id))
 	{
 		if(update_suplente($id, $status))
 		{
@@ -13,7 +13,7 @@
 			$mensaje = "error1";
 		}
 	}else{
-		if(create_suplente($id_suplente))
+		if(create_suplente($id))
 		{
 			$mensaje = "correcto";
 		}else{
