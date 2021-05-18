@@ -42,11 +42,27 @@ CREATE TABLE IF NOT EXISTS `dg_establecimiento` (
   `pesonal_ocupado` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `servicios_existentes` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla sare.dg_establecimiento: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla sare.dg_establecimiento: ~14 rows (aproximadamente)
 DELETE FROM `dg_establecimiento`;
 /*!40000 ALTER TABLE `dg_establecimiento` DISABLE KEYS */;
+INSERT INTO `dg_establecimiento` (`id`, `nombre_comercial`, `horario_trabajo`, `calle`, `no_exterior`, `no_interior`, `colonia`, `entre_calles`, `municipio`, `localidad`, `cp`, `latitud_longitud`, `telefono`, `uso_actual`, `giro_scian`, `cuenta_catastral`, `manzana`, `lote`, `distancia_esquina`, `cajones_estacionamiento`, `monto_inversion`, `pesonal_ocupado`, `servicios_existentes`) VALUES
+	(1, 'abarrotes', '2021-03-10', 'beltran', 216, 1, 'la escalera', 'matamoros y beltran', 'Jesus Maria', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Alumbrado, '),
+	(2, 'abarrotes2', '2021-03-10', 'beltran', 217, 1, 'la escalera', 'matamoros y beltran', 'Jesus Maria', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Alumbrado, '),
+	(3, 'abarrotes', '2021-03-10', 'beltran', 216, 1, 'la escalera', 'matamoros y beltran', 'Jesus Maria', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Alumbrado, '),
+	(4, 'abarrotes', '2021-03-10', 'beltran', 216, 1, 'la escalera', 'matamoros y beltran', 'Jesus Maria', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Alumbrado, '),
+	(5, 'abarrotes', '2021-03-10', 'beltran', 216, 1, 'la escalera', 'matamoros y beltran', 'Jesus Maria', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Alumbrado, '),
+	(6, 'abarrotes', '2021-03-10', 'beltran', 216, 1, 'la escalera', 'matamoros y beltran', 'Jesus Maria', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Alumbrado, '),
+	(7, 'abarrotes', '2021-03-10', 'beltran', 216, 1, 'la escalera', 'matamoros y beltran', 'Jesus Maria', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Alumbrado, '),
+	(8, 'abarrotes', '2021-02-01', 'beltran', 216, 1, 'la escalera', 'matamoros y beltran', 'Jesus Maria', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Alumbrado, Teléfono, '),
+	(9, 'abarrotes', '2021-02-01', 'beltran', 216, 1, 'la escalera', 'matamoros y beltran', 'Jesus Maria', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Alumbrado, '),
+	(10, 'abarrotes', '2021-02-01', 'beltran', 216, 1, 'la escalera', 'matamoros y beltran', 'Jesus Maria', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Alumbrado, '),
+	(11, 'abarrotes', '2021-04-21', 'undefined', 333, 333, 'Jesús María Centro', 'asdfasdfasdf', 'Jesús María', 'Jesús María', 20920, '21.96148, -102.34366', '4496330125', 'sdfasdf', 'asdfasdf', '23-33-33-333-333-333', '23', '32', 'asdfasdf', 'asdfasdf', 'asdfasdf', 'asdfasdf', 'Drenaje, Pavimento, Electrificación, '),
+	(12, 'abarrotes los tres', '2021-05-11', 'beltran', 216, 1, 'Jesús María Centro', 'matamoros y beltran', 'Jesús María', 'Jesús María', 20920, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '2', '3', '5', '5', '5000', '5', 'Agua, Drenaje, Alumbrado, '),
+	(13, 'abarrotes los tres', '2021-03-10', 'beltran', 216, 1, 'la escalera', 'matamoros y beltran', 'Jesús María', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Teléfono, '),
+	(14, 'abarrotes los tres', '2021-02-10', 'beltran', 216, 1, 'la escalera', 'matamoros y beltran', 'Jesús María', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Alumbrado, Teléfono, '),
+	(15, 'abarrotes', '2021-02-01', 'beltran', 216, 1, 'la escalera', 'matamoros y beltran', 'Jesús María', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Alumbrado, ');
 /*!40000 ALTER TABLE `dg_establecimiento` ENABLE KEYS */;
 
 -- Volcando estructura para tabla sare.dimensiones_establecimiento
@@ -60,11 +76,26 @@ CREATE TABLE IF NOT EXISTS `dimensiones_establecimiento` (
   `sup_local` varchar(30) COLLATE utf8_spanish2_ci NOT NULL,
   `cuenta_predial` varchar(30) COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla sare.dimensiones_establecimiento: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla sare.dimensiones_establecimiento: ~13 rows (aproximadamente)
 DELETE FROM `dimensiones_establecimiento`;
 /*!40000 ALTER TABLE `dimensiones_establecimiento` DISABLE KEYS */;
+INSERT INTO `dimensiones_establecimiento` (`id`, `frente`, `fondo`, `derecho`, `izquierdo`, `sup_terreno`, `sup_local`, `cuenta_predial`) VALUES
+	(1, '10', '10', '10', '10', '10', '10', '02-02-02-020-202-020'),
+	(2, '20', '20', '20', '20', '20', '20', '02-02-02-020-202-020'),
+	(3, '10', '10', '10', '10', '10', '10', '02-02-02-020-202-020'),
+	(4, '10', '10', '10', '10', '10', '10', '02-02-02-020-202-020'),
+	(5, '10', '10', '10', '10', '10', '10', '02-02-02-020-202-020'),
+	(6, '10', '10', '10', '10', '10', '10', '02-02-02-020-202-020'),
+	(7, '10', '10', '10', '10', '10', '10', '02-02-02-020-202-020'),
+	(8, '10', '10', '10', '10', '10', '10', '02-02-02-020-202-020'),
+	(9, '10', '10', '10', '10', '10', '10', '02-02-02-020-202-020'),
+	(10, '44', '44', '44', '44', '44', '44', '34343434343434343434'),
+	(11, '10', '20', '20', '25', '15', '13', '020202020202020'),
+	(12, '10', '10', '10', '10', '10', '10', '020202020202020'),
+	(13, '10', '10', '10', '10', '10', '10', '020202020202020'),
+	(14, '10', '10', '10', '10', '10', '10', '020202020202020');
 /*!40000 ALTER TABLE `dimensiones_establecimiento` ENABLE KEYS */;
 
 -- Volcando estructura para tabla sare.director
@@ -92,14 +123,31 @@ CREATE TABLE IF NOT EXISTS `expedientes` (
   `id_persona` int(10) NOT NULL,
   `id_dg_establecimiento` int(10) NOT NULL,
   `id_dimensiones_establecimiento` int(10) NOT NULL,
+  `etapa` varchar(50) COLLATE utf8_spanish2_ci NOT NULL DEFAULT '',
+  `aprobado` varchar(50) COLLATE utf8_spanish2_ci NOT NULL DEFAULT '0',
+  `id_aprobado` int(11) NOT NULL DEFAULT '0',
   `status` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla sare.expedientes: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla sare.expedientes: ~2 rows (aproximadamente)
 DELETE FROM `expedientes`;
 /*!40000 ALTER TABLE `expedientes` DISABLE KEYS */;
+INSERT INTO `expedientes` (`id`, `folio`, `fecha_apertura`, `tipo_persona`, `id_persona`, `id_dg_establecimiento`, `id_dimensiones_establecimiento`, `etapa`, `aprobado`, `id_aprobado`, `status`) VALUES
+	(8, 'SARE-2021-05-11-18-05-52', '2021-05-11 13:50:52', 0, 1, 14, 13, '', '0', 0, 1),
+	(9, 'SARE-2021-05-11-19-05-57', '2021-05-11 14:05:57', 0, 1, 15, 14, '', '0', 0, 1);
 /*!40000 ALTER TABLE `expedientes` ENABLE KEYS */;
+
+-- Volcando estructura para vista sare.pendientes
+-- Creando tabla temporal para superar errores de dependencia de VIEW
+CREATE TABLE `pendientes` (
+	`id` INT(11) NOT NULL,
+	`fecha_apertura` DATETIME NOT NULL,
+	`nombre_comercial` VARCHAR(100) NULL COLLATE 'utf8_spanish2_ci',
+	`domicilio` VARCHAR(376) NULL COLLATE 'utf8_spanish2_ci',
+	`telefono` VARCHAR(20) NULL COLLATE 'utf8_spanish2_ci',
+	`status` INT(11) NOT NULL
+) ENGINE=MyISAM;
 
 -- Volcando estructura para tabla sare.personas_fisicas
 CREATE TABLE IF NOT EXISTS `personas_fisicas` (
@@ -117,15 +165,21 @@ CREATE TABLE IF NOT EXISTS `personas_fisicas` (
   `telefono` varchar(15) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `email` varchar(150) COLLATE utf8_spanish2_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla sare.personas_fisicas: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla sare.personas_fisicas: ~8 rows (aproximadamente)
 DELETE FROM `personas_fisicas`;
 /*!40000 ALTER TABLE `personas_fisicas` DISABLE KEYS */;
 INSERT INTO `personas_fisicas` (`id`, `nombre_completo`, `calle`, `no_exterior`, `no_interior`, `colonia`, `municipio`, `localidad`, `c_p`, `rfc`, `curp`, `telefono`, `email`) VALUES
 	(1, 'jose manuel castañeda espino', 'la misma', '123', '', 'la colonia', 'Jesus Maria', 'la misma', 20292, 'CAEM860323ES3', 'CAEM860323HASSSS00', '2147483647', 'correo@gmail.com'),
 	(2, 'jose manuel', 'la misma calle', '258', '', 'la otra colonia', 'Jesus Maria', 'cualquiera', 20920, 'CAEM860323ES3', 'CAEM860323HASSSN00', '1234567890', 'correo@email.com'),
-	(3, 'Jose Manuel Castañeda Espino', 'Casa Blanca', '806', '', 'casa blanca', 'Aguascalientes', 'jesus maria', 20900, 'CAEM860323ES3', 'CAEM860323HASSSN00', '4496330125', 'jose.espino@jesusmaria.gob.mx');
+	(3, 'Jose Manuel Castañeda Espino', 'Casa Blanca', '806', '', 'casa blanca', 'Aguascalientes', 'jesus maria', 20900, 'CAEM860323ES3', 'CAEM860323HASSSN00', '4496330125', 'jose.espino@jesusmaria.gob.mx'),
+	(4, 'Jose Manuel Castañeda Espino-CAEM860323ES3', 'la misma', '123', '', 'la colonia', 'Jesus Maria', 'la misma', 20292, 'CAEM860323ES3', 'CAEM860323HASSSS00', '2147483647', 'correo@gmail.com'),
+	(5, 'Jose Manuel Castañeda Espino-CAEM860323ES3-CAEM860323ES3', 'la misma', '123', '', 'la colonia', 'Jesus Maria', 'la misma', 20292, 'CAEM860323ES3', 'CAEM860323HASSSS00', '2147483647', 'correo@gmail.com'),
+	(6, 'jose manuel-CAEM860323ES3', 'la misma', '123', '', 'la colonia', 'Jesus Maria', 'la misma', 20292, 'CAEM860323ES3', 'CAEM860323HASSSS00', '2147483647', 'correo@gmail.com'),
+	(7, 'tucan', 'Casa Blanca', '443', '444', 'adfgasdf', 'Aguascalientes', 'asdfasdf', 25000, 'ASDFASDF', 'ASDFASDFASDF', '4491324567', 'ASDaasd@gmail.com'),
+	(8, 'tucan-ASDFASDF', 'Casa Blanca', '444', '444', 'adfgasdf', 'Aguascalientes', 'asdfasdf', 12341234, 'ASDFASDF', 'ASDFASDFASDF', '12341234123', 'ASDaasd@gmail.com'),
+	(9, 'jose manuel-CAEM860323ES3', 'la misma', '123', '', 'la colonia', 'Jesus Maria', 'la misma', 20292, '', '', '2147483647', 'correo@gmail.com');
 /*!40000 ALTER TABLE `personas_fisicas` ENABLE KEYS */;
 
 -- Volcando estructura para tabla sare.personas_morales
@@ -150,12 +204,28 @@ CREATE TABLE IF NOT EXISTS `personas_morales` (
   `telefono_rl` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
   `email_rl` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla sare.personas_morales: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla sare.personas_morales: ~4 rows (aproximadamente)
 DELETE FROM `personas_morales`;
 /*!40000 ALTER TABLE `personas_morales` DISABLE KEYS */;
+INSERT INTO `personas_morales` (`id`, `nombre_empresa`, `fecha_constitucion`, `rfc_empresa`, `telefono_empresa`, `email_empresa`, `nombre_rl`, `rfc_rl`, `curp`, `calle`, `no_exterior`, `no_interior`, `colonia`, `estado`, `municipio`, `localidad`, `cp`, `telefono_rl`, `email_rl`) VALUES
+	(1, 'los tres', '2012-03-23 00:00:00', 'LTR120323ES4', '4491234567', 'contacto@lostres.com', 'jose manuel castañeda espino', 'CAEM860323', 'CAEM860323HASSSN00', 'calle', 201, 1, 'colonia', 'Aguascalientes', 'Jesús María', 'jesus maria', 20900, '4491234567', 'contacto@lostres.com'),
+	(2, 'los tres', '2012-03-23 00:00:00', 'LTR120323ES4', '4491234567', 'contacto@lostres.com', 'jose manuel castañeda espino', 'CAEM860323ES3', 'CAEM860323HASSSN00', 'calle', 201, 1, 'colonia', 'Aguascalientes', 'Jesús María', 'jesus maria', 20900, '4491234567', 'contacto@lostres.com'),
+	(3, 'los tres', '2012-03-23 00:00:00', 'LTR120323ES4', '4491234567', 'contacto@lostres.com', 'jose manuel castañeda espino', 'CAEM860323ES3', 'CAEM860323HASSSN00', 'calle', 201, 1, 'colonia', 'Aguascalientes', 'Jesús María', 'jesus maria', 20900, '4491234567', 'contacto@lostres.com'),
+	(4, 'los tres', '2012-03-23 00:00:00', 'LTR120323ES4', '4491234567', 'contacto@lostres.com', 'jose manuel castañeda espino', 'CAEM860323ES3', 'CAEM860323HASSSN00', 'calle', 201, 1, 'colonia', 'Aguascalientes', 'Jesús María', 'jesus maria', 20900, '4491234567', 'contacto@lostres.com'),
+	(5, 'juan manuelk', '2012-03-23 00:00:00', 'LTR120323ES4', '4496330125', 'contacto@lostres.com', 'jose manuel castañeda espino', 'CAEM860323ES3', 'CAEM860323HASSSN00', 'calle', 1, 1, 'colonia', 'Aguascalientes', 'Jesús María', 'jesus maria', 20900, '4496330125', 'contacto@lostres.com');
 /*!40000 ALTER TABLE `personas_morales` ENABLE KEYS */;
+
+-- Volcando estructura para vista sare.resueltas
+-- Creando tabla temporal para superar errores de dependencia de VIEW
+CREATE TABLE `resueltas` (
+	`id` INT(11) NOT NULL,
+	`fecha_apertura` DATETIME NOT NULL,
+	`nombre_comercial` VARCHAR(100) NULL COLLATE 'utf8_spanish2_ci',
+	`domicilio` VARCHAR(376) NULL COLLATE 'utf8_spanish2_ci',
+	`status` INT(11) NOT NULL
+) ENGINE=MyISAM;
 
 -- Volcando estructura para tabla sare.secretario
 CREATE TABLE IF NOT EXISTS `secretario` (
@@ -219,21 +289,26 @@ CREATE TABLE IF NOT EXISTS `ventanilla` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
---
-CREATE VIEW pendientes AS SELECT e.id, e.fecha_apertura, dg.nombre_comercial, CONCAT(dg.calle, " ", dg.no_exterior, " ", dg.no_interior, " ", dg.colonia, " ", dg.localidad ) AS domicilio, dg.telefono, e. status
-  FROM expedientes AS e
-  LEFT JOIN dg_establecimiento AS dg ON dg.id = e.id_dg_establecimiento
-WHERE e.status != 4 
-
-CREATE VIEW resueltas AS SELECT e.id, e.fecha_apertura, dg.nombre_comercial, CONCAT(dg.calle, " ", dg.no_exterior, " ", dg.no_interior, " ", dg.colonia, " ", dg.localidad ) AS domicilio, dg.telefono, e. status
-  FROM expedientes AS e
-  LEFT JOIN dg_establecimiento AS dg ON dg.id = e.id_dg_establecimiento
-WHERE e.status != 4 
-
 -- Volcando datos para la tabla sare.ventanilla: ~0 rows (aproximadamente)
 DELETE FROM `ventanilla`;
 /*!40000 ALTER TABLE `ventanilla` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ventanilla` ENABLE KEYS */;
+
+-- Volcando estructura para vista sare.pendientes
+-- Eliminando tabla temporal y crear estructura final de VIEW
+DROP TABLE IF EXISTS `pendientes`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `pendientes` AS SELECT e.id, e.fecha_apertura, dg.nombre_comercial, CONCAT(dg.calle, " ", dg.no_exterior, " ", dg.no_interior, " ", dg.colonia, " ", dg.localidad ) AS domicilio, dg.telefono, e. status
+	FROM expedientes AS e
+	LEFT JOIN dg_establecimiento AS dg ON dg.id = e.id_dg_establecimiento
+WHERE e.status != 4 ;
+
+-- Volcando estructura para vista sare.resueltas
+-- Eliminando tabla temporal y crear estructura final de VIEW
+DROP TABLE IF EXISTS `resueltas`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `resueltas` AS SELECT e. id, e.fecha_apertura, dg.nombre_comercial, CONCAT(dg.calle, " ", dg.no_exterior, " ", dg.no_interior, " ", dg.colonia, " ", dg.localidad ) AS domicilio, e. status
+	FROM expedientes AS e
+	LEFT JOIN dg_establecimiento AS dg ON dg.id = e.id_dg_establecimiento
+WHERE e.status = 4 ;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
