@@ -20,5 +20,5 @@
 			$mensaje = "error2";
 		}
 	}
-	echo $mensaje
+	echo $mensaje;
 ?>
