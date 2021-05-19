@@ -225,7 +225,8 @@ CREATE TABLE `resueltas` (
 	`fecha_apertura` DATETIME NOT NULL,
 	`nombre_comercial` VARCHAR(100) NULL COLLATE 'utf8_spanish2_ci',
 	`domicilio` VARCHAR(376) NULL COLLATE 'utf8_spanish2_ci',
-	`status` INT(11) NOT NULL
+	`status` INT(11) NOT NULL,
+	`etapa` VARCHAR(50) NOT NULL COLLATE 'utf8_spanish2_ci'
 ) ENGINE=MyISAM;
 
 -- Volcando estructura para tabla sare.secretario
@@ -294,14 +295,15 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `id_tipo_usuario` int(11) NOT NULL,
   `status` tinyblob NOT NULL,
   PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 -- Volcando datos para la tabla sare.usuarios: ~2 rows (aproximadamente)
 DELETE FROM `usuarios`;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 INSERT INTO `usuarios` (`id_usuario`, `nombre_usuario`, `usuario`, `password`, `id_tipo_usuario`, `status`) VALUES
 	(1, 'SUPER ADMIN', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 1, _binary 0x31),
-	(2, 'Fernando', 'fermar', 'e10adc3949ba59abbe56e057f20f883e', 1, _binary 0x31);
+	(2, 'Fernando', 'fermar', 'e10adc3949ba59abbe56e057f20f883e', 1, _binary 0x31),
+	(3, 'Director SEDATUM', 'director', 'e10adc3949ba59abbe56e057f20f883e', 4, _binary 0x31);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
 -- Volcando estructura para tabla sare.ventanilla
@@ -326,15 +328,25 @@ DROP TABLE IF EXISTS `pendientes`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `pendientes` AS SELECT e.id, e.fecha_apertura, dg.nombre_comercial, CONCAT(dg.calle, " ", dg.no_exterior, " ", dg.no_interior, " ", dg.colonia, " ", dg.localidad ) AS domicilio, dg.telefono, e. status, e.etapa
 	FROM expedientes AS e
 	LEFT JOIN dg_establecimiento AS dg ON dg.id = e.id_dg_establecimiento
-WHERE e.status != 4 ;
+WHERE e.etapa != "6" ;
 
 -- Volcando estructura para vista sare.resueltas
 -- Eliminando tabla temporal y crear estructura final de VIEW
 DROP TABLE IF EXISTS `resueltas`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `resueltas` AS SELECT e. id, e.fecha_apertura, dg.nombre_comercial, CONCAT(dg.calle, " ", dg.no_exterior, " ", dg.no_interior, " ", dg.colonia, " ", dg.localidad ) AS domicilio, e. status
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `resueltas` AS SELECT e. id, e.fecha_apertura, dg.nombre_comercial, CONCAT(dg.calle, " ", dg.no_exterior, " ", dg.no_interior, " ", dg.colonia, " ", dg.localidad ) AS domicilio, e. status, e.etapa
 	FROM expedientes AS e
 	LEFT JOIN dg_establecimiento AS dg ON dg.id = e.id_dg_establecimiento
-WHERE e.status = 4 ;
+WHERE e.status = 6 ;
+
+CREATE VIEW pendientes SELECT e.id, e.fecha_apertura, dg.nombre_comercial, CONCAT(dg.calle, " ", dg.no_exterior, " ", dg.no_interior, " ", dg.colonia, " ", dg.localidad ) AS domicilio, dg.telefono, e. status, e.etapa
+  FROM expedientes AS e
+  LEFT JOIN dg_establecimiento AS dg ON dg.id = e.id_dg_establecimiento
+WHERE e.etapa != "6" 
+
+CREATE VIEW resueltas SELECT e.id, e.fecha_apertura, dg.nombre_comercial, CONCAT(dg.calle, " ", dg.no_exterior, " ", dg.no_interior, " ", dg.colonia, " ", dg.localidad ) AS domicilio, dg.telefono, e. status, e.etapa
+  FROM expedientes AS e
+  LEFT JOIN dg_establecimiento AS dg ON dg.id = e.id_dg_establecimiento
+WHERE e.etapa = "6" 
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
