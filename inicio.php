@@ -185,7 +185,7 @@
 							</li>
 
 							<li class="">
-								<a href="javascript:cambiarcont('view/sedatum/uso_suelo.php?pantalla=3');">
+								<a href="javascript:cambiarcont('view/sedatum/uso_suelo.php?pantalla=4');">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Uso de Suelo
 								</a>
@@ -194,7 +194,7 @@
 							</li>
 
 							<li class="">
-								<a href="javascript:cambiarcont('view/sedatum/director.php?pantalla=4');">
+								<a href="javascript:cambiarcont('view/sedatum/director.php?pantalla=5');">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Director
 								</a>
@@ -203,7 +203,7 @@
 							</li>
 
 							<li class="">
-								<a href="javascript:cambiarcont('view/sedatum/secretario.php?pantalla=5');">
+								<a href="javascript:cambiarcont('view/sedatum/secretario.php?pantalla=6');">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Secretario
 								</a>
