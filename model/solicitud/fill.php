@@ -52,6 +52,19 @@ function pendientes()
 	return $result;
 }
 
+function pendientes_etapa($etapa)
+{
+	if($etapa == 2)
+	{
+		$etapa = "etapa = 2 AND etapa = 3";
+	}else{
+		$etapa = "etapa = ".$etapa;
+	}
+	$result = get_pendientes_etapa($etapa);
+
+	return $result;
+}
+
 function fill_pendientes($solicitudes)
 {	
 	$tr_pendientes = "";
