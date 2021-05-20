@@ -14,7 +14,7 @@ function compare_suplente($id_suplente)
 function create_suplente($id_suplente)
 {
 	$sql = "INSERT INTO suplente(id_suplente, status)
-				VALUES('".$id_suplente."', 1";
+				VALUES('".$id_suplente."', 1)";
 
 	$result = querys($sql);
 

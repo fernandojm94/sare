@@ -2,7 +2,7 @@
 	include('../../model/suplente/fill.php');
 	include('../../controller/funciones.php');
 	$suplente = fill_suplente();
-	echo $suplente['id_usuario'];
+	//$suplente['id_usuario'];
 	user_login();
 	/*$propietarios = propietarios();
 	$tr_propietarios = fill_propietarios($propietarios);
@@ -54,7 +54,7 @@
 								 <div style="display: inline-block; float: left;">
 									<div>
 										<label>
-											<input id="switch_director" onchange="switch_director(this.id);" value="<?=$suplente['id_usuario'];?>" class="ace ace-switch ace-switch-6" type="checkbox" />
+											<input id="switch_director" onchange="switch_director(this.id);" value="0" class="ace ace-switch ace-switch-6" type="checkbox" />
 											<span id="span_director" class="lbl"></span>
 										</label>
 									</div>
@@ -131,18 +131,19 @@
 		var check = document.getElementById(checkbox);
 		var check_id = check.id;
 		var check_status = check.value;
-
+		var modo ="";
 		if (check.checked == true) {
-			document.getElementById(checkbox).value = 1;
+			modo = 1;
 			document.getElementById("span_director").innerHTML = "&nbsp;<h4 style='display:inline'>Director Activado</h4>";
 		}else{
+			modo=0;
 			document.getElementById(checkbox).value = 0;
 			document.getElementById("span_director").innerHTML = "&nbsp;<h4 style='display:inline'>Director Desactivado</h4>";
 		}
 
 		var parametros = {
-			"id" : check_id,
-			"status" : check_status
+			"status" : modo,
+			"id" : <?=$suplente['id_usuario'];?>
 		};
 
 		$.ajax({
@@ -160,10 +161,18 @@
 					});
 				}
 
-				if (data==='error'){
+				if (data==='error1'){
 					swal({
 						title: "¡Error!",
 						text: "¡Ocurrió algo al cambiar el status!",
+						icon: "error"
+					});
+				}
+
+				if (data==='error2'){
+					swal({
+						title: "¡Error!",
+						text: "¡Ocurrió algo al cambiar el status2!",
 						icon: "error"
 					});
 				}
