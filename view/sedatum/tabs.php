@@ -2,9 +2,17 @@
 
 	include('../../model/solicitud/fill.php');
 	include('../../controller/funciones.php');
-
-	$solicitudes  = pendientes();
+	$id = $_POST['id'];
+	$etapa = $_POST['pantalla'];
+	if($id = "pendientes")
+	{
+		$solicitudes  = pendientes_etapa($etapa);
+		$tr_solicitudes = fill_pendientes($solicitudes);	
+	}else{
+		$solicitudes  = pendientes();
 	$tr_solicitudes = fill_pendientes($solicitudes);
+	}
+	
 
 	// $tipo = $_POST['algo']; SIRVE PARA IDENTIFICAR DESDE DONDE LLAMAN AL MODAL, DESDE DIRECTOR O DESDE SECRETARIO
 	$tipo = 2; //ASIGNACION PARA QUE NO MARQUE ERROR
