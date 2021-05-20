@@ -109,46 +109,9 @@
 
 <script>
 
-	$(document).ready(fill_tabs());
-
-	function fill_tabs(li)
-    {
-    	var id = '';
-    	if (!li) {
-    		id = 'pendientes';
-    	}else{
-	    	id = li.childNodes[1].getAttribute('href').split('#')[1];
-    	}
-
-        var xmlhttp;
-
-        if (window.XMLHttpRequest){
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp=new XMLHttpRequest();
-        }
-
-        else{// code for IE6, IE5
-            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-        }
-
-        xmlhttp.onreadystatechange=function(){
-
-            if (xmlhttp.readyState==4 && xmlhttp.status==200){
-                //document.getElementById("loading").innerHTML = ''; // Hide the image after the response from the
-                document.getElementById("tabs").innerHTML=xmlhttp.responseText;
-                waitingDialog.hide();
-                dynamic();
-            }
-        }
-
-        var datos_modal = 'id=' + id;
-
-        waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
-        xmlhttp.open("POST","./view/sedatum/tabs.php",true);
-        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        xmlhttp.send(datos_modal);
-    }
-
+	$(document).ready(
+		fill_tabs()
+	);
 
     function fill_modal_upcomprobante(id)
     {
