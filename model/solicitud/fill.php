@@ -56,10 +56,13 @@ function pendientes_etapa($etapa)
 {
 	if($etapa == 2)
 	{
-		$etapa = "etapa = 2 AND etapa = 3";
+		$etapa = "etapa = 2 OR etapa = 3";
+	}elseif($etapa == 1){
+		$etapa = $etapa;
 	}else{
 		$etapa = "etapa = ".$etapa;
 	}
+	
 	$result = get_pendientes_etapa($etapa);
 
 	return $result;
@@ -72,18 +75,45 @@ function fill_pendientes($solicitudes)
 	foreach ($solicitudes as $solicitud) 
 	{	
 		$comprobante = "";
-		if($solicitud['status'] == 0)
+		switch ($solicitud['etapa']) 
 		{
-			$status = "1. Pendiente de pago";
-			$comprobante = '<a class="btn btn-xs btn-success" onclick="fill_modal_upcomprobante('.$solicitud['id'].')" role="button" data-toggle="modal">
+			case '2':
+				$etapa = 'Ventanilla unica';
+				break;
+			
+			case '3':
+				$etapa = 'Pendiente de pago';
+				$comprobante = '<a class="btn btn-xs btn-success" onclick="fill_modal_upcomprobante('.$solicitud['id'].')" role="button" data-toggle="modal">
 														<i class="ace-icon fa fa-upload bigger-130"></i>
 													</a>';
+				break;
+
+			case '4':
+				$etapa = 'Uso de suelo';
+				break;
+
+			case '5':
+				$etapa = 'Direccion';
+				break;
+
+			case '6':
+				$etapa = 'Secretario';
+				break;
+
+			default:
+				$etapa = "Pendiente";
+				break;
+		}
+		
+		if($solicitud['status'] == 0)
+		{
+			$status = "1. En Revisión";			
 		}
 		if($solicitud['status'] == 1)
 		{
-			$status = "2. En revisión";
+			$status = "2. Aprobado";
 		}
-		if($solicitud['status'] == 3)
+		if($solicitud['status'] == 2)
 		{
 			$status = "3. Rechazado";
 		}
@@ -95,7 +125,7 @@ function fill_pendientes($solicitudes)
 									'.$solicitud['domicilio'].'
 								</td> 
 								<td>'.$solicitud['telefono'].'</td>
-								<td>'.$solicitud['etapa'].'</td>
+								<td>'.$etapa.'</td>
 								<td class="center"><span class="label label-warning arrowed-right">'.$status.'</span></td>
 								<td class="center">
 									<div class="btn-group">
