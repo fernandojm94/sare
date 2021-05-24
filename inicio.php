@@ -1008,7 +1008,38 @@
 			    }
 		    }
 
-		    function fill_modal_info(id)
+		    function fill_modal_upcomprobante(id)
+		    {
+		        var xmlhttp;
+
+		        if (window.XMLHttpRequest){
+		            // code for IE7+, Firefox, Chrome, Opera, Safari
+		            xmlhttp=new XMLHttpRequest();
+		        }
+		        
+		        else{// code for IE6, IE5
+		            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		        }
+
+		        xmlhttp.onreadystatechange=function(){
+		            
+		            if (xmlhttp.readyState==4 && xmlhttp.status==200){
+		                document.getElementById("load_modal_upcomprobante").innerHTML=xmlhttp.responseText;                
+		                waitingDialog.hide();
+		                $('#modal_upcomprobante').modal('show');
+		                dropzone();
+		            }
+		        }
+
+		        var datos_modal = id;
+
+		        waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
+		        xmlhttp.open("POST","./model/solicitud/modal_upcomprobante.php",true);
+		        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		        xmlhttp.send(datos_modal);
+		    }
+
+		    function fill_modal_info(id, etapa)
 		    {
 		        var xmlhttp;
 
@@ -1031,8 +1062,7 @@
 		            }
 		        }
 
-		        // var datos_modal = "id_tr=" + id + "&tipo=" + tipo + "&ausencia=" + ausencia;
-		        var datos_modal = id;
+	        	var datos_modal = "id=" + id + "&etapa=" + etapa; 	        
 
 		        waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
 		        xmlhttp.open("POST","./model/solicitud/modal_info_sol.php",true);

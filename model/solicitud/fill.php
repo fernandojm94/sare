@@ -75,17 +75,23 @@ function fill_pendientes($solicitudes)
 	foreach ($solicitudes as $solicitud) 
 	{	
 		$comprobante = "";
+
+		$info_btn = '<a class="btn btn-xs btn-info" onclick="fill_modal_info('.$solicitud['id'].','.$solicitud['etapa'].')" role="button" data-toggle="modal">
+						<i class="ace-icon fa fa-info-circle bigger-130"></i>
+					</a>';
+
 		switch ($solicitud['etapa']) 
 		{
 			case '2':
+
 				$etapa = 'Ventanilla unica';
 				break;
 			
 			case '3':
 				$etapa = 'Pendiente de pago';
 				$comprobante = '<a class="btn btn-xs btn-success" onclick="fill_modal_upcomprobante('.$solicitud['id'].')" role="button" data-toggle="modal">
-														<i class="ace-icon fa fa-upload bigger-130"></i>
-													</a>';
+									<i class="ace-icon fa fa-upload bigger-130"></i>
+								</a>';
 				break;
 
 			case '4':
@@ -129,9 +135,7 @@ function fill_pendientes($solicitudes)
 								<td class="center"><span class="label label-warning arrowed-right">'.$status.'</span></td>
 								<td class="center">
 									<div class="btn-group">
-										<a class="btn btn-xs btn-info" onclick="fill_modal_info('.$solicitud['id'].')" role="button" data-toggle="modal">
-											<i class="ace-icon fa fa-info-circle bigger-130"></i>
-										</a>
+										'.$info_btn.'
 										'.$comprobante.'
 									</div>
 								</td>

@@ -1,7 +1,25 @@
 <?php
 	include('../../model/solicitud/fill.php');
+	
+	$etapa = $_POST['etapa'];
 
-	// $ausencia = $_POST['ausencia'];
+	$orden_btn = '';
+	$rechaz_btn = '<button type="button" class="btn btn-danger" onclick="rechazar(<?= $id[0];?>);"><i class="fa fa-ban"></i>&nbsp;Rechazar Solicitud</button>';
+	$aprob_btn = '<button type="button" class="btn btn-success" onclick="aprobar(<?= $id[0];?>);"><i class="fa fa-check"></i>&nbsp;Aprobar Solicitud</button>';	
+
+	if ($etapa == '' || $etapa == ' ' || $etapa == 1) {
+		
+		$rechaz_btn = '';
+		$aprob_btn = '';
+
+	}else if($etapa == 2){
+
+		$orden_btn = '<button type="button" class="btn btn-primary"><i class="fa fa-upload"></i>&nbsp;Subir Orden de Pago</button>';
+		$aprob_btn = '';
+	
+	}else if($etapa == 3){
+		$aprob_btn = '';		
+	}
 
 	$id = array_keys($_POST);
 	
@@ -33,16 +51,16 @@
 					$link = str_replace('../../', '', $ruta).'/'.$archivo;
 					$documentos.='
 								<div class="col-sm-2 center">
-														<h1>
-															<a href="'.$link.'" target="_blank">
-																<span class="danger bigger-125">
-																	<i class="ace-icon fa fa-file-pdf-o"></i>
-																</span>
-															</a>
-															<br>
-														</h1>
-														<h6 class="center"><a href="'.$link.'" target="_blank">'.$archivo.'</a></h6>
-													</div>
+									<h1>
+										<a href="'.$link.'" target="_blank">
+											<span class="danger bigger-125">
+												<i class="ace-icon fa fa-file-pdf-o"></i>
+											</span>
+										</a>
+										<br>
+									</h1>
+									<h6 class="center"><a href="'.$link.'" target="_blank">'.$archivo.'</a></h6>
+								</div>
 							';	
 				}
 			}
@@ -351,9 +369,12 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary pull-left" data-dismiss="modal"><i class="fa fa-times">&nbsp;</i>Cerrar</button>
 
-				<button type="button" class="btn btn-danger" onclick="rechazar(<?= $id[0];?>);"><i class="fa fa-ban">&nbsp;</i>Rechazar Solicitud</button>
+				<?= $orden_btn; ?>
 
-				<button type="button" class="btn btn-success" onclick="aprobar(<?= $id[0];?>);"><i class="fa fa-check">&nbsp;</i>Aprobar Solicitud</button>
+				<?= $rechaz_btn; ?>
+
+				<?= $aprob_btn; ?>
+				
 			</div>
 
 		</div>	

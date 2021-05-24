@@ -2,7 +2,7 @@
 
 	include('../../model/solicitud/fill.php');
 	include('../../controller/funciones.php');
-	$id = $_POST['id'];
+	$id = $_POST['id'];//ES EL NOMBRE DEL TAB EN LA QUE SE ENCUENTRA
 	$etapa = $_POST['pantalla'];
 	if($id = "pendientes")
 	{
