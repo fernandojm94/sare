@@ -2,6 +2,8 @@
 	include('../../model/suplente/fill.php');
 	include('../../controller/funciones.php');
 	$suplente = fill_suplente();
+	$suplente_activo = fill_suplente_activo($suplente['id_usuario']);
+
 	//$suplente['id_usuario'];
 	user_login();
 	/*$propietarios = propietarios();
@@ -54,7 +56,7 @@
 								 <div style="display: inline-block; float: left;">
 									<div>
 										<label>
-											<input id="switch_director" onchange="switch_director(this.id);" value="0" class="ace ace-switch ace-switch-6" type="checkbox" />
+											<input id="switch_director" onchange="switch_director(this.id);" value="<?=$suplente_activo;?>" class="ace ace-switch ace-switch-6" type="checkbox" />
 											<span id="span_director" class="lbl"></span>
 										</label>
 									</div>
