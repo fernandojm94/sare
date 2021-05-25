@@ -4,13 +4,13 @@
 	include('../../controller/funciones.php');
 	$id = $_POST['id'];//ES EL NOMBRE DEL TAB EN LA QUE SE ENCUENTRA
 	$etapa = $_POST['pantalla'];
-	if($id = "pendientes")
+	if($id == "pendientes")
 	{
 		$solicitudes  = pendientes_etapa($etapa);
-		$tr_solicitudes = fill_pendientes($solicitudes);	
-	}else{
-		$solicitudes  = pendientes();
-	$tr_solicitudes = fill_pendientes($solicitudes);
+		$tr_solicitudes = fill_solicitudes($solicitudes);	
+	}else{		
+		$solicitudes  = atendidas();
+		$tr_solicitudes = fill_solicitudes($solicitudes);
 	}
 	
 

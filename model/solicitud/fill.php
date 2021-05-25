@@ -52,6 +52,13 @@ function pendientes()
 	return $result;
 }
 
+function atendidas()
+{
+	$result = get_atendidas();
+
+	return $result;
+}
+
 function pendientes_etapa($etapa)
 {
 	if($etapa == 2)
@@ -68,7 +75,7 @@ function pendientes_etapa($etapa)
 	return $result;
 }
 
-function fill_pendientes($solicitudes)
+function fill_solicitudes($solicitudes)
 {	
 	$tr_pendientes = "";
 
@@ -113,15 +120,18 @@ function fill_pendientes($solicitudes)
 		
 		if($solicitud['status'] == 0)
 		{
-			$status = "1. En Revisión";			
+			$status = "1. En Revisión";
+			$label = "warning";			
 		}
 		if($solicitud['status'] == 1)
 		{
 			$status = "2. Aprobado";
+			$label = "success";
 		}
 		if($solicitud['status'] == 2)
 		{
 			$status = "3. Rechazado";
+			$label = "danger";
 		}
 		$tr_pendientes.='
 							<tr>
@@ -132,7 +142,7 @@ function fill_pendientes($solicitudes)
 								</td> 
 								<td>'.$solicitud['telefono'].'</td>
 								<td>'.$etapa.'</td>
-								<td class="center"><span class="label label-warning arrowed-right">'.$status.'</span></td>
+								<td class="center"><span class="label label-'.$label.' arrowed-right">'.$status.'</span></td>
 								<td class="center">
 									<div class="btn-group">
 										'.$info_btn.'
