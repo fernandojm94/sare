@@ -1,6 +1,7 @@
 <?php
 	include('../../model/solicitud/fill.php');
 	
+	//INICIA LA SELECCION DE BOTONES QUE SE DEBEN IMPRIMIR PARA CADA ETAPA
 	$etapa = $_POST['etapa'];
 
 	$orden_btn = '';
@@ -20,12 +21,13 @@
 	}else if($etapa == 3){
 		$aprob_btn = '';		
 	}
+	//FIN BOTONES DE CADA ETAPA
 
-	$id = array_keys($_POST);
+	$id = $_POST['id'];
 	
 	$archivos = $documentos = "";
-	$expediente = fill_expediente($id[0]);
-	
+	$expediente = fill_expediente($id);
+
 	if($expediente['tipo_persona'])
 	{
 		$datos_generales = fill_persona_moral($expediente['id_persona']);
