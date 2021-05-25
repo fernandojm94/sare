@@ -1622,7 +1622,7 @@
                                             
                                         }
                                     });   
-                                    cambiarcont('view/solicitud/listado.php');                 
+                                    cambiarcont('view/solicitud/listado.php?pantalla=1');                 
                                 }
                                 
                                 if (data==='error'){
