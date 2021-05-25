@@ -91,11 +91,13 @@ function fill_solicitudes($solicitudes)
 		{
 			case '2':
 
-				$etapa = 'Ventanilla unica';
+				$etapa = 'Ventanilla única';
+				$label_e = "pink";
 				break;
 			
 			case '3':
 				$etapa = 'Pendiente de pago';
+				$label_e = "warning";
 				$comprobante = '<a class="btn btn-xs btn-success" onclick="fill_modal_upcomprobante('.$solicitud['id'].')" role="button" data-toggle="modal">
 									<i class="ace-icon fa fa-upload bigger-130"></i>
 								</a>';
@@ -103,18 +105,22 @@ function fill_solicitudes($solicitudes)
 
 			case '4':
 				$etapa = 'Uso de suelo';
+				$label_e = "yellow";
 				break;
 
 			case '5':
-				$etapa = 'Direccion';
+				$etapa = 'Dirección';
+				$label_e = "primary";
 				break;
 
 			case '6':
 				$etapa = 'Secretario';
+				$label_e = "inverse";
 				break;
 
 			default:
 				$etapa = "Pendiente";
+				$label_e = "danger";
 				break;
 		}
 		
@@ -141,7 +147,7 @@ function fill_solicitudes($solicitudes)
 									'.$solicitud['domicilio'].'
 								</td> 
 								<td>'.$solicitud['telefono'].'</td>
-								<td>'.$etapa.'</td>
+								<td><span class="label label-'.$label_e.' arrowed-right">'.$etapa.'</span></td>
 								<td class="center"><span class="label label-'.$label.' arrowed-right">'.$status.'</span></td>
 								<td class="center">
 									<div class="btn-group">
