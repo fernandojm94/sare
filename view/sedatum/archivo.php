@@ -270,7 +270,7 @@
                     </tr>
                 </table>
 
-                <table style="margin-bottom: 10px;">
+                <table>
                     <tr>
                         <td style="width: 5%;"></td>
                         <td class="border" style="width: 3%;"></td>
