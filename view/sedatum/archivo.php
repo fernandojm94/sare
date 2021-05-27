@@ -277,17 +277,17 @@
                         <td style="width: auto;"> NUEVA CREACIÓN</td>
                     </tr>
                     <tr><td></td></tr>
+                </table>
+
+                <table>
+                    <tr>
+                        <td style="width: 21%;"><span><b>TOTAL A PAGAR: </b></span></td>
+                        <td style="width: auto;">$'.$monto.', '.$letras.'.</td>
+                    </tr>
+                    <tr><td></td></tr>
                 </table>';
 
-    $seccion_5 = '<style>
-                      .border{
-                        border-style: solid solid solid solid;
-                        border-width: 1px 1px 1px 1px;
-                        border-color: black;
-                      }
-                  </style>
-
-                  <table>
+    $seccion_5 = '<table>
                     <tr>
                         <td style="width: 21%;"><span><b>OBSERVACIONES: </b></span></td>
                         <td style="width: auto;">El compa es un hijo de la verrga que se la pasa sancianandome porque no traigo el cubreboocas ni mis clientes, pinche virus ni existe.</td>
