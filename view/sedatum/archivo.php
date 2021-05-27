@@ -169,17 +169,40 @@
     }
 }
 
+    $fecha_formato ='
+        <span>Fecha: </span>
+        <span>'.$today.'</span>
+    ';
+
     ob_start();
 
-    require_once('../../assets/pdf/_tcpdf_5.0.002/tcpdf.php');
+    require_once('../../assets/TCPDF/tcpdf.php');
 
     class MYPDF extends TCPDF {
 
+        
         //Page header
         public function Header() {
-            $this->SetY(-215); 
+            // $this->SetY(-215); 
             $this->SetFont('times', 'I', 14);
-            $this->write(0, '',  '', 0, 'C', true, 0, false, false, 0);
+            $this->Image('../../img/2.png', '', '', 25, 28, '', '', 'T', false, 300, '', false, false, 1, false, false, false);
+
+            $cabeza = '<table>
+                     <tr>
+                      <td>Presidencia Municipal de Jesús María</td>
+                     </tr>
+
+                     <tr>
+                      <td>Gobierno Municipal 2019 - 2021</td>
+                     </tr>
+
+                     <tr>
+                      <td>Secretaría de Finanzas</td>
+                     </tr>
+                    </table>';
+
+    
+            $this->writeHTMLCell('', '', '', 10, $cabeza, $border=0, $ln=2, $fill=0, $reseth=true, $align='C', $autopadding=true);
         }  
 
         // Page footer
@@ -201,7 +224,7 @@
 
     $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 
-    $pdf->SetMargins(PDF_MARGIN_LEFT, 80, PDF_MARGIN_RIGHT, TRUE);
+    $pdf->SetMargins(PDF_MARGIN_LEFT, 35, PDF_MARGIN_RIGHT, TRUE);
     $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
     $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
 
@@ -211,57 +234,83 @@
 
     $pdf->AddPage();
 
-    $hoja= <<<EOF
+    $seccion_1 = '
+            <h3>ORDEN DE PAGO</h3>
+             <table>
+                    <tr>
+                        <td>PROGRAMA DE REGULARIZACIÓN DE LICENCIAS COMERCIALES DE BAJO RIESGO</td>
+                    </tr>
+                    <tr><td></td></tr>
+                </table>';
 
-        <div style="border-width: 1px 1px 1px 1px;">
+    $seccion_2 = '<table>
+                    <tr>
+                        <td><span><b>LICENCIA: </b></span>SARE-1O238<span></span></td>
+                    </tr>
+                    <tr><td></td></tr>
+                </table>';
 
-            <img width="75" src="../../img/heraldica1.png">    
+    $seccion_3 = '<span><b>TITULAR: </b></span>
+                  <span>FERNANDO EMMANUEL MARTINEZ</span><br><span><b>GIRO: </b></span>
+                  <span>VENDEDOR DE FRUTAS</span><br>';
 
-            <h2 style="text-align: center;">ORDEN DE PAGO</h2>
-        
-            <div>
-                <span>Destinatario:</span>
-                <span style="border-bottom: 1px;"><b>AQUÍ VA EL NOMBRE DEL INTERESADO</b></span>            
-            </div>
+    $seccion_4 = '<style>
+                      .border{
+                        border-style: solid solid solid solid;
+                        border-width: 1px 1px 1px 1px;
+                        border-color: black;
+                      }
+                  </style>
 
-            <div>
-                <span>Sírvase liquidar en la Secretaría de Finanzas del H. Ayuntamiento de Jesús María, Ags., la cantidad de:</span>
-            </div>
+                <table>
+                    <tr>
+                        <td style="width: 5%;"></td>
+                        <td class="border" style="width: 3%;"></td>
+                        <td style="width: auto;"> DERECHOS DE FUNCIONAMIENTO</td>
+                    </tr>
+                </table>
 
-            <div style="border-bottom: 1px solid #000000;">
-                <span><b>$ $monto</b></span> <span>( <b>$letras</b> )</span>
-            </div>
+                <table style="margin-bottom: 10px;">
+                    <tr>
+                        <td style="width: 5%;"></td>
+                        <td class="border" style="width: 3%;"></td>
+                        <td style="width: auto;"> NUEVA CREACIÓN</td>
+                    </tr>
+                    <tr><td></td></tr>
+                </table>';
 
-            <div>
-                <span>Por concepto de trámite de Compatibilidad Urbanística:</span>
-            </div>
+    $seccion_5 = '<style>
+                      .border{
+                        border-style: solid solid solid solid;
+                        border-width: 1px 1px 1px 1px;
+                        border-color: black;
+                      }
+                  </style>
 
-            <div>
-                <span><b>LICENCIA DE CONSTRUCCIÓN PRUEBA</span></span>
-            </div>
+                  <table>
+                    <tr>
+                        <td style="width: 21%;"><span><b>OBSERVACIONES: </b></span></td>
+                        <td style="width: auto;">El compa es un hijo de la verrga que se la pasa sancianandome porque no traigo el cubreboocas ni mis clientes, pinche virus ni existe.</td>
+                    </tr>
+                    <tr><td></td></tr>
+                </table>';
 
-            <div>
-                <span>Atentamente:</span>
-                <span><b>EL SERVIDOR DE SEDATÚM</b></span>
-            </div>
+    $seccion_6 = '<span><b>AUTORIZÓ: </b></span>
+                  <span>EL PEPE</span>';
 
-        </div>
 
-EOF;
-
-    $fecha_formato ='
-        <span>Fecha: </span>
-        <span>'.$today.'</span>
-    ';
-
-    $pdf->Ln(-70, false);
+    $pdf->Ln(0, false);
     $pdf->SetFont('times', '', 12, '', true);
 
+    $pdf->writeHTML($seccion_1, false, 0, false, false, 'C');
+    $pdf->writeHTML($seccion_2, false, 0, false, false, 'R');
+    $pdf->writeHTML($seccion_3, true, false, true, false, '');
+    $pdf->writeHTML($seccion_4, false, 0, false, false, 'L');
+    $pdf->writeHTML($seccion_5, true, false, true, false, '');
+    $pdf->writeHTML($seccion_6, false, 0, false, false, 'R');
 
 
-    $pdf->writeHTML($hoja, false, 0, false, false, 'L');
-
-    $pdf->SetY(25, false, false);
+    $pdf->SetY(23, false, false);
     $pdf->writeHTML($fecha_formato, false, 0, false, false, 'R');
 
 
