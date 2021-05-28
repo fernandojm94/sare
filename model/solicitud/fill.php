@@ -59,6 +59,28 @@ function atendidas()
 	return $result;
 }
 
+function atendidas_etapa($etapa)
+{
+	switch ($etapa) {
+		case '2':
+			$tabla = "ventanilla";
+			break;
+		case '4':
+			$tabla = "suelo";
+			break;
+		case '5':
+			$tabla = "director";
+			break;
+		case '6':
+			$tabla = "secretario";
+			break;
+	}
+	$join = "JOIN ".$tabla." AS e ON e.id_expediente = r.id AND e.`status` != 0";
+	$result = get_atendidas_etapa($join);
+
+	return $result;
+}
+
 function pendientes_etapa($etapa)
 {
 	if($etapa == 2)
@@ -116,6 +138,11 @@ function fill_solicitudes($solicitudes)
 			case '6':
 				$etapa = 'Secretario';
 				$label_e = "inverse";
+				break;
+
+			case '7':
+				$etapa = 'Atendida';
+				$label_e = "primary";
 				break;
 
 			default:

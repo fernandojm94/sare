@@ -4,15 +4,20 @@
 	include('../../controller/funciones.php');
 	$id = $_POST['id'];//ES EL NOMBRE DEL TAB EN LA QUE SE ENCUENTRA
 	$etapa = $_POST['pantalla'];
+
 	if($id == "pendientes")
 	{
-		$solicitudes  = pendientes_etapa($etapa);
-		$tr_solicitudes = fill_solicitudes($solicitudes);	
-	}else{		
-		$solicitudes  = atendidas();
-		$tr_solicitudes = fill_solicitudes($solicitudes);
+		$solicitudes  = pendientes_etapa($etapa);		
+	}else{
+		if($etapa == 1 OR $etapa == 7)
+		{
+			$solicitudes  = atendidas();	
+		}else{
+			$solicitudes  = atendidas_etapa($etapa);
+		}		
+		
 	}
-	
+	$tr_solicitudes = fill_solicitudes($solicitudes);	
 
 	// $tipo = $_POST['algo']; SIRVE PARA IDENTIFICAR DESDE DONDE LLAMAN AL MODAL, DESDE DIRECTOR O DESDE SECRETARIO
 	$tipo = 2; //ASIGNACION PARA QUE NO MARQUE ERROR
