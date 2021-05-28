@@ -150,7 +150,7 @@
 
 						<ul class="submenu">
 							<li class="">
-								<a href="javascript:cambiarcont('view/solicitud/listado.php');">
+								<a href="javascript:cambiarcont('view/solicitud/listado.php?pantalla=1');">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Listado de solicitudes
 								</a>
@@ -176,7 +176,7 @@
 
 						<ul class="submenu">
 							<li class="">
-								<a href="javascript:cambiarcont('view/sedatum/ventanilla.php');">
+								<a href="javascript:cambiarcont('view/sedatum/ventanilla.php?pantalla=2');">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Ventanilla Única
 								</a>
@@ -185,7 +185,7 @@
 							</li>
 
 							<li class="">
-								<a href="javascript:cambiarcont('view/sedatum/uso_suelo.php');">
+								<a href="javascript:cambiarcont('view/sedatum/uso_suelo.php?pantalla=4');">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Uso de Suelo
 								</a>
@@ -194,7 +194,7 @@
 							</li>
 
 							<li class="">
-								<a href="javascript:cambiarcont('view/sedatum/director.php');">
+								<a href="javascript:cambiarcont('view/sedatum/director.php?pantalla=5');">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Director
 								</a>
@@ -203,7 +203,7 @@
 							</li>
 
 							<li class="">
-								<a href="javascript:cambiarcont('view/sedatum/secretario.php');">
+								<a href="javascript:cambiarcont('view/sedatum/secretario.php?pantalla=6');">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Secretario
 								</a>
@@ -924,38 +924,6 @@
 		</script>
 
 		<script type="text/javascript">
-			function fill_modal_info(id, tipo, ausencia)
-		    {
-		        var xmlhttp;
-
-		        if (window.XMLHttpRequest){
-		            // code for IE7+, Firefox, Chrome, Opera, Safari
-		            xmlhttp=new XMLHttpRequest();
-		        }
-
-		        else{// code for IE6, IE5
-		            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		        }
-
-		        xmlhttp.onreadystatechange=function(){
-
-		            if (xmlhttp.readyState==4 && xmlhttp.status==200){
-		                //document.getElementById("loading").innerHTML = ''; // Hide the image after the response from the
-		                document.getElementById("load_modal_info").innerHTML=xmlhttp.responseText;
-
-		                waitingDialog.hide();
-		                $('#modal_info').modal('show');
-		            }
-		        }
-
-		        var datos_modal = "id=" + id + "&tipo=" + tipo + "&ausencia=" + ausencia;
-
-		        waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
-		        xmlhttp.open("POST","./model/sedatum/modal_info.php",true);
-		        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		        xmlhttp.send(datos_modal);		    
-		    }
-
 
 		    function fill_modal_comp_uso(id)
 		    {
@@ -983,13 +951,47 @@
 		            }
 		        }
 
-		        var datos_modal = id;
+		        var datos_modal = "id="+id;
 
 		        waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
 		        xmlhttp.open("POST","./model/sedatum/modal_com_uso.php",true);
 		        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		        xmlhttp.send(datos_modal);
 		    }
+
+		    function fill_modal_gen_recibo(id)
+		    {
+		    	var xmlhttp;
+
+		        if (window.XMLHttpRequest){
+		            // code for IE7+, Firefox, Chrome, Opera, Safari
+		            xmlhttp=new XMLHttpRequest();
+		        }
+		        
+		        else{// code for IE6, IE5
+		            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		        }
+
+		        xmlhttp.onreadystatechange=function(){
+		            
+		            if (xmlhttp.readyState==4 && xmlhttp.status==200){
+		                //document.getElementById("loading").innerHTML = ''; // Hide the image after the response from the
+		                document.getElementById("load_modal_recibo").innerHTML=xmlhttp.responseText;		                
+		                waitingDialog.hide();
+		                show_hide_modals();
+		                chosen();
+		                $('#modal_rec').modal('show');
+		            }
+		        }
+
+		        var datos_modal = "id="+id;
+
+		        waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
+		        xmlhttp.open("POST","./model/sedatum/modal_gen_recibo.php",true);
+		        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		        xmlhttp.send(datos_modal);
+		    }
+
 
 		    function wysiwyg()
 		    {
@@ -1040,6 +1042,277 @@
 			    }
 		    }
 
+		    function fill_modal_upcomprobante(id)
+		    {
+		        var xmlhttp;
+
+		        if (window.XMLHttpRequest){
+		            // code for IE7+, Firefox, Chrome, Opera, Safari
+		            xmlhttp=new XMLHttpRequest();
+		        }
+		        
+		        else{// code for IE6, IE5
+		            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		        }
+
+		        xmlhttp.onreadystatechange=function(){
+		            
+		            if (xmlhttp.readyState==4 && xmlhttp.status==200){
+		                document.getElementById("load_modal_upcomprobante").innerHTML=xmlhttp.responseText;                
+		                waitingDialog.hide();
+		                $('#modal_upcomprobante').modal('show');
+		                dropzone();
+		            }
+		        }
+
+		        var datos_modal = id;
+
+		        waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
+		        xmlhttp.open("POST","./model/solicitud/modal_upcomprobante.php",true);
+		        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		        xmlhttp.send(datos_modal);
+		    }
+
+		    function fill_modal_info(id, etapa)
+		    {
+		        var xmlhttp;
+
+		        if (window.XMLHttpRequest){
+		            // code for IE7+, Firefox, Chrome, Opera, Safari
+		            xmlhttp=new XMLHttpRequest();
+		        }
+		        
+		        else{// code for IE6, IE5
+		            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		        }
+
+		        xmlhttp.onreadystatechange=function(){
+		            
+		            if (xmlhttp.readyState==4 && xmlhttp.status==200){
+		                //document.getElementById("loading").innerHTML = ''; // Hide the image after the response from the
+		                document.getElementById("load_modal_info").innerHTML=xmlhttp.responseText;
+		                waitingDialog.hide();
+		                $('#modal_info').modal('show');
+		            }
+		        }
+
+	        	var datos_modal = "id=" + id + "&etapa=" + etapa; 	        
+
+		        waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
+		        xmlhttp.open("POST","./model/solicitud/modal_info_sol.php",true);
+		        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		        xmlhttp.send(datos_modal);
+		    }
+
+			function fill_tabs(li)
+		    {
+
+		    	var pantalla = $("#pantalla").val();
+
+		    	var id = '';
+		    	if (!li) {
+		    		id = 'pendientes';
+		    	}else{
+			    	id = li.childNodes[1].getAttribute('href').split('#')[1];
+		    	}
+
+		        var xmlhttp;
+
+		        if (window.XMLHttpRequest){
+		            // code for IE7+, Firefox, Chrome, Opera, Safari
+		            xmlhttp=new XMLHttpRequest();
+		        }
+
+		        else{// code for IE6, IE5
+		            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		        }
+
+		        xmlhttp.onreadystatechange=function(){
+
+		            if (xmlhttp.readyState==4 && xmlhttp.status==200){
+		                //document.getElementById("loading").innerHTML = ''; // Hide the image after the response from the
+		                document.getElementById("tabs").innerHTML=xmlhttp.responseText;
+		                waitingDialog.hide();
+		                dynamic();
+		            }
+		        }
+
+		        var datos_modal = "id=" + id + "&pantalla=" + pantalla;
+
+		        waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
+		        xmlhttp.open("POST","./view/sedatum/tabs.php",true);
+		        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		        xmlhttp.send(datos_modal);
+		    }   
+
+			function dynamic()
+			{
+				jQuery(function($) {
+					//initiate dataTables plugin
+					var myTable =
+					$('#dynamic-table')
+					//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
+					.DataTable({
+						bAutoWidth: false,
+						"aoColumns": [
+						  { "bSortable": false },
+						  null, null,null, null, null,
+						  { "bSortable": false }
+						],
+						"aaSorting": [],
+
+
+						//"bProcessing": true,
+				        //"bServerSide": true,
+				        //"sAjaxSource": "http://127.0.0.1/table.php"	,
+
+						//,
+						//"sScrollY": "200px",
+						//"bPaginate": false,
+
+						//"sScrollX": "100%",
+						//"sScrollXInner": "120%",
+						//"bScrollCollapse": true,
+						//Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
+						//you may want to wrap the table inside a "div.dataTables_borderWrap" element
+
+						//"iDisplayLength": 50
+
+
+						select: {
+							// style: 'multi'
+						}
+				    });
+
+					$.fn.dataTable.Buttons.defaults.dom.container.className = 'dt-buttons btn-overlap btn-group btn-overlap';
+
+					new $.fn.dataTable.Buttons( myTable, {
+						buttons: [
+						  {
+							"extend": "colvis",
+							"text": "<i class='fa fa-search bigger-110 blue'></i> <span>Columnas</span>",
+							"className": "btn btn-white btn-primary btn-bold",
+							columns: ':not(:first):not(:last)'
+						  },
+						  {
+							"extend": "copy",
+							"text": "<i class='fa fa-copy bigger-110 pink'></i> <span>Copiar</span>",
+							"className": "btn btn-white btn-primary btn-bold"
+						  },
+						  {
+							"extend": "csv",
+							"text": "<i class='fa fa-table bigger-110 orange'></i> <span>Tablas</span>",
+							"className": "btn btn-white btn-primary btn-bold"
+						  },
+						  {
+							"extend": "excel",
+							"text": "<i class='fa fa-file-excel-o bigger-110 green'></i> <span class='hidden'>Export to Excel</span>",
+							"className": "btn btn-white btn-primary btn-bold"
+						  },
+						  {
+							"extend": "pdf",
+							"text": "<i class='fa fa-file-pdf-o bigger-110 red'></i> <span class='hidden'>Export to PDF</span>",
+							"className": "btn btn-white btn-primary btn-bold"
+						  },
+						  {
+							"extend": "print",
+							"text": "<i class='fa fa-print bigger-110 grey'></i> <span>Imprimir</span>",
+							"className": "btn btn-white btn-primary btn-bold",
+							autoPrint: false,
+							message: 'This print was produced using the Print button for DataTables'
+						  }
+						]
+					});
+					myTable.buttons().container().appendTo( $('.tableTools-container'));
+
+					//style the message box
+					var defaultCopyAction = myTable.button(1).action();
+					myTable.button(1).action(function (e, dt, button, config) {
+						defaultCopyAction(e, dt, button, config);
+						$('.dt-button-info').addClass('gritter-item-wrapper gritter-info gritter-center white');
+					});
+
+					var defaultColvisAction = myTable.button(0).action();
+					myTable.button(0).action(function (e, dt, button, config) {
+
+						defaultColvisAction(e, dt, button, config);
+
+
+						if($('.dt-button-collection > .dropdown-menu').length == 0) {
+							$('.dt-button-collection')
+							.wrapInner('<ul class="dropdown-menu dropdown-light dropdown-caret dropdown-caret" />')
+							.find('a').attr('href', '#').wrap("<li />")
+						}
+						$('.dt-button-collection').appendTo('.tableTools-container .dt-buttons')
+					});
+
+					setTimeout(function() {
+						$($('.tableTools-container')).find('a.dt-button').each(function() {
+							var div = $(this).find(' > div').first();
+							if(div.length == 1) div.tooltip({container: 'body', title: div.parent().text()});
+							else $(this).tooltip({container: 'body', title: $(this).text()});
+						});
+					}, 500);
+
+					myTable.on( 'select', function ( e, dt, type, index ) {
+						if ( type === 'row' ) {
+							$( myTable.row( index ).node() ).find('input:checkbox').prop('checked', true);
+						}
+					});
+					myTable.on( 'deselect', function ( e, dt, type, index ) {
+						if ( type === 'row' ) {
+							$( myTable.row( index ).node() ).find('input:checkbox').prop('checked', false);
+						}
+					});
+
+					/////////////////////////////////
+					//table checkboxes
+					$('th input[type=checkbox], td input[type=checkbox]').prop('checked', false);
+
+					//select/deselect all rows according to table header checkbox
+					$('#dynamic-table > thead > tr > th input[type=checkbox], #dynamic-table_wrapper input[type=checkbox]').eq(0).on('click', function(){
+						var th_checked = this.checked;//checkbox inside "TH" table header
+
+						$('#dynamic-table').find('tbody > tr').each(function(){
+							var row = this;
+							if(th_checked) myTable.row(row).select();
+							else  myTable.row(row).deselect();
+						});
+					});
+
+					//select/deselect a row when the checkbox is checked/unchecked
+					$('#dynamic-table').on('click', 'td input[type=checkbox]' , function(){
+						var row = $(this).closest('tr').get(0);
+						if(this.checked) myTable.row(row).deselect();
+						else myTable.row(row).select();
+					});
+
+					$(document).on('click', '#dynamic-table .dropdown-toggle', function(e) {
+						e.stopImmediatePropagation();
+						e.stopPropagation();
+						e.preventDefault();
+					});
+
+					/********************************/
+					//add tooltip for small view action buttons in dropdown menu
+					$('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+
+					//tooltip placement on right or left
+					function tooltip_placement(context, source) {
+						var $source = $(source);
+						var $parent = $source.closest('table')
+						var off1 = $parent.offset();
+						var w1 = $parent.width();
+
+						var off2 = $source.offset();
+						//var w2 = $source.width();
+
+						if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+						return 'left';
+					}
+				});
+			}
+
 		    function show_hide_modals()
 		    {
 				$('#modal_comp').on('shown.bs.modal', function (e) {
@@ -1049,169 +1322,41 @@
 				$('#modal_comp').on('hide.bs.modal', function (e) {
 		  			$('#modal_info').modal('show');
 				});
-			}
 
-			function guardar_complemento(complemento,id,user){
-				console.log(complemento+" "+id+" "+user);
-				swal({
-				  title: "¿Aprobar?",
-				  text: "¿Seguro que desea aprobar la solicutud?",
-				  icon: "warning",
-				  buttons: ["Cancelar", "Ok"],
-				  dangerMode: true,
-				}).then((value) => {
-					if (value) {
+				$('#modal_rec').on('shown.bs.modal', function (e) {
+		  			$('#modal_info').modal('hide');
+				});
 
-						var data = {
-							'id' : id,
-							'usuario' : user,
-							'complemento' : complemento,
-						}
-
-						$.ajax({
-							data:  data,
-							url:   './model/sedatum/aprobaciones.php',
-							type:  'post',
-
-							success:  function (data) {
-
-									if (data==='correcto'){
-										swal({
-										  title: "¡Datos guardados correctamente!",
-										  icon: "success",
-										}).then( (value) => {
-											$("#modal_info").modal('hide');
-											cambiarcont('view/sedatum/'+user+'.php');
-										});
-
-									}
-
-									if (data==='error'){
-										swal({
-										  title: "¡Error!",
-										  text: "¡Ocurrio algo al guardar!",
-										  icon: "error",
-										});
-									}
-							}
-						});
-					}else{
-						swal("¡Cancelado!", "No se ha aprobado la solicitud", "error");
-					}
+				$('#modal_rec').on('hide.bs.modal', function (e) {
+		  			$('#modal_info').modal('show');
 				});
 			}
 
+			function guardar_complemento(complemento,id,status)
+			{
+				var user = $("#pantalla").val();
+				var titulo="";
+				var texto="";
 
-			function rechazar(id, tipo){
-				var user = "";
-				if (tipo == 1) {
-					user = "secretario";
-				}else if(tipo == 2){
-					user = "director";
-				}else if(tipo == 3){
-					user = "uso_suelo";
-				}else if(tipo == 4){
-					user = "ventanilla";
+				if (status==0){
+					titulo="¿Rechazar?";
+					texto="¿Seguro que desea rechazar la solicutud?";
+				} else{
+					titulo="¿Aprobar?";
+					texto="¿Seguro que desea aprobar la solicutud?";
 				}
-
-				swal({
-				  title: "¿Está seguro?",
-				  text: "¿Seguro que desea rechazar la solicutud?",
-				  icon: "warning",
-				  buttons: ["Cancelar", "Ok"],
-				  dangerMode: true,
-				})
-				.then((willDelete) => {
-				  if (willDelete) {
-				    swal({
-					  title: "Descripción",
-					  text: "Describa el motivo del rechazo:",
-					  buttons: ["Cancelar", "Enviar"],
-					  icon: "info",
-					  content: "input",
-				    }).then((value) => {
-				    	if (value) {
-
-				    		var data = {
-								'usuario' : user,
-								'descripcion' : value,
-							}
-
-							$.ajax({
-								data:  data,
-								url:   './model/sedatum/rechazos.php',
-								type:  'post',
-
-								success:  function (data) {
-
-										if (data==='correcto'){
-											swal({
-											  title: "¡Datos guardados correctamente!",
-											  icon: "success",
-											}).then( (value) => {
-												$("#modal_info").modal('hide');
-												cambiarcont('view/sedatum/'+user+'.php');
-											});
-
-										}
-
-										if (data==='error'){
-											swal({
-											  title: "¡Error!",
-											  text: "¡Ocurrio algo al guardar!",
-											  icon: "error",
-											});
-										}
-								}
-							});
-
-				    	}else{
-				    		swal("¡Cancelado!", "No se ha rechazado la solicutud", "error");
-				    	}
-				    });
-				  } else {
-				    swal("¡Cancelado!", "No se ha rechazado la solicutud", "error");
-				  }
-				});
-			}
-
-			function aprobar(id, tipo, ausencia){
-				if (ausencia == 1) {
+				
+				if (complemento=="")
+				{
 					swal({
-					  title: "Última Aprobación Activada",
-					  text: "¿Desea continuar?",
-					  icon: "info",
-					  customClass: "wider",
-					  buttons: ["Cancelar", "Ok"],
-					}).then((value) => {
-						if(value){
-							doble_aprob(id,tipo,ausencia);
-						}else{
-							swal("¡Cancelado!", "No se ha aprobado la solicitud", "error");
-						}
+					  	title: "¡Error!",
+					  	text: "¡Favor de escribir el dictámen!",
+					  	icon: "warning",
 					});
 				}else{
-					doble_aprob(id,tipo,ausencia);
-				}
-
-				function doble_aprob(id,tipo,ausencia){
-					var user = "";
-					
-					if (tipo == 1) {
-						user = "secretario";
-					}else if(tipo == 2){
-						user = "director";
-					}else if(tipo == 3){
-						user = "uso_suelo";
-						fill_modal_comp_uso(id);
-						return;
-					}else if(tipo == 4){
-						user = "ventanilla";
-					}					
-
 					swal({
-					  title: "¿Aprobar?",
-					  text: "¿Seguro que desea aprobar la solicutud?",
+					  title: titulo,
+					  text: texto,
 					  icon: "warning",
 					  buttons: ["Cancelar", "Ok"],
 					  dangerMode: true,
@@ -1221,7 +1366,8 @@
 							var data = {
 								'id' : id,
 								'usuario' : user,
-								'ausencia' : ausencia,
+								'status' : status,
+								'complemento' : complemento,
 							}
 
 							$.ajax({
@@ -1256,7 +1402,227 @@
 						}
 					});
 				}
-			}			
+			}
+
+			function genera_orden(giro,costo,id)
+			{
+				var user = $("#pantalla").val();
+
+				if ((giro=="") || (costo==""))
+				{
+					swal({
+					  	title: "¡Error!",
+					  	text: "¡Favor de llenar todos los campos!",
+					  	icon: "warning",
+					});
+				}else{
+								
+					swal({
+					  title: "¿Generar orden de pago?",
+					  text: "¿Desea generar la orden de pago?",
+					  icon: "warning",
+					  buttons: ["Cancelar", "Ok"],
+					  dangerMode: true,
+					}).then((value) => {
+						if (value) {
+
+							var data = {
+								'id' : id,
+								'usuario' : user,
+								'giro' : giro,
+								'costo' : costo,
+							}
+
+							$.ajax({
+								data:  data,
+								url:   './model/sedatum/aprobaciones.php',
+								type:  'post',
+
+								success:  function (data) {
+
+									if (data==='correcto'){
+										swal({
+										  	title: "¡Datos guardados correctamente!",
+										  	icon: "success",
+										}).then( (value) => {
+											$("#modal_info").modal('hide');
+											cambiarcont('view/sedatum/'+user+'.php');
+										});
+									}
+
+									if (data==='error'){
+										swal({
+										  	title: "¡Error!",
+										  	text: "¡Ocurrio algo al guardar!",
+										  	icon: "error",
+										});
+									}
+									window.open('view/sedatum/archivo.php?id='+id, '_blank');
+								}
+							});
+						}else{
+							swal("¡Cancelado!", "No se ha aprobado la solicitud", "error");
+						}
+					});
+				}
+			}
+
+			function rechazar(id_solicitud)
+			{
+				var usuario = $("#pantalla").val();
+
+				swal({
+				  title: "¿Está seguro?",
+				  text: "¿Seguro que desea rechazar la solicutud?",
+				  icon: "warning",
+				  buttons: ["Cancelar", "Ok"],
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+				  if (willDelete) {
+				    swal({
+					  title: "Descripción",
+					  text: "Describa el motivo del rechazo:",
+					  buttons: ["Cancelar", "Enviar"],
+					  icon: "info",
+					  content: "input",
+				    }).then((value) => {
+				    	if (value) {
+
+				    		var data = {
+				    			'id_solicitud' : id_solicitud,
+								'usuario' : usuario,
+								'descripcion' : value,
+							}
+
+							$.ajax({
+								data:  data,
+								url:   './model/sedatum/rechazos.php',
+								type:  'post',
+
+								success:  function (data) {
+
+										if (data==='correcto'){
+											swal({
+											  title: "¡Datos guardados correctamente!",
+											  icon: "success",
+											}).then( (value) => {
+												$("#modal_info").modal('hide');
+												location.reload();
+											});
+
+										}
+
+										if (data==='error'){
+											swal({
+											  title: "¡Error!",
+											  text: "¡Ocurrio algo al guardar!",
+											  icon: "error",
+											});
+										}
+								}
+							});
+
+				    	}else{
+				    		swal("¡Cancelado!", "No se ha rechazado la solicutud", "error");
+				    	}
+				    });
+				  } else {
+				    swal("¡Cancelado!", "No se ha rechazado la solicutud", "error");
+				  }
+				});
+			}
+
+			function aprobar(id_solicitud)
+			{
+				var usuario = $("#pantalla").val();
+				var ausencia = 1;
+
+				if (usuario=!2)
+				{
+					swal({
+					  	title: "¿Aprobar?",
+					  	text: "¿Seguro que desea aprobar la solicutud?",
+					  	icon: "warning",
+					 	buttons: ["Cancelar", "Ok"],
+					  	dangerMode: true,
+					}).then((value) => {
+						if (value) {
+
+							var data = {
+								'id_solicitud' : id_solicitud,
+								'usuario' : usuario,
+							}
+
+							$.ajax({
+								data:  data,
+								url:   './model/sedatum/aprobaciones.php',
+								type:  'post',
+
+								success:  function (data) {
+
+									if (data==='correcto'){
+										swal({
+										  title: "¡Datos guardados correctamente!",
+										  icon: "success",
+										}).then( (value) => {
+											$("#modal_info").modal('hide');
+											location.reload();
+										});
+
+									}
+
+									if (data==='error'){
+										swal({
+										  title: "¡Error!",
+										  text: "¡Ocurrio algo al guardar!",
+										  icon: "error",
+										});
+									}
+								}
+							});
+						}else{
+							swal("¡Cancelado!", "No se ha aprobado la solicitud", "error");
+						}
+					});
+				} else{
+					fill_modal_gen_recibo(id_solicitud);
+				}				
+			}
+
+			function chosen()
+			{
+				if(!ace.vars['touch']) {
+		            $('.chosen-select').chosen({allow_single_deselect:true}); 
+		            //resize the chosen on window resize
+		    
+		            $(window)
+		            .off('resize.chosen')
+		            .on('resize.chosen', function() {
+		                $('.chosen-select').each(function() {
+		                     var $this = $(this);
+		                     $this.next().css({'width': $this.parent().width()});
+		                })
+		            }).trigger('resize.chosen');
+		            //resize chosen on sidebar collapse/expand
+		            $(document).on('settings.ace.chosen', function(e, event_name, event_val) {
+		                if(event_name != 'sidebar_collapsed') return;
+		                $('.chosen-select').each(function() {
+		                     var $this = $(this);
+		                     $this.next().css({'width': $this.parent().width()});
+		                })
+		            });
+		    
+		    
+		            $('#chosen-multiple-style .btn').on('click', function(e){
+		                var target = $(this).find('input[type=radio]');
+		                var which = parseInt(target.val());
+		                if(which == 2) $('#form-field-select-4').addClass('tag-input-style');
+		                 else $('#form-field-select-4').removeClass('tag-input-style');
+		            });            
+		        }
+			}
+				
 		</script>
 	</body>
 </html>

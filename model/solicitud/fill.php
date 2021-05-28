@@ -52,49 +52,174 @@ function pendientes()
 	return $result;
 }
 
-function fill_pendientes($solicitudes)
+function atendidas()
 {
+	$result = get_atendidas();
+
+	return $result;
+}
+
+function atendidas_etapa($etapa)
+{
+	switch ($etapa) {
+		case '2':
+			$tabla = "ventanilla";
+			break;
+		case '4':
+			$tabla = "suelo";
+			break;
+		case '5':
+			$tabla = "director";
+			break;
+		case '6':
+			$tabla = "secretario";
+			break;
+	}
+	$join = "JOIN ".$tabla." AS e ON e.id_expediente = r.id AND e.`status` != 0";
+	$result = get_atendidas_etapa($join);
+
+	return $result;
+}
+
+function pendientes_etapa($etapa)
+{
+	if($etapa == 2)
+	{
+		$etapa = "etapa = 2 OR etapa = 3";
+	}elseif($etapa == 1){
+		$etapa = $etapa;
+	}else{
+		$etapa = "etapa = ".$etapa;
+	}
+	
+	$result = get_pendientes_etapa($etapa);
+
+	return $result;
+}
+
+function fill_solicitudes($solicitudes)
+{	
 	$tr_pendientes = "";
 
 	foreach ($solicitudes as $solicitud) 
 	{	
 		$comprobante = "";
+
+		$info_btn = '<a class="btn btn-xs btn-info" onclick="fill_modal_info('.$solicitud['id'].','.$solicitud['etapa'].')" role="button" data-toggle="modal">
+						<i class="ace-icon fa fa-info-circle bigger-130"></i>
+					</a>';
+
+		switch ($solicitud['etapa']) 
+		{
+			case '2':
+
+				$etapa = 'Ventanilla única';
+				$label_e = "pink";
+				break;
+			
+			case '3':
+				$etapa = 'Pendiente de pago';
+				$label_e = "warning";
+				$comprobante = '<a class="btn btn-xs btn-success" onclick="fill_modal_upcomprobante('.$solicitud['id'].')" role="button" data-toggle="modal">
+									<i class="ace-icon fa fa-upload bigger-130"></i>
+								</a>';
+				break;
+
+			case '4':
+				$etapa = 'Uso de suelo';
+				$label_e = "yellow";
+				break;
+
+			case '5':
+				$etapa = 'Dirección';
+				$label_e = "primary";
+				break;
+
+			case '6':
+				$etapa = 'Secretario';
+				$label_e = "inverse";
+				break;
+
+			case '7':
+				$etapa = 'Atendida';
+				$label_e = "primary";
+				break;
+
+			default:
+				$etapa = "Pendiente";
+				$label_e = "danger";
+				break;
+		}
+		
 		if($solicitud['status'] == 0)
 		{
-			$status = "1. Pendiente de pago";
-			$comprobante = '<a class="btn btn-xs btn-success" onclick="fill_modal_upcomprobante('.$solicitud['id'].')" role="button" data-toggle="modal">
-														<i class="ace-icon fa fa-upload bigger-130"></i>
-													</a>';
+			$status = "1. En Revisión";
+			$label = "warning";			
 		}
 		if($solicitud['status'] == 1)
 		{
-			$status = "2. En revicion";
+			$status = "2. Aprobado";
+			$label = "success";
 		}
-		if($solicitud['status'] == 3)
+		if($solicitud['status'] == 2)
 		{
 			$status = "3. Rechazado";
+			$label = "danger";
 		}
 		$tr_pendientes.='
 							<tr>
-											<td>'.$solicitud['fecha_apertura'].'</td>
-											<td>'.$solicitud['nombre_comercial'].'</td>
-											<td class="hid_xs">
-												'.$solicitud['domicilio'].'
-											</td> 
-											<td class="hidden"></td>
-											<td class="hid_xs">'.$solicitud['telefono'].'</td>
-											<td class="center"><span class="label label-warning arrowed-right">'.$status.'</span></td>
-											<td class="center">
-												<div class="btn-group">
-													<a class="btn btn-xs btn-info" onclick="fill_modal_info('.$solicitud['id'].')" role="button" data-toggle="modal">
-														<i class="ace-icon fa fa-info-circle bigger-130"></i>
-													</a>
-													'.$comprobante.'
-												</div>
-											</td>
-										</tr>
+								<td>'.$solicitud['nombre_comercial'].'</td>
+								<td>'.$solicitud['fecha_apertura'].'</td>
+								<td class="hid_xs">
+									'.$solicitud['domicilio'].'
+								</td> 
+								<td>'.$solicitud['telefono'].'</td>
+								<td><span class="label label-'.$label_e.' arrowed-right">'.$etapa.'</span></td>
+								<td class="center"><span class="label label-'.$label.' arrowed-right">'.$status.'</span></td>
+								<td class="center">
+									<div class="btn-group">
+										'.$info_btn.'
+										'.$comprobante.'
+									</div>
+								</td>
+							</tr>
 						';
 	}
 	return $tr_pendientes;
+}
+
+function fill_expediente($id)
+{
+	$expediente = get_expediente($id);
+
+	return $expediente;
+}
+
+function fill_persona_moral($id)
+{
+	$persona_moral = get_pmoral($id);
+
+	return $persona_moral;
+}
+
+function fill_persona_fisica($id)
+{
+	$persona_fisica = get_pfisica($id);
+
+	return $persona_fisica;
+}
+
+function fill_establecimiento($id)
+{
+	$establecimiento = get_establecimiento($id);
+
+	return $establecimiento;
+}
+
+function fill_dimensiones($id)
+{
+	$dimensiones = get_dimensiones($id);
+
+	return $dimensiones;
 }
 ?>

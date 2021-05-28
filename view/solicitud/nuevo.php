@@ -9,7 +9,7 @@
 ?>
 
 <style type="text/css">
-    #servicios_chosen, .chosen-container-multi .chosen-choices li.search-field input[type="text"]{
+    #servicios_chosen, .chosen-container-multi .chosen-choices li.search-field, .chosen-container-multi .chosen-choices li.search-field input[type="text"]{
         width: 100% !important;
     }
 </style>
@@ -151,11 +151,11 @@
 
 
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label">Fecha de construcción</label>  
+                                        <label class="col-md-4 control-label">Fecha de constitución</label>  
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-building"></i></span>
-                                                <input  name="horario_trabajo" id="horario_trabajo" placeholder="Fecha de construcción" class="form-control date_picker" type="text" required/>
+                                                <input  name="horario_trabajo" id="horario_trabajo" placeholder="Fecha de constitución" class="form-control date_picker" type="text" required/>
                                             </div>
                                         </div>
                                     </div>
@@ -291,7 +291,9 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-building"></i></span>
-                                                <input  name="scian" id="scian" placeholder="Giro SCIAN" class="form-control" type="text" required/>
+                                                <select class="chosen-select form-control"  name="scian" id="scian" data-placeholder="Elige una opción..." required>
+                                                    
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -492,11 +494,11 @@
                         <div class="step-pane" data-step="5">
                             <form class="well form-horizontal" method="post"  id="form_documentos" name="form_documentos">
                                 <fieldset>
-                                    <div id="inst_idpf"></div>
-                                    <div id="inst_idpm"></div>
+                                    <div class="text" id="inst_idpf"></div>
+                                    <div class="text" id="inst_idpm"></div>
 
-                                    <div id="inst_iddg"></div>
-                                    <div id="inst_iddim"></div>
+                                    <div class="text" id="inst_iddg"></div>
+                                    <div class="text" id="inst_iddim"></div>
 
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Escritura o titulo de propiedad (en su caso carta notariada de escritura en trámite).</label>  
@@ -985,8 +987,9 @@
                     },
                     success: function (data) {
                         console.log(JSON.stringify(data));
-                        //calle.value= data.Response.View[0].Result[0].Location.Address.Street;
-                        //num_ext.value= data.Response.View[0].Result[0].Location.Address.HouseNumber;
+
+                        // calle.value= data.Response.View[0].Result[0].Location.Address.Street;
+                        // num_ext.value= data.Response.View[0].Result[0].Location.Address.HouseNumber;
                         colonia.value= data.Response.View[0].Result[0].Location.Address.District;
                         localidad.value= data.Response.View[0].Result[0].Location.Address.City;
                         cp.value= data.Response.View[0].Result[0].Location.Address.PostalCode;
@@ -1336,7 +1339,7 @@
                                                 step: 3
                                             });
 
-                                            var code_idpf='<input type="text" name="id_pf" id="id_pf" value="'+datos[1]+'"/>';
+                                            var code_idpf='<input type="text" name="id_per" id="id_per" value="'+datos[1]+'"/>';
                                             document.getElementById("inst_idpf").innerHTML=code_idpf;
 
                                             mapa_inicial();             
@@ -1411,7 +1414,7 @@
                                                 step: 3
                                             });
 
-                                            var code_idpm='<input type="text" name="id_pm" id="id_pm" value="'+datos[1]+'"/>';
+                                            var code_idpm='<input type="text" name="id_per" id="id_per" value="'+datos[1]+'"/>';
                                             document.getElementById("inst_idpm").innerHTML=code_idpm;
 
                                             mapa_inicial();                 
@@ -1617,11 +1620,12 @@
                                         timer: 3000,
                                         icon: "success",
                                         button: "Aceptar"
-                                    });                  
-
-                                    $('#fuelux-wizard-container').wizard('selectedItem', {
-                                        step: 3
-                                    });                     
+                                    }).then((value) => {
+                                        if(value) {
+                                            
+                                        }
+                                    });   
+                                    cambiarcont('view/solicitud/listado.php?pantalla=1');                 
                                 }
                                 
                                 if (data==='error'){
@@ -1719,6 +1723,7 @@
 
                 telefono: {
                     required: true,
+                    minlength: 10,
                     maxlength: 10
                 },
 
@@ -1771,7 +1776,9 @@
                 },
 
                 telefono: {
-                    required: "Favor de ingresar el teléfono."
+                    required: "Favor de ingresar el teléfono.",
+                    minlength: "Ingresar el número telefónico completo.",
+                    maxlength: "Número telefónico demasiado largo."
                 },
 
                 email: {

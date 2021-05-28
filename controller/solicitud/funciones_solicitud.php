@@ -62,8 +62,30 @@ function create_dimensiones_establecimiento($frentel, $fondo, $derecho, $izquier
 }
 function create_expediente($folio, $tipo_persona, $id_persona, $id_dg, $id_dimensiones)
 {
-	$sql = "INSERT INTO expedientes(folio, fecha_apertura, tipo_persona, id_persona, id_dg_establecimiento, id_dimensiones_establecimiento, status)
-					VALUES('".$folio."','now()',".$tipo_persona.", ".$id_persona.", ".$id_dg.", ".$id_dimensiones.")";
+	$sql = "INSERT INTO expedientes(folio, fecha_apertura, tipo_persona, id_persona, id_dg_establecimiento, id_dimensiones_establecimiento, etapa, status)
+					VALUES('".$folio."',now(),".$tipo_persona.", ".$id_persona.", ".$id_dg.", ".$id_dimensiones.", 2, 1)";
+	$result = querys($sql);
+
+	return $result;
+}
+
+function get_atendidas()
+{
+	$sql ="SELECT id, fecha_apertura, nombre_comercial, domicilio, telefono, status, etapa
+				FROM resueltas
+			WHERE 1";
+
+	$result = querys($sql);
+
+	return $result;
+}
+
+function get_atendidas_etapa($join)
+{
+	 $sql ="SELECT r.id, r.fecha_apertura, r.nombre_comercial, r.domicilio, r.telefono, e.status, r.etapa
+				FROM resueltas AS r
+			".$join;
+
 	$result = querys($sql);
 
 	return $result;
@@ -79,3 +101,68 @@ function get_pendientes()
 
 	return $result;
 }
+
+function get_pendientes_etapa($etapa)
+{
+	$sql = "SELECT id, fecha_apertura, nombre_comercial, domicilio, telefono, status, etapa
+				FROM pendientes
+			WHERE ".$etapa;
+
+	$result = querys($sql);
+
+	return $result;
+}
+
+function get_expediente($id)
+{
+	$sql = "SELECT folio, fecha_apertura, tipo_persona, id_persona, id_dg_establecimiento, id_dimensiones_establecimiento 
+					FROM expedientes
+			WHERE id = $id";
+
+	$result = query_row_id($sql);
+
+	return $result;
+}
+
+function  get_pmoral($id)
+{
+	$sql = "SELECT id, nombre_empresa AS nombre, fecha_constitucion, rfc_empresa, email_empresa, telefono_empresa, nombre_rl, rfc_rl AS rfc, curp, CONCAT(calle, ' ',  no_exterior, ' ', no_interior, ' ', colonia, ' ', estado) AS domicilio,  municipio, localidad, cp, telefono_rl As telefono, email_rl AS email
+				FROM personas_morales
+				WHERE  id = '".$id."'";
+	$result = query_row_id($sql);
+
+	return $result;
+}
+
+function  get_pfisica($id)
+{
+	$sql = "SELECT id, nombre_completo AS nombre,CONCAT(calle, ' ', no_exterior, ' ', no_interior, ' ', colonia, ' ', municipio, ' ', localidad, ' ') AS domicilio, c_p, rfc, curp, telefono, email
+				FROM personas_fisicas
+				WHERE  id = '".$id."'";
+	$result = query_row_id($sql);
+
+	return $result;
+}
+
+function get_establecimiento($id)
+{
+	$sql = "SELECT nombre_comercial, horario_trabajo, CONCAT(calle, ' ', no_exterior, ' ', no_interior, ' ', colonia) AS domicilio, entre_calles, municipio, localidad, cp, latitud_longitud, telefono, uso_actual, giro_scian, cuenta_catastral, manzana, lote, distancia_esquina, cajones_estacionamiento, monto_inversion, pesonal_ocupado, servicios_existentes
+				FROM dg_establecimiento
+			WHERE id = $id";
+
+	$result = query_row_id($sql);
+
+	return $result;
+}
+
+function get_dimensiones($id)
+{
+	$sql = "SELECT frente, fondo, derecho, izquierdo, sup_terreno, sup_local, cuenta_predial
+				FROM dimensiones_establecimiento
+			WHERE id = $id";
+
+	$result = query_row_id($sql);
+
+	return $result;
+}
+

@@ -1,5 +1,23 @@
 <?php
-	$id_tab = $_POST['id'];
+
+	include('../../model/solicitud/fill.php');
+	include('../../controller/funciones.php');
+	$id = $_POST['id'];//ES EL NOMBRE DEL TAB EN LA QUE SE ENCUENTRA
+	$etapa = $_POST['pantalla'];
+
+	if($id == "pendientes")
+	{
+		$solicitudes  = pendientes_etapa($etapa);		
+	}else{
+		if($etapa == 1 OR $etapa == 7)
+		{
+			$solicitudes  = atendidas();	
+		}else{
+			$solicitudes  = atendidas_etapa($etapa);
+		}		
+		
+	}
+	$tr_solicitudes = fill_solicitudes($solicitudes);	
 
 	// $tipo = $_POST['algo']; SIRVE PARA IDENTIFICAR DESDE DONDE LLAMAN AL MODAL, DESDE DIRECTOR O DESDE SECRETARIO
 	$tipo = 2; //ASIGNACION PARA QUE NO MARQUE ERROR
@@ -19,13 +37,13 @@
 						<thead>
 							<tr>
 								<th>
-									<i class="ace-icon fa fa-clock-o bigger-110 ico_hid"></i>
-									Fecha y hora de creación
+									<i class="ace-icon fa fa-building bigger-110 ico_hid"></i>
+									Nombre establecimiento
 								</th>
 
 								<th>
-									<i class="ace-icon fa fa-building bigger-110 ico_hid"></i>
-									Nombre establecimiento
+									<i class="ace-icon fa fa-clock-o bigger-110 ico_hid"></i>
+									Fecha y hora de creación
 								</th>
 
 								<th class="hid_xs">
@@ -33,16 +51,22 @@
 									Dirección
 								</th>
 
-								<th class="hidden"></th>
-								<th class="hidden"></th>
-
-
 								<th class="hid_xs">
 									<i class="ace-icon fa fa-phone bigger-110 ico_hid"></i>
 									Número de teléfono
 								</th>
 
 								<th>
+									<i class="ace-icon fa fa-flag bigger-110 ico_hid"></i>
+									Etapa
+								</th>
+
+								<th>
+									<i class="ace-icon fa fa-sliders bigger-110 ico_hid"></i>
+									Estatus de la solicitud
+								</th>
+
+								<th style="min-width: 94px !important;">
 									<i class="ace-icon fa fa-cogs bigger-110 ico_hid"></i>
 									Acciones
 								</th>
@@ -50,46 +74,7 @@
 						</thead>
 
 						<tbody>
-							<tr>
-								<td>10 de noviembre 2020 15:34:21</td>
-								<td>Abarrotes Mi casita</td>
-								<td class="hid_xs">
-									Emiliano Zapata 109 Centro, Jesús María
-								</td>
-								<td class="hidden"></td>
-								<td class="hidden"></td>
-								<td class="hid_xs">449 121 1213</td>
-								<td class="center">
-									<div class="btn-group">
-										<a class="btn btn-xs btn-info" onclick="fill_modal_info(1,<?= $tipo; ?>,<?= $ausencia; ?>)" role="button" data-toggle="modal">
-											<i class="ace-icon fa fa-info-circle bigger-130"></i>
-										</a>
-									</div>
-								</td>
-							</tr>
-
-							<!-- <tr>
-								<td>2 de diciembre 2020 12:04:55</td>
-								<td>Cadena Comercial Oxxo</td>
-								<td class="hid_xs">
-									Av. López Mateos 1024, Lomas de Jesús María
-								</td>
-								<td class="hidden"></td>
-								<td class="hid_xs">449 895 7852</td>
-								<td class="center"><span class="label label-danger arrowed-right">2. Comprobante de pago.</span></td>
-								<td class="center">
-									<div class="btn-group">
-										<a class="btn btn-xs btn-info" onclick="fill_modal_info(2)" role="button" data-toggle="modal">
-											<i class="ace-icon fa fa-info-circle bigger-130"></i>
-										</a>
-
-										<a class="btn btn-xs btn-success" onclick="fill_modal_upcomprobante(2)" role="button" data-toggle="modal">
-											<i class="ace-icon fa fa-upload bigger-130"></i>
-										</a>
-									</div>
-								</td>
-							</tr> -->
-
+							<?=$tr_solicitudes;?>
 						</tbody>
 					</table>
 				</div>

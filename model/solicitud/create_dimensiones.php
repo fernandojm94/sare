@@ -12,7 +12,7 @@ $id_dimensiones = 0;
 $id_dimensiones = create_dimensiones_establecimiento($frente, $fondo, $derecho, $izquierdo, $delterreno, $dellocal, $predial);
 if($id_dimensiones)
 {
-	$mensaje = "correcto, ".$id_dimensiones;
+	$mensaje = "correcto,".$id_dimensiones;
 }else{
 	$mensaje = "error1";
 }
