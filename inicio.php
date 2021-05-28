@@ -1442,8 +1442,8 @@
 
 									if (data==='correcto'){
 										swal({
-										  title: "¡Datos guardados correctamente!",
-										  icon: "success",
+										  	title: "¡Datos guardados correctamente!",
+										  	icon: "success",
 										}).then( (value) => {
 											$("#modal_info").modal('hide');
 											cambiarcont('view/sedatum/'+user+'.php');
@@ -1452,12 +1452,11 @@
 
 									if (data==='error'){
 										swal({
-										  title: "¡Error!",
-										  text: "¡Ocurrio algo al guardar!",
-										  icon: "error",
+										  	title: "¡Error!",
+										  	text: "¡Ocurrio algo al guardar!",
+										  	icon: "error",
 										});
 									}
-
 									window.open('view/sedatum/archivo.php?id='+id, '_blank');
 								}
 							});
@@ -1623,7 +1622,6 @@
 		            });            
 		        }
 			}
-
 				
 		</script>
 	</body>
