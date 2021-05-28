@@ -12,6 +12,9 @@
     #servicios_chosen, .chosen-container-multi .chosen-choices li.search-field, .chosen-container-multi .chosen-choices li.search-field input[type="text"]{
         width: 100% !important;
     }
+    .chosen-container, .chosen-container+.help-inline, [class*=chosen-container]{
+        width: 100% !important;
+    }
 </style>
 
 <div class="page-content">    
@@ -1839,7 +1842,10 @@
                 },
 
                 telefono_pm: {
-                    required: true
+                    required: true,
+                    digits: true,
+                    minlength: 10,
+                    maxlength: 10
                 },
 
                 email_pm: {
@@ -1885,7 +1891,10 @@
                 },
 
                 cp_rl: {
-                    required: true
+                    required: true,
+                    digits: true,
+                    minlength : 5,
+                    maxlength: 5
                 },
 
                 estado_rl: {
@@ -1893,7 +1902,10 @@
                 },
 
                 telefono_rl: {
-                    required: true
+                     required: true,
+                    digits: true,
+                    minlength: 10,
+                    maxlength: 10
                 },
 
                 email_rl: {
@@ -1916,11 +1928,15 @@
                 },
 
                 telefono_pm: {
-                    required: "Favor de ingresar el teléfono de la empresa."
+                    required: "Favor de ingresar el teléfono de la empresa.",
+                    digits: "Ingresa solamente números",
+                    minlength : "Número telefónico demasiado corto.",
+                    maxlength: "Número telefónico demasiado largo."
                 },
 
                 email_pm: {
-                    required: "Favor de ingresar el correo electrónico de la empresa."
+                    required: "Favor de ingresar el correo electrónico de la empresa.",
+                    email: "Ingresar un correo electrónico válido."
                 },
 
                 nombre_rl: {
@@ -1961,7 +1977,10 @@
                 },
 
                 cp_rl: {
-                    required: "Favor de ingresar el código postal."
+                    required: "Favor de ingresar el código postal.",
+                    digits: "Ingresa solamente números",
+                    minlength : "Número telefónico demasiado corto.",
+                    maxlength: "Número telefónico demasiado largo."
                 },
 
                 estado_rl: {
@@ -1969,11 +1988,15 @@
                 },
 
                 telefono_rl: {
-                    required: "Favor de ingresar el teléfono."
+                    required: "Favor de ingresar el teléfono de la empresa.",
+                    digits: "Ingresa solamente números",
+                    minlength : "Número telefónico demasiado corto.",
+                    maxlength: "Número telefónico demasiado largo."
                 },
 
                 email_rl: {
-                    required: "Favor de ingresar el correo electrónico."
+                    required: "Favor de ingresar el correo electrónico.",
+                    email: "Ingresar un correo electrónico válido."
                 }
             },
 
