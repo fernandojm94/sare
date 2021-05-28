@@ -97,6 +97,7 @@
 	</div>
 	<input type="hidden" name="pantalla" id="pantalla" value="<?= $pantalla;?>">
 	<div id="load_modal_info"></div>
+	<div id="load_modal_recibo"></div>
 </div>
 
 <script type="text/javascript">
@@ -104,5 +105,15 @@
 	$(document).ready(
 		fill_tabs()
 	);
+
+	function cambia_edit() {
+		var inp = $('#costo').get(0);
+		if(inp.hasAttribute('disabled')) {
+			inp.removeAttribute('disabled');
+		}
+		else {
+			inp.setAttribute('disabled' , 'disabled');
+		}
+	}
 	
 </script>

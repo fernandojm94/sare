@@ -951,13 +951,47 @@
 		            }
 		        }
 
-		        var datos_modal = id;
+		        var datos_modal = "id="+id;
 
 		        waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
 		        xmlhttp.open("POST","./model/sedatum/modal_com_uso.php",true);
 		        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		        xmlhttp.send(datos_modal);
 		    }
+
+		    function fill_modal_gen_recibo(id)
+		    {
+		    	var xmlhttp;
+
+		        if (window.XMLHttpRequest){
+		            // code for IE7+, Firefox, Chrome, Opera, Safari
+		            xmlhttp=new XMLHttpRequest();
+		        }
+		        
+		        else{// code for IE6, IE5
+		            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		        }
+
+		        xmlhttp.onreadystatechange=function(){
+		            
+		            if (xmlhttp.readyState==4 && xmlhttp.status==200){
+		                //document.getElementById("loading").innerHTML = ''; // Hide the image after the response from the
+		                document.getElementById("load_modal_recibo").innerHTML=xmlhttp.responseText;		                
+		                waitingDialog.hide();
+		                show_hide_modals();
+		                chosen();
+		                $('#modal_rec').modal('show');
+		            }
+		        }
+
+		        var datos_modal = "id="+id;
+
+		        waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
+		        xmlhttp.open("POST","./model/sedatum/modal_gen_recibo.php",true);
+		        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		        xmlhttp.send(datos_modal);
+		    }
+
 
 		    function wysiwyg()
 		    {
@@ -1111,7 +1145,8 @@
 		        xmlhttp.send(datos_modal);
 		    }   
 
-			function dynamic(){
+			function dynamic()
+			{
 				jQuery(function($) {
 					//initiate dataTables plugin
 					var myTable =
@@ -1287,31 +1322,123 @@
 				$('#modal_comp').on('hide.bs.modal', function (e) {
 		  			$('#modal_info').modal('show');
 				});
+
+				$('#modal_rec').on('shown.bs.modal', function (e) {
+		  			$('#modal_info').modal('hide');
+				});
+
+				$('#modal_rec').on('hide.bs.modal', function (e) {
+		  			$('#modal_info').modal('show');
+				});
 			}
 
-			function guardar_complemento(complemento,id,user){
-				console.log(complemento+" "+id+" "+user);
-				swal({
-				  title: "¿Aprobar?",
-				  text: "¿Seguro que desea aprobar la solicutud?",
-				  icon: "warning",
-				  buttons: ["Cancelar", "Ok"],
-				  dangerMode: true,
-				}).then((value) => {
-					if (value) {
+			function guardar_complemento(complemento,id,status)
+			{
+				var user = $("#pantalla").val();
+				var titulo="";
+				var texto="";
 
-						var data = {
-							'id' : id,
-							'usuario' : user,
-							'complemento' : complemento,
+				if (status==0){
+					titulo="¿Rechazar?";
+					texto="¿Seguro que desea rechazar la solicutud?";
+				} else{
+					titulo="¿Aprobar?";
+					texto="¿Seguro que desea aprobar la solicutud?";
+				}
+				
+				if (complemento=="")
+				{
+					swal({
+					  	title: "¡Error!",
+					  	text: "¡Favor de escribir el dictámen!",
+					  	icon: "warning",
+					});
+				}else{
+					swal({
+					  title: titulo,
+					  text: texto,
+					  icon: "warning",
+					  buttons: ["Cancelar", "Ok"],
+					  dangerMode: true,
+					}).then((value) => {
+						if (value) {
+
+							var data = {
+								'id' : id,
+								'usuario' : user,
+								'status' : status,
+								'complemento' : complemento,
+							}
+
+							$.ajax({
+								data:  data,
+								url:   './model/sedatum/aprobaciones.php',
+								type:  'post',
+
+								success:  function (data) {
+
+										if (data==='correcto'){
+											swal({
+											  title: "¡Datos guardados correctamente!",
+											  icon: "success",
+											}).then( (value) => {
+												$("#modal_info").modal('hide');
+												cambiarcont('view/sedatum/'+user+'.php');
+											});
+
+										}
+
+										if (data==='error'){
+											swal({
+											  title: "¡Error!",
+											  text: "¡Ocurrio algo al guardar!",
+											  icon: "error",
+											});
+										}
+								}
+							});
+						}else{
+							swal("¡Cancelado!", "No se ha aprobado la solicitud", "error");
 						}
+					});
+				}
+			}
 
-						$.ajax({
-							data:  data,
-							url:   './model/sedatum/aprobaciones.php',
-							type:  'post',
+			function genera_orden(giro,costo,id)
+			{
+				var user = $("#pantalla").val();
 
-							success:  function (data) {
+				if ((giro=="") || (costo==""))
+				{
+					swal({
+					  	title: "¡Error!",
+					  	text: "¡Favor de llenar todos los campos!",
+					  	icon: "warning",
+					});
+				}else{
+								
+					swal({
+					  title: "¿Generar orden de pago?",
+					  text: "¿Desea generar la orden de pago?",
+					  icon: "warning",
+					  buttons: ["Cancelar", "Ok"],
+					  dangerMode: true,
+					}).then((value) => {
+						if (value) {
+
+							var data = {
+								'id' : id,
+								'usuario' : user,
+								'giro' : giro,
+								'costo' : costo,
+							}
+
+							$.ajax({
+								data:  data,
+								url:   './model/sedatum/aprobaciones.php',
+								type:  'post',
+
+								success:  function (data) {
 
 									if (data==='correcto'){
 										swal({
@@ -1321,7 +1448,6 @@
 											$("#modal_info").modal('hide');
 											cambiarcont('view/sedatum/'+user+'.php');
 										});
-
 									}
 
 									if (data==='error'){
@@ -1331,16 +1457,19 @@
 										  icon: "error",
 										});
 									}
-							}
-						});
-					}else{
-						swal("¡Cancelado!", "No se ha aprobado la solicitud", "error");
-					}
-				});
+
+									window.open('view/sedatum/archivo.php?id='+id, '_blank');
+								}
+							});
+						}else{
+							swal("¡Cancelado!", "No se ha aprobado la solicitud", "error");
+						}
+					});
+				}
 			}
 
-
-			function rechazar(id_solicitud){
+			function rechazar(id_solicitud)
+			{
 				var usuario = $("#pantalla").val();
 
 				swal({
@@ -1405,30 +1534,33 @@
 				});
 			}
 
-			function aprobar(id_solicitud){
+			function aprobar(id_solicitud)
+			{
 				var usuario = $("#pantalla").val();
 				var ausencia = 1;
 
-				swal({
-				  title: "¿Aprobar?",
-				  text: "¿Seguro que desea aprobar la solicutud?",
-				  icon: "warning",
-				  buttons: ["Cancelar", "Ok"],
-				  dangerMode: true,
-				}).then((value) => {
-					if (value) {
+				if (usuario=!2)
+				{
+					swal({
+					  	title: "¿Aprobar?",
+					  	text: "¿Seguro que desea aprobar la solicutud?",
+					  	icon: "warning",
+					 	buttons: ["Cancelar", "Ok"],
+					  	dangerMode: true,
+					}).then((value) => {
+						if (value) {
 
-						var data = {
-							'id_solicitud' : id_solicitud,
-							'usuario' : usuario,
-						}
+							var data = {
+								'id_solicitud' : id_solicitud,
+								'usuario' : usuario,
+							}
 
-						$.ajax({
-							data:  data,
-							url:   './model/sedatum/aprobaciones.php',
-							type:  'post',
+							$.ajax({
+								data:  data,
+								url:   './model/sedatum/aprobaciones.php',
+								type:  'post',
 
-							success:  function (data) {
+								success:  function (data) {
 
 									if (data==='correcto'){
 										swal({
@@ -1448,13 +1580,50 @@
 										  icon: "error",
 										});
 									}
-							}
-						});
-					}else{
-						swal("¡Cancelado!", "No se ha aprobado la solicitud", "error");
-					}
-				});
-			}	
+								}
+							});
+						}else{
+							swal("¡Cancelado!", "No se ha aprobado la solicitud", "error");
+						}
+					});
+				} else{
+					fill_modal_gen_recibo(id_solicitud);
+				}				
+			}
+
+			function chosen()
+			{
+				if(!ace.vars['touch']) {
+		            $('.chosen-select').chosen({allow_single_deselect:true}); 
+		            //resize the chosen on window resize
+		    
+		            $(window)
+		            .off('resize.chosen')
+		            .on('resize.chosen', function() {
+		                $('.chosen-select').each(function() {
+		                     var $this = $(this);
+		                     $this.next().css({'width': $this.parent().width()});
+		                })
+		            }).trigger('resize.chosen');
+		            //resize chosen on sidebar collapse/expand
+		            $(document).on('settings.ace.chosen', function(e, event_name, event_val) {
+		                if(event_name != 'sidebar_collapsed') return;
+		                $('.chosen-select').each(function() {
+		                     var $this = $(this);
+		                     $this.next().css({'width': $this.parent().width()});
+		                })
+		            });
+		    
+		    
+		            $('#chosen-multiple-style .btn').on('click', function(e){
+		                var target = $(this).find('input[type=radio]');
+		                var which = parseInt(target.val());
+		                if(which == 2) $('#form-field-select-4').addClass('tag-input-style');
+		                 else $('#form-field-select-4').removeClass('tag-input-style');
+		            });            
+		        }
+			}
+
 				
 		</script>
 	</body>
