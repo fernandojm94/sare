@@ -80,6 +80,17 @@ function get_atendidas()
 	return $result;
 }
 
+function get_atendidas_etapa($join)
+{
+	 $sql ="SELECT r.id, r.fecha_apertura, r.nombre_comercial, r.domicilio, r.telefono, e.status, r.etapa
+				FROM resueltas AS r
+			".$join;
+
+	$result = querys($sql);
+
+	return $result;
+}
+
 function get_pendientes()
 {
 	$sql = "SELECT id, fecha_apertura, nombre_comercial, domicilio, telefono, status
