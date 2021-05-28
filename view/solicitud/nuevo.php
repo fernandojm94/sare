@@ -291,7 +291,9 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-building"></i></span>
-                                                <input  name="scian" id="scian" placeholder="Giro SCIAN" class="form-control" type="text" required/>
+                                                <select class="chosen-select form-control"  name="scian" id="scian" data-placeholder="Elige una opción..." required>
+                                                    
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
