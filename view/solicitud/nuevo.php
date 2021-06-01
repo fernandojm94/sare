@@ -5,6 +5,11 @@
 
     $tag_pfisica = fill_pfisica();
     $tag_pmoral = fill_pmoral();
+
+    $options = '
+        <option value="">Seleccionar una opción</option>
+        <option value="1">Frutas y Verduras</option>
+    ';
     
 ?>
 
@@ -186,7 +191,7 @@
                                         <div class="col-md-2 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                                <input  name="no_int_dg" id="no_int_dg" placeholder="No. Interior" class="form-control" type="number" required/>
+                                                <input  name="no_int_dg" id="no_int_dg" placeholder="No. Interior" class="form-control" type="number"/>
                                             </div>
                                         </div>
 
@@ -294,8 +299,8 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-building"></i></span>
-                                                <select class="chosen-select form-control"  name="scian" id="scian" data-placeholder="Elige una opción..." required>
-                                                    
+                                                <select class="chosen-select form-control" name="scian" id="scian" data-placeholder="Elige una opción..." required>
+                                                    <?= $options; ?>
                                                 </select>
                                             </div>
                                         </div>
