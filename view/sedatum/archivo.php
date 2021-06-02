@@ -1,5 +1,8 @@
 <?php
-
+    include('../../model/solicitud/fill.php');
+    $id_expediente = $_GET['id'];
+    $expediente = fill_expediente($id);
+    var_dump($expediente);
     /**
      * Clase que implementa un coversor de números
      * a letras.
@@ -12,7 +15,7 @@
      *
      */
 
-    $monto = 1555.58;
+    $monto = $_GET['costo'];
     $letras = NumeroALetras::convertir($monto, 'pesos', 'centavos');
     $letras = strtolower($letras);
     $letras = ucfirst($letras);
