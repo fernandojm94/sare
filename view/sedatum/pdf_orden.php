@@ -10,9 +10,9 @@
 
     if($expediente['tipo_persona'])
     {
-        $persona = fill_persona_fisica($expediente['id_persona']);
-    }else{
         $persona = fill_persona_moral($expediente['id_persona']);
+    }else{
+        $persona = fill_persona_fisica($expediente['id_persona']);
     }
     
     
