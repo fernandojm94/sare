@@ -8,6 +8,14 @@
     $id_giro = $_GET['giro'];
     $giro = get_giros($id_giro);
 
+    if($expediente['tipo_persona'])
+    {
+        $persona = fill_persona_fisica($expediente['id_persona']);
+    }else{
+        $persona = fill_persona_moral($expediente['id_persona']);
+    }
+    
+    
     // $nombre_persona = fill_nombre_persona($expediente['id_persona']);
 
     /**
@@ -257,7 +265,7 @@
     $seccion_3 = '<table>
                     <tr>
                         <td style="width: 14%;"><span><b>Destinatario: </b></span></td>
-                        <td style="width: auto; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;"><span>aqui va</span></td>
+                        <td style="width: auto; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;"><span>'.$persona['nombre'].'</span></td>
                     </tr>
 
                     <tr><td></td></tr>
