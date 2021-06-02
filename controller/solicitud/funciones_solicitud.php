@@ -124,7 +124,7 @@ function get_expediente($id)
 	return $result;
 }
 
-function  get_pmoral($id)
+function get_pmoral($id)
 {
 	$sql = "SELECT id, nombre_empresa AS nombre, fecha_constitucion, rfc_empresa, email_empresa, telefono_empresa, nombre_rl, rfc_rl AS rfc, curp, CONCAT(calle, ' ',  no_exterior, ' ', no_interior, ' ', colonia, ' ', estado) AS domicilio,  municipio, localidad, cp, telefono_rl As telefono, email_rl AS email
 				FROM personas_morales

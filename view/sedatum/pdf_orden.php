@@ -1,4 +1,14 @@
 <?php
+    include('../../model/solicitud/fill.php');
+    include('../../model/giros/fill.php');
+    
+    $id_expediente = $_GET['id'];
+    $expediente = fill_expediente($id_expediente);
+
+    $id_giro = $_GET['giro'];
+    $giro = get_giros($id_giro);
+
+    // $nombre_persona = fill_nombre_persona($expediente['id_persona']);
 
     /**
      * Clase que implementa un coversor de números
@@ -11,8 +21,8 @@
      * @author AxiaCore S.A.S
      *
      */
+    $monto = $giro['precio'];
 
-    $monto = 1555.58;
     $letras = NumeroALetras::convertir($monto, 'pesos', 'centavos');
     $letras = strtolower($letras);
     $letras = ucfirst($letras);
@@ -239,7 +249,7 @@
 
     $seccion_2 = '<table>
                     <tr>
-                        <td><span><b>LICENCIA: </b></span>SARE-1O238<span></span></td>
+                        <td><span><b>LICENCIA: </b></span><span>'.$expediente['folio'].'</span></td>
                     </tr>
                     <tr><td></td></tr>
                 </table>';
@@ -247,7 +257,7 @@
     $seccion_3 = '<table>
                     <tr>
                         <td style="width: 14%;"><span><b>Destinatario: </b></span></td>
-                        <td style="width: auto; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;"><span>SARE-1O238</span></td>
+                        <td style="width: auto; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;"><span>aqui va</span></td>
                     </tr>
 
                     <tr><td></td></tr>
@@ -273,7 +283,7 @@
     $seccion_4 = '<table>
                     <tr>
                         <td style="width: 28%;"><b>Por concepto de trámite de:</b> </td>
-                        <td style="width: auto;">Recontrato de la tiendita de abarrotes.</td>
+                        <td style="width: auto;">Expedición de licencia para negocio de <b>'.$giro['giro'].'</b>.</td>
                     </tr>
                     <tr><td></td></tr>
                     <tr><td></td></tr>
@@ -281,7 +291,7 @@
 
     $seccion_5 = '<table>
                     <tr>
-                        <td><b>ATENTAMENTE: </b>Fernando Emmanuel Martínez De La Garza.</td>
+                        <td><b>ATENTAMENTE: </b>'.$_SESSION['nombre_completo'].'.</td>
                     </tr>
                     <tr><td></td></tr>
                 </table>';

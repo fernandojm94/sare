@@ -1457,7 +1457,7 @@
 										  	icon: "error",
 										});
 									}
-									window.open('view/sedatum/archivo.php?id='+id, '_blank');
+									window.open('view/sedatum/pdf_orden.php?id='+id+'&giro='+giro, '_blank');
 								}
 							});
 						}else{
