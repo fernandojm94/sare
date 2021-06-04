@@ -40,7 +40,7 @@
 
 
 			<div class="container">
-				<form class="well form-horizontal" method="post"  id="form_usuarios">
+				<form class="well form-horizontal" method="post" id="form_usuarios">
 					<fieldset>
 
 						<!-- Form Name -->
@@ -63,7 +63,7 @@
 						  	<div class="col-md-4 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user"></i></span>
-									<input  name="usuario" id="usuario" placeholder="Nombre de usuario (para entrar al sistema)" class="form-control" type="text" required/>
+									<input  name="usuario" id="usuario" placeholder="Nombre de usuario del sistema" class="form-control" type="text" required/>
 								</div>
 						  	</div>
 						</div>
@@ -99,8 +99,11 @@
 									<select name="id_tipo_usuario" id="id_tipo_usuario" class="form-control selectpicker" required>
 										<option value="">Seleccione una opción</option>
 										<option value="1">Administrador</option>
-										<option value="2">Cajero</option>
-										<option value="3">Verificador</option>
+										<option value="2">Sare</option>
+										<option value="3">Ventanilla</option>
+										<option value="4">Uso de Suelo</option>
+										<option value="5">Director</option>
+										<option value="6">Secretario</option>
 									</select>
 								</div>
 						  	</div>
@@ -110,7 +113,7 @@
 						<div class="form-group">
 						  	<label class="col-md-4 control-label"></label>
 						  	<div class="col-md-4">
-								<button type="submit" class="btn btn-success"> <i class="ace-icon fa fa-floppy-o"></i> &nbsp Guardar </button>
+								<button type="submit" class="btn btn-success"> <i class="ace-icon fa fa-floppy-o"></i> &nbsp;Guardar</button>
 							</div>
 						</div>
 					</fieldset>
@@ -131,11 +134,11 @@
 		rules: {
 			nombre_usuario: {
 				required: true,
-				minlength: 5
+				minlength: 4
 			},
 			usuario: {
 				required: true,
-				minlength: 5
+				minlength: 4
 			},
 			password: {
 				required: true,
@@ -156,17 +159,17 @@
 				minlength: "Nombre demasiado corto."
 			},
 			usuario: {
-				required: "Ingresar el nombre de usuario para entrar al sistema.",
+				required: "Ingresar el nombre de usuario del sistema.",
 				minlength: "Nombre de usuario muy corto."
 			},
 			
 			password: {
-				required: "Ingresar una contraseña para entrar al sistema.",
+				required: "Ingresar una contraseña.",
 				minlength: "La contraseña es muy corta."
 			},
 			
 			repassword: {
-				required: "Repetir la contraseña.",
+				required: "Ingresar nuevamente la contraseña.",
 				equalTo: "Las contraseñas no coinciden."
 			},
 			id_tipo_usuario: "Seleccionar el tipo de usuario."
@@ -215,9 +218,7 @@
 							if (data==='correcto'){
 								swal({
 								  title: "¡Datos guardados correctamente!",
-								  timer: 3000,
-								  type: "success",
-								  confirmButtonText: "Aceptar"
+								  icon: "success"								  
 								});
 
 								cambiarcont('view/usuarios/listado.php');
@@ -227,9 +228,7 @@
 								swal({
 								  title: "¡Error Grave!",
 								  text: "¡Ocurrio algo al guardar!",
-								  timer: 3000,
-								  type: "error",
-								  confirmButtonText: "Aceptar"
+								  icon: "error"								  
 								});
 							}
 
@@ -237,9 +236,7 @@
 								swal({
 								  title: "¡Error!",
 								  text: "¡Este usuario ya registró con anterioridad!",
-								  timer: 3000,
-								  type: "warning",
-								  confirmButtonText: "Aceptar"
+								  icon: "warning"								  
 								});
 							}
 					}
@@ -247,6 +244,4 @@
 		}
 	
 	});
-
-
 </script>

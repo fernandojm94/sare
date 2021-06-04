@@ -5,12 +5,11 @@ $nombre = $_POST['nombre_usuario'];
 $usuario = $_POST['usuario'];
 $psw = md5($_POST['password']);
 $id_tipo_usuario = $_POST['id_tipo_usuario'];
-// $secretaria = $_POST['id_dependencia'];
-// $cargo = $_POST['id_cargo'];
-// $status = $_POST['status'];
+$status = 1;
+
 if(!compare_usuario($nombre))
 {
-	if(create_usuario($nombre, $usuario, $psw, $id_tipo_usuario))
+	if(create_usuario($nombre, $usuario, $psw, $id_tipo_usuario, $status))
 	{
 		$mensaje = "correcto";
 	}else{

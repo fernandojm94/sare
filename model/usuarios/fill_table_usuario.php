@@ -13,15 +13,24 @@ function fill_tabla_usuarios($usuarios)
 	{
 		$id_tipo = $usuario['id_tipo_usuario'];
 		
-		if ($id_tipo == 1) 
-		{
-			$id_tipo="Administrador";
-		}if ($id_tipo == 2) 
-		{
-			$id_tipo="Cajero";
-		}if ($id_tipo == 3)
-		{
-			$id_tipo="Verificador";
+		switch ($id_tipo){
+			case 1: $id_tipo = "Administrador";
+			break;
+
+			case 2: $id_tipo = "Sare";
+			break;
+
+			case 3: $id_tipo = "Ventanilla Única";
+			break;
+
+			case 4: $id_tipo = "Uso de Suelo";
+			break;
+
+			case 5: $id_tipo = "Director";
+			break;
+
+			case 6: $id_tipo = "Secretario";
+			break;
 		}
 
 		$tr_usuarios.=' <tr>
@@ -30,32 +39,13 @@ function fill_tabla_usuarios($usuarios)
 							<td>'.$id_tipo.'</td>
 								<td>
 									<div class="hidden-sm hidden-xs btn-group">
-										<a href="#modal-editar-'.$usuario['id_usuario'].'" role="button" class="btn btn-xs btn-info" data-toggle="modal" title="Editar Usuario">
+										<a onclick="fill_modal_update_user('.$usuario['id_usuario'].');" role="button" class="btn btn-xs btn-info" data-toggle="modal" title="Editar Usuario">
 											<i class="ace-icon fa fa-pencil bigger-120"></i>
 										</a>
-										<input type="hidden" name="id_usuario-'.$usuario['id_usuario'].'" id="id_usuario-'.$usuario['id_usuario'].'" value="'.$usuario['id_usuario'].'">
 										
-										<button title="Borrar Usuario" class="btn btn-xs btn-danger" onclick="delete_usuario($(\'#id_usuario-'.$usuario['id_usuario'].'\').val());return false;">
+										<button title="Borrar Usuario" class="btn btn-xs btn-danger" onclick="delete_usuario('.$usuario['id_usuario'].');">
 											<i class="ace-icon fa fa-trash-o bigger-120"></i>
 										</button>
-									</div>
-
-									<div class="hidden-md hidden-lg">
-										<div class="inline pos-rel">
-											<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
-												<i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-											</button>
-
-											<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-												<li>
-													<a href="#" class="tooltip-info show-details-btn" data-rel="tooltip" title="Ver detalles">
-														<span class="blue">
-															<i class="ace-icon fa fa-pencil bigger-120"></i>
-														</span>
-													</a>
-												</li>
-											</ul>
-										</div>
 									</div>
 								</td>
 						</tr>';

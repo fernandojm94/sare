@@ -11,21 +11,21 @@ function get_tipos_usuarios()
 	$result = querys($sql);
 	return($result);
 }
-function compare_usuario($nombre, $secretaria)
+function compare_usuario($nombre)
 {
 	
 	$sql ="SELECT nombre_usuario
 			FROM usuarios
-			WHERE nombre_usuario LIKE '%".$nombre."%' AND id_secretaria = $secretaria";
+			WHERE nombre_usuario LIKE '%".$nombre."%'";
 	
 	$result = query_num_rows($sql);
 	return $result;
 }
-function create_usuario($nombre, $usuario, $psw, $tipo_usuario, $secretaria, $cargo, $status)
+function create_usuario($nombre, $usuario, $psw, $tipo_usuario, $status)
 {
 	
-	$sql ="INSERT INTO usuarios(nombre_usuario, usuario, password, id_tipo_usuario, nivel_cargo, status, id_secretaria)
-			VALUES('$nombre', '$usuario', '$psw', $tipo_usuario, $cargo, $status, $secretaria)";
+	echo $sql ="INSERT INTO usuarios(nombre_usuario, usuario, password, id_tipo_usuario, status)
+			VALUES('$nombre', '$usuario', '$psw', $tipo_usuario, $status)";
 	$result = querys($sql);
 
 	return $result;
@@ -41,22 +41,23 @@ function get_usuarios()
 	return $result;
 }
 
-function get_id_usuario($usuario)
+function get_id_usuario($id)
 {
 	
-	$sql = "SELECT id_usuario, nivel_cargo, id_secretaria
+	$sql = "SELECT id_usuario, nombre_usuario, usuario, id_tipo_usuario, status
 				FROM usuarios
-				WHERE nombre_usuario = $usuario";
+				WHERE id_usuario = $id";
 	
 	$result= query_row_id($sql);
 
 	return $result;
 }
 
-function update_user($id_usuario, $nombre, $usuario, $psw, $tipo_usuario, $secretaria, $cargo)
+function update_user($id_usuario, $nombre, $usuario, $psw, $tipo_usuario)
 {
 	
-	$sql ="UPDATE usuarios SET nombre_usuario = '$nombre', usuario = '$usuario'".$psw." id_tipo_usuario = '$tipo_usuario', nivel_cargo = '$cargo', id_secretaria = '$secretaria' WHERE id_usuario = $id_usuario";
+	$sql ="UPDATE usuarios SET nombre_usuario = '$nombre', usuario = '$usuario'".$psw." id_tipo_usuario = '$tipo_usuario' 
+		WHERE id_usuario = $id_usuario";
 
 	$result = querys($sql);
 
