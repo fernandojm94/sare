@@ -1,11 +1,9 @@
 <?php 
 	include('../../controller/funciones.php'); 
 	include('../../model/usuarios/fill_table_usuario.php');
-	include('../../model/usuarios/fill_modal_usuario.php');
 
 	$usuarios = fill_usuarios();
 	$tr_usuarios = fill_tabla_usuarios($usuarios);
-	$modal_usuarios = fill_modal_usuario($usuarios);
 ?>
 
 
@@ -55,92 +53,173 @@
 						</thead>
 
 						<tbody>
-						<!-- INICIA LLENADO DE TABLA-->
-						<?php echo $tr_usuarios;?>
-						<!-- FINALIZA LLENADO DE TABLA-->
+						
+							<?= $tr_usuarios;?>
+			
 						</tbody>
 					</table>
-
-					<!-- COMIENZA CREACION DE MODALES-->
-					<?php echo $modal_usuarios ;?>
-					<!-- FINALIZA CREACION DE MODALES-->
 				</div>
 			</div>
-	</div>
+		</div>
 		
-	</div><!-- PAGE CONTENT ENDS -->
-	</div><!-- /.col -->
+	</div>
+
+	<div id="load_modal_update_user"></div>
+
+</div>
 	
 <script>
 
-function update_usuario(id_usuario, nombre_usuario, usuario, password, repassword, id_tipo_usuario, id_secretaria, id_cargo){
-	if (password===repassword)
-	{
-		var parametros = {		               
-			"id_usuario" : id_usuario,
-			"nombre_usuario" : nombre_usuario,
-			"usuario" : usuario,
-			"password" : password,
-			"repassword" : repassword,
-			"id_tipo_usuario" : id_tipo_usuario,
-			"id_secretaria" : id_secretaria,
-			"id_cargo" : id_cargo,
-			"status" : 0
-		};
-		
-		
-		$.ajax({
-				data:  parametros,
-				url:   './model/usuarios/update_usuario.php',
-				type:  'post',
-				
-				success:  function (data) {
-														
-					if (data==='correcto'){
-						swal({
-						  title: "¡Datos actualizados correctamente!",
-						  timer: 3000,
-						  type: "success",
-						  confirmButtonText: "Aceptar"
-						});
-						setTimeout('cambiarcont("view/usuarios/listado.php")',1000);
-						$("#modal-editar-"+id_usuario).modal("hide");
-					}
-					
-					if (data==='error1'){
-						swal({
-						  title: "¡Error!",
-						  text: "¡Favor de ingresar todos los datos obligatorios!",
-						  timer: 3000,
-						  type: "warning",
-						  confirmButtonText: "Aceptar"
-						});
-					}
-					
-					if (data==='error2'){
-						swal({
-						  title: "¡Error Grave!",
-						  text: "¡Ocurrio algo al guardar!",
-						  timer: 3000,
-						  type: "error",
-						  confirmButtonText: "Aceptar"
-						});
-					}					
-						
-				}
-		});
-	}
-	else{
-		
-		swal({
-		  	title: "¡Error!",
-		  	text: "¡Las contraseñas no coinciden!",
-		  	type: "error",
-		  	confirmButtonText: "Aceptar"
-		});
-	}
-}
+	function fill_modal_update_user(id_usuario){
+		var xmlhttp;
 
+	    if (window.XMLHttpRequest){
+	        // code for IE7+, Firefox, Chrome, Opera, Safari
+	        xmlhttp=new XMLHttpRequest();
+	    }
+	    
+	    else{// code for IE6, IE5
+	        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	    }
+
+	    xmlhttp.onreadystatechange=function(){
+	        
+	        if (xmlhttp.readyState==4 && xmlhttp.status==200){
+	            document.getElementById("load_modal_update_user").innerHTML=xmlhttp.responseText;  
+	            $('#modal_update_user').modal('show');
+	            update_userl();
+	        }
+	    }
+
+	    var datos_modal = "id_usuario="+id_usuario;
+
+	    xmlhttp.open("POST","./view/usuarios/modal_update_user.php",true);
+	    xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	    xmlhttp.send(datos_modal);
+	}
+
+function update_userl(){
+	$('#form_update_usuario').validate({
+		errorElement: 'div',
+		errorClass: 'help-block',
+		focusInvalid: false,
+		ignore: "",
+		rules: {
+			nombre_usuario: {
+				required: true,
+				minlength: 4
+			},
+			usuario: {
+				required: true,
+				minlength: 4
+			},
+			password: {
+				required: true,
+				minlength: 6
+			},
+			repassword: {
+				required: true,
+				equalTo: "#password"
+			},
+			id_tipo_usuario: {
+				required: true
+			}
+		},
+
+		messages: {
+			nombre_usuario: {
+				required: "Ingresar su nombre completo.",
+				minlength: "Nombre demasiado corto."
+			},
+			usuario: {
+				required: "Ingresar el nombre de usuario del sistema.",
+				minlength: "Nombre de usuario muy corto."
+			},
+			
+			password: {
+				required: "Ingresar la contraseña.",
+				minlength: "La contraseña es muy corta."
+			},
+			
+			repassword: {
+				required: "Ingresar la contraseña.",
+				equalTo: "Las contraseñas no coinciden."
+			},
+			id_tipo_usuario: "Seleccionar el tipo de usuario."
+		},
+
+
+		highlight: function (e) {
+			$(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+		},
+
+		success: function (e) {
+			$(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+			$(e).remove();
+		},
+
+		errorPlacement: function (error, element) {
+			if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+				var controls = element.closest('div[class*="col-"]');
+				if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
+				else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+			}
+			else if(element.is('.select2')) {
+				error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+			}
+			else if(element.is('.chosen-select')) {
+				error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+			}
+			else error.insertAfter(element.parent());
+		},
+
+		submitHandler: function () {
+			var myForm = document.getElementById('form_update_usuario');
+ 	 		var formData = new FormData(myForm);
+			
+			$.ajax({
+					data:  formData,
+					url:   './model/usuarios/update_usuario.php',
+					type:  'post',
+					processData: false,
+            		contentType: false,
+					
+					success:  function (data) {
+															
+							if (data==='correcto'){
+								swal({
+								  title: "¡Datos guardados correctamente!",
+								  icon: "success"								  
+								}).then(() => {
+									$('#modal_update_user').modal('hide');
+									$('#modal_update_user').on('hidden.bs.modal', function (e) {
+										cambiarcont('view/usuarios/listado.php');
+									});
+								});
+
+							}
+							
+							if (data==='error2'){
+								swal({
+								  title: "¡Error Grave!",
+								  text: "¡Ocurrio algo al guardar!",
+								  icon: "error"								  
+								});
+							}
+
+							if (data==='error1'){
+								swal({
+								  title: "¡Error!",
+								  text: "¡Este usuario ya registró con anterioridad!",
+								  icon: "warning"								  
+								});
+							}
+					}
+			});
+		}
+	
+	});
+}
 
 function delete_usuario(id_usuario)
 {
@@ -171,8 +250,9 @@ function delete_usuario(id_usuario)
 						swal({
 						  title: "¡Datos eliminados correctamente!",
 						  icon: "success",
+						}).then(() => {
+							cambiarcont('view/usuarios/listado.php');
 						});
-						cambiarcont('view/usuarios/listado.php');
 					}
 
 												
