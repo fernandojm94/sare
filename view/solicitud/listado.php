@@ -109,6 +109,60 @@
 
 <script>
 
+	function upload_comprobante(){
+
+		var comp = $('#comprobante').next();
+		comp = $(comp).hasClass("selected");
+		
+		if(comp == true){
+			var myForm = document.getElementById('form_comprobante');
+	        var formData = new FormData(myForm);
+	     
+	        $.ajax({
+	            data:  formData,
+	            url:   '../../model/solicitud/upload_comprobante.php',
+	            type:  'post',
+	            processData: false,
+	            contentType: false,
+	            
+	            success:  function (data) {
+	                                                    
+	                if (data==='correcto'){
+	                    swal({
+	                        title: "¡Datos guardados correctamente!",
+	                        icon: "success",
+	                        button: "Aceptar"
+	                    }).then((value) => {
+	                        if(value) {
+	                            
+	                        }
+	                    });   
+	                    cambiarcont('view/solicitud/listado.php?pantalla=1');                 
+	                }
+	                
+	                if (data==='error'){
+	                    swal({
+	                        title: "¡Error!",
+	                        text: "¡Ocurrio algo al guardar!",
+	                        icon: "error",
+	                        button: "Aceptar"
+	                    });
+	                }
+	            }
+
+	        });
+
+		}else{
+			swal({
+                title: "¡Error!",
+                text: "No has seleccionado ningún archivo",
+                icon: "error",
+                button: "Aceptar"
+            });
+		}
+
+	}
+
 	$(document).ready(
 		fill_tabs()
 	);
