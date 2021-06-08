@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `expedientes` (
   `id_dg_establecimiento` int(10) NOT NULL,
   `id_dimensiones_establecimiento` int(10) NOT NULL,
   `etapa` varchar(50) COLLATE utf8_spanish2_ci NOT NULL DEFAULT '' COMMENT '2.- ventanilla unica. 3.- Pago. 4.- Uso de suelo. 5.- Director. 6.- Secretario',
-  `resolucion` varchar(50) COLLATE utf8_spanish2_ci NOT NULL DEFAULT '0',
+  `tipo_usuario` varchar(50) COLLATE utf8_spanish2_ci NOT NULL DEFAULT '0',
   `id_usuario` int(11) NOT NULL DEFAULT '0',
   `status` int(11) NOT NULL COMMENT '0.- Revision. 1.- Aprobado. 2.- Denegado',
   PRIMARY KEY (`id`)
@@ -137,11 +137,26 @@ CREATE TABLE IF NOT EXISTS `expedientes` (
 -- Volcando datos para la tabla sare.expedientes: ~2 rows (aproximadamente)
 DELETE FROM `expedientes`;
 /*!40000 ALTER TABLE `expedientes` DISABLE KEYS */;
-INSERT INTO `expedientes` (`id`, `folio`, `fecha_apertura`, `tipo_persona`, `id_persona`, `id_dg_establecimiento`, `id_dimensiones_establecimiento`, `etapa`, `resolucion`, `id_usuario`, `status`) VALUES
+INSERT INTO `expedientes` (`id`, `folio`, `fecha_apertura`, `tipo_persona`, `id_persona`, `id_dg_establecimiento`, `id_dimensiones_establecimiento`, `etapa`, `tipo_usuario`, `id_usuario`, `status`) VALUES
 	(8, 'SARE-2021-05-11-18-05-52', '2021-05-11 13:50:52', 0, 1, 14, 13, '5', '0', 0, 0),
 	(9, 'SARE-2021-05-11-19-05-57', '2021-05-11 14:05:57', 0, 1, 15, 14, '7', '0', 0, 2),
 	(10, 'SARE-2021-05-20-14-05-04', '2021-05-20 09:49:04', 0, 10, 16, 15, '2', '0', 0, 0);
 /*!40000 ALTER TABLE `expedientes` ENABLE KEYS */;
+
+-- Volcando estructura para tabla sare.historico
+CREATE TABLE IF NOT EXISTS `historico` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_expediente` int(11) DEFAULT NULL,
+  `pago` char(10) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `fecha` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_expediente` (`id_expediente`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+-- Volcando datos para la tabla sare.historico: ~0 rows (aproximadamente)
+DELETE FROM `historico`;
+/*!40000 ALTER TABLE `historico` DISABLE KEYS */;
+/*!40000 ALTER TABLE `historico` ENABLE KEYS */;
 
 -- Volcando estructura para tabla sare.pagos
 CREATE TABLE IF NOT EXISTS `pagos` (

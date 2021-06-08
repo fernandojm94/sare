@@ -215,3 +215,23 @@ function rechaza_expediente($id, $status)
 
 	return $result;
 }
+
+function aprobar_expediente($id, $status, $id_usuario, $tipo_usuario)
+{
+	$sql = "UPDATE expedientes SET status = $tatus AND id_usuario = $id_usuario AND tipo_usuario = $tipo_usuario
+			WHERE id = $id";
+
+	$result = querys($sql);
+
+	return $result;
+}
+
+function create_historico_pago($id_expediente, $pago)
+{
+	$sql = "INSERT INTO historico (id_expediente, pago, fecha)
+					VALUES(".$id_expediente.", ".$pago.", now())";
+
+	$result = querys($sql);
+
+	return $result;
+}
