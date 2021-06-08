@@ -20,7 +20,7 @@ include('../../model/solicitud/fill.php');
 			<div class="modal-body">
 
 				<form id="form_comprobante" method="POST">
-					
+					<input type="hidden" name="folio" id="folio" value="<?= $expediente['folio']?>">
 					<input type="hidden" name="id_expediente" id="id_expediente" value="<?= $id_expediente ?>">
 					
 					<div class="row">
@@ -35,7 +35,7 @@ include('../../model/solicitud/fill.php');
 					
 				</form>
 
-			</div>	
+			</div>
 
 			<div class="modal-footer">
 				<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times">&nbsp;</i>Cerrar</button>
