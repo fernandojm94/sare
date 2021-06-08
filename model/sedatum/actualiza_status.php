@@ -9,26 +9,20 @@
 	$tipo_usuario = $_POST['tipo_usuario'];
 	$id_usuario = $_POST['id_usuario'];
 	$director = $_POST['director'];
-	$ruta = "../../assets/expedientes/"$_POST['ruta']."/";
+	$ruta = "../../assets/expedientes/"$_POST['ruta']."/docs/";
 	$resuelto = $recibe = "";
 
-	switch ($etapa) {
-			case '1':
-				$resuelto = "pagos";
-				$recibe = "suelo";
-				$etapa = 4;
+	switch ($etapa) {			
+			case '2':
+				$resuelto = "ventanilla";
+				$recibe = "pagos";
+				$etapa = 3;
 				if(create_historico_pago($id_expediente, $pago))
 				{
 					$mensaje = "correcto";
 				}else{
 					$mensaje = "error5";
 				}
-				break;
-			case '2':
-				$resuelto = "ventanilla";
-				$recibe = "pagos";
-				$etapa = 3;
-				create_html($ruta, $adicional_1, $adicional_2, $resuelto);
 				break;
 			case '4':
 				$resuelto = "suelo";
@@ -87,7 +81,7 @@
 
 		if($resuelto != "")
 		{
-			if(update_resuelto_etapa($status, $etapa, $expediente))
+			if(update_resuelto_etapa($status, $resuelto, $expediente))
 			{
 				$mensaje = "correcto";
 			}else{
@@ -97,7 +91,7 @@
 
 		if($recibe != "")
 		{
-			if(create_etapa($etapa, $expediente))
+			if(create_etapa($recibe, $expediente))
 			{
 				$mensaje = "correcto";
 			}else{
@@ -127,6 +121,4 @@ function create_html($ruta, $adicional_1, $adicional_2, $nombre)
 	}
 	 fwrite($archivo, PHP_EOL ."$adicional_2");
 	fclose($archivo);
-
-
 }

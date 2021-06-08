@@ -169,7 +169,7 @@ function get_dimensiones($id)
 function update_expediente($id, $etapa)
 {
 	$sql = "UPDATE expedientes SET etapa = $etapa 
-				WHERE id = $di";
+				WHERE id = $id";
 
 	$result = querys($sql);
 
@@ -179,7 +179,7 @@ function update_expediente($id, $etapa)
 function create_etapa($etapa, $id_expediente)
 {
 	$sql = "INSERT INTO ".$etapa." (id_expediente, recibido)
-					VALUES $id_expediente, now()";
+					VALUES ($id_expediente, now())";
 	
 	$result = querys($sql);
 	
