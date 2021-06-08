@@ -166,5 +166,72 @@ function get_dimensiones($id)
 	return $result;
 }
 
-function update_expediente($id, $status)
+function update_expediente($id, $etapa)
+{
+	$sql = "UPDATE expedientes SET etapa = $etapa 
+				WHERE id = $di";
 
+	$result = querys($sql);
+
+	return $result;
+}
+
+function create_etapa($etapa, $id_expediente)
+{
+	$sql = "INSERT INTO ".$etapa." (id_expediente, recibido)
+					VALUES $id_expediente, now()";
+	
+	$result = querys($sql);
+	
+	return $result;	
+}
+
+function update_visto_etapa($etapa, $id_expediente)
+{
+	$sql = "UPDATE ".$etapa." SET visto = now()
+			WHERE id_expediente = $id_expediente";
+
+	$result = querys($sql);
+
+	return$result;
+}
+
+function update_resuelto_etapa($status, $etapa, $id_expediente)
+{
+	$sql = "UPDATE ".$etapa." SET status = ".$status." AND resuelto = now()
+			WHERE id_expediente = $id_expediente";
+
+	$result = querys($sql);
+
+	return $result;
+}
+
+function rechaza_expediente($id, $status)
+{
+	$sql = "UPDATE expedientes SET status = ".$status." 
+			WHERE id = $id";
+
+	$result = querys($sql);
+
+	return $result;
+}
+
+function aprobar_expediente($id, $status, $id_usuario, $tipo_usuario)
+{
+	$sql = "UPDATE expedientes SET status = $tatus AND id_usuario = $id_usuario AND tipo_usuario = $tipo_usuario
+			WHERE id = $id";
+
+	$result = querys($sql);
+
+	return $result;
+}
+
+function create_historico_pago($id_expediente, $pago)
+{
+	$sql = "INSERT INTO historico (id_expediente, pago, fecha)
+					VALUES(".$id_expediente.", ".$pago.", now())";
+
+	$result = querys($sql);
+
+	return $result;
+}
