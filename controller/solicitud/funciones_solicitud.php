@@ -198,7 +198,7 @@ function update_visto_etapa($etapa, $id_expediente)
 
 function update_resuelto_etapa($status, $etapa, $id_expediente)
 {
-	$sql = "UPDATE ".$etapa." SET status = ".$status." AND resuelto = now()
+	$sql = "UPDATE ".$etapa." SET status = ".$status.", resuelto = now()
 			WHERE id_expediente = $id_expediente";
 
 	$result = querys($sql);
@@ -218,7 +218,7 @@ function rechaza_expediente($id, $status)
 
 function aprobar_expediente($id, $status, $id_usuario, $tipo_usuario)
 {
-	$sql = "UPDATE expedientes SET status = $tatus AND id_usuario = $id_usuario AND tipo_usuario = $tipo_usuario
+	$sql = "UPDATE expedientes SET status = $tatus, id_usuario = $id_usuario, tipo_usuario = $tipo_usuario
 			WHERE id = $id";
 
 	$result = querys($sql);
