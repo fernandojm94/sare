@@ -36,15 +36,15 @@ if($recibe != "")
 	}	
 }
 
-if(!is_dir($ruta))
+if(move_uploaded_file($_FILES['comprobante']['tmp_name'], $comprobante))
 {
-		if(!mkdir($ruta,0777, true))
-		{
-			echo "Fallo la creacion de carpeta";
-		}else{			
-			move_uploaded_file($_FILES['titulo']['tmp_name'], $titulo);
-		}
+	echo "si";
+	$mensaje = "correcto";
+}else{
+	$mensaje = "error6";
 }
+
+
 
 
 echo $mensaje;
