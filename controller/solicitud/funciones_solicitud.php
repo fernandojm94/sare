@@ -166,3 +166,5 @@ function get_dimensiones($id)
 	return $result;
 }
 
+function update_expediente($id, $status)
+
