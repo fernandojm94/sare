@@ -1,3 +1,10 @@
+<?php
+include('../../model/solicitud/fill.php');
+	
+	$id_expediente = $_POST['id'];
+	$expediente = fill_expediente($id_expediente);
+?>
+
 <div id="modal_upcomprobante" class="modal" tabindex="-1" style="overflow-y:auto;">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
@@ -5,22 +12,29 @@
 				<h3 class="blue">Cargar comprobante de pago
 					<small>
 						<i class="ace-icon fa fa-angle-double-right"></i>
-						Solicitud SARE 6565
+						Solicitud <?= $expediente['folio'];?>
 					</small>
 				</h3>
 			</div>
 
 			<div class="modal-body">
-				<div class="row">
 
-					<div class="col-xs-12">
-						<div class="form-group">
-							<div class="col-xs-12">
-								<input multiple="" type="file" id="comprobante" />
+				<form id="form_comprobante" method="POST">
+					
+					<input type="hidden" name="id_expediente" id="id_expediente" value="<?= $id_expediente ?>">
+					
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="form-group">
+								<div class="col-xs-12">
+									<input multiple="" type="file" id="comprobante" name="comprobante" />
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+					
+				</form>
+
 			</div>	
 
 			<div class="modal-footer">

@@ -1065,7 +1065,7 @@
 		            }
 		        }
 
-		        var datos_modal = id;
+		        var datos_modal = "id=" + id; 
 
 		        waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
 		        xmlhttp.open("POST","./model/solicitud/modal_upcomprobante.php",true);
