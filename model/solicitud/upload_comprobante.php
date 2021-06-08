@@ -38,7 +38,6 @@ if($recibe != "")
 
 if(move_uploaded_file($_FILES['comprobante']['tmp_name'], $comprobante))
 {
-	echo "si";
 	$mensaje = "correcto";
 }else{
 	$mensaje = "error6";
