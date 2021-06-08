@@ -105,13 +105,13 @@ CREATE TABLE IF NOT EXISTS `director` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_expediente` int(11) NOT NULL DEFAULT '0',
   `status` int(2) NOT NULL DEFAULT '2' COMMENT '0.- Revision. 1.- Aprobado. 2.- Denegado',
-  `recibido` datetime NOT NULL,
-  `visto` datetime NOT NULL,
-  `resuelto` datetime NOT NULL,
+  `recibido` datetime DEFAULT NULL,
+  `visto` datetime DEFAULT NULL,
+  `resuelto` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla sare.director: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla sare.director: ~1 rows (aproximadamente)
 DELETE FROM `director`;
 /*!40000 ALTER TABLE `director` DISABLE KEYS */;
 INSERT INTO `director` (`id`, `id_expediente`, `status`, `recibido`, `visto`, `resuelto`) VALUES
@@ -148,9 +148,9 @@ CREATE TABLE IF NOT EXISTS `pagos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_expediente` int(11) NOT NULL DEFAULT '0',
   `status` int(1) NOT NULL DEFAULT '2' COMMENT '0.- Revision. 1.- Aprobado. 2.- Denegado',
-  `recibido` datetime NOT NULL,
-  `visto` datetime NOT NULL,
-  `resuelto` datetime NOT NULL,
+  `recibido` datetime DEFAULT NULL,
+  `visto` datetime DEFAULT NULL,
+  `resuelto` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
@@ -257,13 +257,13 @@ CREATE TABLE IF NOT EXISTS `secretario` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_expediente` int(11) NOT NULL DEFAULT '0',
   `status` int(2) NOT NULL DEFAULT '2' COMMENT '0.- Revision. 1.- Aprobado. 2.- Denegado',
-  `recibido` datetime NOT NULL,
-  `visto` datetime NOT NULL,
-  `reselto` datetime NOT NULL,
+  `recibido` datetime DEFAULT NULL,
+  `visto` datetime DEFAULT NULL,
+  `reselto` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla sare.secretario: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla sare.secretario: ~1 rows (aproximadamente)
 DELETE FROM `secretario`;
 /*!40000 ALTER TABLE `secretario` DISABLE KEYS */;
 INSERT INTO `secretario` (`id`, `id_expediente`, `status`, `recibido`, `visto`, `reselto`) VALUES
@@ -275,13 +275,13 @@ CREATE TABLE IF NOT EXISTS `suelo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_expediente` int(11) NOT NULL DEFAULT '0',
   `status` int(2) NOT NULL DEFAULT '2' COMMENT '0.- Revision. 1.- Aprobado. 2.- Denegado',
-  `recibido` datetime NOT NULL,
-  `visto` datetime NOT NULL,
-  `resuelto` datetime NOT NULL,
+  `recibido` datetime DEFAULT NULL,
+  `visto` datetime DEFAULT NULL,
+  `resuelto` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci COMMENT='uso';
 
--- Volcando datos para la tabla sare.suelo: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla sare.suelo: ~1 rows (aproximadamente)
 DELETE FROM `suelo`;
 /*!40000 ALTER TABLE `suelo` DISABLE KEYS */;
 INSERT INTO `suelo` (`id`, `id_expediente`, `status`, `recibido`, `visto`, `resuelto`) VALUES
@@ -340,13 +340,13 @@ CREATE TABLE IF NOT EXISTS `ventanilla` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_expediente` int(11) NOT NULL DEFAULT '0',
   `status` int(2) NOT NULL DEFAULT '2' COMMENT '0.- Revision. 1.- Aprobado. 2.- Denegado',
-  `recibido` datetime NOT NULL,
-  `visto` datetime NOT NULL,
-  `resuelto` datetime NOT NULL,
+  `recibido` datetime DEFAULT NULL,
+  `visto` datetime DEFAULT NULL,
+  `resuelto` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla sare.ventanilla: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla sare.ventanilla: ~1 rows (aproximadamente)
 DELETE FROM `ventanilla`;
 /*!40000 ALTER TABLE `ventanilla` DISABLE KEYS */;
 INSERT INTO `ventanilla` (`id`, `id_expediente`, `status`, `recibido`, `visto`, `resuelto`) VALUES
