@@ -24,7 +24,7 @@
 	$ausencia = 0;
 ?>
 
-<div id="<?=$id_tab;?>" class="tab-pane in active">
+<div id="<?=$id;?>" class="tab-pane in active">
 	<div class="message-container">
 		<div id="id-message-list-navbar" class="message-navbar clearfix">
 			<div class="pull-right tableTools-container"></div>
