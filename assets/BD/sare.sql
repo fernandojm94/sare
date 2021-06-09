@@ -104,18 +104,19 @@ INSERT INTO `dimensiones_establecimiento` (`id`, `frente`, `fondo`, `derecho`, `
 CREATE TABLE IF NOT EXISTS `director` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_expediente` int(11) NOT NULL DEFAULT '0',
-  `status` int(2) NOT NULL DEFAULT '2' COMMENT '0.- Revision. 1.- Aprobado. 2.- Denegado',
+  `status` int(2) NOT NULL DEFAULT '0' COMMENT '0.- Revision. 1.- Aprobado. 2.- Denegado',
   `recibido` datetime DEFAULT NULL,
   `visto` datetime DEFAULT NULL,
   `resuelto` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla sare.director: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla sare.director: ~2 rows (aproximadamente)
 DELETE FROM `director`;
 /*!40000 ALTER TABLE `director` DISABLE KEYS */;
 INSERT INTO `director` (`id`, `id_expediente`, `status`, `recibido`, `visto`, `resuelto`) VALUES
-	(1, 9, 1, '2021-05-28 10:27:05', '2021-05-28 10:27:07', '2021-05-28 10:27:09');
+	(1, 9, 1, '2021-05-28 10:27:05', '2021-05-28 10:27:07', '2021-05-28 10:27:09'),
+	(2, 8, 1, '2021-06-09 15:53:48', '2021-06-09 15:54:29', '2021-06-09 15:54:36');
 /*!40000 ALTER TABLE `director` ENABLE KEYS */;
 
 -- Volcando estructura para tabla sare.expedientes
@@ -130,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `expedientes` (
   `etapa` varchar(50) COLLATE utf8_spanish2_ci NOT NULL DEFAULT '' COMMENT '2.- ventanilla unica. 3.- Pago. 4.- Uso de suelo. 5.- Director. 6.- Secretario',
   `tipo_usuario` varchar(50) COLLATE utf8_spanish2_ci NOT NULL DEFAULT '0',
   `id_usuario` int(11) NOT NULL DEFAULT '0',
-  `status` int(11) NOT NULL COMMENT '0.- Revision. 1.- Aprobado. 2.- Denegado',
+  `status` int(11) NOT NULL DEFAULT '0' COMMENT '0.- Revision. 1.- Aprobado. 2.- Denegado',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
@@ -138,9 +139,9 @@ CREATE TABLE IF NOT EXISTS `expedientes` (
 DELETE FROM `expedientes`;
 /*!40000 ALTER TABLE `expedientes` DISABLE KEYS */;
 INSERT INTO `expedientes` (`id`, `folio`, `fecha_apertura`, `tipo_persona`, `id_persona`, `id_dg_establecimiento`, `id_dimensiones_establecimiento`, `etapa`, `tipo_usuario`, `id_usuario`, `status`) VALUES
-	(8, 'SARE-2021-05-11-18-05-52', '2021-05-11 13:50:52', 0, 1, 14, 13, '5', '0', 0, 0),
-	(9, 'SARE-2021-05-11-19-05-57', '2021-05-11 14:05:57', 0, 1, 15, 14, '7', '0', 0, 2),
-	(10, 'SARE-2021-05-20-14-05-04', '2021-05-20 09:49:04', 0, 10, 16, 15, '2', '0', 0, 0);
+	(8, 'SARE-2021-05-11-18-05-52', '2021-05-11 13:50:52', 0, 1, 14, 13, '7', '0', 0, 0),
+	(9, 'SARE-2021-05-11-19-05-57', '2021-05-11 14:05:57', 0, 1, 15, 14, '4', '0', 0, 0),
+	(10, 'SARE-2021-05-20-14-05-04', '2021-05-20 09:49:04', 0, 10, 16, 15, '3', '0', 0, 0);
 /*!40000 ALTER TABLE `expedientes` ENABLE KEYS */;
 
 -- Volcando estructura para tabla sare.historico
@@ -162,16 +163,20 @@ DELETE FROM `historico`;
 CREATE TABLE IF NOT EXISTS `pagos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_expediente` int(11) NOT NULL DEFAULT '0',
-  `status` int(1) NOT NULL DEFAULT '2' COMMENT '0.- Revision. 1.- Aprobado. 2.- Denegado',
+  `status` int(2) DEFAULT '0' COMMENT '0.- Revision. 1.- Aprobado. 2.- Denegado',
   `recibido` datetime DEFAULT NULL,
   `visto` datetime DEFAULT NULL,
   `resuelto` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla sare.pagos: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla sare.pagos: ~3 rows (aproximadamente)
 DELETE FROM `pagos`;
 /*!40000 ALTER TABLE `pagos` DISABLE KEYS */;
+INSERT INTO `pagos` (`id`, `id_expediente`, `status`, `recibido`, `visto`, `resuelto`) VALUES
+	(1, 10, 0, '2021-06-08 15:39:29', '2021-06-09 15:45:31', NULL),
+	(2, 9, 1, '2021-06-08 15:39:52', '2021-06-09 15:46:00', '2021-06-09 15:50:52'),
+	(3, 8, 1, '2021-06-08 15:40:07', '2021-06-09 15:46:00', '2021-06-09 15:47:01');
 /*!40000 ALTER TABLE `pagos` ENABLE KEYS */;
 
 -- Volcando estructura para vista sare.pendientes
@@ -271,36 +276,39 @@ CREATE TABLE `resueltas` (
 CREATE TABLE IF NOT EXISTS `secretario` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_expediente` int(11) NOT NULL DEFAULT '0',
-  `status` int(2) NOT NULL DEFAULT '2' COMMENT '0.- Revision. 1.- Aprobado. 2.- Denegado',
+  `status` int(2) NOT NULL DEFAULT '0' COMMENT '0.- Revision. 1.- Aprobado. 2.- Denegado',
   `recibido` datetime DEFAULT NULL,
   `visto` datetime DEFAULT NULL,
-  `reselto` datetime DEFAULT NULL,
+  `resuelto` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 -- Volcando datos para la tabla sare.secretario: ~1 rows (aproximadamente)
 DELETE FROM `secretario`;
 /*!40000 ALTER TABLE `secretario` DISABLE KEYS */;
-INSERT INTO `secretario` (`id`, `id_expediente`, `status`, `recibido`, `visto`, `reselto`) VALUES
-	(1, 9, 1, '2021-05-28 10:47:08', '2021-05-28 10:47:10', '2021-05-28 10:47:11');
+INSERT INTO `secretario` (`id`, `id_expediente`, `status`, `recibido`, `visto`, `resuelto`) VALUES
+	(1, 9, 1, '2021-05-28 10:47:08', '2021-05-28 10:47:10', '2021-05-28 10:47:11'),
+	(2, 8, 1, '2021-06-09 15:54:36', '2021-06-09 15:54:55', '2021-06-09 15:57:54');
 /*!40000 ALTER TABLE `secretario` ENABLE KEYS */;
 
 -- Volcando estructura para tabla sare.suelo
 CREATE TABLE IF NOT EXISTS `suelo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_expediente` int(11) NOT NULL DEFAULT '0',
-  `status` int(2) NOT NULL DEFAULT '2' COMMENT '0.- Revision. 1.- Aprobado. 2.- Denegado',
+  `status` int(2) NOT NULL DEFAULT '0' COMMENT '0.- Revision. 1.- Aprobado. 2.- Denegado',
   `recibido` datetime DEFAULT NULL,
   `visto` datetime DEFAULT NULL,
   `resuelto` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci COMMENT='uso';
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci COMMENT='uso';
 
--- Volcando datos para la tabla sare.suelo: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla sare.suelo: ~3 rows (aproximadamente)
 DELETE FROM `suelo`;
 /*!40000 ALTER TABLE `suelo` DISABLE KEYS */;
 INSERT INTO `suelo` (`id`, `id_expediente`, `status`, `recibido`, `visto`, `resuelto`) VALUES
-	(1, 9, 1, '2021-05-28 10:46:01', '2021-05-28 10:46:02', '2021-05-28 10:46:04');
+	(19, 10, 0, '2021-06-08 15:52:58', '2021-06-08 16:31:40', NULL),
+	(20, 8, 1, '2021-06-09 15:47:01', '2021-06-09 15:47:22', '2021-06-09 15:53:48'),
+	(21, 9, 0, '2021-06-09 15:50:52', '2021-06-09 15:51:40', NULL);
 /*!40000 ALTER TABLE `suelo` ENABLE KEYS */;
 
 -- Volcando estructura para tabla sare.suplente
@@ -354,18 +362,20 @@ INSERT INTO `usuarios` (`id_usuario`, `nombre_usuario`, `usuario`, `password`, `
 CREATE TABLE IF NOT EXISTS `ventanilla` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_expediente` int(11) NOT NULL DEFAULT '0',
-  `status` int(2) NOT NULL DEFAULT '2' COMMENT '0.- Revision. 1.- Aprobado. 2.- Denegado',
+  `status` int(2) NOT NULL DEFAULT '0' COMMENT '0.- Revision. 1.- Aprobado. 2.- Denegado',
   `recibido` datetime DEFAULT NULL,
   `visto` datetime DEFAULT NULL,
   `resuelto` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
--- Volcando datos para la tabla sare.ventanilla: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla sare.ventanilla: ~3 rows (aproximadamente)
 DELETE FROM `ventanilla`;
 /*!40000 ALTER TABLE `ventanilla` DISABLE KEYS */;
 INSERT INTO `ventanilla` (`id`, `id_expediente`, `status`, `recibido`, `visto`, `resuelto`) VALUES
-	(1, 9, 1, '2021-05-28 10:39:01', '2021-05-28 10:39:03', '2021-05-28 10:39:05');
+	(1, 9, 1, '2021-05-28 10:39:01', '2021-05-28 10:39:03', '2021-05-28 10:39:05'),
+	(2, 8, 0, '2021-06-08 10:14:15', '2021-06-09 10:14:26', NULL),
+	(3, 10, 0, '2021-06-08 10:15:07', '2021-06-09 10:15:14', NULL);
 /*!40000 ALTER TABLE `ventanilla` ENABLE KEYS */;
 
 -- Volcando estructura para vista sare.pendientes
