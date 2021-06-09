@@ -1075,6 +1075,8 @@
 
 		    function fill_modal_info(id, etapa)
 		    {
+		    	var pantalla = $('#pantalla').val();
+		    	console.log(pantalla);
 		        var xmlhttp;
 
 		        if (window.XMLHttpRequest){
@@ -1096,7 +1098,7 @@
 		            }
 		        }
 
-	        	var datos_modal = "id=" + id + "&etapa=" + etapa; 	        
+	        	var datos_modal = "id=" + id + "&etapa=" + etapa + "&pantalla=" + pantalla; 
 
 		        waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
 		        xmlhttp.open("POST","./model/solicitud/modal_info_sol.php",true);
