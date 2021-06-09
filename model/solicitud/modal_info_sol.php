@@ -7,8 +7,8 @@
 	$id = $_POST['id']; 
 	valida_visto($id, $etapa);
 	$orden_btn = '';
-	$rechaz_btn = '<button type="button" class="btn btn-danger" onclick="rechazar('.$id.');"><i class="fa fa-ban"></i>&nbsp;Rechazar Solicitud</button>';
-	$aprob_btn = '<button type="button" class="btn btn-success" onclick="aprobar('.$id.');"><i class="fa fa-check"></i>&nbsp;Aprobar Solicitud</button>';	
+	$rechaz_btn = '<button type="button" class="btn btn-danger" onclick="actualiza_status('.$id.',0,0,0);"><i class="fa fa-ban"></i>&nbsp;Rechazar Solicitud</button>';
+	$aprob_btn = '<button type="button" class="btn btn-success" onclick="actualiza_status('.$id.',1,0,0);"><i class="fa fa-check"></i>&nbsp;Aprobar Solicitud</button>';	
 
 	if (($pantalla == 1 && $etapa == 2) || ($pantalla == 1 && $etapa == 3) || ($pantalla == 2 && $etapa == 3)) {
 		
@@ -73,6 +73,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h1 class="blue">Solicitud <?=$expediente['folio'];?></h1>
+				<input type="hidden" id="folio_ruta" value="<?=$expediente['folio'];?>">
 			</div>
 
 			<div class="modal-body">

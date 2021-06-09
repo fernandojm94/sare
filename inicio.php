@@ -904,7 +904,6 @@
 			    $("#body_content").load(pagina);
 				$("#body_content").fadeIn(10000);
 			}
-
 		</script>
 
 
@@ -991,7 +990,6 @@
 		        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		        xmlhttp.send(datos_modal);
 		    }
-
 
 		    function wysiwyg()
 		    {
@@ -1420,7 +1418,7 @@
 				}else{
 								
 					swal({
-					  title: "¿Generar orden de pago?",
+					  title: "",
 					  text: "¿Desea generar la orden de pago?",
 					  icon: "warning",
 					  buttons: ["Cancelar", "Ok"],
@@ -1590,6 +1588,193 @@
 				} else{
 					fill_modal_gen_recibo(id_solicitud);
 				}				
+			}
+
+			function actualiza_status(id_solicitud,status,complemento,complemento2,folio)
+			{
+				var etapa = $("#pantalla").val();
+				var director = "";
+				var folio = $("#folio_ruta").val();
+				var id_usuario="";
+				var tipo_usuario="";
+				var titulo="";
+				var texto="";
+				var pantalla="";
+				
+				if (etapa==2)
+				{
+					pantalla="ventanilla";
+				}else if(etapa==4)
+				{
+					pantalla="uso_suelo";
+				}else if (etapa==5)
+				{
+					pantalla="director";
+					director = $("#input_director").val();
+				}else if(etapa==6)				
+				{
+					pantalla="secretario";
+				}
+
+				if (director==1)
+				{
+					id_usuario = <?= $_SESSION['id_usuario']; ?>;
+					tipo_usuario = <?= $_SESSION['id_tipo_usuario']; ?>;
+				}
+
+				if(status==0)
+				{
+					titulo="Rechazar?";
+					texto="¿Seguro que desea rechazar la solicutud?";
+				} else if((status==1)&&(etapa==2)&&(complemento!=0)){
+					titulo="¿Generar orden de pago?";
+					texto="¿Desea generar la orden de pago?";
+				} else{
+					titulo="¿Aprobar?";
+					texto="¿Seguro que desea aprobar la solicutud?";
+				}
+
+				if ((etapa==4)&& complemento=="")
+				{
+					swal({
+					  	title: "¡Error!",
+					  	text: "¡Favor de escribir el dictámen!",
+					  	icon: "warning",
+					});
+				} else{
+					swal({
+					  	title: titulo,
+					  	text: texto,
+					  	icon: "info",
+					 	buttons: ["Cancelar", "Ok"],
+					  	dangerMode: true,
+					}).then((willDelete) => {
+						if (willDelete) {
+
+							if(status==0)
+							{
+								swal({
+								  	title: "Descripción",
+								  	text: "Describa el motivo del rechazo:",
+								  	buttons: ["Cancelar", "Enviar"],
+								  	icon: "info",
+								  	content: "input",
+							    }).then((value) => {
+							    	if (value) {
+
+							    		var data = {
+											'id' : id_solicitud,
+											'etapa' : etapa,
+											'status' : status,
+											'adicional_1' : value,
+											'adicional_2' : "",
+											'director' : director,
+											'tipo_usuario' : tipo_usuario,
+											'id_usuario' : id_usuario,
+											'ruta' : folio,
+										}
+
+										$.ajax({
+											data:  data,
+											url:   './model/sedatum/actualiza_status.php',
+											type:  'post',
+
+											success:  function (data) {
+
+												if (data==='correcto'){
+													swal({
+													  title: "¡Datos guardados correctamente!",
+													  icon: "success",
+													}).then( (value) => {
+														$("#modal_info").modal('hide');
+													});
+
+													cambiarcont('view/solicitud/'+pantalla+'.php?pantalla='+etapa);
+												}
+
+												if (data==='error'){
+													swal({
+													  title: "¡Error!",
+													  text: "¡Ocurrio algo al actualizar el estatus!",
+													  icon: "error",
+													});
+												}
+											}
+										});
+
+							    	}else{
+							    		swal("¡Cancelado!", "No se ha rechazado la solicutud", "error");
+							    	}
+							    });								
+							} else{
+								
+								console.log("id:"+id_solicitud+" etapa: "+etapa+" status: "+status+" adicional_1: "+complemento+" adicional_2: "+complemento2+" director: "+director+" tipo_usuario: "+tipo_usuario+" id_usuario: "+id_usuario+" folio: "+folio);
+
+
+								if ((etapa==2)&&(complemento==0))
+								{
+									fill_modal_gen_recibo(id_solicitud);
+								} else if((etapa==2) && (complemento=="") && (complemento2=="")){
+									swal({
+									  	title: "¡Error!",
+									  	text: "¡Favor de llenar todos los campos!",
+									  	icon: "warning",
+									});
+								} else{
+
+									var data = {
+										'id' : id_solicitud,
+										'etapa' : etapa,
+										'status' : status,
+										'adicional_1' : complemento,
+										'adicional_2' : complemento2,
+										'director' : director,
+										'tipo_usuario' : tipo_usuario,
+										'id_usuario' : id_usuario,
+										'ruta' : folio,
+									}
+
+									console.log(data);
+
+									$.ajax({
+										data:  data,
+										url:   './model/sedatum/actualiza_status.php',
+										type:  'post', 
+
+										success:  function (data) {
+											$("#modal_info").modal('hide');
+											if (data==='correcto'){
+												swal({
+												  title: "¡Datos guardados correctamente!",
+												  icon: "success",
+												}).then( (value) => {
+												});
+
+												cambiarcont('view/sedatum/'+pantalla+'.php?pantalla='+etapa);
+												if (etapa==2)
+												{
+													window.open('view/sedatum/pdf_orden.php?id='+id_solicitud+'&giro='+complemento, '_blank');
+												}
+
+											}
+
+											if (data==='error'){
+												swal({
+												  title: "¡Error!",
+												  text: "¡Ocurrio algo al actualizar el estatus!",
+												  icon: "error",
+												});
+											}
+										}
+									});
+								}
+							}
+
+						}else{
+							swal("¡Cancelado!", "No se han hecho cambios la solicitud", "error");
+						}
+					});
+				}
 			}
 
 			function chosen()

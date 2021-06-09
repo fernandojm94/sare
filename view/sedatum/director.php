@@ -2,7 +2,8 @@
 	include('../../model/suplente/fill.php');
 	include('../../controller/funciones.php');
 
-	$suplente = fill_suplente_activo($_SESSION['id_usuario']);
+	$suplente = fill_suplente();
+	$suplente_activo = fill_suplente_activo($suplente['id_usuario']);
 	user_login();
 	/*$propietarios = propietarios();
 	$tr_propietarios = fill_propietarios($propietarios);
@@ -59,7 +60,7 @@
 								<div style="display: inline-block; float: left;">
 									<div>
 										<label>
-											<input id="switch_director" value="<?=$suplente;?>" class="hidden">
+											<input id="input_director" value="<?=$suplente_activo;?>" type="hidden">
 											<div id="span_director"></div>
 										</label>
 									</div>
@@ -120,14 +121,13 @@
 
 <script>
 
-	var check = document.getElementById("switch_director").value;
+	var check = document.getElementById("input_director").value;
+	console.log(check);
 
 	if (check == 1) {
-		document.getElementById("switch_director").checked = true;
 		document.getElementById("span_director").style.backgroundColor = "#87b87f";
 		document.getElementById("span_director").innerHTML = "&nbsp;<h4 style='display:inline'>Última Aprobación Activada</h4>";
 	}else{
-		document.getElementById("switch_director").checked = false;
 		document.getElementById("span_director").style.backgroundColor = "#d15b47";
 		document.getElementById("span_director").innerHTML = "&nbsp;<h4 style='display:inline'>Última Aprobación Desactivada</h4>";
 	}
