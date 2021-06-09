@@ -1,7 +1,7 @@
 <?php
 	include('../../controller/solicitud/funciones_solicitud.php');
 	$expediente = $_POST['id'];
-	$usuario = $_POST['usuario'];
+	//echo $usuario = $_POST['usuario'];
 	$adicional_1 = $_POST['adicional_1'];
 	$adicional_2 = $_POST['adicional_2'];
 	$etapa = $_POST['etapa'];
@@ -9,7 +9,7 @@
 	$tipo_usuario = $_POST['tipo_usuario'];
 	$id_usuario = $_POST['id_usuario'];
 	$director = $_POST['director'];
-	$ruta = "../../assets/expedientes/"$_POST['ruta']."/docs/";
+	$ruta = "../../assets/expedientes/".$_POST['ruta']."/docs/";
 	$resuelto = $recibe = "";
 
 	switch ($etapa) {			
@@ -17,7 +17,7 @@
 				$resuelto = "ventanilla";
 				$recibe = "pagos";
 				$etapa = 3;
-				if(create_historico_pago($id_expediente, $pago))
+				if(create_historico_pago($expediente, $adicional_2))
 				{
 					$mensaje = "correcto";
 				}else{
@@ -104,11 +104,11 @@ echo $mensaje;
 
 function create_html($ruta, $adicional_1, $adicional_2, $nombre)
 {
-	if (file_exists($ruta.$nombre."txt"))
+	if (file_exists($ruta.$nombre.".txt"))
 	{
-		$archivo = fopen($ruta.$nombre."txt", "a");		
+		$archivo = fopen($ruta.$nombre.".txt", "a");		
 	}else{
-		$archivo = fopen($ruta.$nombre."txt", "w");
+		$archivo = fopen($ruta.$nombre.".txt", "w");
 	}
 	 fwrite($archivo, PHP_EOL ."$adicional_1");
 	fclose($archivo);

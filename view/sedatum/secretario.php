@@ -119,6 +119,7 @@
 <script>
 
 	var check_1 = document.getElementById("switch_director").value;
+	
 
 	if (check_1 == 1) {
 		document.getElementById("switch_director").checked = true;
