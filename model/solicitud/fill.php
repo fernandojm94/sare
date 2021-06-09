@@ -99,7 +99,7 @@ function pendientes_etapa($etapa)
 
 function fill_solicitudes($solicitudes)
 {	
-	$tr_pendientes = "";
+	$tr_pendientes = $primero ="";
 
 	foreach ($solicitudes as $solicitud) 
 	{	
@@ -166,7 +166,10 @@ function fill_solicitudes($solicitudes)
 			$status = "3. Rechazado";
 			$label = "danger";
 		}
-		$tr_pendientes.='
+		if($solicitud['etapa'] == 3)
+		{
+			valida_visto($solicitud['id'], $solicitud['etapa']);
+			$primero.='
 							<tr>
 								<td>'.$solicitud['nombre_comercial'].'</td>
 								<td>'.$solicitud['fecha_apertura'].'</td>
@@ -184,8 +187,29 @@ function fill_solicitudes($solicitudes)
 								</td>
 							</tr>
 						';
+
+		}else{
+			$tr_pendientes.='
+							<tr>
+								<td>'.$solicitud['nombre_comercial'].'</td>
+								<td>'.$solicitud['fecha_apertura'].'</td>
+								<td class="hid_xs">
+									'.$solicitud['domicilio'].'
+								</td> 
+								<td>'.$solicitud['telefono'].'</td>
+								<td><span class="label label-'.$label_e.' arrowed-right">'.$etapa.'</span></td>
+								<td class="center"><span class="label label-'.$label.' arrowed-right">'.$status.'</span></td>
+								<td class="center">
+									<div class="btn-group">
+										'.$info_btn.'
+										'.$comprobante.'
+									</div>
+								</td>
+							</tr>
+						';
+		}	
 	}
-	return $tr_pendientes;
+	return $primero.$tr_pendientes;
 }
 
 function fill_expediente($id)
@@ -232,7 +256,7 @@ function valida_visto($id, $etapa)
 				break;
 			
 			case '3':
-				$tabla = "pago";
+				$tabla = "pagos";
 				break;
 
 			case '4':
