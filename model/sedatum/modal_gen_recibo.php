@@ -61,7 +61,7 @@
 
 			<div class="modal-footer">
 				<button type="button" class="btn pull-left" data-dismiss="modal" onclick="show_hide_modals()"><i class="fa fa-times">&nbsp;</i>Cancelar</button>
-				<button type="button" class="btn btn-primary" onclick="genera_orden(document.getElementById('giro').value,document.getElementById('costo').value,<?=$id;?>)"><i class="fa fa-money">&nbsp;</i>Generar orden de pago</button>
+				<button type="button" class="btn btn-primary" onclick="actualiza_status(<?=$id;?>,1,document.getElementById('giro').value,document.getElementById('costo').value)"><i class="fa fa-money">&nbsp;</i>Generar orden de pago</button>
 			</div>
 
 		</div>	

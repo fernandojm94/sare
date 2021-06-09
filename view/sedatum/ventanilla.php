@@ -114,6 +114,5 @@
 		else {
 			inp.setAttribute('disabled' , 'disabled');
 		}
-	}
-	
+	}	
 </script>

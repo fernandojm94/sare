@@ -24,8 +24,8 @@
 
 			<div class="modal-footer">
 				<button type="button" class="btn btn-danger pull-left" data-dismiss="modal" onclick="show_hide_modals()"><i class="fa fa-times">&nbsp;</i>Cancelar</button>
-				<button type="button" class="btn btn-success" onclick="guardar_complemento(document.getElementById('complemento').innerHTML,<?=$id;?>,1)"><i class="fa fa-check">&nbsp;</i>Aprobar solicitud</button>
-				<button type="button" class="btn btn-danger" onclick="guardar_complemento(document.getElementById('complemento').innerHTML,<?=$id;?>,0)"><i class="fa fa-ban"></i>&nbsp;Rechazar Solicitud</button>
+				<button type="button" class="btn btn-success" onclick="actualiza_status(<?=$id;?>,1,document.getElementById('complemento').innerHTML,0)"><i class="fa fa-check">&nbsp;</i>Aprobar solicitud</button>
+				<button type="button" class="btn btn-danger" onclick="actualiza_status(<?=$id;?>,0,document.getElementById('complemento').innerHTML,0)"><i class="fa fa-ban"></i>&nbsp;Rechazar Solicitud</button>
 			</div>
 
 		</div>	
