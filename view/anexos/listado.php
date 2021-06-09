@@ -1,11 +1,9 @@
 <?php
-	//include('../../model/propietarios/fill_propietarios.php');
 	include('../../controller/funciones.php');
 	user_login();
-	/*$propietarios = propietarios();
-	$tr_propietarios = fill_propietarios($propietarios);
-	$modal_editar_propietario = fill_modal_propietario($propietarios);
-	$modal_info_propietario = fill_modal_info($propietarios);*/
+
+	$pantalla = $_GET['pantalla']; 
+
 ?>
 
 
@@ -102,6 +100,7 @@
 		</div>
 	</div>
 
+	<input type="hidden" id="pantalla" value="<?= $pantalla; ?>">
 	<div id="load_modal_info"></div>
 	<div id="modal_upload_anexo"></div>
 
@@ -110,44 +109,6 @@
 <script>
 
 	$(document).ready(fill_tabs());
-
-	function fill_tabs(li)
-    {
-    	var id = '';
-    	if (!li) {
-    		id = 'pendientes';
-    	}else{
-	    	id = li.childNodes[1].getAttribute('href').split('#')[1];
-    	}
-
-        var xmlhttp;
-
-        if (window.XMLHttpRequest){
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp=new XMLHttpRequest();
-        }
-
-        else{// code for IE6, IE5
-            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-        }
-
-        xmlhttp.onreadystatechange=function(){
-
-            if (xmlhttp.readyState==4 && xmlhttp.status==200){
-                //document.getElementById("loading").innerHTML = ''; // Hide the image after the response from the
-                document.getElementById("tabs").innerHTML=xmlhttp.responseText;
-                waitingDialog.hide();
-                dynamic();
-            }
-        }
-
-        var datos_modal = 'id=' + id;
-
-        waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
-        xmlhttp.open("POST","./view/anexos/tabs.php",true);
-        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        xmlhttp.send(datos_modal);
-    }
 
     function fill_modal_update_anexos(id_aprobada){
 
@@ -245,31 +206,5 @@
 			}
 		});
     }
-</script>
 
-<script type="text/javascript">
-	$( document ).ready(function() {
-		var screen = $( window ).width();
-		if (screen < 916) {
-			$('#dynamic-table_info, #dynamic-table_paginate').parent().removeClass('col-xs-6').addClass('col-xs-12');
-		}
-
-		else{
-			$('#dynamic-table_info, #dynamic-table_paginate').parent().removeClass('col-xs-12').addClass('col-xs-6');
-		}
-
-	});
-
-
-	$( window ).resize(function() {
-		var screen = $( window ).width();
-		if (screen < 916) {
-			$('#dynamic-table_info, #dynamic-table_paginate').parent().removeClass('col-xs-6').addClass('col-xs-12');
-		 }
-
-		else{
-			$('#dynamic-table_info, #dynamic-table_paginate').parent().removeClass('col-xs-12').addClass('col-xs-6');
-		}
-
-	});
 </script>
