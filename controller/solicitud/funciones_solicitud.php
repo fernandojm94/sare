@@ -218,7 +218,7 @@ function rechaza_expediente($id, $status)
 
 function aprobar_expediente($id, $status, $id_usuario, $tipo_usuario)
 {
-	$sql = "UPDATE expedientes SET status = $tatus, id_usuario = $id_usuario, tipo_usuario = $tipo_usuario
+	$sql = "UPDATE expedientes SET status = $status, id_usuario = $id_usuario, tipo_usuario = $tipo_usuario
 			WHERE id = $id";
 
 	$result = querys($sql);
