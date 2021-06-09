@@ -59,7 +59,7 @@
 										</a>
 										<br>
 									</h1>
-									<h6 class="center"><a href="'.$link.'" target="_blank">'.$archivo.'</a></h6>
+									<h6 class="center" style="overflow-wrap: break-word;"><a href="'.$link.'" target="_blank">'.$archivo.'</a></h6>
 								</div>
 							';	
 				}
@@ -353,7 +353,7 @@
 											</div>
 										</div>
 
-										<div class="message-footer clearfix">
+										<div class="message-footer clearfix" style="display:flex; justify-content:space-around;">
 											<?=$documentos?>
 										</div>
 									</div>
