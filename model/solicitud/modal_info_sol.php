@@ -4,7 +4,7 @@
 	//INICIA LA SELECCION DE BOTONES QUE SE DEBEN IMPRIMIR PARA CADA ETAPA
 	$etapa = $_POST['etapa'];
 	$id = $_POST['id']; 
-	
+	valida_visto($id, $etapa);
 	$orden_btn = '';
 	$rechaz_btn = '<button type="button" class="btn btn-danger" onclick="rechazar('.$id.');"><i class="fa fa-ban"></i>&nbsp;Rechazar Solicitud</button>';
 	$aprob_btn = '<button type="button" class="btn btn-success" onclick="aprobar('.$id.');"><i class="fa fa-check"></i>&nbsp;Aprobar Solicitud</button>';	

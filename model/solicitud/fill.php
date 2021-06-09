@@ -222,4 +222,36 @@ function fill_dimensiones($id)
 
 	return $dimensiones;
 }
+
+function valida_visto($id, $etapa)
+{	
+	switch ($etapa) 
+		{
+			case '2':
+				$tabla = "ventanilla";
+				break;
+			
+			case '3':
+				$tabla = "pago";
+				break;
+
+			case '4':
+				$tabla = "suelo";
+				break;
+
+			case '5':
+				$tabla = "director";
+				break;
+
+			case '6':
+				$tabla = "secretario";
+				break;
+		}
+		$visto = get_visto($id, $tabla);
+		
+		if($visto)
+		{
+			update_visto($id, $tabla);
+		}
+}
 ?>

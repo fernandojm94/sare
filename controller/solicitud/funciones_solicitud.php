@@ -235,3 +235,24 @@ function create_historico_pago($id_expediente, $pago)
 
 	return $result;
 }
+
+function get_visto($id, $tabla)
+{
+	$sql = "SELECT id 
+				FROM ".$tabla."
+			WHERE id_expediente = $id AND visto IS NULL";
+
+	$result = query_num_rows($sql);
+
+	return $result;
+
+}
+
+function update_visto($id, $tabla)
+{
+	$sql = "UPDATE ".$tabla." SET visto = now() WHERE id_expediente = ".$id;
+
+	$result = querys($sql);
+
+	return $result; 
+}
