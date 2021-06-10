@@ -367,6 +367,7 @@
 		<!-- ace scripts -->
 		<script src="assets/js/ace-elements.min.js"></script>
 		<script src="assets/js/ace.min.js"></script>
+		<script src="assets/js/tree.min.js"></script>
 
 		<!--Alert-->
 		<script src="https://unpkg.com/sweetalert@2.1.0/dist/sweetalert.min.js"></script>
@@ -1093,6 +1094,7 @@
 		                document.getElementById("load_modal_info").innerHTML=xmlhttp.responseText;
 		                waitingDialog.hide();
 		                $('#modal_info').modal('show');
+		                documentacion();
 		            }
 		        }
 
@@ -1554,6 +1556,88 @@
 		            });            
 		        }
 			}
+
+			function documentacion(){
+				jQuery(function($){
+	
+					var sampleData = initiateDemoData();//see below
+
+					
+					$('#tree2').ace_tree({
+						dataSource: sampleData['dataSource2'] ,
+						loadingHTML:'<div class="tree-loading"><i class="ace-icon fa fa-refresh fa-spin blue"></i></div>',
+						'open-icon' : 'ace-icon fa fa-folder-open',
+						'close-icon' : 'ace-icon fa fa-folder',
+						'itemSelect' : false,
+						'folderSelect': true,
+						'multiSelect': false,
+						'selected-icon' : null,
+						'unselected-icon' : null,
+						'folder-open-icon' : 'ace-icon tree-plus',
+						'folder-close-icon' : 'ace-icon tree-minus'
+					});
+					
+					
+					function initiateDemoData(){
+						
+						var tree_data_2 = {
+							'documentacion' : {text: 'Documentación', type: 'folder', 'icon-class':'orange'},
+							'pagos' : {text: 'Pagos', type: 'folder', 'icon-class':'red'},
+							'anexos' : {text: 'Anexos', type: 'folder', 'icon-class':'blue'}	
+						}
+
+						tree_data_2['documentacion']['additionalParameters'] = {
+							'children' : [
+								{text: '<i class="ace-icon fa fa-info blue"></i> No hay ningún archivo', type: 'item'}
+							]
+						}
+
+						tree_data_2['pagos']['additionalParameters'] = {
+							'children' : [
+								{text: '<i class="ace-icon fa fa-file blue"></i> song1.ogg', type: 'item'},
+								{text: '<i class="ace-icon fa fa-file blue"></i> song2.ogg', type: 'item'},
+								{text: '<i class="ace-icon fa fa-file blue"></i> song3.ogg', type: 'item'},
+								{text: '<i class="ace-icon fa fa-file blue"></i> song4.ogg', type: 'item'},
+								{text: '<i class="ace-icon fa fa-file blue"></i> song5.ogg', type: 'item'}
+							]
+						}
+
+						tree_data_2['anexos']['additionalParameters'] = {
+							'children' : [
+								{text: '<i class="ace-icon fa fa-file blue"></i> song1.ogg', type: 'item'},
+								{text: '<i class="ace-icon fa fa-file blue"></i> song2.ogg', type: 'item'},
+								{text: '<i class="ace-icon fa fa-file blue"></i> song3.ogg', type: 'item'},
+								{text: '<i class="ace-icon fa fa-file blue"></i> song4.ogg', type: 'item'},
+								{text: '<i class="ace-icon fa fa-file blue"></i> song5.ogg', type: 'item'}
+							]
+						}
+
+						var dataSource2 = function(options, callback){
+							var $data = null
+							if(!("text" in options) && !("type" in options)){
+								$data = tree_data_2;//the root tree
+								callback({ data: $data });
+								return;
+							}
+							else if("type" in options && options.type == "folder") {
+								if("additionalParameters" in options && "children" in options.additionalParameters)
+									$data = options.additionalParameters.children || {};
+								else $data = {}//no data
+							}
+							
+							if($data != null)//this setTimeout is only for mimicking some random delay
+								setTimeout(function(){callback({ data: $data });} , parseInt(Math.random() * 500) + 200);
+
+							//we have used static data here
+							//but you can retrieve your data dynamically from a server using ajax call
+							//checkout examples/treeview.html and examples/treeview.js for more info
+						}
+
+						return {'dataSource2' : dataSource2}
+					}
+
+				});
+			}	
 				
 		</script>
 	</body>
