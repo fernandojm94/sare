@@ -230,7 +230,7 @@
 
 						<ul class="submenu">
 							<li class="">
-								<a href="javascript:cambiarcont('view/anexos/listado.php?pantalla=1');">
+								<a href="javascript:cambiarcont('view/anexos/listado.php?pantalla=8');">
 									<i class="menu-icon fa fa-caret-right"></i>
 									Listado
 								</a>

@@ -110,7 +110,7 @@
 
 	$(document).ready(fill_tabs());
 
-    function fill_modal_update_anexos(id_aprobada){
+    function fill_modal_update_anexos(){
 
         var xmlhttp;
 
