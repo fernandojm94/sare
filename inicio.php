@@ -1323,7 +1323,7 @@
 		  			$('#modal_info').modal('show');
 				});
 
-				$('#modal_rec').on('shown.bs.modal', function (e) {
+				$('#modal_rec').on('show.bs.modal', function (e) {
 		  			$('#modal_info').modal('hide');
 				});
 
@@ -1742,15 +1742,17 @@
 										type:  'post', 
 
 										success:  function (data) {
-											$("#modal_info").modal('hide');
+										
 											if (data==='correcto'){
 												swal({
 												  title: "¡Datos guardados correctamente!",
 												  icon: "success",
 												}).then( (value) => {
+													$('.modal-backdrop').remove();
+													cambiarcont('view/sedatum/'+pantalla+'.php?pantalla='+etapa);	
+													
 												});
 
-												cambiarcont('view/sedatum/'+pantalla+'.php?pantalla='+etapa);
 												if (etapa==2)
 												{
 													window.open('view/sedatum/pdf_orden.php?id='+id_solicitud+'&giro='+complemento, '_blank');
