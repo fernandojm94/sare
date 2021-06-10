@@ -355,7 +355,16 @@
 										</div>
 
 										<div class="message-footer clearfix" style="display:flex; justify-content:space-around;">
-											<?=$documentos?>
+											<!-- <?=$documentos?> -->
+
+											<div class="col-xs-12">
+												<div class="widget-body">
+													<div class="widget-main padding-8">
+														<ul id="tree2"></ul>
+													</div>
+												</div>
+											</div>
+
 										</div>
 									</div>
 								</div>
