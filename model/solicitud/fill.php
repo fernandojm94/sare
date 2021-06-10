@@ -88,6 +88,8 @@ function pendientes_etapa($etapa)
 		$etapa = "etapa = 2 OR etapa = 3";
 	}elseif($etapa == 1){
 		$etapa = $etapa;
+	}elseif($etapa == 8){
+		$etapa = "etapa BETWEEN 4 AND 7";
 	}else{
 		$etapa = "etapa = ".$etapa;
 	}
@@ -108,6 +110,20 @@ function fill_solicitudes($solicitudes, $pantalla)
 		$info_btn = '<a class="btn btn-xs btn-info" onclick="fill_modal_info('.$solicitud['id'].','.$solicitud['etapa'].')" role="button" data-toggle="modal">
 						<i class="ace-icon fa fa-info-circle bigger-130"></i>
 					</a>';
+		if ($pantalla == 1 AND $solicitud['etapa'] == 3) 
+		{
+					$comprobante = '<a class="btn btn-xs btn-success" onclick="fill_modal_upcomprobante('.$solicitud['id'].')" role="button" data-toggle="modal">
+									<i class="ace-icon fa fa-upload bigger-130"></i>
+								</a>';	
+		}
+
+
+		if ($pantalla == 8 AND $solicitud['etapa'] != 1 )
+		{
+			$comprobante = '<a class="btn btn-xs btn-success" onclick="fill_modal_update_anexos('.$solicitud['id'].')" role="button" data-toggle="modal">
+									<i class="ace-icon fa fa-upload bigger-130"></i>
+								</a>';	
+		}
 
 		switch ($solicitud['etapa']) 
 		{
@@ -120,61 +136,26 @@ function fill_solicitudes($solicitudes, $pantalla)
 			case '3':
 				$etapa = 'Pendiente de pago';
 				$label_e = "warning";
-				
-				if ($pantalla == 1) {
-					$comprobante = '<a class="btn btn-xs btn-success" onclick="fill_modal_upcomprobante('.$solicitud['id'].')" role="button" data-toggle="modal">
-									<i class="ace-icon fa fa-upload bigger-130"></i>
-								</a>';	
-				}
-				
 				break;
 
 			case '4':
 				$etapa = 'Uso de suelo';
 				$label_e = "yellow";
-
-				if ($pantalla == 8) {
-					$comprobante = '<a class="btn btn-xs btn-success" onclick="fill_modal_update_anexos('.$solicitud['id'].')" role="button" data-toggle="modal">
-									<i class="ace-icon fa fa-upload bigger-130"></i>
-								</a>';	
-				}
-
 				break;
 
 			case '5':
 				$etapa = 'Dirección';
 				$label_e = "primary";
-
-				if ($pantalla == 8) {
-					$comprobante = '<a class="btn btn-xs btn-success" onclick="fill_modal_update_anexos('.$solicitud['id'].')" role="button" data-toggle="modal">
-									<i class="ace-icon fa fa-upload bigger-130"></i>
-								</a>';	
-				}
-
 				break;
 
 			case '6':
 				$etapa = 'Secretario';
 				$label_e = "inverse";
-
-				if ($pantalla == 8) {
-					$comprobante = '<a class="btn btn-xs btn-success" onclick="fill_modal_update_anexos('.$solicitud['id'].')" role="button" data-toggle="modal">
-									<i class="ace-icon fa fa-upload bigger-130"></i>
-								</a>';	
-				}
-
 				break;
 
 			case '7':
 				$etapa = 'Atendida';
 				$label_e = "primary";
-
-				if ($pantalla == 8) {
-					$comprobante = '<a class="btn btn-xs btn-success" onclick="fill_modal_update_anexos('.$solicitud['id'].')" role="button" data-toggle="modal">
-									<i class="ace-icon fa fa-upload bigger-130"></i>
-								</a>';	
-				}
-
 				break;
 
 			default:
