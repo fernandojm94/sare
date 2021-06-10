@@ -9,7 +9,7 @@
 	{
 		$solicitudes  = pendientes_etapa($etapa);		
 	}else{
-		if($etapa == 1 OR $etapa == 7)
+		if($etapa == 1 OR $etapa == 7 or $etapa == 8)
 		{
 			$solicitudes  = atendidas();	
 		}else{
