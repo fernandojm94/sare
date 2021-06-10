@@ -97,7 +97,7 @@ function pendientes_etapa($etapa)
 	return $result;
 }
 
-function fill_solicitudes($solicitudes)
+function fill_solicitudes($solicitudes, $pantalla)
 {	
 	$tr_pendientes = $primero ="";
 
@@ -120,9 +120,13 @@ function fill_solicitudes($solicitudes)
 			case '3':
 				$etapa = 'Pendiente de pago';
 				$label_e = "warning";
-				$comprobante = '<a class="btn btn-xs btn-success" onclick="fill_modal_upcomprobante('.$solicitud['id'].')" role="button" data-toggle="modal">
+				
+				if ($pantalla == 1) {
+					$comprobante = '<a class="btn btn-xs btn-success" onclick="fill_modal_upcomprobante('.$solicitud['id'].')" role="button" data-toggle="modal">
 									<i class="ace-icon fa fa-upload bigger-130"></i>
-								</a>';
+								</a>';	
+				}
+				
 				break;
 
 			case '4':
