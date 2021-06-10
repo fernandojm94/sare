@@ -17,7 +17,7 @@
 		}		
 		
 	}
-	$tr_solicitudes = fill_solicitudes($solicitudes);	
+	$tr_solicitudes = fill_solicitudes($solicitudes, $etapa);	
 
 	// $tipo = $_POST['algo']; SIRVE PARA IDENTIFICAR DESDE DONDE LLAMAN AL MODAL, DESDE DIRECTOR O DESDE SECRETARIO
 	$tipo = 2; //ASIGNACION PARA QUE NO MARQUE ERROR
