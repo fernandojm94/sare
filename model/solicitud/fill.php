@@ -118,7 +118,7 @@ function fill_solicitudes($solicitudes, $pantalla)
 		}
 
 
-		if ($pantalla == 8 AND $solicitud['etapa'] != 1 )
+		if ($pantalla == 8 AND $solicitud['etapa'] != 1  AND $solicitud['status'] != 2)
 		{
 			$comprobante = '<a class="btn btn-xs btn-success" onclick="fill_modal_update_anexos('.$solicitud['id'].')" role="button" data-toggle="modal">
 									<i class="ace-icon fa fa-upload bigger-130"></i>
