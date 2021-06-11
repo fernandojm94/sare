@@ -110,7 +110,7 @@
 
 	$(document).ready(fill_tabs());
 
-    function fill_modal_update_anexos(){
+    function fill_modal_update_anexos(id_solicitud){
 
         var xmlhttp;
 
@@ -134,7 +134,7 @@
             }
         }
 
-        var datos_modal = 'id_aprobada=' + id_aprobada;
+        var datos_modal = 'id_solicitud=' + id_solicitud;
 
         waitingDialog.show('Cargando Información', {dialogSize: 'sm', progressType: 'warning'})
         xmlhttp.open("POST","./view/anexos/modal_upload_anexos.php",true);
