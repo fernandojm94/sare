@@ -1557,12 +1557,33 @@
 		        }
 			}
 
+			//esto es para agregarlos a manita con un botón
+
+			function agregar_elemento(){
+				// console.log("holi");
+				var list_docs = "<li class=tree-item role=treeitem><span class=tree-item-name><span class=tree-label><a href=inicio.php><i class=ace-icon fa fa-file blue></i>&nbsp;Nombre del arhivo</a></span></span></li>";
+				var boxc = $("#here");
+
+				$(list_docs).appendTo(boxc);
+
+				var arboles = document.getElementsByClassName("tree-branch");
+					$(arboles[1]).append(list_docs);				
+
+					// for(var i= 1; i<4; i++){
+					// 	var si = $(arboles[i]).has("ul").append(list_docs);
+			
+					// 	console.log(si);
+					// }
+					
+			}
+
+
+			//esta es la función que viene del ace min
 			function documentacion(){
 				jQuery(function($){
 	
 					var sampleData = initiateDemoData();//see below
 
-					
 					$('#tree2').ace_tree({
 						dataSource: sampleData['dataSource2'] ,
 						loadingHTML:'<div class="tree-loading"><i class="ace-icon fa fa-refresh fa-spin blue"></i></div>',
@@ -1576,7 +1597,7 @@
 						'folder-open-icon' : 'ace-icon tree-plus',
 						'folder-close-icon' : 'ace-icon tree-minus'
 					});
-					
+
 					
 					function initiateDemoData(){
 						
@@ -1587,29 +1608,30 @@
 						}
 
 						tree_data_2['documentacion']['additionalParameters'] = {
-							'children' : [
-								{text: '<i class="ace-icon fa fa-info blue"></i> No hay ningún archivo', type: 'item'}
-							]
+							'children' : []
 						}
 
 						tree_data_2['pagos']['additionalParameters'] = {
-							'children' : [
-								{text: '<i class="ace-icon fa fa-file blue"></i> song1.ogg', type: 'item'},
-								{text: '<i class="ace-icon fa fa-file blue"></i> song2.ogg', type: 'item'},
-								{text: '<i class="ace-icon fa fa-file blue"></i> song3.ogg', type: 'item'},
-								{text: '<i class="ace-icon fa fa-file blue"></i> song4.ogg', type: 'item'},
-								{text: '<i class="ace-icon fa fa-file blue"></i> song5.ogg', type: 'item'}
-							]
+							'children' : []
 						}
 
 						tree_data_2['anexos']['additionalParameters'] = {
 							'children' : [
-								{text: '<i class="ace-icon fa fa-file blue"></i> song1.ogg', type: 'item'},
-								{text: '<i class="ace-icon fa fa-file blue"></i> song2.ogg', type: 'item'},
-								{text: '<i class="ace-icon fa fa-file blue"></i> song3.ogg', type: 'item'},
-								{text: '<i class="ace-icon fa fa-file blue"></i> song4.ogg', type: 'item'},
-								{text: '<i class="ace-icon fa fa-file blue"></i> song5.ogg', type: 'item'}
+								//{text: '<h1>Elemento</h1>', type: "item"} Esta es la manera en que se agrega un elemento por default
 							]
+						}
+
+						//esta es una función que hice para simular un foreach
+						for(var i=0; i<5; i++){
+							
+							tree_data_2['anexos']['additionalParameters']['children']['length'] = i;
+
+							tree_data_2['anexos']['additionalParameters']['children'][i] = {text: ''};
+							
+							tree_data_2['anexos']['additionalParameters']['children'][i]['text'] = '<a href="inicio.php"><i class="ace-icon fa fa-file blue"></i>&nbsp;Nombre del arhivo</a>';
+							
+							tree_data_2['anexos']['additionalParameters']['children'][i]['type'] = 'item';
+								
 						}
 
 						var dataSource2 = function(options, callback){

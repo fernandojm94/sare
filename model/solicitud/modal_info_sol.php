@@ -367,6 +367,8 @@
 
 										</div>
 									</div>
+
+									<button onclick="agregar_elemento();" class="btn btn-xs btn-secondary">Agregar</button>
 								</div>
 
 							</div><!-- /.tab-content -->
