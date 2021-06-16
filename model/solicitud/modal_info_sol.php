@@ -40,6 +40,7 @@
 	if(is_dir($ruta))
 	{
 		$archivos = scandir($ruta);
+		var_dump(count($archivos));
 	
 		foreach ($archivos as $archivo)
 		{
@@ -367,8 +368,6 @@
 
 										</div>
 									</div>
-
-									<button onclick="agregar_elemento();" class="btn btn-xs btn-secondary">Agregar</button>
 								</div>
 
 							</div><!-- /.tab-content -->
