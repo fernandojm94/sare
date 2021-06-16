@@ -40,6 +40,7 @@
 	if(is_dir($ruta))
 	{
 		$archivos = scandir($ruta);
+		var_dump(count($archivos));
 	
 		foreach ($archivos as $archivo)
 		{
