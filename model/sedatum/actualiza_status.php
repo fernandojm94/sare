@@ -62,7 +62,7 @@
 				break;
 		}	
 
-		if($status)
+		if($status == 1)
 		{
 			if(update_expediente($expediente, $etapa))
 			{
