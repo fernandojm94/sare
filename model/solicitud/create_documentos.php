@@ -7,7 +7,7 @@
 	$id_persona = $_POST['id_per'];
 	$id_dg = $_POST['id_dg'];
 	$id_dimensiones = $_POST['id_dim'];
-	$ruta = "../../assets/expedientes/".$docs."/docs";
+	$ruta = "../../assets/expedientes/".$docs."/docs/documentacion/";
 	$titulo = $ruta.'/'.basename($_FILES['titulo']['name']);
 	$predia = $ruta.'/'.basename($_FILES['pred']['name']);
 	$ine = $ruta.'/'.basename($_FILES['ine']['name']);

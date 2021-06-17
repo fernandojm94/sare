@@ -1,7 +1,7 @@
 <?php
 include('../../controller/solicitud/funciones_solicitud.php');
 $expediente = $_POST['id_expediente'];
-$ruta = "../../assets/expedientes/".$_POST['folio']."/docs";
+$ruta = "../../assets/expedientes/".$_POST['folio']."/docs/pagos/";
 $comprobante = $ruta.'/'.basename($_FILES['comprobante']['name']);
 $status = 1;
 $resuelto = "pagos";
