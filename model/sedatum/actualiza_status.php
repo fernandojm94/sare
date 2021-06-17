@@ -9,7 +9,7 @@
 	$tipo_usuario = $_POST['tipo_usuario'];
 	$id_usuario = $_POST['id_usuario'];
 	$director = $_POST['director'];
-	$ruta = "../../assets/expedientes/".$_POST['ruta']."/docs/";
+	$ruta = "../../assets/expedientes/".$_POST['ruta']."/docs/documentacion/";
 	$resuelto = $recibe = "";
 
 	switch ($etapa) {			
