@@ -1588,8 +1588,6 @@
 			            dataType: "json",
 			            data:{id:id},
 			            success:function(data){
-			                
-		                    console.log(data);
 
 		                    var sampleData = initiateDemoData();//see below
 
@@ -1628,50 +1626,47 @@
 									'children' : []
 								}						
 
+								var largo_d = 0;
+								var largo_p = 0;
+								var largo_a = 0;
+
 								//esta es una función que hice para simular un foreach
 								for(var i=0; i<data.length; i++){
 									var datadiv = data[i].split(",", 3);
 		                            var tipo = datadiv[0];
 		                            var archivo = datadiv[1];
 		                            var carpeta = "";
-
-		                            //console.log(tipo+" "+archivo);
-
+		                        
 		                            switch (tipo) {
+									  	
 									  	case 'd':
-									    	carpeta ="documentacion";
-									    	console.log(carpeta);
-									    	tree_data_2[carpeta]['additionalParameters']['children']['length'] = 4;
-											tree_data_2[carpeta]['additionalParameters']['children'][i] = {text: ''};									
-											tree_data_2[carpeta]['additionalParameters']['children'][i]['text'] = '<a href="/assets/expedientes/'+folio_exp+'/docs/'+carpeta+'/'+archivo+'" target="_blank"><i class="ace-icon fa fa-file-pdf-o orange"></i> '+archivo+'</a>';
-											tree_data_2[carpeta]['additionalParameters']['children'][i]['type'] = 'item';
-											console.log(tree_data_2[carpeta]['additionalParameters']['children'][i]);
-									    	break;
+									  		carpeta = "documentacion";
+									    	tree_data_2[carpeta]['additionalParameters']['children'][largo_d] = {text: ''};
+											tree_data_2[carpeta]['additionalParameters']['children'][largo_d]['text'] = '<a href="/assets/expedientes/'+folio_exp+'/docs/'+carpeta+'/'+archivo+'" target="_blank"><i class="ace-icon fa fa-file-pdf-o orange"></i> '+archivo+'</a>';
+											tree_data_2[carpeta]['additionalParameters']['children'][largo_d]['type'] = 'item';
+											largo_d++;
+											
+									    break;
+
 									  	case 'p':
-									    	carpeta ="pagos";
-									    	console.log(carpeta);
-									    	tree_data_2[carpeta]['additionalParameters']['children']['length'] = 1;
-											tree_data_2[carpeta]['additionalParameters']['children'][i] = {text: ''};									
-											tree_data_2[carpeta]['additionalParameters']['children'][i]['text'] = '<a href="/assets/expedientes/'+folio_exp+'/docs/'+carpeta+'/'+archivo+'" target="_blank"><i class="ace-icon fa fa-file-pdf-o red"></i> '+archivo+'</a>';
-											tree_data_2[carpeta]['additionalParameters']['children'][i]['type'] = 'item';
-											console.log(tree_data_2[carpeta]['additionalParameters']['children'][i]);
-									    	break;
+									    	carpeta = "pagos";
+									    	tree_data_2[carpeta]['additionalParameters']['children'][largo_p] = {text: ''};
+											tree_data_2[carpeta]['additionalParameters']['children'][largo_p]['text'] = '<a href="/assets/expedientes/'+folio_exp+'/docs/'+carpeta+'/'+archivo+'" target="_blank"><i class="ace-icon fa fa-file-pdf-o orange"></i> '+archivo+'</a>';
+											tree_data_2[carpeta]['additionalParameters']['children'][largo_p]['type'] = 'item';
+											largo_p++;
+											
+								    	break;
+
 									  	case 'a':
-									    	carpeta ="anexos";
-									    	console.log(carpeta);
-									    	tree_data_2[carpeta]['additionalParameters']['children']['length'] = 1;
-											tree_data_2[carpeta]['additionalParameters']['children'][i] = {text: ''};									
-											tree_data_2[carpeta]['additionalParameters']['children'][i]['text'] = '<a href="/assets/expedientes/'+folio_exp+'/docs/'+carpeta+'/'+archivo+'" target="_blank"><i class="ace-icon fa fa-file-pdf-o blue"></i> '+archivo+'</a>';
-											tree_data_2[carpeta]['additionalParameters']['children'][i]['type'] = 'item';
-											console.log(tree_data_2[carpeta]['additionalParameters']['children'][i]);
-									    	break;									  
+									    	carpeta = "anexos";
+									    	tree_data_2[carpeta]['additionalParameters']['children'][largo_a] = {text: ''};
+											tree_data_2[carpeta]['additionalParameters']['children'][largo_a]['text'] = '<a href="/assets/expedientes/'+folio_exp+'/docs/'+carpeta+'/'+archivo+'" target="_blank"><i class="ace-icon fa fa-file-pdf-o orange"></i> '+archivo+'</a>';
+											tree_data_2[carpeta]['additionalParameters']['children'][largo_a]['type'] = 'item';
+											largo_a++;
+											
+								    	break;
+
 									}
-									
-									/*tree_data_2[carpeta]['additionalParameters']['children']['length'] = i;
-									tree_data_2[carpeta]['additionalParameters']['children'][i] = {text: ''};									
-									tree_data_2[carpeta]['additionalParameters']['children'][i]['text'] = '<a href="/assets/expedientes/'+folio_exp+'/docs/'+carpeta+'/'+archivo+'" target="_blank"><i class="ace-icon fa fa-file-pdf-o blue"></i> '+archivo+'</a>';
-									tree_data_2[carpeta]['additionalParameters']['children'][i]['type'] = 'item';*/
-										
 								}
 
 								var dataSource2 = function(options, callback){
