@@ -1589,7 +1589,7 @@
 			            data:{id:id},
 			            success:function(data){
 			                
-		                    //console.log(data);
+		                    console.log(data);
 
 		                    var sampleData = initiateDemoData();//see below
 
@@ -1617,9 +1617,7 @@
 								}
 
 								tree_data_2['documentacion']['additionalParameters'] = {
-									'children' : [
-										{text: '<a href="" target="_blank"><i class="ace-icon fa fa-file-pdf-o green"></i> ine.pdf</a>', type: 'item'},
-									]
+									'children' : []
 								}
 
 								tree_data_2['pagos']['additionalParameters'] = {
@@ -1627,18 +1625,52 @@
 								}
 
 								tree_data_2['anexos']['additionalParameters'] = {
-									'children' : [
-										//{text: '<h1>Elemento</h1>', type: "item"} Esta es la manera en que se agrega un elemento por default
-									]
-								}
+									'children' : []
+								}						
 
 								//esta es una función que hice para simular un foreach
 								for(var i=0; i<data.length; i++){
+									var datadiv = data[i].split(",", 3);
+		                            var tipo = datadiv[0];
+		                            var archivo = datadiv[1];
+		                            var carpeta = "";
+
+		                            //console.log(tipo+" "+archivo);
+
+		                            switch (tipo) {
+									  	case 'd':
+									    	carpeta ="documentacion";
+									    	console.log(carpeta);
+									    	tree_data_2[carpeta]['additionalParameters']['children']['length'] = 4;
+											tree_data_2[carpeta]['additionalParameters']['children'][i] = {text: ''};									
+											tree_data_2[carpeta]['additionalParameters']['children'][i]['text'] = '<a href="/assets/expedientes/'+folio_exp+'/docs/'+carpeta+'/'+archivo+'" target="_blank"><i class="ace-icon fa fa-file-pdf-o orange"></i> '+archivo+'</a>';
+											tree_data_2[carpeta]['additionalParameters']['children'][i]['type'] = 'item';
+											console.log(tree_data_2[carpeta]['additionalParameters']['children'][i]);
+									    	break;
+									  	case 'p':
+									    	carpeta ="pagos";
+									    	console.log(carpeta);
+									    	tree_data_2[carpeta]['additionalParameters']['children']['length'] = 1;
+											tree_data_2[carpeta]['additionalParameters']['children'][i] = {text: ''};									
+											tree_data_2[carpeta]['additionalParameters']['children'][i]['text'] = '<a href="/assets/expedientes/'+folio_exp+'/docs/'+carpeta+'/'+archivo+'" target="_blank"><i class="ace-icon fa fa-file-pdf-o red"></i> '+archivo+'</a>';
+											tree_data_2[carpeta]['additionalParameters']['children'][i]['type'] = 'item';
+											console.log(tree_data_2[carpeta]['additionalParameters']['children'][i]);
+									    	break;
+									  	case 'a':
+									    	carpeta ="anexos";
+									    	console.log(carpeta);
+									    	tree_data_2[carpeta]['additionalParameters']['children']['length'] = 1;
+											tree_data_2[carpeta]['additionalParameters']['children'][i] = {text: ''};									
+											tree_data_2[carpeta]['additionalParameters']['children'][i]['text'] = '<a href="/assets/expedientes/'+folio_exp+'/docs/'+carpeta+'/'+archivo+'" target="_blank"><i class="ace-icon fa fa-file-pdf-o blue"></i> '+archivo+'</a>';
+											tree_data_2[carpeta]['additionalParameters']['children'][i]['type'] = 'item';
+											console.log(tree_data_2[carpeta]['additionalParameters']['children'][i]);
+									    	break;									  
+									}
 									
-									tree_data_2['documentacion']['additionalParameters']['children']['length'] = i;
-									tree_data_2['documentacion']['additionalParameters']['children'][i] = {text: ''};									
-									tree_data_2['documentacion']['additionalParameters']['children'][i]['text'] = '<a href="/assets/expedientes/'+folio_exp+'/docs/'+data[i]+'" target="_blank"><i class="ace-icon fa fa-file-pdf-o blue"></i> '+data[i]+'</a>';
-									tree_data_2['documentacion']['additionalParameters']['children'][i]['type'] = 'item';
+									/*tree_data_2[carpeta]['additionalParameters']['children']['length'] = i;
+									tree_data_2[carpeta]['additionalParameters']['children'][i] = {text: ''};									
+									tree_data_2[carpeta]['additionalParameters']['children'][i]['text'] = '<a href="/assets/expedientes/'+folio_exp+'/docs/'+carpeta+'/'+archivo+'" target="_blank"><i class="ace-icon fa fa-file-pdf-o blue"></i> '+archivo+'</a>';
+									tree_data_2[carpeta]['additionalParameters']['children'][i]['type'] = 'item';*/
 										
 								}
 
