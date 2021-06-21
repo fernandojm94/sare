@@ -176,35 +176,48 @@
     }
 
     function upload_anexo(){
-    	var myForm = document.getElementById('form_anexo');
-		var formData = new FormData(myForm);
 
-		$.ajax({
-			data:  formData,
-			url:   './model/anexos/upload_anexos.php',
-			type:  'post',
-			processData: false,
-            contentType: false,
+    	var comp = $('#anexo').next();
+		comp = $(comp).hasClass("selected");
+		
+		if(comp == true){
+	    	var myForm = document.getElementById('form_anexo');
+			var formData = new FormData(myForm);
 
-			success:  function (data) {
+			$.ajax({
+				data:  formData,
+				url:   './model/anexos/upload_anexos.php',
+				type:  'post',
+				processData: false,
+	            contentType: false,
 
-				if (data==='correcto'){
-					swal({
-						title: "¡Correcto!",
-						text: "¡El status fue cambiado!",
-						icon: "success"
-					});
+				success:  function (data) {
+
+					if (data==='correcto'){
+						swal({
+							title: "¡Correcto!",
+							text: "¡El status fue cambiado!",
+							icon: "success"
+						});
+					}
+
+					if (data==='error'){
+						swal({
+							title: "¡Error!",
+							text: "¡Ocurrió algo al cambiar el status!",
+							icon: "error"
+						});
+					}
 				}
-
-				if (data==='error'){
-					swal({
-						title: "¡Error!",
-						text: "¡Ocurrió algo al cambiar el status!",
-						icon: "error"
-					});
-				}
-			}
-		});
+			});
+		}else{
+			swal({
+                title: "¡Error!",
+                text: "No has seleccionado ningún archivo",
+                icon: "error",
+                button: "Aceptar"
+            });
+		}	
     }
 
 </script>

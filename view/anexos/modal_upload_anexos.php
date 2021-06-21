@@ -1,3 +1,10 @@
+<?php
+include('../../model/solicitud/fill.php');
+	
+	$id_expediente = $_POST['id_solicitud'];
+	$expediente = fill_expediente($id_expediente);
+?>
+
 <div id="modal_anexo" class="modal" tabindex="-1" style="overflow-y:auto;">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
@@ -16,7 +23,10 @@
 					<div class="col-xs-12">
 						<div class="form-group">
 							<div class="col-xs-12">
-								<form id="form_anexo">
+								<form id="form_anexo" method="POST">
+									<input type="hidden" name="folio" id="folio" value="<?= $expediente['folio']?>">
+									<input type="hidden" name="id_expediente" id="id_expediente" value="<?= $id_expediente ?>">
+
 									<input multiple type="file" id="anexo" name="anexo" />
 								</form>
 							</div>
