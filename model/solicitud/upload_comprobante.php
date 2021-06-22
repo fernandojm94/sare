@@ -35,7 +35,9 @@ if($recibe != "")
 		$mensaje = "error3";
 	}	
 }
-
+if(!is_dir($ruta)){
+	mkdir($ruta);
+}
 if(move_uploaded_file($_FILES['comprobante']['tmp_name'], $comprobante))
 {
 	$mensaje = "correcto";
