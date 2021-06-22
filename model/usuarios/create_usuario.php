@@ -1,6 +1,6 @@
 <?php
 include('../../controller/usuarios/funciones_usuarios.php');
-var_dump($_POST);
+
 $nombre = $_POST['nombre_usuario'];
 $usuario = $_POST['usuario'];
 $psw = md5($_POST['password']);

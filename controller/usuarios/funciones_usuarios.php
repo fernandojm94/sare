@@ -24,7 +24,7 @@ function compare_usuario($nombre)
 function create_usuario($nombre, $usuario, $psw, $tipo_usuario, $status)
 {
 	
-	echo $sql ="INSERT INTO usuarios(nombre_usuario, usuario, password, id_tipo_usuario, status)
+	$sql ="INSERT INTO usuarios(nombre_usuario, usuario, password, id_tipo_usuario, status)
 			VALUES('$nombre', '$usuario', '$psw', $tipo_usuario, $status)";
 	$result = querys($sql);
 

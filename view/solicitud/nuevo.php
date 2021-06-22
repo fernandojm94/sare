@@ -994,7 +994,6 @@
                         app_code: 'dVGiTbgyVPotX-_dyzRd3A'
                     },
                     success: function (data) {
-                        console.log(JSON.stringify(data));
 
                         // calle.value= data.Response.View[0].Result[0].Location.Address.Street;
                         // num_ext.value= data.Response.View[0].Result[0].Location.Address.HouseNumber;
@@ -1065,7 +1064,6 @@
                 app_code: 'dVGiTbgyVPotX-_dyzRd3A'
             },
             success: function (data) {
-                console.log(JSON.stringify(data));
                 var longitud = data.Response.View[0].Result[0].Location.DisplayPosition.Longitude;
                 var latitud = data.Response.View[0].Result[0].Location.DisplayPosition.Latitude;
 
@@ -1154,7 +1152,6 @@
 
     function cambia_especifique(value)
     {
-        console.log(value);
         if (value==true){
             $("#ocultar").css("display", "block");
         } else{
@@ -1407,7 +1404,7 @@
                                     type:  'post',
                                     
                                     success:  function (data) {
-                                        console.log(data);
+            
                                         var datos = data.split(',');
 
                                         if (datos[0]==='correcto'){
@@ -1451,10 +1448,9 @@
                 {
                     if(!$('#form_dg').valid()){
                         e.preventDefault();
-                        console.log("segun no esta completo el form");
                     }
                     else{
-                        // console.log("si entro");
+                        
                         e.preventDefault();
 
                         var parametros_dg = {                     
@@ -1531,10 +1527,9 @@
                 {
                     if(!$('#form_dimensiones').valid()){
                         e.preventDefault();
-                        // console.log("segun no esta completo el form");
                     }
                     else{
-                        // console.log("si entro");
+                        
                         e.preventDefault();
 
                         var parametros_dim = {                     

@@ -248,14 +248,13 @@ function delete_usuario(id_usuario)
 				success:  function (data) {
 					if (data==='correcto'){
 						swal({
-						  title: "¡Datos eliminados correctamente!",
+						  title: "¡Usuario eliminado correctamente!",
 						  icon: "success",
 						}).then(() => {
 							cambiarcont('view/usuarios/listado.php');
 						});
 					}
-
-												
+						
 					if (data==='error'){
 						swal({
 							title: "¡Error!",
