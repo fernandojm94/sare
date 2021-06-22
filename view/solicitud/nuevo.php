@@ -410,7 +410,7 @@
                                         <label for="frente" class="col-sm-2 control-label no-padding-right"> Frente</label>
 
                                         <div class="col-sm-2">
-                                            <input type="number" id="frente" name="frente" placeholder="Frente" class="col-xs-10 col-sm-10">
+                                            <input type="number" id="frente" name="frente" onchange="superficie()" placeholder="Frente" class="col-xs-10 col-sm-10">
                                             <span class="help-inline col-xs-1 col-sm-1">
                                                 <span class="middle">m</span>
                                             </span>
@@ -420,7 +420,7 @@
                                         <label for="fondo" class="col-sm-2 control-label no-padding-right"> Fondo</label>
 
                                         <div class="col-sm-2">
-                                            <input type="number" id="fondo" name="fondo" placeholder="Fondo" class="col-xs-12 col-sm-10">
+                                            <input type="number" id="fondo" name="fondo" onchange="superficie()" placeholder="Fondo" class="col-xs-12 col-sm-10">
                                             <span class="help-inline col-xs-11 col-sm-1">
                                                 <span class="middle">m</span>
                                             </span>
@@ -502,11 +502,13 @@
                         <div class="step-pane" data-step="5">
                             <form class="well form-horizontal" method="post"  id="form_documentos" name="form_documentos">
                                 <fieldset>
-                                    <div class="text" id="inst_idpf"></div>
-                                    <div class="text" id="inst_idpm"></div>
+                                    <legend class="center">Carga de Documentos</legend>
 
-                                    <div class="text" id="inst_iddg"></div>
-                                    <div class="text" id="inst_iddim"></div>
+                                    <div class="hidden" id="inst_idpf"></div>
+                                    <div class="hidden" id="inst_idpm"></div>
+
+                                    <div class="hidden" id="inst_iddg"></div>
+                                    <div class="hidden" id="inst_iddim"></div>
 
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Escritura o titulo de propiedad (en su caso carta notariada de escritura en trámite).</label>  
@@ -573,6 +575,15 @@
 
 
 <script type="text/javascript">
+
+    function superficie(){
+        var fondo = $("#fondo").val();
+        var frente = $("#frente").val();
+
+        $("#local").val(fondo*frente);
+
+    }
+
 
    jQuery(function($) {
                     
