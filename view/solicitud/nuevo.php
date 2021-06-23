@@ -1724,6 +1724,7 @@
 
                 cp: {
                     required: true,
+                    minlength: 5,
                     maxlength: 5
                 },
 
@@ -1778,7 +1779,9 @@
                 },
 
                 cp: {
-                    required: "Favor de ingresar el código postal."
+                    required: "Favor de ingresar el código postal.",
+                    minlength: "Ingresar el código postal completo.",
+                    maxlength: "Ingresar correctamente el código postal."
                 },
 
                 rfc: {
