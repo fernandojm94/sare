@@ -387,6 +387,7 @@
                                                     <option value="Teléfono">Teléfono</option>
                                                     <option value="Pavimento">Pavimento</option>
                                                     <option value="Banqueta">Banqueta</option>
+                                                    <option value="Guarnición">Guarnición</option>
                                                     <option value="Internet">Internet</option>
                                                     <option value="Electrificación">Electrificación</option>
                                                     <option value="Otro">Otro</option>
