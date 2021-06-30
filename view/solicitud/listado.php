@@ -12,11 +12,7 @@
 
 <style type="text/css">
 	
-	@media only screen and (max-width: 520px){
-		i + span{
-			display: none;
-		}
-	}
+	 
 	
 </style>
 <div class="breadcrumbs ace-save-state" id="breadcrumbs">
