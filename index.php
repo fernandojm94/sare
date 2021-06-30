@@ -269,6 +269,15 @@ include('./controller/conexion.php');
 								});
 							}
 
+							if (data==='error1'){
+								swal({
+								  title: "¡Error!",
+								  text: "¡Nombre de usuario y/o contraseña incorrectos!",
+								  icon: "warning",
+								  button: "Aceptar"
+								});
+							}
+
 
 							if (data==='error2'){
 								swal({
