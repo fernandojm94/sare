@@ -6,11 +6,8 @@
     $tag_pfisica = fill_pfisica();
     $tag_pmoral = fill_pmoral();
 
-    $options = '
-        <option value="">Seleccionar una opción</option>
-        <option value="1">Frutas y Verduras</option>
-    ';
-    
+    $giros = fill_giros();
+    $options = fill_options($giros);
 ?>
 
 <style type="text/css">
