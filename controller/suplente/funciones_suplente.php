@@ -46,7 +46,7 @@ function get_suplente()
 {
 	$sql = "SELECT id_usuario
 				FROM usuarios
-			WHERE id_tipo_usuario = 4 AND status = 1";
+			WHERE id_tipo_usuario = 5 AND status = 1";
 
 	$result = query_row_id($sql);
 

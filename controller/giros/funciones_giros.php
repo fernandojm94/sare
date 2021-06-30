@@ -1,13 +1,13 @@
 <?php
 require_once('../../controller/exe.php');
 
-function get_giros($id_giro)
+function get_giros()
 {
-	$sql = "SELECT giro, precio
+	$sql = "SELECT *
 			FROM giros
-			WHERE id = $id_giro";
+			WHERE 1";
 
-	$result = query_row_id($sql);
+	$result = querys($sql);
 
 	return $result;
 }

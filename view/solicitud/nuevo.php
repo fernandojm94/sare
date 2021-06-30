@@ -6,11 +6,8 @@
     $tag_pfisica = fill_pfisica();
     $tag_pmoral = fill_pmoral();
 
-    $options = '
-        <option value="">Seleccionar una opción</option>
-        <option value="1">Frutas y Verduras</option>
-    ';
-    
+    $giros = fill_giros();
+    $options = fill_options($giros);
 ?>
 
 <style type="text/css">
@@ -387,6 +384,7 @@
                                                     <option value="Teléfono">Teléfono</option>
                                                     <option value="Pavimento">Pavimento</option>
                                                     <option value="Banqueta">Banqueta</option>
+                                                    <option value="Guarnición">Guarnición</option>
                                                     <option value="Internet">Internet</option>
                                                     <option value="Electrificación">Electrificación</option>
                                                     <option value="Otro">Otro</option>
@@ -1724,6 +1722,7 @@
 
                 cp: {
                     required: true,
+                    minlength: 5,
                     maxlength: 5
                 },
 
@@ -1778,7 +1777,9 @@
                 },
 
                 cp: {
-                    required: "Favor de ingresar el código postal."
+                    required: "Favor de ingresar el código postal.",
+                    minlength: "Ingresar el código postal completo.",
+                    maxlength: "Ingresar correctamente el código postal."
                 },
 
                 rfc: {

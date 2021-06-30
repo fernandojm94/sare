@@ -1,5 +1,6 @@
 <?php
 include('../../controller/solicitud/funciones_solicitud.php');
+include('../../controller/giros/funciones_giros.php');
 
 function fill_pfisica()
 {
@@ -290,5 +291,22 @@ function valida_visto($id, $etapa)
 		{
 			update_visto($id, $tabla);
 		}
+}
+
+function fill_giros()
+{
+	$giros = get_giros();
+	return $giros;
+}
+
+function fill_options($giros)
+{
+	$options="";
+	$options.="<option value=''></option>";
+	foreach($giros as $giro){
+		$options.= '<option value="'.$giro['id'].'">'.$giro["giro"].'</option>';
+	}
+
+	return $options;
 }
 ?>
