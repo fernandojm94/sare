@@ -553,7 +553,7 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Número oficial.</label>  
                                         <div class="col-md-4 inputGroupContainer">
-                                            <input type="file" id="no" name="no" required/>                                            
+                                            <input type="file" id="no" name="no"/>                                            
                                         </div>
                                     </div>
 
