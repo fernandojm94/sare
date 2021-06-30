@@ -1,5 +1,296 @@
 <?php
 	include('controller/funciones.php');
+	$tipo_usuario = $_SESSION['id_tipo_usuario'];
+	
+
+	switch ($tipo_usuario) {
+	  	case 1:
+		    $menu='<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-book"></i>
+
+							<span class="menu-text">
+								Solicitudes
+							</span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="javascript:cambiarcont(\'view/solicitud/listado.php?pantalla=1\');">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Listado de solicitudes
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>
+
+
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-book"></i>
+
+							<span class="menu-text">
+								SEDATUM
+							</span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+
+							<li class="">
+								<a href="javascript:cambiarcont(\'view/sedatum/ventanilla.php?pantalla=2\');">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Ventanilla Única
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+
+							<li class="">
+								<a href="javascript:cambiarcont(\'view/sedatum/uso_suelo.php?pantalla=4\');">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Uso de Suelo
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+
+							<li class="">
+								<a href="javascript:cambiarcont(\'view/sedatum/director.php?pantalla=5\');">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Director
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+
+							<li class="">
+								<a href="javascript:cambiarcont(\'view/sedatum/secretario.php?pantalla=6\');">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Secretario
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+
+						</ul>
+
+					</li>
+
+
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-folder-open"></i>
+
+							<span class="menu-text">
+								Anexos
+							</span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="javascript:cambiarcont(\'view/anexos/listado.php?pantalla=8\');">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Listado
+								</a>
+
+								<b class="arrow"></b>
+							</li>							
+						</ul>
+					</li>
+
+					<li class="nav-divider"></li>
+					<li class="nav-divider"></li>
+
+
+					<li class="">
+						<a href="javascript:cambiarcont(\'view/usuarios/listado.php\')">
+							<i class="menu-icon fa fa-users"></i>
+							<span class="menu-text"> Usuarios </span>
+						</a>
+						<b class="arrow"></b>
+					</li>';
+		    break;
+	  	case 2:
+		    $menu='<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-book"></i>
+
+							<span class="menu-text">
+								Solicitudes
+							</span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="javascript:cambiarcont(\'view/solicitud/listado.php?pantalla=1\');">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Listado de solicitudes
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>';
+		    break;
+	  	case 3:
+		    $menu='<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-book"></i>
+
+							<span class="menu-text">
+								SEDATUM
+							</span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+
+							<li class="">
+								<a href="javascript:cambiarcont(\'view/sedatum/ventanilla.php?pantalla=2\');">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Ventanilla Única
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
+
+					</li>';
+		    break;
+		case 4:
+		    $menu='	<li class="">
+		    			<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-book"></i>
+
+							<span class="menu-text">
+								SEDATUM
+							</span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+
+							<li class="">
+								<a href="javascript:cambiarcont(\'view/sedatum/uso_suelo.php?pantalla=4\');">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Uso de Suelo
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
+
+					</li>';
+		    break;
+		case 5:
+		    $menu='	<li class="">
+		    			<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-book"></i>
+
+							<span class="menu-text">
+								SEDATUM
+							</span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="javascript:cambiarcont(\'view/sedatum/director.php?pantalla=5\');">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Director
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
+
+					</li>';
+		    break;
+		case 6:
+		    $menu='	<li class="">
+		    			<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-book"></i>
+
+							<span class="menu-text">
+								SEDATUM
+							</span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="javascript:cambiarcont(\'view/sedatum/secretario.php?pantalla=6\');">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Secretario
+								</a>
+
+								<b class="arrow"></b>
+							</li>
+						</ul>
+
+					</li>';
+		    break;
+		case 7:
+		    $menu='<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-folder-open"></i>
+
+							<span class="menu-text">
+								Anexos
+							</span>
+
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+
+						<b class="arrow"></b>
+
+						<ul class="submenu">
+							<li class="">
+								<a href="javascript:cambiarcont(\'view/anexos/listado.php?pantalla=8\');">
+									<i class="menu-icon fa fa-caret-right"></i>
+									Listado
+								</a>
+
+								<b class="arrow"></b>
+							</li>							
+						</ul>
+					</li';
+		    break;
+	}
+	
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -135,124 +426,7 @@
 						<b class="arrow"></b>
 					</li>
 
-					<li class="">
-						<a href="#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-book"></i>
-
-							<span class="menu-text">
-								Solicitudes
-							</span>
-
-							<b class="arrow fa fa-angle-down"></b>
-						</a>
-
-						<b class="arrow"></b>
-
-						<ul class="submenu">
-							<li class="">
-								<a href="javascript:cambiarcont('view/solicitud/listado.php?pantalla=1');">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Listado de solicitudes
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-						</ul>
-					</li>
-
-
-					<li class="">
-						<a href="#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-book"></i>
-
-							<span class="menu-text">
-								SEDATUM
-							</span>
-
-							<b class="arrow fa fa-angle-down"></b>
-						</a>
-
-						<b class="arrow"></b>
-
-						<ul class="submenu">
-							<li class="">
-								<a href="javascript:cambiarcont('view/sedatum/ventanilla.php?pantalla=2');">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Ventanilla Única
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="javascript:cambiarcont('view/sedatum/uso_suelo.php?pantalla=4');">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Uso de Suelo
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="javascript:cambiarcont('view/sedatum/director.php?pantalla=5');">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Director
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="javascript:cambiarcont('view/sedatum/secretario.php?pantalla=6');">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Secretario
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-						</ul>
-
-					</li>
-
-					<li class="">
-						<a href="#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-folder-open"></i>
-
-							<span class="menu-text">
-								Anexos
-							</span>
-
-							<b class="arrow fa fa-angle-down"></b>
-						</a>
-
-						<b class="arrow"></b>
-
-						<ul class="submenu">
-							<li class="">
-								<a href="javascript:cambiarcont('view/anexos/listado.php?pantalla=8');">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Listado
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-							
-						</ul>
-
-					</li>
-
-					<li class="nav-divider"></li>
-					<li class="nav-divider"></li>
-
-					<li class="">
-						<a href="javascript:cambiarcont('view/usuarios/listado.php')">
-							<i class="menu-icon fa fa-users"></i>
-							<span class="menu-text"> Usuarios </span>
-						</a>
-						<b class="arrow"></b>
-					</li>
-
+					<?= $menu;?>					
 				</ul>
 
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
@@ -270,13 +444,13 @@
 			<div class="footer-inner">
 				<div class="footer-content">
 					<span class="bigger-120">
-						Municipio de Jesús María 2017 - 2019
+						Municipio de Jesús María 2019 - 2021
 					</span>
 
 					&nbsp; &nbsp;
 					<span class="action-buttons">
 					</span>
-				</div>
+				</div>	
 			</div>
 		</div>
 
@@ -289,7 +463,7 @@
 
 		<!--[if !IE]> -->
 		<script src="assets/js/jquery-2.1.4.min.js"></script>
-
+		
 		<!-- <![endif]-->
 
 		<!--[if IE]>
@@ -909,10 +1083,47 @@
 
 
 		<script type="text/javascript">
+			var tipo_usuario = <?= $tipo_usuario; ?>;
+
 			$(document).ready(function() {
-				$("#body_content").html("<img src='img/exit.gif' class='img-responsive center-block' alt='Cargando...' />");
-			    $('#body_content').load('view/bienvenida.php');
-				$("#body_content").fadeIn(10000);
+				switch (tipo_usuario) {
+				  	case 1:
+				    	$("#body_content").html("<img src='img/exit.gif' class='img-responsive center-block' alt='Cargando...' />");
+					    $('#body_content').load('view/bienvenida.php');
+						$("#body_content").fadeIn(10000);
+				    	break;
+				  	case 2:
+				    	$("#body_content").html("<img src='img/exit.gif' class='img-responsive center-block' alt='Cargando...' />");
+					    $('#body_content').load('view/solicitud/listado.php?pantalla=1');
+						$("#body_content").fadeIn(10000);
+				    	break;
+				  	case 3:
+				    	$("#body_content").html("<img src='img/exit.gif' class='img-responsive center-block' alt='Cargando...' />");
+					    $('#body_content').load('view/sedatum/ventanilla.php?pantalla=2');
+						$("#body_content").fadeIn(10000);
+				    	break;
+				  	case 4:
+				    	$("#body_content").html("<img src='img/exit.gif' class='img-responsive center-block' alt='Cargando...' />");
+					    $('#body_content').load('view/sedatum/uso_suelo.php?pantalla=4');
+						$("#body_content").fadeIn(10000);
+				    	break;
+				  	case 5:
+				  		$("#body_content").html("<img src='img/exit.gif' class='img-responsive center-block' alt='Cargando...' />");
+					    $('#body_content').load('view/sedatum/director.php?pantalla=5');
+						$("#body_content").fadeIn(10000);
+				    	break;
+				    case 6:
+				    	$("#body_content").html("<img src='img/exit.gif' class='img-responsive center-block' alt='Cargando...' />");
+					    $('#body_content').load('view/sedatum/secretario.php?pantalla=6');
+						$("#body_content").fadeIn(10000);
+				    	break;
+				  	case 7:
+				  		$("#body_content").html("<img src='img/exit.gif' class='img-responsive center-block' alt='Cargando...' />");
+					    $('#body_content').load('view/anexos/listado.php?pantalla=8');
+						$("#body_content").fadeIn(10000);
+				    	break;
+				}			
+				
 			});
 		</script>
 
