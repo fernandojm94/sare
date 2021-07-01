@@ -421,7 +421,7 @@
                                         <label for="frente" class="col-sm-2 control-label no-padding-right"> Frente</label>
 
                                         <div class="col-sm-2">
-                                            <input type="number" id="frente" name="frente" onchange="superficie()" placeholder="Frente" class="col-xs-10 col-sm-10">
+                                            <input type="number" id="frente" name="frente" placeholder="Frente" class="col-xs-10 col-sm-10">
                                             <span class="help-inline col-xs-1 col-sm-1">
                                                 <span class="middle">m</span>
                                             </span>
@@ -431,7 +431,7 @@
                                         <label for="fondo" class="col-sm-2 control-label no-padding-right"> Fondo</label>
 
                                         <div class="col-sm-2">
-                                            <input type="number" id="fondo" name="fondo" onchange="superficie()" placeholder="Fondo" class="col-xs-12 col-sm-10">
+                                            <input type="number" id="fondo" name="fondo"  placeholder="Fondo" class="col-xs-12 col-sm-10">
                                             <span class="help-inline col-xs-11 col-sm-1">
                                                 <span class="middle">m</span>
                                             </span>
@@ -447,7 +447,7 @@
                                         <label for="derecho" class="col-sm-2 control-label no-padding-right"> Derecho</label>
 
                                         <div class="col-sm-2">
-                                            <input type="number" id="derecho" name="derecho" placeholder="Derecho" class="col-xs-12 col-sm-10">
+                                            <input type="number" id="derecho" name="derecho" onchange="superficie()" placeholder="Derecho" class="col-xs-12 col-sm-10">
                                             <span class="help-inline col-xs-1 col-sm-1">
                                                 <span class="middle">m</span>
                                             </span>
@@ -457,7 +457,7 @@
                                          <label for="izquierdo" class="col-sm-2 control-label no-padding-right"> Izquierdo</label>
 
                                         <div class="col-sm-2">
-                                            <input type="number" id="izquierdo" name="izquierdo" placeholder="Izquierdo" class="col-xs-12 col-sm-10">
+                                            <input type="number" id="izquierdo" name="izquierdo" onchange="superficie()" placeholder="Izquierdo" class="col-xs-12 col-sm-10">
                                             <span class="help-inline col-xs-11 col-sm-1">
                                                 <span class="middle">m</span>
                                             </span>
@@ -588,10 +588,13 @@
 <script type="text/javascript">
 
     function superficie(){
-        var fondo = $("#fondo").val();
+        var derecho = $("#derecho").val();
+        var izquierdo = $("#izquierdo").val();
         var frente = $("#frente").val();
 
-        $("#local").val(fondo*frente);
+        var mayor = Math.max(derecho, izquierdo);
+
+        $("#local").val(mayor*frente);
 
     }
 
