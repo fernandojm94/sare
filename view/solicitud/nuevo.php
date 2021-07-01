@@ -6,11 +6,8 @@
     $tag_pfisica = fill_pfisica();
     $tag_pmoral = fill_pmoral();
 
-    $options = '
-        <option value="">Seleccionar una opción</option>
-        <option value="1">Frutas y Verduras</option>
-    ';
-    
+    $giros = fill_giros();
+    $options = fill_options($giros);
 ?>
 
 <style type="text/css">
@@ -289,7 +286,20 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-building"></i></span>
-                                                <input  name="uso" id="uso" placeholder="Uso actual" class="form-control" type="text" required/>
+                                        
+                                                <select class="chosen-select form-control" name="uso" id="uso" data-placeholder="Elige una opción..." required>
+                                                    <option value=""></option>
+                                                    <option value="1">Habitacional</option>
+                                                    <option value="2">Comercial</option>
+                                                    <option value="3">Servicios</option>
+                                                    <option value="4">Equipamiento Urbano</option>
+                                                    <option value="5">Industriales</option>
+                                                    <option value="6">Microindustrial</option>
+                                                    <option value="7">Agricola</option>
+                                                    <option value="8">Forestal</option>
+                                                    <option value="9">Conservación Ambiental</option>
+                                                    <option value="10">Ecoturístico</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -387,6 +397,7 @@
                                                     <option value="Teléfono">Teléfono</option>
                                                     <option value="Pavimento">Pavimento</option>
                                                     <option value="Banqueta">Banqueta</option>
+                                                    <option value="Guarnición">Guarnición</option>
                                                     <option value="Internet">Internet</option>
                                                     <option value="Electrificación">Electrificación</option>
                                                     <option value="Otro">Otro</option>
@@ -542,7 +553,7 @@
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Número oficial.</label>  
                                         <div class="col-md-4 inputGroupContainer">
-                                            <input type="file" id="no" name="no" required/>                                            
+                                            <input type="file" id="no" name="no"/>                                            
                                         </div>
                                     </div>
 
@@ -1727,6 +1738,7 @@
 
                 cp: {
                     required: true,
+                    minlength: 5,
                     maxlength: 5
                 },
 
@@ -1781,7 +1793,9 @@
                 },
 
                 cp: {
-                    required: "Favor de ingresar el código postal."
+                    required: "Favor de ingresar el código postal.",
+                    minlength: "Ingresar el código postal completo.",
+                    maxlength: "Ingresar correctamente el código postal."
                 },
 
                 rfc: {
@@ -2398,10 +2412,6 @@
                     required: true
                 },
 
-                no: {
-                    required: true
-                },
-
                 acta: {
                     required: true
                 },
@@ -2429,10 +2439,6 @@
                 },
                 
                 contrato: {
-                    required: "Favor de seleccionar el documento."
-                },
-                
-                no: {
                     required: "Favor de seleccionar el documento."
                 },
 
