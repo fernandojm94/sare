@@ -2409,10 +2409,6 @@
                     required: true
                 },
 
-                no: {
-                    required: true
-                },
-
                 acta: {
                     required: true
                 },
@@ -2440,10 +2436,6 @@
                 },
                 
                 contrato: {
-                    required: "Favor de seleccionar el documento."
-                },
-                
-                no: {
                     required: "Favor de seleccionar el documento."
                 },
 
