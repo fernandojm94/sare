@@ -188,7 +188,7 @@
                                         <div class="col-md-2 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                                <input  name="no_int_dg" id="no_int_dg" placeholder="No. Interior" class="form-control" type="number"/>
+                                                <input  name="no_int_dg" id="no_int_dg" placeholder="No. Interior" class="form-control" type="text"/>
                                             </div>
                                         </div>
 
@@ -2084,10 +2084,6 @@
                     number: true
                 },
 
-                no_int_dg: {
-                    number: true
-                },
-
                 colonia_dg: {
                     required: true
                 },
@@ -2172,10 +2168,6 @@
 
                 no_ex_dg: {
                     required: "Favor de ingresar el número exterior.",
-                    number: "Favor de ingresar solo números."
-                },
-
-                no_int_dg: {
                     number: "Favor de ingresar solo números."
                 },
 
