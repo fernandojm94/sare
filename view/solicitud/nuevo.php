@@ -17,6 +17,57 @@
     .chosen-container, .chosen-container+.help-inline, [class*=chosen-container]{
         width: 100% !important;
     }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .switch input { 
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
 </style>
 
 <div class="page-content">    
@@ -188,7 +239,7 @@
                                         <div class="col-md-2 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                                <input  name="no_int_dg" id="no_int_dg" placeholder="No. Interior" class="form-control" type="number"/>
+                                                <input  name="no_int_dg" id="no_int_dg" placeholder="No. Interior" class="form-control" type="text"/>
                                             </div>
                                         </div>
 
@@ -550,11 +601,22 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group" id="noOf">
                                         <label class="col-md-4 control-label">Número oficial.</label>  
                                         <div class="col-md-4 inputGroupContainer">
-                                            <input type="file" id="no" name="no"/>                                            
+                                            <input type="file" id="no" name="no" required="true"/>                                            
                                         </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">¿Solicitar Número Oficial a SEDATUM?</label>
+                                            <div class="col-md-4 inputGroupContainer">
+                                                <label class="switch">
+                                                  <input type="checkbox" name="checkNumOficial" id="checkNumOficial">
+                                                  <span class="slider"></span>
+                                                </label>
+                                            </div>
+                                        </label>
                                     </div>
 
                                     <div id="upmoral"></div>                  
@@ -586,6 +648,20 @@
 
 
 <script type="text/javascript">
+
+    $("#checkNumOficial").on("change", function(){
+        var checkIn = document.getElementById("no");
+        checkReq = checkIn.getAttribute("required");
+
+        if (checkReq == null) {
+            checkIn.setAttribute("required", "true");
+            checkIn.removeAttribute("disabled", "true");
+        }else{
+            checkIn.removeAttribute("required", "false");
+            checkIn.setAttribute("disabled", "true");
+            $("#noOf").removeClass("has-error");
+        }
+    });
 
     function superficie(){
         var derecho = $("#derecho").val();
@@ -2084,10 +2160,6 @@
                     number: true
                 },
 
-                no_int_dg: {
-                    number: true
-                },
-
                 colonia_dg: {
                     required: true
                 },
@@ -2172,10 +2244,6 @@
 
                 no_ex_dg: {
                     required: "Favor de ingresar el número exterior.",
-                    number: "Favor de ingresar solo números."
-                },
-
-                no_int_dg: {
                     number: "Favor de ingresar solo números."
                 },
 
@@ -2441,6 +2509,10 @@
                 contrato: {
                     required: "Favor de seleccionar el documento."
                 },
+
+                // no: {
+                //     required: "Favor de seleccionar el documento."
+                // },
 
                 acta: {
                     required: "Favor de seleccionar el documento."

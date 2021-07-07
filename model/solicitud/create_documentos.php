@@ -2,6 +2,9 @@
 
 	include('../../controller/solicitud/funciones_solicitud.php');
 
+	//VARIABLE DEL CHECK PARA SOLICITAR NÚMERO OFICIAL A SEDATUM
+	$check = $_POST['checkNumOficial'];//Manda la variable solo si está checada, de lo contrario no manda nada.
+	
 	$folio = "SARE/".date("Y/m/d H:m:s");
 	$docs =str_replace(' ', '-', str_replace(':', '-',str_replace('/', '-', $folio)));
 	$id_persona = $_POST['id_per'];
