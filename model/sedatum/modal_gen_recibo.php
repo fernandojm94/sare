@@ -16,42 +16,41 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h1 class="blue">Costo solicitud <?=$expediente['folio'];?></h1>
+				<h1 class="blue">Datos adicionales solicitud <?=$expediente['folio'];?></h1>
 			</div>
 
 			<div class="modal-body">
 				<div class="row">
+					<div class="alert alert-block alert-warning">
+						<button type="button" class="close" data-dismiss="alert">
+							<i class="ace-icon fa fa-times"></i>
+						</button>
+						<i class="ace-icon fa fa-info-circle yellow"></i>
+						Ingresar el número oficial de la solicitud, así como el costo que tendra el uso de suelo. Se generarán los documentos automáticamente.
+					</div>
 					<div class="col-xs-2">
 					</div>
 					<div class="col-xs-8">
 						<form id="form_gen_re" name="form_gen_re">
                             <div class="form-group">
-                                <label class="col-md-12 control-label">Giro</label>  
+                                <label class="col-md-12 control-label">Número oficial </label>  
                                 <div class="col-md-12 inputGroupContainer">
                                     <div class="input-group col-sm-12">
-                                        <span class="input-group-addon"><i class="fa fa-building"></i></span>
-                                        <select class="form-control col-xs-10 col-sm-7" name="giro" id="giro" data-placeholder="Elige una opción..." required disabled>
-                                            <option value="1">Abarrotes</option>
-                                        </select>
+                                        <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                        <input name="num_off" id="num_off" placeholder="Número oficial" class="col-xs-10 col-sm-10" type="number" required/>
                                     </div>
                                 </div>
                             </div>
                             <br><br><br><br>							
                        		<div class="form-group">
-								<label class="col-sm-12 control-label no-padding-right">Costo </label>
-								<div class="col-md-12 inputGroupContainer">
-									<div class="input-group col-sm-12">										
-										<span class="input-group-addon"><i class="fa fa-usd"></i></span>											
-										<input name="costo" id="costo" placeholder="Costo" class="col-xs-10 col-sm-7" type="number" value="150" required disabled />
-										<span class="help-inline col-xs-12 col-sm-5">
-											<label class="middle">
-												<input class="ace" type="checkbox" id="check_edit" onclick="cambia_edit()" />
-												<span class="lbl">  Modificar</span>
-											</label>
-										</span>										
-									</div>
-								</div>	
-							</div>
+                                <label class="col-md-12 control-label">Costo uso de suelo </label>  
+                                <div class="col-md-12 inputGroupContainer">
+                                    <div class="input-group col-sm-12">
+                                        <span class="input-group-addon"><i class="fa fa-usd"></i></span>
+                                        <input name="costo" id="costo" placeholder="Costo uso de suelo" class="col-xs-10 col-sm-10" type="number" required/>
+                                    </div>
+                                </div>
+                            </div>
                        		<br><br><br><br>
 
 						</form>
@@ -61,7 +60,7 @@
 
 			<div class="modal-footer">
 				<button type="button" class="btn pull-left" data-dismiss="modal" onclick="show_hide_modals()"><i class="fa fa-times">&nbsp;</i>Cancelar</button>
-				<button type="button" class="btn btn-primary" onclick="actualiza_status(<?=$id;?>,1,document.getElementById('giro').value,document.getElementById('costo').value)"><i class="fa fa-money">&nbsp;</i>Generar orden de pago</button>
+				<button type="button" class="btn btn-primary" onclick="actualiza_status(<?=$id;?>,1,document.getElementById('num_off').value,document.getElementById('costo').value)"><i class="fa fa-money">&nbsp;</i>Generar orden de pago</button>
 			</div>
 
 		</div>	
