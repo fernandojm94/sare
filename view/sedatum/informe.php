@@ -240,10 +240,10 @@
                             <td style="width: 30%;"><h4>FECHA DE AUTORIZACIÓN</h4></td>
                         </tr>
                         <tr>
-                            <td style="height: 70px;" class="border_c">ESPACIO FIRMA</td>
-                            <td style="height: 70px;" class="border_c">ESPACIO FIRMA</td>
-                            <td style="height: 70px;" class="border_c">ESPACIO FIRMA</td>
-                            <td style="height: 70px;" class="border_c">FECHA DE AUTORIZACIÓN</td>
+                            <td style="height: 70px;" class="border_c"></td>
+                            <td style="height: 70px;" class="border_c"></td>
+                            <td style="height: 70px;" class="border_c"></td>
+                            <td style="height: 70px;" class="border_c"></td>
                         </tr>
                     </table>
 
@@ -306,28 +306,28 @@
             <td class="border_c" style="width:75%;">
                 <table>
                     <tr>
-                        <td>Nombre: </td>
-                        <td class="border_b">########</td>
+                        <td style="width: 10%;">Nombre: </td>
+                        <td style="width: 90%;" class="border_b"></td>
                     </tr>
                 </table>
 
                 <table>
                     <tr>
-                        <td>Calle: </td>
-                        <td class="border_b">########</td>
-                        <td>Número: </td>
-                        <td class="border_b">########</td>
-                        <td>Tel: </td>
-                        <td class="border_b">########</td>
+                        <td style="width: 7%;">Calle: </td>
+                        <td style="width: 40%;" class="border_b"></td>
+                        <td style="width: 10%;">Número: </td>
+                        <td style="width: 15%;" class="border_b"></td>
+                        <td style="width: 5%;">Tel: </td>
+                        <td style="width: auto;" class="border_b"></td>
                     </tr>
                 </table>
 
                 <table>
                     <tr>
-                        <td>Colonia/Fracc: </td>
-                        <td class="border_b">########</td>
-                        <td>Localidad: </td>
-                        <td class="border_b">########</td>
+                        <td style="width: 16%;">Colonia/Fracc: </td>
+                        <td style="width: 31%;" class="border_b"></td>
+                        <td style="width: 12%;">Localidad: </td>
+                        <td style="width: auto;" class="border_b"></td>
                     </tr>
                 </table>
             </td>
@@ -338,13 +338,13 @@
                         <td>Constancia No.</td>
                     </tr>
                     <tr>
-                        <td class="border_b">########</td>
+                        <td class="border_b"></td>
                     </tr>
                     <tr>
                         <td>Fecha de Ingreso</td>
                     </tr>
                     <tr>
-                        <td class="border_b">########</td>
+                        <td class="border_b"></td>
                     </tr>
                 </table>
             </td>
@@ -363,35 +363,35 @@
             <td class="border_c" style="width:75%;">
                 <table>
                     <tr>
-                        <td>Calle: </td>
-                        <td class="border_b">########</td>
-                        <td>Número Oficial: </td>
-                        <td class="border_b">########</td>
-                        <td>Manzana: </td>
-                        <td class="border_b">########</td>
+                        <td style="width: 7%">Calle: </td>
+                        <td style="width: 30%" class="border_b"></td>
+                        <td style="width: 18%">Número Oficial: </td>
+                        <td style="width: 26%" class="border_b"></td>
+                        <td style="width: 11%">Manzana: </td>
+                        <td style="width: 8%" class="border_b"></td>
                     </tr>
                     <tr>
-                        <td>Colonia/Fracc: </td>
-                        <td class="border_b">########</td>
-                        <td>Código Postal: </td>
-                        <td class="border_b">########</td>
-                        <td>Lote: </td>
-                        <td class="border_b">########</td>
+                        <td style="width: 16%">Colonia/Fracc: </td>
+                        <td style="width: 44%" class="border_b"></td>
+                        <td style="width: 16%">Código Postal: </td>
+                        <td style="width: 10%" class="border_b"></td>
+                        <td style="width: 6%">Lote: </td>
+                        <td style="width: 8%" class="border_b"></td>
                     </tr>
                 </table>
 
                 <table>
                     <tr>
-                        <td>Uso Actual: </td>
-                        <td class="border_b">########</td>
-                        <td>Cuenta Catastral: </td>
-                        <td class="border_b">########</td>
+                        <td style="width: 13%;">Uso Actual: </td>
+                        <td style="width: 39%;" class="border_b"></td>
+                        <td style="width: 19%;">Cuenta Catastral: </td>
+                        <td style="width: 29%;" class="border_b"></td>
                     </tr>
                     <tr>
-                        <td>Uso Solicitado: </td>
-                        <td class="border_b">########</td>
-                        <td>Cuenta Predial: </td>
-                        <td class="border_b">########</td>
+                        <td style="width: 17%;">Uso Solicitado: </td>
+                        <td style="width: 35%;" class="border_b"></td>
+                        <td style="width: 17%;">Cuenta Predial: </td>
+                        <td style="width: 31%;" class="border_b"></td>
                     </tr>
                 </table>
             </td>
@@ -463,12 +463,12 @@
                         <td class="border_b" style="width: 50%;"></td>
                     </tr>
                     <tr>
-                        <td style="width: 80%;">Coeficiente de Utilización del Suelo: </td>
-                        <td class="border_b" style="width: 20%;"></td>
+                        <td style="width: 77%;">Coeficiente de Utilización del Suelo: </td>
+                        <td class="border_b" style="width: 23%;"></td>
                     </tr>
                     <tr>
-                        <td style="width: 80%;">Coeficiente de Ocupación del Suelo: </td>
-                        <td class="border_b" style="width: 20%;"></td>
+                        <td style="width: 77%;">Coeficiente de Ocupación del Suelo: </td>
+                        <td class="border_b" style="width: 23%;"></td>
                     </tr>
                 </table>     
             </td>
@@ -484,26 +484,35 @@
 
     <table cellspacing="2" cellpadding="3">
         <tr>
-            <td class="border_c" style="width: 70%; height: 150;">Lorem ipsum dolor sit amet consectetur adipiscing elit, potenti hendrerit curae ligula porta maecenas cubilia, magnis arcu inceptos quisque justo dictumst. Quis himenaeos diam turpis duis vel dignissim facilisis, tempus nibh per ante luctus vitae, purus tempor gravida ligula cras class. Interdum vel aliquam arcu varius mus netus, sociis urna ante duis ultrices tristique, feugiat dictumst laoreet nullam risus.</td>
-            <td class="border_c" style="width:  30%; height: 150;">ESPACIO PARA QUE PONGAN EL SELLO</td>
+            <td class="border_c" style="width: 70%; height: 150;"></td>
+            <td class="border_c" style="width:  30%; height: 150;"></td>
         </tr>
     </table>';
 
     $html_2 = '
-    <h3>INFORME DE COMPATIBILIDAD URBANÍSTICA</h3>
+    <style>
+        .border_c{
+            border-style: solid solid solid solid;
+            border-width: 1px;
+        }
 
-    <p>OBSERVACIONES DE INFORME DE COMPATIBILIDAD URBANISTICA.</p>
+        .border_b{
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+        }
+
+        td{
+            font-size: 10px;
+        }
+    </style>
+
+    <h3 align="center">INFORME DE COMPATIBILIDAD URBANÍSTICA</h3>
+
+    <p>OBSERVACIONES DE INFORME DE COMPATIBILIDAD URBANISTICA (Continuación)</p>
     
-
-    <table border="1" cellspacing="6" cellpadding="4">
+    <table cellspacing="2" cellpadding="3">
         <tr>
-            <td>
-                <ol>
-                    <li>EJEMPLO 1</li>
-                    <li>EJEMPLO 2</li>
-                    <li>EJEMPLO 3</li>        
-                </ol>
-            </td>
+            <td class="border_c"><p></p></td>
         </tr>
     </table>';
 
