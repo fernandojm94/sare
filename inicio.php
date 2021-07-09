@@ -1717,7 +1717,7 @@
 
 												if (etapa==2)
 												{
-													window.open('view/sedatum/pdf_orden.php?id='+id_solicitud+'&giro='+complemento, '_blank');
+													window.open('view/sedatum/pdf_orden.php?id='+id_solicitud+'&monto='+complemento2, '_blank');
 												}
 
 											}

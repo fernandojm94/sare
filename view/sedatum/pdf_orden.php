@@ -1,12 +1,9 @@
 <?php
     include('../../model/solicitud/fill.php');
-    include('../../model/giros/fill.php');
     
     $id_expediente = $_GET['id'];
     $expediente = fill_expediente($id_expediente);
-
-    $id_giro = $_GET['giro'];
-    $giro = get_giros($id_giro);
+    $establecimiento = fill_establecimiento($expediente['id_dg_establecimiento']);
 
     if($expediente['tipo_persona'])
     {
@@ -14,8 +11,7 @@
     }else{
         $persona = fill_persona_fisica($expediente['id_persona']);
     }
-    
-    
+        
     // $nombre_persona = fill_nombre_persona($expediente['id_persona']);
 
     /**
@@ -29,7 +25,11 @@
      * @author AxiaCore S.A.S
      *
      */
-    $monto = $giro['precio'];
+    
+    $monto = $_GET['monto'];
+    $folio = $expediente['folio'];
+    $nombre = $persona['nombre']; 
+    $giro = $establecimiento['giro_scian'];
 
     $letras = NumeroALetras::convertir($monto, 'pesos', 'centavos');
     $letras = strtolower($letras);
@@ -257,7 +257,7 @@
 
     $seccion_2 = '<table>
                     <tr>
-                        <td><span><b>LICENCIA: </b></span><span>'.$expediente['folio'].'</span></td>
+                        <td><span><b>LICENCIA: </b></span><span>'.$folio.'</span></td>
                     </tr>
                     <tr><td></td></tr>
                 </table>';
@@ -265,7 +265,7 @@
     $seccion_3 = '<table>
                     <tr>
                         <td style="width: 14%;"><span><b>Destinatario: </b></span></td>
-                        <td style="width: auto; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;"><span>'.$persona['nombre'].'</span></td>
+                        <td style="width: auto; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;"><span>'.$nombre.'</span></td>
                     </tr>
 
                     <tr><td></td></tr>
@@ -291,7 +291,7 @@
     $seccion_4 = '<table>
                     <tr>
                         <td style="width: 28%;"><b>Por concepto de trámite de:</b> </td>
-                        <td style="width: auto;">Expedición de licencia para negocio de <b>'.$giro['giro'].'</b>.</td>
+                        <td style="width: auto;">Expedición de licencia para negocio de <b>'.$giro.'</b>.</td>
                     </tr>
                     <tr><td></td></tr>
                     <tr><td></td></tr>
