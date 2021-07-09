@@ -1,0 +1,305 @@
+<?php
+    include('../../model/solicitud/fill.php');
+    // $id_expediente = $_GET['id'];
+    // $expediente = fill_expediente($id);
+    // var_dump($expediente);
+    /**
+     * Clase que implementa un coversor de números
+     * a letras.
+     *
+     * Soporte para PHP >= 5.4
+     * Para soportar PHP 5.3, declare los arreglos
+     * con la función array.
+     *
+     * @author AxiaCore S.A.S
+     *
+     */
+
+    $monto = $_GET['costo'];
+    $letras = NumeroALetras::convertir($monto, 'pesos', 'centavos');
+    $letras = strtolower($letras);
+    $letras = ucfirst($letras);
+
+    $today = date("d.m.Y");
+    $today = str_replace('.', ' / ', $today);
+
+    /*
+        FALTA RECIBIR: 
+
+            -DESTINATARIO
+            -MONTO EN NÚMERO Y LETRA
+            -CONCEPTO DEL TRÁMITE
+            -MANDAR EL USUARIO QUE EMITE LA ORDEN
+    */
+
+
+    class NumeroALetras
+{
+    private static $UNIDADES = [
+        '',
+        'UN ',
+        'DOS ',
+        'TRES ',
+        'CUATRO ',
+        'CINCO ',
+        'SEIS ',
+        'SIETE ',
+        'OCHO ',
+        'NUEVE ',
+        'DIEZ ',
+        'ONCE ',
+        'DOCE ',
+        'TRECE ',
+        'CATORCE ',
+        'QUINCE ',
+        'DIECISEIS ',
+        'DIECISIETE ',
+        'DIECIOCHO ',
+        'DIECINUEVE ',
+        'VEINTE '
+    ];
+
+    private static $DECENAS = [
+        'VENTI',
+        'TREINTA ',
+        'CUARENTA ',
+        'CINCUENTA ',
+        'SESENTA ',
+        'SETENTA ',
+        'OCHENTA ',
+        'NOVENTA ',
+        'CIEN '
+    ];
+
+    private static $CENTENAS = [
+        'CIENTO ',
+        'DOSCIENTOS ',
+        'TRESCIENTOS ',
+        'CUATROCIENTOS ',
+        'QUINIENTOS ',
+        'SEISCIENTOS ',
+        'SETECIENTOS ',
+        'OCHOCIENTOS ',
+        'NOVECIENTOS '
+    ];
+
+    public static function convertir($number, $moneda = '', $centimos = '', $forzarCentimos = false)
+    {
+        $converted = '';
+        $decimales = '';
+
+        if (($number < 0) || ($number > 999999999)) {
+            return 'No es posible convertir el numero a letras';
+        }
+
+        $div_decimales = explode('.',$number);
+
+        if(count($div_decimales) > 1){
+            $number = $div_decimales[0];
+            $decNumberStr = (string) $div_decimales[1];
+            if(strlen($decNumberStr) == 2){
+                $decNumberStrFill = str_pad($decNumberStr, 9, '0', STR_PAD_LEFT);
+                $decCientos = substr($decNumberStrFill, 6);
+                $decimales = self::convertGroup($decCientos);
+            }
+        }
+        else if (count($div_decimales) == 1 && $forzarCentimos){
+            $decimales = 'CERO ';
+        }
+
+        $numberStr = (string) $number;
+        $numberStrFill = str_pad($numberStr, 9, '0', STR_PAD_LEFT);
+        $millones = substr($numberStrFill, 0, 3);
+        $miles = substr($numberStrFill, 3, 3);
+        $cientos = substr($numberStrFill, 6);
+
+        if (intval($millones) > 0) {
+            if ($millones == '001') {
+                $converted .= 'UN MILLON ';
+            } else if (intval($millones) > 0) {
+                $converted .= sprintf('%sMILLONES ', self::convertGroup($millones));
+            }
+        }
+
+        if (intval($miles) > 0) {
+            if ($miles == '001') {
+                $converted .= 'MIL ';
+            } else if (intval($miles) > 0) {
+                $converted .= sprintf('%sMIL ', self::convertGroup($miles));
+            }
+        }
+
+        if (intval($cientos) > 0) {
+            if ($cientos == '001') {
+                $converted .= 'UN ';
+            } else if (intval($cientos) > 0) {
+                $converted .= sprintf('%s ', self::convertGroup($cientos));
+            }
+        }
+
+        if(empty($decimales)){
+            $valor_convertido = $converted . strtoupper($moneda);
+        } else {
+            $valor_convertido = $converted . strtoupper($moneda) . ' CON ' . $decimales . ' ' . strtoupper($centimos);
+        }
+
+        return $valor_convertido;
+    }
+
+    private static function convertGroup($n)
+    {
+        $output = '';
+
+        if ($n == '100') {
+            $output = "CIEN ";
+        } else if ($n[0] !== '0') {
+            $output = self::$CENTENAS[$n[0] - 1];
+        }
+
+        $k = intval(substr($n,1));
+
+        if ($k <= 20) {
+            $output .= self::$UNIDADES[$k];
+        } else {
+            if(($k > 30) && ($n[2] !== '0')) {
+                $output .= sprintf('%sY %s', self::$DECENAS[intval($n[1]) - 2], self::$UNIDADES[intval($n[2])]);
+            } else {
+                $output .= sprintf('%s%s', self::$DECENAS[intval($n[1]) - 2], self::$UNIDADES[intval($n[2])]);
+            }
+        }
+
+        return $output;
+    }
+}
+
+    $fecha_formato ='
+        <br><span>CONSTANCIA: </span>
+        <span>#######</span><br>
+
+        <span>FECHA DE INGRESO: </span>
+        <span>'.$today.'</span>
+    ';
+
+    ob_start();
+
+    require_once('../../assets/TCPDF/tcpdf.php');
+
+    class MYPDF extends TCPDF {
+        
+        //Page header
+        public function Header() {
+            // $this->SetY(-215); 
+            $this->SetFont('times', 'R', 14);
+    
+            $cabeza = '
+                <style>
+                    .border_b{
+                        border-bottom-style: solid;
+                        border-bottom-width: 1px;
+                    }
+                </style>
+                <table border="1" cellpadding="3" cellspacing="3">
+                    <tr>
+                        <td style="width: 75%;">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <img src="../../img/logo_admin.png">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    LICENCIA
+                                                </td>
+                                                <td>
+                                                    FOLIO: 12345
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>    
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table>
+                                            <tr>
+                                                <td style="width: 10%;">Giro:</td>
+                                                <td style="width: 90%;" class="border_b"></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 15%;">Nombre:</td>
+                                                <td style="width: 85%;" class="border_b"></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 17%;">Domicilio:</td>
+                                                <td style="width: 83%;" class="border_b"></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 11%;">Fecha:</td>
+                                                <td style="width: 89%;" class="border_b"></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style="width: 25%;">
+                            <table cellpadding="3" cellspacing="3" border="1">
+                                <tr>
+                                    <td>2021</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>2022</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>2023</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>';
+
+            $this->writeHTMLCell('', '', '', 10, $cabeza, $border=0, $ln=2, $fill=0, $reseth=true, $align='L', $autopadding=true);
+        }  
+    }
+
+    $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, 'LETTER', true, 'UTF-8', false);
+
+    $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+    $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+    $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+    $pdf->SetMargins(PDF_MARGIN_LEFT, 35, PDF_MARGIN_RIGHT, TRUE);
+    $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+    $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+    $pdf->SetFont('times', '', 12, '', true);
+
+    $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+    $pdf->AddPage();
+
+    $pdf->Ln(0, false);
+    $pdf->SetFont('times', '', 12, '', true);
+
+    $pdf->SetY(23, false, false);
+    //$pdf->writeHTML($fecha_formato, false, 0, false, false, 'R');
+
+    $pdf->Ln(25, false);
+    $pdf->SetFont('times', '', 14, '', true);
+
+    $pdf->Output('solicitud.pdf', 'I');
+    
+?>
