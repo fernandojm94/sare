@@ -1555,6 +1555,12 @@
 				var titulo="";
 				var texto="";
 				var pantalla="";
+
+				console.log("id:"+id_solicitud+" etapa: "+etapa+" status: "+status+" adicional_1: "+complemento+" adicional_2: "+complemento2+" director: "+director+" tipo_usuario: "+tipo_usuario+" id_usuario: "+id_usuario+" folio: "+folio);
+
+				console.log(complemento==="");console.log(complemento2==="");
+
+				console.log(complemento.length);console.log(complemento2.length);
 				
 				if (etapa==2)
 				{
@@ -1583,7 +1589,7 @@
 				{
 					titulo="Rechazar?";
 					texto="¿Seguro que desea rechazar la solicutud?";
-				} else if((status==1)&&(etapa==2)&&(complemento!=0)){
+				} else if((status==1)&&(etapa==2)&&(complemento!==0)){
 					titulo="¿Generar orden de pago?";
 					texto="¿Desea generar la orden de pago?";
 				} else{
@@ -1667,10 +1673,10 @@
 								
 								console.log("id:"+id_solicitud+" etapa: "+etapa+" status: "+status+" adicional_1: "+complemento+" adicional_2: "+complemento2+" director: "+director+" tipo_usuario: "+tipo_usuario+" id_usuario: "+id_usuario+" folio: "+folio);
 
-								if ((etapa==2)&&(complemento==0))
+								if ((etapa==2)&&(complemento===0)&&(complemento2===0))
 								{
 									fill_modal_gen_recibo(id_solicitud);
-								} else if((etapa==2) && (complemento=="") && (complemento2=="")){
+								} else if((etapa==2) && ((complemento.length===0) || (complemento2.length===0))){
 									swal({
 									  	title: "¡Error!",
 									  	text: "¡Favor de llenar todos los campos!",
