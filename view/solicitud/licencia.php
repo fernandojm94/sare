@@ -208,71 +208,45 @@
                     }
 
                 </style>
-                <table>
+
+                <table border="1" cellpadding="3" cellspacing="0">
                     <tr>
-                        <td class="border_c" style="width: 75%;">
-                            <table>
-                                <tr>
-                                    <td>
-                                        <img src="../../img/sde.png">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="center">
-                                        LICENCIA
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="right">
-                                        FOLIO: 12345 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <table>
-                                            <tr>
-                                                <td style="width: 10%;">Giro:</td>
-                                                <td style="width: 90%;" class="border_b"></td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width: 15%;">Nombre:</td>
-                                                <td style="width: 85%;" class="border_b"></td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width: 17%;">Domicilio:</td>
-                                                <td style="width: 83%;" class="border_b"></td>
-                                            </tr>
-                                            <tr>
-                                                <td style="width: 11%;">Fecha:</td>
-                                                <td style="width: 89%;" class="border_b"></td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                        <td class="border_c" style="width: 25%;">
-                            <table>
-                                <tr>
-                                    <td bgcolor="#e0e0e0" align="center" class="border_b">2021</td>
-                                </tr>
-                                <tr>
-                                    <td class="border_b firma"></td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#e0e0e0" align="center" class="border_b">2022</td>
-                                </tr>
-                                <tr>
-                                    <td class="border_b firma"></td>
-                                </tr>
-                                <tr>
-                                    <td bgcolor="#e0e0e0" align="center" class="border_b">2023</td>
-                                </tr>
-                                <tr>
-                                    <td class="border_b firma"></td>
-                                </tr>
-                            </table>
-                        </td>
+                        <td colspan="3" rowspan="2"><img src="../../img/sde.png"></td>
+                        <td align="center">2021</td>
+                    </tr>
+                    <tr>
+                        <td align="center">FIRMA</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td align="center">LICENCIA</td>
+                        <td align="right">FOLIO: 123456</td>
+                        <td align="center">2022</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">Giro:</td>
+                        <td rowspan="3" align="center">FIRMA</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">Nombre:</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">Domicilio:</td>
+                        
+                    </tr>
+                    <tr>
+                        <td colspan="3">Fecha:</td>
+                        <td align="center">2023</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" rowspan="3"></td>
+                        <td rowspan="3" align="center">FIRMA</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
                     </tr>
                 </table>';
 
