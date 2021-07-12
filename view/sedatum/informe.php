@@ -15,13 +15,10 @@
      *
      */
 
-    $monto = $_GET['costo'];
+    $monto = 5;
     $letras = NumeroALetras::convertir($monto, 'pesos', 'centavos');
     $letras = strtolower($letras);
     $letras = ucfirst($letras);
-
-    $today = date("d.m.Y");
-    $today = str_replace('.', ' / ', $today);
 
     /*
         FALTA RECIBIR: 
@@ -172,34 +169,28 @@
     }
 }
 
-    $fecha_formato ='
-        <br><span>CONSTANCIA: </span>
-        <span>#######</span><br>
-
-        <span>FECHA DE INGRESO: </span>
-        <span>'.$today.'</span>
-    ';
-
     ob_start();
 
     require_once('../../assets/TCPDF/tcpdf.php');
 
     class MYPDF extends TCPDF {
-
         
         //Page header
         public function Header() {
+            // $today = str_replace('.', ' / ', date("d.m.Y"));
             // $this->SetY(-215); 
-            $this->SetFont('times', 'I', 14);
+            $this->SetFont('times', 'R', 14);
             $this->Image('../../img/2.png', '', '', 25, 28, '', '', 'T', false, 300, '', false, false, 1, false, false, false);
 
             $cabeza = '<table>
                      <tr>
                       <td>Presidencia Municipal de Jesús María</td>
+                      
                      </tr>
 
                      <tr>
                       <td>Gobierno Municipal 2019 - 2021</td>
+                        
                      </tr>
 
                      <tr>
@@ -209,7 +200,7 @@
                     </table>';
 
     
-            $this->writeHTMLCell('', '', '', 10, $cabeza, $border=0, $ln=2, $fill=0, $reseth=true, $align='C', $autopadding=true);
+            $this->writeHTMLCell('', '', '', 12, $cabeza, $border=0, $ln=2, $fill=0, $reseth=true, $align='C', $autopadding=true);
         }  
 
         // Page footer
@@ -271,8 +262,6 @@
 
     $pdf->AddPage();
 
-    $subtable = '<table border="1" cellspacing="6" cellpadding="4"><tr><td>a</td><td>b</td></tr><tr><td>c</td><td>d</td></tr></table>';
-
     $html = '
 
     <style>
@@ -291,11 +280,12 @@
         }
     </style>
 
-    <h4 align="center">INFORME DE COMPATIBILIDAD URBANÍSTICA</h4>
 
     <table>
         <tr>
-            <td>
+            <td><h4 align="center">INFORME DE COMPATIBILIDAD URBANÍSTICA</h4></td>    
+        </tr>
+        <tr><td>
                 <h4>DATOS DE LA PERSONA ######</h4>
             </td>
         </tr>
@@ -517,15 +507,14 @@
     </table>';
 
     // output the HTML content
-    $pdf->writeHTML($html, true, false, true, false, '');
+    $pdf->writeHTML($html, false, false, true, false, '');
     $pdf->AddPage();
     $pdf->writeHTML($html_2, true, false, true, false, '');
 
     $pdf->Ln(0, false);
     $pdf->SetFont('times', '', 12, '', true);
 
-    $pdf->SetY(23, false, false);
-    $pdf->writeHTML($fecha_formato, false, 0, false, false, 'R');
+    
 
     $pdf->Ln(25, false);
     $pdf->SetFont('times', '', 14, '', true);
