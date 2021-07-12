@@ -193,33 +193,39 @@
     
             $cabeza = '
                 <style>
+                    .border_c{
+                        border-style: solid solid solid solid;
+                        border-bottom-width: 1px;
+                    }
+
                     .border_b{
                         border-bottom-style: solid;
                         border-bottom-width: 1px;
                     }
+
+                    .firma{
+                        height: 50px;
+                    }
+
                 </style>
-                <table border="1" cellpadding="3" cellspacing="3">
+                <table>
                     <tr>
-                        <td style="width: 75%;">
+                        <td class="border_c" style="width: 75%;">
                             <table>
                                 <tr>
                                     <td>
-                                        <img src="../../img/logo_admin.png">
+                                        <img src="../../img/sde.png">
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <table>
-                                            <tr>
-                                                <td>
-                                                    LICENCIA
-                                                </td>
-                                                <td>
-                                                    FOLIO: 12345
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>    
+                                    <td align="center">
+                                        LICENCIA
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        FOLIO: 12345 
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -245,25 +251,25 @@
                                 </tr>
                             </table>
                         </td>
-                        <td style="width: 25%;">
-                            <table cellpadding="3" cellspacing="3" border="1">
+                        <td class="border_c" style="width: 25%;">
+                            <table>
                                 <tr>
-                                    <td>2021</td>
+                                    <td bgcolor="#e0e0e0" align="center" class="border_b">2021</td>
                                 </tr>
                                 <tr>
-                                    <td></td>
+                                    <td class="border_b firma"></td>
                                 </tr>
                                 <tr>
-                                    <td>2022</td>
+                                    <td bgcolor="#e0e0e0" align="center" class="border_b">2022</td>
                                 </tr>
                                 <tr>
-                                    <td></td>
+                                    <td class="border_b firma"></td>
                                 </tr>
                                 <tr>
-                                    <td>2023</td>
+                                    <td bgcolor="#e0e0e0" align="center" class="border_b">2023</td>
                                 </tr>
                                 <tr>
-                                    <td></td>
+                                    <td class="border_b firma"></td>
                                 </tr>
                             </table>
                         </td>
