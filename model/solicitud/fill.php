@@ -107,8 +107,10 @@ function fill_solicitudes($solicitudes, $pantalla)
 	foreach ($solicitudes as $solicitud) 
 	{	
 		$comprobante = "";
+		$informe = "";
+		$etapaa= $solicitud['status'];
 
-		$info_btn = '<a class="btn btn-xs btn-info" onclick="fill_modal_info('.$solicitud['id'].','.$solicitud['etapa'].')" role="button" data-toggle="modal">
+		$info_btn = '<a class="btn btn-xs btn-info" '.$etapaa.' onclick="fill_modal_info('.$solicitud['id'].','.$solicitud['etapa'].')" role="button" data-toggle="modal">
 						<i class="ace-icon fa fa-info-circle bigger-130"></i>
 					</a>';
 		if ($pantalla == 1 AND $solicitud['etapa'] == 3) 
@@ -118,12 +120,29 @@ function fill_solicitudes($solicitudes, $pantalla)
 								</a>';	
 		}
 
-
 		if ($pantalla == 8 AND $solicitud['etapa'] != 1  AND $solicitud['status'] != 2)
 		{
 			$comprobante = '<a class="btn btn-xs btn-success" onclick="fill_modal_update_anexos('.$solicitud['id'].')" role="button" data-toggle="modal">
 									<i class="ace-icon fa fa-upload bigger-130"></i>
-								</a>';	
+								</a>';					
+		}
+
+		if ($solicitud['status'] == 1  && $pantalla != 1) 
+		{
+			$url = '../../view/sedatum/informe.php?id=';
+			$id = $solicitud['id'];
+			$informe= '<a title="Imprimir Informe" class="btn btn-xs btn-success" href="'.$url.$id.'" target="_blank" role="button">
+						<i class="ace-icon fa fa-print bigger-130"></i>
+					</a>';
+		}
+
+		if ($solicitud['status'] == 1  && $pantalla == 1) 
+		{
+			$url = '../../view/solicitud/licencia.php?id=';
+			$id = $solicitud['id'];
+			$informe= '<a title="Imprimir Informe" class="btn btn-xs btn-success" href="'.$url.$id.'" target="_blank" role="button">
+						<i class="ace-icon fa fa-print bigger-130"></i>
+					</a>';
 		}
 
 		switch ($solicitud['etapa']) 
@@ -197,6 +216,7 @@ function fill_solicitudes($solicitudes, $pantalla)
 									<div class="btn-group">
 										'.$info_btn.'
 										'.$comprobante.'
+										'.$informe.'
 									</div>
 								</td>
 							</tr>
@@ -217,6 +237,7 @@ function fill_solicitudes($solicitudes, $pantalla)
 									<div class="btn-group">
 										'.$info_btn.'
 										'.$comprobante.'
+										'.$informe.'
 									</div>
 								</td>
 							</tr>

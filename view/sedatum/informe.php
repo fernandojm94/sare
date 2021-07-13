@@ -1,19 +1,22 @@
 <?php
     include('../../model/solicitud/fill.php');
-    // $id_expediente = $_GET['id'];
-    // $expediente = fill_expediente($id);
-    // var_dump($expediente);
-    /**
-     * Clase que implementa un coversor de números
-     * a letras.
-     *
-     * Soporte para PHP >= 5.4
-     * Para soportar PHP 5.3, declare los arreglos
-     * con la función array.
-     *
-     * @author AxiaCore S.A.S
-     *
-     */
+
+    //INICIA LA SELECCION DE BOTONES QUE SE DEBEN IMPRIMIR PARA CADA ETAPA
+    $pantalla = $_POST['pantalla'];
+    $etapa = $_POST['etapa'];
+    $id = $_POST['id'];
+
+    $expediente = fill_expediente($id);
+
+    if($expediente['tipo_persona'])
+    {
+        $datos_generales = fill_persona_moral($expediente['id_persona']);
+    }else{
+        $datos_generales = fill_persona_fisica($expediente['id_persona']);
+    }
+    $establecimiento = fill_establecimiento($expediente['id_dg_establecimiento']);
+    $dimensiones = fill_dimensiones($expediente['id_dimensiones_establecimiento']);
+    $folio_str= str_replace(array("/", " ",":"),array("-","-","-"),$expediente['folio']);
 
     $monto = 5;
     $letras = NumeroALetras::convertir($monto, 'pesos', 'centavos');
