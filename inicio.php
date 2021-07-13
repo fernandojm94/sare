@@ -380,35 +380,26 @@
 				</div>
 
 				<div class="navbar-buttons navbar-header pull-right" role="navigation">
-					<ul class="nav ace-nav">
+					<ul class="nav ace-nav">						
+						<li class="dropdown-modal" id="push">
+		                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+		                        <i class="ace-icon fa fa-bell icon-animated-bell"></i>
+		                        <span class="badge">0</span>
+		                    </a>
 
-						<li class="purple dropdown-modal">
-							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-								<i class="ace-icon fa fa-bell icon-animated-bell"></i>
-								<span class="badge badge-important">8</span>
-							</a>
+		                    <ul class="dropdown-menu-right dropdown-navbar navbar-green dropdown-menu dropdown-caret dropdown-close">
+		                        <li class="dropdown-header">
+		                            <i class="ace-icon fa fa-check"></i>
+		                            Todo en orden
+		                        </li>
 
-							<ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
-								<li class="dropdown-header">
-									<i class="ace-icon fa fa-exclamation-triangle"></i>
-									8 Nuevas Solicitudes
-								</li>
-
-								<li class="dropdown-content">
-									<ul class="dropdown-menu dropdown-navbar navbar-pink">
-										
-									</ul>
-								</li>
-
-								<li class="dropdown-footer">
-									<a href="inicio.php">
-										Ver las Nuevas Solicitudes
-										<i class="ace-icon fa fa-arrow-right"></i>
-									</a>
-								</li>
-							</ul>
-						</li>
-
+		                        <li class="dropdown-content">
+		                            <ul class="dropdown-menu dropdown-navbar navbar-pink">
+		                                
+		                            </ul>
+		                        </li>
+		                    </ul>
+		                </li>
 						<li class="light-blue dropdown-modal">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 
@@ -1818,10 +1809,8 @@
 					// 	var si = $(arboles[i]).has("ul").append(list_docs);
 			
 					// 	console.log(si);
-					// }
-					
+					// }				
 			}
-
 
 			//esta es la función que viene del ace min
 			function documentacion(id){
@@ -1943,7 +1932,28 @@
 					
 
 				});
-			}	
+			}
+
+			function push(){
+				if(typeof(EventSource)!=="undefined")
+				{
+					var pantalla = $("#pantalla").val();
+				  	var source = new EventSource("./model/sedatum/monitor.php?pantalla="+pantalla);
+				  	console.log("entro");
+				  	source.onmessage=function(event)
+				    {
+				    	console.log(event.data);
+						document.getElementById("push").innerHTML=event.data;/*Aqui se muestra el globo de notificación si hay cambios*/
+						$("#push").addClass("purple");
+				    };
+				}
+				else
+				{
+					document.getElementById("push").innerHTML="0";
+		  		}
+			}
+
+			setInterval('push()',10000);
 				
 		</script>
 	</body>
