@@ -211,39 +211,37 @@
 
                 <table border="1" cellpadding="3" cellspacing="0">
                     <tr>
-                        <td colspan="3" rowspan="2"><img src="../../img/sde.png"></td>
+                        <td colspan="3" rowspan="2" align="center"><img width="320" src="../../img/sde.png"></td>
                         <td align="center">2021</td>
                     </tr>
                     <tr>
                         <td align="center">FIRMA</td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td align="center">LICENCIA</td>
-                        <td align="right">FOLIO: 123456</td>
+                        <td align="center" colspan="3">LICENCIA</td>
                         <td align="center">2022</td>
                     </tr>
                     <tr>
-                        <td colspan="3">Giro:</td>
+                        <td colspan="3" align="right">Folio: SARE-123</td>
                         <td rowspan="3" align="center">FIRMA</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">Giro:</td>
                     </tr>
                     <tr>
                         <td colspan="3">Nombre:</td>
                     </tr>
                     <tr>
                         <td colspan="3">Domicilio:</td>
-                        
-                    </tr>
-                    <tr>
-                        <td colspan="3">Fecha:</td>
                         <td align="center">2023</td>
                     </tr>
                     <tr>
-                        <td colspan="3" rowspan="3"></td>
+                        <td colspan="3">Fecha:</td>
                         <td rowspan="3" align="center">FIRMA</td>
                     </tr>
                     <tr>
-                        <td></td>
+                        <td colspan="3" rowspan="3"></td>
+                        
                     </tr>
                     <tr>
                         <td></td>
@@ -268,7 +266,7 @@
     $pdf->SetFont('times', '', 12, '', true);
 
     $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-
+    $pdf->SetPrintFooter(false);
     $pdf->AddPage();
 
     $pdf->Ln(0, false);
