@@ -256,3 +256,23 @@ function update_visto($id, $tabla)
 
 	return $result; 
 }
+
+function get_pmoral_separado($id_persona)
+{
+	$sql = "SELECT id, nombre_empresa AS nombre, fecha_constitucion, rfc_empresa, email_empresa, telefono_empresa, nombre_rl, rfc_rl AS rfc, curp, calle, no_exterior, no_interior, colonia, estado, municipio, localidad, cp, telefono_rl As telefono, email_rl AS email
+				FROM personas_morales
+				WHERE  id = '".$id."'";
+	$result = query_row_id($sql);
+
+	return $result;
+}
+
+function  get_pfisica_separado($id_persona)
+{
+	$sql = "SELECT id, nombre_completo AS nombre, calle, no_exterior, no_interior, colonia, municipio, localidad, c_p, rfc, curp, telefono, email
+				FROM personas_fisicas
+				WHERE  id = '".$id."'";
+	$result = query_row_id($sql);
+
+	return $result;
+}

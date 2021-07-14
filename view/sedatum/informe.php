@@ -8,12 +8,8 @@
 
     $expediente = fill_expediente($id);
 
-    if($expediente['tipo_persona'])
-    {
-        $datos_generales = fill_persona_moral($expediente['id_persona']);
-    }else{
-        $datos_generales = fill_persona_fisica($expediente['id_persona']);
-    }
+    $datos_generales = fill_datos_generales($expediente['id_persona'],$expediente['tipo_persona']);
+    
     $establecimiento = fill_establecimiento($expediente['id_dg_establecimiento']);
     $dimensiones = fill_dimensiones($expediente['id_dimensiones_establecimiento']);
     $folio_str= str_replace(array("/", " ",":"),array("-","-","-"),$expediente['folio']);
