@@ -335,9 +335,9 @@ function fill_datos_generales($id_persona,$tipo_persona)
 {
 	if($tipo_persona)
 	{
-		$datos_geerales = get_pmoral_separado($id_persona)
+		$datos_geerales = get_pmoral_separado($id_persona);
 	}else{
-		$datos_geerales = get_pfisica_separado($id_persona)
+		$datos_geerales = get_pfisica_separado($id_persona);
 	}
 	return $datos_geerales;
 }
