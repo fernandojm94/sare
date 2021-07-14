@@ -96,7 +96,7 @@
 						<li class="dropdown-modal" id="push">
 		                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 		                        <i class="ace-icon fa fa-bell icon-animated-bell"></i>
-		                        <span class="badge">0</span>
+		                        <span class="badge"><input type="hidden" id="noti" name="noti" value="0"/>0</span>
 		                    </a>
 
 		                    <ul class="dropdown-menu-right dropdown-navbar navbar-green dropdown-menu dropdown-caret dropdown-close">
@@ -1650,14 +1650,25 @@
 				if(typeof(EventSource)!=="undefined")
 				{
 					var pantalla = $("#pantalla").val();
+					var noti = $("#noti").val();
 				  	var source = new EventSource("./model/sedatum/monitor.php?pantalla="+pantalla);
-				  	console.log("entro");
+				  	// console.log("entro");
 				  	source.onmessage=function(event)
 				    {
-				    	console.log(event.data);
+				    	// console.log(event.data);
 						document.getElementById("push").innerHTML=event.data;/*Aqui se muestra el globo de notificación si hay cambios*/
-						$("#push").addClass("purple");
+						if (noti==0){
+							// console.log("sin purpura");
+							$("#push").removeClass("purple");
+						} else{
+							// console.log("purpura");
+							$("#push").addClass("purple");
+						}
+						source.close();
 				    };
+				    source.onerror = function(e) {
+					  	// console.log("Fallo EventSource.");
+					};
 				}
 				else
 				{
@@ -1665,7 +1676,7 @@
 		  		}
 			}
 
-			setInterval('push()',100000);
+			setInterval('push()',10000);
 				
 		</script>
 	</body>
