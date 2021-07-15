@@ -276,3 +276,14 @@ function  get_pfisica_separado($id_persona)
 
 	return $result;
 }
+
+function get_establecimiento_separado($id)
+{
+	$sql = "SELECT nombre_comercial, horario_trabajo, calle, no_exterior, no_interior, colonia, entre_calles, municipio, localidad, cp, latitud_longitud, telefono, uso_actual, giro_scian, cuenta_catastral, manzana, lote, distancia_esquina, cajones_estacionamiento, monto_inversion, pesonal_ocupado, servicios_existentes
+				FROM dg_establecimiento
+			WHERE id = $id";
+
+	$result = query_row_id($sql);
+
+	return $result;
+}
