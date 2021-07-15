@@ -341,4 +341,11 @@ function fill_datos_generales($id_persona,$tipo_persona)
 	}
 	return $datos_geerales;
 }
+
+function fill_establecimiento_separado($id)
+{
+	$establecimiento = get_establecimiento_separado($id);
+
+	return $establecimiento;
+}
 ?>

@@ -10,7 +10,7 @@
 
     $datos_generales = fill_datos_generales($expediente['id_persona'],$expediente['tipo_persona']);
     
-    $establecimiento = fill_establecimiento($expediente['id_dg_establecimiento']);
+    $establecimiento = fill_establecimiento_separado($expediente['id_dg_establecimiento']);
     $dimensiones = fill_dimensiones($expediente['id_dimensiones_establecimiento']);
     $folio_str= str_replace(array("/", " ",":"),array("-","-","-"),$expediente['folio']);
 
