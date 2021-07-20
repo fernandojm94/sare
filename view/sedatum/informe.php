@@ -2,17 +2,16 @@
     include('../../model/solicitud/fill.php');
 
     //INICIA LA SELECCION DE BOTONES QUE SE DEBEN IMPRIMIR PARA CADA ETAPA
-    $pantalla = $_POST['pantalla'];
-    $etapa = $_POST['etapa'];
-    $id = $_POST['id'];
+    // $pantalla = $_POST['pantalla'];
+    // $etapa = $_POST['etapa'];
+    $id = $_GET['id'];
 
     $expediente = fill_expediente($id);
 
     $datos_generales = fill_datos_generales($expediente['id_persona'],$expediente['tipo_persona']);
-    
     $establecimiento = fill_establecimiento_separado($expediente['id_dg_establecimiento']);
     $dimensiones = fill_dimensiones($expediente['id_dimensiones_establecimiento']);
-    $folio_str= str_replace(array("/", " ",":"),array("-","-","-"),$expediente['folio']);
+    $folio_str = str_replace(array("/", " ",":"),array("-","-","-"),$expediente['folio']);
 
     $monto = 5;
     $letras = NumeroALetras::convertir($monto, 'pesos', 'centavos');
@@ -296,27 +295,34 @@
                 <table>
                     <tr>
                         <td style="width: 10%;">Nombre: </td>
-                        <td style="width: 90%;" class="border_b"></td>
+                        <td style="width: 90%;" class="border_b">'.$datos_generales['nombre'].'</td>
                     </tr>
                 </table>
 
                 <table>
                     <tr>
                         <td style="width: 7%;">Calle: </td>
-                        <td style="width: 40%;" class="border_b"></td>
+                        <td style="width: 40%;" class="border_b">'.$datos_generales['calle'].'</td>
                         <td style="width: 10%;">Número: </td>
-                        <td style="width: 15%;" class="border_b"></td>
+                        <td style="width: 15%;" class="border_b">'.$datos_generales['no_exterior'].'</td>
                         <td style="width: 5%;">Tel: </td>
-                        <td style="width: auto;" class="border_b"></td>
+                        <td style="width: auto;" class="border_b">'.$datos_generales['telefono'].'</td>
+                    </tr>
+                </table>
+               
+                <table>
+                    <tr>
+                        <td style="width: 16%;">Colonia/Fracc: </td>
+                        <td style="width: 31%;" class="border_b">'.$datos_generales['colonia'].'</td>
+                        <td style="width: 12%;">Localidad: </td>
+                        <td style="width: auto;" class="border_b">'.$datos_generales['localidad'].'</td>
                     </tr>
                 </table>
 
                 <table>
                     <tr>
-                        <td style="width: 16%;">Colonia/Fracc: </td>
-                        <td style="width: 31%;" class="border_b"></td>
-                        <td style="width: 12%;">Localidad: </td>
-                        <td style="width: auto;" class="border_b"></td>
+                        <td style="width: 9%;">E-mail: </td>
+                        <td style="width: 89%;" class="border_b">'.$datos_generales['email'].'</td>
                     </tr>
                 </table>
             </td>
@@ -327,7 +333,7 @@
                         <td>Constancia No.</td>
                     </tr>
                     <tr>
-                        <td class="border_b"></td>
+                        <td class="border_b">'.$folio_str.'</td>
                     </tr>
                     <tr>
                         <td>Fecha de Ingreso</td>
@@ -342,7 +348,7 @@
 
     <table>
         <tr>
-            <td width="75%;"><h4>UBICACIÓN Y DATOS DEL PRECIO</h4></td>
+            <td width="75%;"><h4>UBICACIÓN Y DATOS DEL PREDIO</h4></td>
             <td width="25%;"><h4>URBANIZACIÓN</h4></td>
         </tr>
     </table>        
@@ -353,32 +359,32 @@
                 <table>
                     <tr>
                         <td style="width: 7%">Calle: </td>
-                        <td style="width: 30%" class="border_b"></td>
-                        <td style="width: 18%">Número Oficial: </td>
-                        <td style="width: 26%" class="border_b"></td>
+                        <td style="width: 53%" class="border_b">'.$establecimiento['calle'].'</td>
+                        <td style="width: 10%">Número: </td>
+                        <td style="width: 11%" class="border_b">'.$establecimiento['no_exterior'].'</td>
                         <td style="width: 11%">Manzana: </td>
-                        <td style="width: 8%" class="border_b"></td>
+                        <td style="width: 8%" class="border_b">'.$establecimiento['manzana'].'</td>
                     </tr>
                     <tr>
                         <td style="width: 16%">Colonia/Fracc: </td>
-                        <td style="width: 44%" class="border_b"></td>
+                        <td style="width: 44%" class="border_b">'.$establecimiento['colonia'].'</td>
                         <td style="width: 16%">Código Postal: </td>
-                        <td style="width: 10%" class="border_b"></td>
+                        <td style="width: 10%" class="border_b">'.$datos_generales['c_p'].'</td>
                         <td style="width: 6%">Lote: </td>
-                        <td style="width: 8%" class="border_b"></td>
+                        <td style="width: 8%" class="border_b">'.$establecimiento['lote'].'</td>
                     </tr>
                 </table>
 
                 <table>
                     <tr>
                         <td style="width: 13%;">Uso Actual: </td>
-                        <td style="width: 39%;" class="border_b"></td>
+                        <td style="width: 39%;" class="border_b">'.$establecimiento['uso_actual'].'</td>
                         <td style="width: 19%;">Cuenta Catastral: </td>
-                        <td style="width: 29%;" class="border_b"></td>
+                        <td style="width: 29%;" class="border_b">'.$establecimiento['cuenta_catastral'].'</td>
                     </tr>
                     <tr>
                         <td style="width: 17%;">Uso Solicitado: </td>
-                        <td style="width: 35%;" class="border_b"></td>
+                        <td style="width: 35%;" class="border_b">'.$establecimiento['uso_solicitado'].'</td>
                         <td style="width: 17%;">Cuenta Predial: </td>
                         <td style="width: 31%;" class="border_b"></td>
                     </tr>
@@ -387,16 +393,7 @@
             <td class="border_c" style="width:25%;">
                 <table>
                     <tr>
-                        <td>Agua</td>
-                        <td>Electrificación</td>
-                    </tr>
-                    <tr>
-                        <td>Drenaje</td>
-                        <td>Pavimento</td>
-                    </tr>
-                    <tr>
-                        <td>Guarnición</td>
-                        <td>Banqueta</td>
+                         <td>'.$establecimiento['servicios_existentes'].'</td>
                     </tr>
                 </table>
             </td>
@@ -429,19 +426,19 @@
                     </tr>
                     <tr>
                         <td style="width: 10%;">Frente: </td>
-                        <td style="width: 10%;" class="border_b"></td>
+                        <td style="width: 10%;" class="border_b">'.$dimensiones['frente'].'&nbsp;m</td>
                         <td style="width: 15%;"> Derecho: </td>
-                        <td style="width: 10%;" class="border_b"></td>
+                        <td style="width: 10%;" class="border_b">'.$dimensiones['derecho'].'&nbsp;m</td>
                         <td style="width: 16%;"> Superficie: </td>
-                        <td style="width: 39%;" class="border_b"></td>
+                        <td style="width: 39%;" class="border_b">'.$dimensiones['sup_local'].'&nbsp;m&sup2;</td>
                     </tr>
                     <tr>
                         <td style="width: 10%;">Fondo: </td>
-                        <td style="width: 10%;" class="border_b"></td>
+                        <td style="width: 10%;" class="border_b">'.$dimensiones['fondo'].'&nbsp;m</td>
                         <td style="width: 15%;"> Izquierdo: </td>
-                        <td style="width: 10%;" class="border_b"></td>
+                        <td style="width: 10%;" class="border_b">'.$dimensiones['izquierdo'].'&nbsp;m</td>
                         <td style="width: 28%;"> Distancia a esquina: </td>
-                        <td style="width: 27%;" class="border_b"></td>
+                        <td style="width: 27%;" class="border_b">'.$establecimiento['distancia_esquina'].'</td>
                     </tr>
                 </table>        
             </td>
@@ -518,6 +515,6 @@
     $pdf->Ln(25, false);
     $pdf->SetFont('times', '', 14, '', true);
 
-    $pdf->Output('solicitud.pdf', 'I');
+    $pdf->Output($_SERVER['DOCUMENT_ROOT'] . '/assets/expedientes/'.$folio_str.'/docs/documentacion/Informe.pdf', 'FI');
     
 ?>

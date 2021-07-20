@@ -340,16 +340,39 @@
                                         
                                                 <select class="chosen-select form-control" name="uso" id="uso" data-placeholder="Elige una opción..." required>
                                                     <option value=""></option>
-                                                    <option value="1">Habitacional</option>
-                                                    <option value="2">Comercial</option>
-                                                    <option value="3">Servicios</option>
-                                                    <option value="4">Equipamiento Urbano</option>
-                                                    <option value="5">Industriales</option>
-                                                    <option value="6">Microindustrial</option>
-                                                    <option value="7">Agricola</option>
-                                                    <option value="8">Forestal</option>
-                                                    <option value="9">Conservación Ambiental</option>
-                                                    <option value="10">Ecoturístico</option>
+                                                    <option value="Habitacional">Habitacional</option>
+                                                    <option value="Comercial">Comercial</option>
+                                                    <option value="Servicios">Servicios</option>
+                                                    <option value="Equipamiento Urbano">Equipamiento Urbano</option>
+                                                    <option value="Industriales">Industriales</option>
+                                                    <option value="Microindustrial">Microindustrial</option>
+                                                    <option value="Agricola">Agricola</option>
+                                                    <option value="Forestal">Forestal</option>
+                                                    <option value="Conservación Ambiental">Conservación Ambiental</option>
+                                                    <option value="Ecoturístico">Ecoturístico</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label">Uso solicitado</label>  
+                                        <div class="col-md-4 inputGroupContainer">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-building"></i></span>
+                                        
+                                                <select class="chosen-select form-control" name="uso_sol" id="uso_sol" data-placeholder="Elige una opción..." required>
+                                                    <option value=""></option>
+                                                    <option value="Habitacional">Habitacional</option>
+                                                    <option value="Comercial">Comercial</option>
+                                                    <option value="Servicios">Servicios</option>
+                                                    <option value="Equipamiento Urbano">Equipamiento Urbano</option>
+                                                    <option value="Industriales">Industriales</option>
+                                                    <option value="Microindustrial">Microindustrial</option>
+                                                    <option value="Agricola">Agricola</option>
+                                                    <option value="Forestal">Forestal</option>
+                                                    <option value="Conservación Ambiental">Conservación Ambiental</option>
+                                                    <option value="Ecoturístico">Ecoturístico</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -1568,6 +1591,7 @@
                             "cp_dg" : $('#cp_dg').val(),
                             "telefono_dg" : $('#telefono_dg').val(),
                             "uso" : $('#uso').val(),
+                            "uso_sol" : $('#uso_sol').val(),
                             "scian" : $('#scian').val(),
                             "catastral" : $('#catastral').val(),
                             "manzana"  : $('#manzana').val(),

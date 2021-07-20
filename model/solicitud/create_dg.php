@@ -14,6 +14,7 @@
 	$latlong = $_POST['latlong'];
 	$telefono_dg = $_POST['telefono_dg'];
 	$uso = $_POST['uso'];
+	$uso_sol = $_POST['uso_sol'];
 	$scian = $_POST['scian'];
 	$catastral = $_POST['catastral'];
 	$manzana = $_POST['manzana'];
@@ -29,7 +30,7 @@
 	{
 		$servicios.= $servicio.', ';
 	}
-	$id_dg = create_dg_establecimiento($nombre_comercial, $horario_trabajo, $calle_dg, $no_ex_dg, $no_int_dg, $colonia_dg, $entre_calles, $municipio_dg, $localidad_dg, $cp_dg, $latlong, $telefono_dg, $uso, $scian, $catastral, $manzana, $lote, $distancia_esquina, $cajones, $inversion, $personal_ocupado, $servicios);
+	$id_dg = create_dg_establecimiento($nombre_comercial, $horario_trabajo, $calle_dg, $no_ex_dg, $no_int_dg, $colonia_dg, $entre_calles, $municipio_dg, $localidad_dg, $cp_dg, $latlong, $telefono_dg, $uso, $uso_sol, $scian, $catastral, $manzana, $lote, $distancia_esquina, $cajones, $inversion, $personal_ocupado, $servicios);
 	if($id_dg)
 	{
 		$mensaje = "correcto,".$id_dg;

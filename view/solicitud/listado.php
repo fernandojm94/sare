@@ -52,8 +52,6 @@
 										<i class="ace-icon fa fa-book"></i>
 										<span>Nueva Solicitud</span>
 									</a>
-									<a href="view/sedatum/informe.php" class="btn btn-secondary" target="_blank">Informe</a>
-									<a href="view/solicitud/licencia.php" class="btn btn-success" target="_blank">Licencia</a>
 								</div> 
 
 								<hr style="border-width: 1px; border-color: #b3bbc9;">									
