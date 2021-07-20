@@ -1,19 +1,19 @@
 <?php
     include('../../model/solicitud/fill.php');
-    // $id_expediente = $_GET['id'];
-    // $expediente = fill_expediente($id);
-    // var_dump($expediente);
-    /**
-     * Clase que implementa un coversor de números
-     * a letras.
-     *
-     * Soporte para PHP >= 5.4
-     * Para soportar PHP 5.3, declare los arreglos
-     * con la función array.
-     *
-     * @author AxiaCore S.A.S
-     *
-     */
+    
+    $id = $_GET['id'];
+
+    $expediente = fill_expediente($id);
+
+    if($expediente['tipo_persona'])
+    {
+        $datos_generales = fill_persona_moral($expediente['id_persona']);
+    }else{
+        $datos_generales = fill_persona_fisica($expediente['id_persona']);
+    }
+    $establecimiento = fill_establecimiento($expediente['id_dg_establecimiento']);
+    $dimensiones = fill_dimensiones($expediente['id_dimensiones_establecimiento']);
+    $folio_str = str_replace(array("/", " ",":"),array("-","-","-"),$expediente['folio']);
 
     $monto = $_GET['costo'];
     $letras = NumeroALetras::convertir($monto, 'pesos', 'centavos');
@@ -278,6 +278,6 @@
     $pdf->Ln(25, false);
     $pdf->SetFont('times', '', 14, '', true);
 
-    $pdf->Output('solicitud.pdf', 'I');
+    $pdf->Output($_SERVER['DOCUMENT_ROOT'] . '/assets/expedientes/'.$folio_str.'/docs/documentacion/Licencia.pdf', 'FI');
     
 ?>

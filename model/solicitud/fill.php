@@ -325,7 +325,7 @@ function fill_options($giros)
 	$options="";
 	$options.="<option value=''></option>";
 	foreach($giros as $giro){
-		$options.= '<option value="'.$giro['id'].'">'.$giro["giro"].'</option>';
+		$options.= '<option value="'.$giro['giro'].'">'.$giro["giro"].'</option>';
 	}
 
 	return $options;
@@ -335,10 +335,10 @@ function fill_datos_generales($id_persona,$tipo_persona)
 {
 	if($tipo_persona)
 	{
-		$datos_geerales = get_pmoral_separado($id_persona);
+		$datos_generales = get_pmoral_separado($id_persona);
 	}else{
-		$datos_geerales = get_pfisica_separado($id_persona);
+		$datos_generales = get_pfisica_separado($id_persona);
 	}
-	return $datos_geerales;
+	return $datos_generales;
 }
 ?>
