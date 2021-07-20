@@ -333,7 +333,7 @@
                         <td>Constancia No.</td>
                     </tr>
                     <tr>
-                        <td class="border_b"></td>
+                        <td class="border_b">'.$folio_str.'</td>
                     </tr>
                     <tr>
                         <td>Fecha de Ingreso</td>
@@ -359,15 +359,15 @@
                 <table>
                     <tr>
                         <td style="width: 7%">Calle: </td>
-                        <td style="width: 53%" class="border_b"></td>
+                        <td style="width: 53%" class="border_b">'.$establecimiento['calle'].'</td>
                         <td style="width: 10%">Número: </td>
-                        <td style="width: 11%" class="border_b"></td>
+                        <td style="width: 11%" class="border_b">'.$establecimiento['no_exterior'].'</td>
                         <td style="width: 11%">Manzana: </td>
                         <td style="width: 8%" class="border_b">'.$establecimiento['manzana'].'</td>
                     </tr>
                     <tr>
                         <td style="width: 16%">Colonia/Fracc: </td>
-                        <td style="width: 44%" class="border_b"></td>
+                        <td style="width: 44%" class="border_b">'.$establecimiento['colonia'].'</td>
                         <td style="width: 16%">Código Postal: </td>
                         <td style="width: 10%" class="border_b">'.$datos_generales['c_p'].'</td>
                         <td style="width: 6%">Lote: </td>
@@ -384,7 +384,7 @@
                     </tr>
                     <tr>
                         <td style="width: 17%;">Uso Solicitado: </td>
-                        <td style="width: 35%;" class="border_b"></td>
+                        <td style="width: 35%;" class="border_b">'.$establecimiento['uso_solicitado'].'</td>
                         <td style="width: 17%;">Cuenta Predial: </td>
                         <td style="width: 31%;" class="border_b"></td>
                     </tr>
@@ -393,16 +393,7 @@
             <td class="border_c" style="width:25%;">
                 <table>
                     <tr>
-                        <td>Agua</td>
-                        <td>Electrificación</td>
-                    </tr>
-                    <tr>
-                        <td>Drenaje</td>
-                        <td>Pavimento</td>
-                    </tr>
-                    <tr>
-                        <td>Guarnición</td>
-                        <td>Banqueta</td>
+                         <td>'.$establecimiento['servicios_existentes'].'</td>
                     </tr>
                 </table>
             </td>
@@ -435,19 +426,19 @@
                     </tr>
                     <tr>
                         <td style="width: 10%;">Frente: </td>
-                        <td style="width: 10%;" class="border_b"></td>
+                        <td style="width: 10%;" class="border_b">'.$dimensiones['frente'].'&nbsp;m</td>
                         <td style="width: 15%;"> Derecho: </td>
-                        <td style="width: 10%;" class="border_b"></td>
+                        <td style="width: 10%;" class="border_b">'.$dimensiones['derecho'].'&nbsp;m</td>
                         <td style="width: 16%;"> Superficie: </td>
-                        <td style="width: 39%;" class="border_b"></td>
+                        <td style="width: 39%;" class="border_b">'.$dimensiones['sup_local'].'&nbsp;m&sup2;</td>
                     </tr>
                     <tr>
                         <td style="width: 10%;">Fondo: </td>
-                        <td style="width: 10%;" class="border_b"></td>
+                        <td style="width: 10%;" class="border_b">'.$dimensiones['fondo'].'&nbsp;m</td>
                         <td style="width: 15%;"> Izquierdo: </td>
-                        <td style="width: 10%;" class="border_b"></td>
+                        <td style="width: 10%;" class="border_b">'.$dimensiones['izquierdo'].'&nbsp;m</td>
                         <td style="width: 28%;"> Distancia a esquina: </td>
-                        <td style="width: 27%;" class="border_b"></td>
+                        <td style="width: 27%;" class="border_b">'.$establecimiento['distancia_esquina'].'</td>
                     </tr>
                 </table>        
             </td>
