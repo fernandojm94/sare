@@ -23,6 +23,10 @@
 				}else{
 					$mensaje = "error5";
 				}
+				if($status == 0)
+				{
+					create_html($ruta, $adicional_1, $adicional_2, $resuelto);
+				}
 				break;
 			case '4':
 				$resuelto = "suelo";
