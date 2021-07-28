@@ -4,6 +4,7 @@
 
 	//VARIABLE DEL CHECK PARA SOLICITAR NÚMERO OFICIAL A SEDATUM
 	$check = $_POST['checkNumOficial'];//Manda la variable solo si está checada, de lo contrario no manda nada.
+	//POSICIÓN DEL POST PARA EL COMPROBANTE --> $_POST['cp_no'];
 	
 	$folio = "SARE/".date("Y/m/d H:m:s");
 	$docs =str_replace(' ', '-', str_replace(':', '-',str_replace('/', '-', $folio)));

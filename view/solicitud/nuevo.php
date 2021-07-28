@@ -627,7 +627,14 @@
                                     <div class="form-group" id="noOf">
                                         <label class="col-md-4 control-label">Número oficial.</label>  
                                         <div class="col-md-4 inputGroupContainer">
-                                            <input type="file" id="no" name="no" required="true"/>                                            
+                                            <input type="file" id="no" name="no" required/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" id="comnoOf" hidden>
+                                        <label class="col-md-4 control-label">Comprobante de Pago del Número oficial.</label>  
+                                        <div class="col-md-4 inputGroupContainer">
+                                            <input type="file" id="cp_no" name="cp_no"/>
                                         </div>
                                     </div>
 
@@ -673,15 +680,28 @@
 <script type="text/javascript">
 
     $("#checkNumOficial").on("change", function(){
-        var checkIn = document.getElementById("no");
-        checkReq = checkIn.getAttribute("required");
+        var numOficial = document.getElementById("no");
+        var comNumOficial = document.getElementById("cp_no");
 
-        if (checkReq == null) {
-            checkIn.setAttribute("required", "true");
-            checkIn.removeAttribute("disabled", "true");
+        reqNumOficial = numOficial.getAttribute("required");
+
+        if (reqNumOficial == null) {
+            //REQUIRED
+            numOficial.setAttribute("required", "true");
+            comNumOficial.removeAttribute("required", "false");
+            //HIDDEN
+            $("#noOf").removeAttr("hidden", "true");
+            $("#comnoOf").attr("hidden", "true");
+            //ERROR-CLASS
+            $("#comnoOf").removeClass("has-error");
         }else{
-            checkIn.removeAttribute("required", "false");
-            checkIn.setAttribute("disabled", "true");
+            //REQUIRED
+            numOficial.removeAttribute("required");
+            comNumOficial.setAttribute("required", "true");
+            //HIDDEN
+            $("#noOf").attr("hidden", "true");
+            $("#comnoOf").removeAttr("hidden", "true");
+            //ERROR-CLASS
             $("#noOf").removeClass("has-error");
         }
     });
@@ -827,6 +847,28 @@
         });
 
         $('#no').ace_file_input({
+            no_file:'Seleccione un documento ...',
+            btn_choose:'Seleccionar',
+            btn_change:'Cambiar',
+            droppable:false,
+            onchange:null,
+            thumbnail:true
+        }).on('change', function() {
+            swal({
+                title: "¿Está usted seguro?:",
+                text: "",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                buttons: ["Sí", "No"]
+            }).then((value) => {
+                if (value) {
+                    $("#"+this.id).next().next().click();
+                }
+            });
+        });
+
+        $('#cp_no').ace_file_input({
             no_file:'Seleccione un documento ...',
             btn_choose:'Seleccionar',
             btn_change:'Cambiar',
@@ -2534,9 +2576,13 @@
                     required: "Favor de seleccionar el documento."
                 },
 
-                // no: {
-                //     required: "Favor de seleccionar el documento."
-                // },
+                no: {
+                    required: "Favor de seleccionar el documento."
+                },
+
+                cp_no: {
+                    required: "Favor de seleccionar el documento."
+                },
 
                 acta: {
                     required: "Favor de seleccionar el documento."
