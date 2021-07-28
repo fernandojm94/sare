@@ -12,7 +12,19 @@
     $establecimiento = fill_establecimiento_separado($expediente['id_dg_establecimiento']);
     $dimensiones = fill_dimensiones($expediente['id_dimensiones_establecimiento']);
     $folio_str = str_replace(array("/", " ",":"),array("-","-","-"),$expediente['folio']);
-
+    $dictamen = file_get_contents('../../assets/expedientes/'.$folio_str.'/docs/documentacion/suelo.txt', FILE_USE_INCLUDE_PATH);
+    $dictamenLen = strlen($dictamen);
+    
+    $dict_1 = "";
+    $dict_2 = "";
+    for($i = 0; $i < $dictamenLen; $i++){
+        if ($i < 481) {
+            $dict_1 .=  $dictamen[$i];
+        }else{
+            $dict_2 .= $dictamen[$i];
+        }
+    }
+    
     $monto = 5;
     $letras = NumeroALetras::convertir($monto, 'pesos', 'centavos');
     $letras = strtolower($letras);
@@ -386,7 +398,7 @@
                         <td style="width: 17%;">Uso Solicitado: </td>
                         <td style="width: 35%;" class="border_b">'.$establecimiento['uso_solicitado'].'</td>
                         <td style="width: 17%;">Cuenta Predial: </td>
-                        <td style="width: 31%;" class="border_b"></td>
+                        <td style="width: 31%;" class="border_b">'.$dimensiones['cuenta_predial'].'</td>
                     </tr>
                 </table>
             </td>
@@ -470,7 +482,7 @@
 
     <table cellspacing="2" cellpadding="3">
         <tr>
-            <td class="border_c" style="width: 70%; height: 150;"></td>
+            <td class="border_c" style="width: 70%; height: 150;">'.$dict_1.'</td>
             <td class="border_c" style="width:  30%; height: 150;"></td>
         </tr>
     </table>';
@@ -498,7 +510,7 @@
     
     <table cellspacing="2" cellpadding="3">
         <tr>
-            <td class="border_c"><p></p></td>
+            <td class="border_c"><p>'.$dict_2.'</p></td>
         </tr>
     </table>';
 
