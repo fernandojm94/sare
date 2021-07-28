@@ -322,6 +322,6 @@
     $pdf->Ln(25, false);
     $pdf->SetFont('times', '', 14, '', true);
 
-    $pdf->Output('solicitud.pdf', 'I');
+    $pdf->Output($_SERVER['DOCUMENT_ROOT'] . '/assets/expedientes/'.$folio.'/docs/documentacion/Orden de Pago.pdf', 'FI');
     
 ?>
