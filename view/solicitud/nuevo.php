@@ -1862,10 +1862,6 @@
                     number: true
                 },
 
-                no_int: {
-                    number: true
-                },
-
                 colonia: {
                     required: true
                 },
@@ -1915,10 +1911,6 @@
 
                 no_ex: {
                     required: "Favor de ingresar el número exterior.",
-                    number: "Favor de ingresar solo números."
-                },
-
-                no_int: {
                     number: "Favor de ingresar solo números."
                 },
 
@@ -2044,10 +2036,6 @@
                     number: true
                 },
 
-                no_int_rl: {
-                    number: true
-                },
-
                 colonia_rl: {
                     required: true
                 },
@@ -2127,10 +2115,6 @@
 
                 no_ex_rl: {
                     required: "Favor de ingresar el número exterior.",
-                    number: "Favor de ingresar solo números."
-                },
-
-                no_int_rl: {
                     number: "Favor de ingresar solo números."
                 },
 

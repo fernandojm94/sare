@@ -168,7 +168,7 @@ if(strpos($persona_m[0], '-'))
     <div class="col-md-2 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-            <input  name="no_int_rl" id="no_int_rl" placeholder="No. Interior" class="form-control" type="number" value="<?= $pmoral['no_interior'] ?>" <?= $read; ?>/>
+            <input  name="no_int_rl" id="no_int_rl" placeholder="No. Interior" class="form-control" type="text" value="<?= $pmoral['no_interior'] ?>" <?= $read; ?>/>
         </div>
     </div>
 
