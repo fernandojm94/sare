@@ -322,6 +322,11 @@
     $pdf->Ln(25, false);
     $pdf->SetFont('times', '', 14, '', true);
 
-    $pdf->Output($_SERVER['DOCUMENT_ROOT'] . '/assets/expedientes/'.$folio.'/docs/documentacion/Orden de Pago.pdf', 'FI');
+    if(!is_dir('../../assets/expedientes/'.$folio.'/docs/pagos/'))
+    {
+        mkdir('../../assets/expedientes/'.$folio.'/docs/pagos/');
+    }
+
+    $pdf->Output($_SERVER['DOCUMENT_ROOT'] . 'assets/expedientes/'.$folio.'/docs/pagos/Orden de Pago.pdf', 'FI');
     
 ?>
