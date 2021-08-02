@@ -1448,7 +1448,7 @@
 
 												if (etapa==2)
 												{
-													window.open('view/sedatum/pdf_orden.php?id='+id_solicitud+'&monto='+complemento2, '_blank');
+													window.open('pdf/sare/orden_pago_licencia.php?id='+id_solicitud+'&monto='+complemento2, '_blank');
 												}
 
 											}
