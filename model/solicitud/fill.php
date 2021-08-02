@@ -129,7 +129,7 @@ function fill_solicitudes($solicitudes, $pantalla)
 
 		if ($solicitud['status'] == 1  && $pantalla != 1) 
 		{
-			$url = '../../view/sedatum/informe.php?id=';
+			$url = '../../pdf/sedatum/informe.php?id=';
 			$id = $solicitud['id'];
 			$informe= '<a title="Imprimir Informe" class="btn btn-xs btn-success" href="'.$url.$id.'" target="_blank" role="button">
 						<i class="ace-icon fa fa-print bigger-130"></i>
@@ -138,7 +138,7 @@ function fill_solicitudes($solicitudes, $pantalla)
 
 		if ($solicitud['status'] == 1  && $pantalla == 1) 
 		{
-			$url = '../../view/solicitud/licencia.php?id=';
+			$url = '../../pdf/sare/licencia.php?id=';
 			$id = $solicitud['id'];
 			$informe= '<a title="Imprimir Informe" class="btn btn-xs btn-success" href="'.$url.$id.'" target="_blank" role="button">
 						<i class="ace-icon fa fa-print bigger-130"></i>

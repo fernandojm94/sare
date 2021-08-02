@@ -210,7 +210,7 @@
                     <table>
                         <tr>
                             <td width="70%" align="left">
-                                <img width="350" src="../../img/sde.png">
+                                <img width="350" src="../../img/logo_sedatum.png">
                             </td>
                             <td width="30%">
                                 <table align="center" cellpadding="25">
