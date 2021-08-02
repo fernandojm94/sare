@@ -67,7 +67,7 @@ include("../../model/solicitud/fill.php");
     <div class="col-md-2 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-            <input  name="no_int" id="no_int" placeholder="No. Interior" value="<?php echo $pfisica['no_interior'];?>" class="form-control" type="number" <?=$readonly?>/>
+            <input  name="no_int" id="no_int" placeholder="No. Interior" value="<?php echo $pfisica['no_interior'];?>" class="form-control" type="text" <?=$readonly?>/>
         </div>
     </div>
 
