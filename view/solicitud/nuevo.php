@@ -640,12 +640,9 @@
 
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">¿Solicitar Número Oficial a SEDATUM?</label>
-                                            <div class="col-md-4 inputGroupContainer">
-                                                <label class="switch">
-                                                  <input type="checkbox" name="checkNumOficial" id="checkNumOficial">
-                                                  <span class="slider"></span>
-                                                </label>
-                                            </div>
+                                        <label class="col-md-4 inputGroupContainer">
+                                            <input type="checkbox" name="checkNumOficial" id="checkNumOficial" class="ace ace-switch ace-switch-5">
+                                            <span class="lbl middle"></span>
                                         </label>
                                     </div>
 
@@ -720,7 +717,6 @@
 
    jQuery(function($) {
                     
-    
         if(!ace.vars['touch']) {
             $('.chosen-select').chosen({allow_single_deselect:true}); 
             //resize the chosen on window resize
