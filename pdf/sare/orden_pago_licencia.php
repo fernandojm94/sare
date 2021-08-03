@@ -201,38 +201,91 @@
         
         //Page header
         public function Header() {
-            // $this->SetY(-215); 
-            $this->SetFont('times', 'I', 14);
-            $this->Image('../../img/2.png', '', '', 25, 28, '', '', 'T', false, 300, '', false, false, 1, false, false, false);
+            $this->SetFont('times', 'R', 11);
+           
+            $cabeza = '
+                <style type="text/css">
+                    .borderBottom{
+                        border-bottom-width: 1;
+                        border-bottom-color: black;
+                        border-bottom-style: solid;
+                    }
 
-            $cabeza = '<table>
-                     <tr>
-                      <td>Presidencia Municipal de Jesús María</td>
-                     </tr>
+                    .borderTop{
+                        border-top-width: 1;
+                        border-top-color: black;
+                        border-top-style: solid;
+                    }
+                </style>
 
-                     <tr>
-                      <td>Gobierno Municipal 2019 - 2021</td>
-                     </tr>
+                <div style="border-width: 1px; border-style: solid solid solid solid; border-color: black;">
+                    <table>
+                        <tr>
+                            <td width="70%" align="left">
+                                <img width="350" src="../../img/logo_finanzas.png">
+                            </td>
+                            <td width="30%">
+                                <table align="center" cellpadding="25">
+                                    <tr>
+                                        <td align="center" colspan="3">
+                                            <table border=".5">
+                                                <tr>
+                                                    <td colspan="3">Fecha</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>2</td>
+                                                    <td>3</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
 
-                     <tr>
-                      <td>Secretaría de Finanzas</td>
-                     </tr>
-                    </table>';
+                    <table>
+                        <tr align="center">
+                            <td colspan="2">ORDEN DE PAGO</td>
+                        </tr>
 
+                        <tr align="right">
+                            <td colspan="2"><span><b>LICENCIA: </b></span><span>'.$folio.'asdasdasd</span></td>
+                        </tr>
+
+                        <tr>
+                            <td style="width: 20%;"><span><b>Destinatario: </b></span></td>
+                            <td style="width: 80%;"><span>'.$nombre.'asdasdasdasd</span></td>
+                        </tr>
+
+                        <tr>
+                            <td style="width: 100%;" colspan="2"><span>Sírvase liquidar en la Secretaría de Finanzas del H. Ayuntamiento de Jesús María, Ags., la cantidad de:</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="width: 20%;">
+                                <span>$'.$monto.'500</span>
+                            </td>
+
+                            <td style="width: 80%;">
+                                <span>('.$letras.'.)quinientos pesos</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="width: 45%;"><b>Por concepto de trámite de:</b> </td>
+                            <td style="width: 55%;">Expedición de licencia para negocio de <b>'.$giro.'</b>.</td>
+                        </tr>
+                        <tr align="right">
+                            <td><b>ATENTAMENTE: </b>'.$_SESSION['nombre_completo'].'.</td>
+                        </tr>
+                    </table>
+                </div>    ';
     
-            $this->writeHTMLCell('', '', '', 10, $cabeza, $border=0, $ln=2, $fill=0, $reseth=true, $align='C', $autopadding=true);
+            $this->writeHTMLCell('', '', '', 10, $cabeza, $border=0, $ln=2, $fill=0, $reseth=true, $align='L', $autopadding=true);
         }  
-
-        // Page footer
-        public function Footer() {
-            // Position at 15 mm from bottom
-            $this->SetY(-15);
-            // Set font
-            $this->SetFont('times', 'I', 14);
-            // Page number
-            $this->write(0, '', '', 0, 'C', true, 0, false, false, 0);
-
-        }
     }
 
     $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, 'LETTER', true, 'UTF-8', false);
@@ -245,82 +298,11 @@
     $pdf->SetMargins(PDF_MARGIN_LEFT, 35, PDF_MARGIN_RIGHT, TRUE);
     $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
     $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
-
-    $pdf->SetFont('times', '', 12, '', true);
-
     $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-
+    $pdf->SetPrintFooter(false);
     $pdf->AddPage();
 
-    $seccion_1 = '
-            <h3>ORDEN DE PAGO</h3>';
-
-    $seccion_2 = '<table>
-                    <tr>
-                        <td><span><b>LICENCIA: </b></span><span>'.$folio.'</span></td>
-                    </tr>
-                    <tr><td></td></tr>
-                </table>';
-
-    $seccion_3 = '<table>
-                    <tr>
-                        <td style="width: 14%;"><span><b>Destinatario: </b></span></td>
-                        <td style="width: auto; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;"><span>'.$nombre.'</span></td>
-                    </tr>
-
-                    <tr><td></td></tr>
-                </table>
-
-                <table>
-                    <tr><td><span>Sírvase liquidar en la Secretaría de Finanzas del H. Ayuntamiento de Jesús María, Ags., la cantidad de:</span></td></tr>
-                    <tr><td></td></tr>
-                </table>
-
-                <table>
-                    <tr>
-                        <td style="text-align: center; width: 20%; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">
-                            <span>$'.$monto.'</span>
-                        </td>
-
-                        <td style="width: 80%;">
-                            <span>('.$letras.'.)</span>
-                        </td>
-                    </tr>
-                </table>';
-
-    $seccion_4 = '<table>
-                    <tr>
-                        <td style="width: 28%;"><b>Por concepto de trámite de:</b> </td>
-                        <td style="width: auto;">Expedición de licencia para negocio de <b>'.$giro.'</b>.</td>
-                    </tr>
-                    <tr><td></td></tr>
-                    <tr><td></td></tr>
-                </table>';
-
-    $seccion_5 = '<table>
-                    <tr>
-                        <td><b>ATENTAMENTE: </b>'.$_SESSION['nombre_completo'].'.</td>
-                    </tr>
-                    <tr><td></td></tr>
-                </table>';
-
-
-    $pdf->Ln(0, false);
-    $pdf->SetFont('times', '', 12, '', true);
-
-    $pdf->writeHTML($seccion_1, false, 0, false, false, 'C');
-    $pdf->writeHTML($seccion_2, false, 0, false, false, 'R');
-    $pdf->writeHTML($seccion_3, true, false, true, false, '');
-    $pdf->writeHTML($seccion_4, false, 0, false, false, 'L');
-    $pdf->writeHTML($seccion_5, true, false, true, false, 'R');
-
-
-    $pdf->SetY(23, false, false);
-    $pdf->writeHTML($fecha_formato, false, 0, false, false, 'R');
-
-
     $pdf->Ln(25, false);
-    $pdf->SetFont('times', '', 14, '', true);
 
     if(!is_dir('../../assets/expedientes/'.$folio.'/docs/pagos/'))
     {
