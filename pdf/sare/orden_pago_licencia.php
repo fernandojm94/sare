@@ -1,6 +1,5 @@
 <?php
     include('../../model/solicitud/fill.php');
-    
     $id_expediente = $_GET['id'];
     $expediente = fill_expediente($id_expediente);
     $establecimiento = fill_establecimiento($expediente['id_dg_establecimiento']);
@@ -13,184 +12,158 @@
     }
         
     // $nombre_persona = fill_nombre_persona($expediente['id_persona']);
+    $GLOBALS['monto'] = $_GET['monto'];
+    $GLOBALS['folio'] = $expediente['folio'];
+    $GLOBALS['nombre'] = $persona['nombre']; 
+    $GLOBALS['giro'] = $establecimiento['giro_scian'];
 
-    /**
-     * Clase que implementa un coversor de números
-     * a letras.
-     *
-     * Soporte para PHP >= 5.4
-     * Para soportar PHP 5.3, declare los arreglos
-     * con la función array.
-     *
-     * @author AxiaCore S.A.S
-     *
-     */
-    
-    $monto = $_GET['monto'];
-    $folio = $expediente['folio'];
-    $nombre = $persona['nombre']; 
-    $giro = $establecimiento['giro_scian'];
-
-    $letras = NumeroALetras::convertir($monto, 'pesos', 'centavos');
-    $letras = strtolower($letras);
-    $letras = ucfirst($letras);
+    $GLOBALS['letras'] = NumeroALetras::convertir($GLOBALS['monto'], 'pesos', 'centavos');
+    $GLOBALS['letras'] = strtolower($letras);
+    $GLOBALS['letras'] = ucfirst($letras);
 
     $today = date("d.m.Y");
     $today = str_replace('.', ' / ', $today);
 
-    /*
-        FALTA RECIBIR: 
-
-            -DESTINATARIO
-            -MONTO EN NÚMERO Y LETRA
-            -CONCEPTO DEL TRÁMITE
-            -MANDAR EL USUARIO QUE EMITE LA ORDEN
-    */
-
-
     class NumeroALetras
-{
-    private static $UNIDADES = [
-        '',
-        'UN ',
-        'DOS ',
-        'TRES ',
-        'CUATRO ',
-        'CINCO ',
-        'SEIS ',
-        'SIETE ',
-        'OCHO ',
-        'NUEVE ',
-        'DIEZ ',
-        'ONCE ',
-        'DOCE ',
-        'TRECE ',
-        'CATORCE ',
-        'QUINCE ',
-        'DIECISEIS ',
-        'DIECISIETE ',
-        'DIECIOCHO ',
-        'DIECINUEVE ',
-        'VEINTE '
-    ];
-
-    private static $DECENAS = [
-        'VENTI',
-        'TREINTA ',
-        'CUARENTA ',
-        'CINCUENTA ',
-        'SESENTA ',
-        'SETENTA ',
-        'OCHENTA ',
-        'NOVENTA ',
-        'CIEN '
-    ];
-
-    private static $CENTENAS = [
-        'CIENTO ',
-        'DOSCIENTOS ',
-        'TRESCIENTOS ',
-        'CUATROCIENTOS ',
-        'QUINIENTOS ',
-        'SEISCIENTOS ',
-        'SETECIENTOS ',
-        'OCHOCIENTOS ',
-        'NOVECIENTOS '
-    ];
-
-    public static function convertir($number, $moneda = '', $centimos = '', $forzarCentimos = false)
     {
-        $converted = '';
-        $decimales = '';
+        private static $UNIDADES = [
+            '',
+            'UN ',
+            'DOS ',
+            'TRES ',
+            'CUATRO ',
+            'CINCO ',
+            'SEIS ',
+            'SIETE ',
+            'OCHO ',
+            'NUEVE ',
+            'DIEZ ',
+            'ONCE ',
+            'DOCE ',
+            'TRECE ',
+            'CATORCE ',
+            'QUINCE ',
+            'DIECISEIS ',
+            'DIECISIETE ',
+            'DIECIOCHO ',
+            'DIECINUEVE ',
+            'VEINTE '
+        ];
 
-        if (($number < 0) || ($number > 999999999)) {
-            return 'No es posible convertir el numero a letras';
-        }
+        private static $DECENAS = [
+            'VENTI',
+            'TREINTA ',
+            'CUARENTA ',
+            'CINCUENTA ',
+            'SESENTA ',
+            'SETENTA ',
+            'OCHENTA ',
+            'NOVENTA ',
+            'CIEN '
+        ];
 
-        $div_decimales = explode('.',$number);
+        private static $CENTENAS = [
+            'CIENTO ',
+            'DOSCIENTOS ',
+            'TRESCIENTOS ',
+            'CUATROCIENTOS ',
+            'QUINIENTOS ',
+            'SEISCIENTOS ',
+            'SETECIENTOS ',
+            'OCHOCIENTOS ',
+            'NOVECIENTOS '
+        ];
 
-        if(count($div_decimales) > 1){
-            $number = $div_decimales[0];
-            $decNumberStr = (string) $div_decimales[1];
-            if(strlen($decNumberStr) == 2){
-                $decNumberStrFill = str_pad($decNumberStr, 9, '0', STR_PAD_LEFT);
-                $decCientos = substr($decNumberStrFill, 6);
-                $decimales = self::convertGroup($decCientos);
+        public static function convertir($number, $moneda = '', $centimos = '', $forzarCentimos = false)
+        {
+            $converted = '';
+            $decimales = '';
+
+            if (($number < 0) || ($number > 999999999)) {
+                return 'No es posible convertir el numero a letras';
             }
-        }
-        else if (count($div_decimales) == 1 && $forzarCentimos){
-            $decimales = 'CERO ';
-        }
 
-        $numberStr = (string) $number;
-        $numberStrFill = str_pad($numberStr, 9, '0', STR_PAD_LEFT);
-        $millones = substr($numberStrFill, 0, 3);
-        $miles = substr($numberStrFill, 3, 3);
-        $cientos = substr($numberStrFill, 6);
+            $div_decimales = explode('.',$number);
 
-        if (intval($millones) > 0) {
-            if ($millones == '001') {
-                $converted .= 'UN MILLON ';
-            } else if (intval($millones) > 0) {
-                $converted .= sprintf('%sMILLONES ', self::convertGroup($millones));
+            if(count($div_decimales) > 1){
+                $number = $div_decimales[0];
+                $decNumberStr = (string) $div_decimales[1];
+                if(strlen($decNumberStr) == 2){
+                    $decNumberStrFill = str_pad($decNumberStr, 9, '0', STR_PAD_LEFT);
+                    $decCientos = substr($decNumberStrFill, 6);
+                    $decimales = self::convertGroup($decCientos);
+                }
             }
-        }
-
-        if (intval($miles) > 0) {
-            if ($miles == '001') {
-                $converted .= 'MIL ';
-            } else if (intval($miles) > 0) {
-                $converted .= sprintf('%sMIL ', self::convertGroup($miles));
+            else if (count($div_decimales) == 1 && $forzarCentimos){
+                $decimales = 'CERO ';
             }
-        }
 
-        if (intval($cientos) > 0) {
-            if ($cientos == '001') {
-                $converted .= 'UN ';
-            } else if (intval($cientos) > 0) {
-                $converted .= sprintf('%s ', self::convertGroup($cientos));
+            $numberStr = (string) $number;
+            $numberStrFill = str_pad($numberStr, 9, '0', STR_PAD_LEFT);
+            $millones = substr($numberStrFill, 0, 3);
+            $miles = substr($numberStrFill, 3, 3);
+            $cientos = substr($numberStrFill, 6);
+
+            if (intval($millones) > 0) {
+                if ($millones == '001') {
+                    $converted .= 'UN MILLON ';
+                } else if (intval($millones) > 0) {
+                    $converted .= sprintf('%sMILLONES ', self::convertGroup($millones));
+                }
             }
-        }
 
-        if(empty($decimales)){
-            $valor_convertido = $converted . strtoupper($moneda);
-        } else {
-            $valor_convertido = $converted . strtoupper($moneda) . ' CON ' . $decimales . ' ' . strtoupper($centimos);
-        }
+            if (intval($miles) > 0) {
+                if ($miles == '001') {
+                    $converted .= 'MIL ';
+                } else if (intval($miles) > 0) {
+                    $converted .= sprintf('%sMIL ', self::convertGroup($miles));
+                }
+            }
 
-        return $valor_convertido;
-    }
+            if (intval($cientos) > 0) {
+                if ($cientos == '001') {
+                    $converted .= 'UN ';
+                } else if (intval($cientos) > 0) {
+                    $converted .= sprintf('%s ', self::convertGroup($cientos));
+                }
+            }
 
-    private static function convertGroup($n)
-    {
-        $output = '';
-
-        if ($n == '100') {
-            $output = "CIEN ";
-        } else if ($n[0] !== '0') {
-            $output = self::$CENTENAS[$n[0] - 1];
-        }
-
-        $k = intval(substr($n,1));
-
-        if ($k <= 20) {
-            $output .= self::$UNIDADES[$k];
-        } else {
-            if(($k > 30) && ($n[2] !== '0')) {
-                $output .= sprintf('%sY %s', self::$DECENAS[intval($n[1]) - 2], self::$UNIDADES[intval($n[2])]);
+            if(empty($decimales)){
+                $valor_convertido = $converted . strtoupper($moneda);
             } else {
-                $output .= sprintf('%s%s', self::$DECENAS[intval($n[1]) - 2], self::$UNIDADES[intval($n[2])]);
+                $valor_convertido = $converted . strtoupper($moneda) . ' CON ' . $decimales . ' ' . strtoupper($centimos);
             }
+
+            return $valor_convertido;
         }
 
-        return $output;
-    }
-}
+        private static function convertGroup($n)
+        {
+            $output = '';
 
-    $fecha_formato ='
-        <span>Fecha: </span>
-        <span>'.$today.'</span>
-    ';
+            if ($n == '100') {
+                $output = "CIEN ";
+            } else if ($n[0] !== '0') {
+                $output = self::$CENTENAS[$n[0] - 1];
+            }
+
+            $k = intval(substr($n,1));
+
+            if ($k <= 20) {
+                $output .= self::$UNIDADES[$k];
+            } else {
+                if(($k > 30) && ($n[2] !== '0')) {
+                    $output .= sprintf('%sY %s', self::$DECENAS[intval($n[1]) - 2], self::$UNIDADES[intval($n[2])]);
+                } else {
+                    $output .= sprintf('%s%s', self::$DECENAS[intval($n[1]) - 2], self::$UNIDADES[intval($n[2])]);
+                }
+            }
+
+            return $output;
+        }
+    }
+
+    $GLOBALS['fecha_formato'] ='<span>'.$today.'</span>';
 
     ob_start();
 
@@ -201,38 +174,94 @@
         
         //Page header
         public function Header() {
-            // $this->SetY(-215); 
-            $this->SetFont('times', 'I', 14);
-            $this->Image('../../img/2.png', '', '', 25, 28, '', '', 'T', false, 300, '', false, false, 1, false, false, false);
+            $this->SetFont('times', 'R', 11);
+           
+            $cabeza = '
+                <style type="text/css">
+                    .borderBottom{
+                        border-bottom-width: 1;
+                        border-bottom-color: black;
+                        border-bottom-style: solid;
+                    }
 
-            $cabeza = '<table>
-                     <tr>
-                      <td>Presidencia Municipal de Jesús María</td>
-                     </tr>
+                    .borderTop{
+                        border-top-width: 1;
+                        border-top-color: black;
+                        border-top-style: solid;
+                    }
+                </style>
 
-                     <tr>
-                      <td>Gobierno Municipal 2019 - 2021</td>
-                     </tr>
+                <div style="border-width: 1px; border-style: solid solid solid solid; border-color: black;">
+                    <table>
+                        <tr>
+                            <td width="2%"></td>
+                            <td width="68%" align="left">
+                                <img width="350" src="../../img/logo_finanzas.png">
+                            </td>
+                            <td width="30%">
+                                <table align="center" cellpadding="25">
+                                    <tr>
+                                        <td align="center" colspan="3">
+                                            <table border=".5">
+                                                <tr>
+                                                    <td>Fecha</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>'.$GLOBALS['fecha_formato'].'</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
 
-                     <tr>
-                      <td>Secretaría de Finanzas</td>
-                     </tr>
-                    </table>';
+                    <table>
+                        <tr align="center">
+                            <td colspan="4">ORDEN DE PAGO</td>
+                        </tr><tr><td></td></tr>
 
+                        <tr align="right">
+                            <td width="95%" colspan="3"><span><b>LICENCIA: </b></span><span>'.$GLOBALS['folio'].'</span></td>
+                            <td width="5%"></td>
+                        </tr><tr><td></td></tr>
+
+                        <tr>
+                            <td width="3%"></td>
+                            <td width="12.5%"><span><b>Destinatario: </b></span></td>
+                            <td class="borderBottom" width="80%" colspan="2"><span>'.$GLOBALS['nombre'].'</span></td>
+                        </tr><tr><td></td></tr>
+
+                        <tr>
+                            <td width="3%"></td>
+                            <td style="width: 100%;" colspan="3"><span>Sírvase liquidar en la Secretaría de Finanzas del H. Ayuntamiento de Jesús María, Ags., la cantidad de:</span>
+                            </td>
+                        </tr><tr><td></td></tr>
+
+                        <tr>
+                            <td width="3%"></td>
+                            <td width="20%" align="center" class="borderBottom"><span>$'.$GLOBALS['monto'].'</span></td>
+                            <td width="1%">,</td>
+                            <td width= "71.5%" class="borderBottom">
+                                <span>('.$GLOBALS['letras'].').</span>
+                            </td>
+                        </tr><tr><td></td></tr>
+
+                        <tr>
+                            <td width="3%"></td>
+                            <td width="25.5%"><b>Por concepto de trámite de:</b> </td>
+                            <td width="67%" class="borderBottom" colspan="2">Expedición de licencia para negocio de <b>'.$GLOBALS['giro'].'.</b></td>
+                        </tr><tr><td></td></tr><tr><td></td></tr>
+
+                        <tr align="right">
+                            <td colspan="4"><b>ATENTAMENTE: </b>'.$_SESSION['nombre_completo'].'.</td>
+                        </tr>
+                    </table>
+                </div>';
     
-            $this->writeHTMLCell('', '', '', 10, $cabeza, $border=0, $ln=2, $fill=0, $reseth=true, $align='C', $autopadding=true);
+            $this->writeHTML($cabeza, false, 0, false, false, '');
         }  
-
-        // Page footer
-        public function Footer() {
-            // Position at 15 mm from bottom
-            $this->SetY(-15);
-            // Set font
-            $this->SetFont('times', 'I', 14);
-            // Page number
-            $this->write(0, '', '', 0, 'C', true, 0, false, false, 0);
-
-        }
     }
 
     $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, 'LETTER', true, 'UTF-8', false);
@@ -245,88 +274,17 @@
     $pdf->SetMargins(PDF_MARGIN_LEFT, 35, PDF_MARGIN_RIGHT, TRUE);
     $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
     $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
-
-    $pdf->SetFont('times', '', 12, '', true);
-
     $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-
+    $pdf->SetPrintFooter(false);
     $pdf->AddPage();
 
-    $seccion_1 = '
-            <h3>ORDEN DE PAGO</h3>';
-
-    $seccion_2 = '<table>
-                    <tr>
-                        <td><span><b>LICENCIA: </b></span><span>'.$folio.'</span></td>
-                    </tr>
-                    <tr><td></td></tr>
-                </table>';
-
-    $seccion_3 = '<table>
-                    <tr>
-                        <td style="width: 14%;"><span><b>Destinatario: </b></span></td>
-                        <td style="width: auto; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;"><span>'.$nombre.'</span></td>
-                    </tr>
-
-                    <tr><td></td></tr>
-                </table>
-
-                <table>
-                    <tr><td><span>Sírvase liquidar en la Secretaría de Finanzas del H. Ayuntamiento de Jesús María, Ags., la cantidad de:</span></td></tr>
-                    <tr><td></td></tr>
-                </table>
-
-                <table>
-                    <tr>
-                        <td style="text-align: center; width: 20%; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: black;">
-                            <span>$'.$monto.'</span>
-                        </td>
-
-                        <td style="width: 80%;">
-                            <span>('.$letras.'.)</span>
-                        </td>
-                    </tr>
-                </table>';
-
-    $seccion_4 = '<table>
-                    <tr>
-                        <td style="width: 28%;"><b>Por concepto de trámite de:</b> </td>
-                        <td style="width: auto;">Expedición de licencia para negocio de <b>'.$giro.'</b>.</td>
-                    </tr>
-                    <tr><td></td></tr>
-                    <tr><td></td></tr>
-                </table>';
-
-    $seccion_5 = '<table>
-                    <tr>
-                        <td><b>ATENTAMENTE: </b>'.$_SESSION['nombre_completo'].'.</td>
-                    </tr>
-                    <tr><td></td></tr>
-                </table>';
-
-
-    $pdf->Ln(0, false);
-    $pdf->SetFont('times', '', 12, '', true);
-
-    $pdf->writeHTML($seccion_1, false, 0, false, false, 'C');
-    $pdf->writeHTML($seccion_2, false, 0, false, false, 'R');
-    $pdf->writeHTML($seccion_3, true, false, true, false, '');
-    $pdf->writeHTML($seccion_4, false, 0, false, false, 'L');
-    $pdf->writeHTML($seccion_5, true, false, true, false, 'R');
-
-
-    $pdf->SetY(23, false, false);
-    $pdf->writeHTML($fecha_formato, false, 0, false, false, 'R');
-
-
     $pdf->Ln(25, false);
-    $pdf->SetFont('times', '', 14, '', true);
 
     if(!is_dir('../../assets/expedientes/'.$folio.'/docs/pagos/'))
     {
         mkdir('../../assets/expedientes/'.$folio.'/docs/pagos/');
     }
 
-    $pdf->Output($_SERVER['DOCUMENT_ROOT'] . 'assets/expedientes/'.$folio.'/docs/pagos/Orden de Pago.pdf', 'FI');
+    $pdf->Output($_SERVER['DOCUMENT_ROOT'] . 'assets/expedientes/'.$folio.'/docs/pagos/Orden de Pago de Licencia.pdf', 'FI');
     
 ?>

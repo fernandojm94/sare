@@ -188,7 +188,6 @@
         
         //Page header
         public function Header() {
-            // $this->SetY(-215); 
             $this->SetFont('times', 'R', 11);
     
             $cabeza = '
@@ -346,6 +345,6 @@
     $pdf->Ln(25, false);
     $pdf->SetFont('times', '', 14, '', true);
 
-    $pdf->Output($_SERVER['DOCUMENT_ROOT'] . '/assets/expedientes/'.$folio_str.'/docs/documentacion/Licencia.pdf', 'FI');
+    $pdf->Output($_SERVER['DOCUMENT_ROOT'] . '/assets/expedientes/'.$folio_str.'/docs/documentacion/Número Oficial.pdf', 'FI');
     
 ?>
