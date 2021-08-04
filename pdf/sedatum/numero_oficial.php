@@ -5,180 +5,16 @@
 
     $expediente = fill_expediente($id);
 
-    if($expediente['tipo_persona'])
-    {
-        $datos_generales = fill_persona_moral($expediente['id_persona']);
-    }else{
-        $datos_generales = fill_persona_fisica($expediente['id_persona']);
-    }
-    $establecimiento = fill_establecimiento($expediente['id_dg_establecimiento']);
+    $datos_generales = fill_datos_generales($expediente['id_persona'],$expediente['tipo_persona']);
+    $establecimiento = fill_establecimiento_separado($expediente['id_dg_establecimiento']);
+    // var_dump($establecimiento);exit();
     $dimensiones = fill_dimensiones($expediente['id_dimensiones_establecimiento']);
     $folio_str = str_replace(array("/", " ",":"),array("-","-","-"),$expediente['folio']);
-
-    $monto = $_GET['costo'];
-    $letras = NumeroALetras::convertir($monto, 'pesos', 'centavos');
-    $letras = strtolower($letras);
-    $letras = ucfirst($letras);
 
     $today = date("d.m.Y");
     $today = str_replace('.', ' / ', $today);
 
-    /*
-        FALTA RECIBIR: 
-
-            -DESTINATARIO
-            -MONTO EN NÚMERO Y LETRA
-            -CONCEPTO DEL TRÁMITE
-            -MANDAR EL USUARIO QUE EMITE LA ORDEN
-    */
-
-
-    class NumeroALetras
-{
-    private static $UNIDADES = [
-        '',
-        'UN ',
-        'DOS ',
-        'TRES ',
-        'CUATRO ',
-        'CINCO ',
-        'SEIS ',
-        'SIETE ',
-        'OCHO ',
-        'NUEVE ',
-        'DIEZ ',
-        'ONCE ',
-        'DOCE ',
-        'TRECE ',
-        'CATORCE ',
-        'QUINCE ',
-        'DIECISEIS ',
-        'DIECISIETE ',
-        'DIECIOCHO ',
-        'DIECINUEVE ',
-        'VEINTE '
-    ];
-
-    private static $DECENAS = [
-        'VENTI',
-        'TREINTA ',
-        'CUARENTA ',
-        'CINCUENTA ',
-        'SESENTA ',
-        'SETENTA ',
-        'OCHENTA ',
-        'NOVENTA ',
-        'CIEN '
-    ];
-
-    private static $CENTENAS = [
-        'CIENTO ',
-        'DOSCIENTOS ',
-        'TRESCIENTOS ',
-        'CUATROCIENTOS ',
-        'QUINIENTOS ',
-        'SEISCIENTOS ',
-        'SETECIENTOS ',
-        'OCHOCIENTOS ',
-        'NOVECIENTOS '
-    ];
-
-    public static function convertir($number, $moneda = '', $centimos = '', $forzarCentimos = false)
-    {
-        $converted = '';
-        $decimales = '';
-
-        if (($number < 0) || ($number > 999999999)) {
-            return 'No es posible convertir el numero a letras';
-        }
-
-        $div_decimales = explode('.',$number);
-
-        if(count($div_decimales) > 1){
-            $number = $div_decimales[0];
-            $decNumberStr = (string) $div_decimales[1];
-            if(strlen($decNumberStr) == 2){
-                $decNumberStrFill = str_pad($decNumberStr, 9, '0', STR_PAD_LEFT);
-                $decCientos = substr($decNumberStrFill, 6);
-                $decimales = self::convertGroup($decCientos);
-            }
-        }
-        else if (count($div_decimales) == 1 && $forzarCentimos){
-            $decimales = 'CERO ';
-        }
-
-        $numberStr = (string) $number;
-        $numberStrFill = str_pad($numberStr, 9, '0', STR_PAD_LEFT);
-        $millones = substr($numberStrFill, 0, 3);
-        $miles = substr($numberStrFill, 3, 3);
-        $cientos = substr($numberStrFill, 6);
-
-        if (intval($millones) > 0) {
-            if ($millones == '001') {
-                $converted .= 'UN MILLON ';
-            } else if (intval($millones) > 0) {
-                $converted .= sprintf('%sMILLONES ', self::convertGroup($millones));
-            }
-        }
-
-        if (intval($miles) > 0) {
-            if ($miles == '001') {
-                $converted .= 'MIL ';
-            } else if (intval($miles) > 0) {
-                $converted .= sprintf('%sMIL ', self::convertGroup($miles));
-            }
-        }
-
-        if (intval($cientos) > 0) {
-            if ($cientos == '001') {
-                $converted .= 'UN ';
-            } else if (intval($cientos) > 0) {
-                $converted .= sprintf('%s ', self::convertGroup($cientos));
-            }
-        }
-
-        if(empty($decimales)){
-            $valor_convertido = $converted . strtoupper($moneda);
-        } else {
-            $valor_convertido = $converted . strtoupper($moneda) . ' CON ' . $decimales . ' ' . strtoupper($centimos);
-        }
-
-        return $valor_convertido;
-    }
-
-    private static function convertGroup($n)
-    {
-        $output = '';
-
-        if ($n == '100') {
-            $output = "CIEN ";
-        } else if ($n[0] !== '0') {
-            $output = self::$CENTENAS[$n[0] - 1];
-        }
-
-        $k = intval(substr($n,1));
-
-        if ($k <= 20) {
-            $output .= self::$UNIDADES[$k];
-        } else {
-            if(($k > 30) && ($n[2] !== '0')) {
-                $output .= sprintf('%sY %s', self::$DECENAS[intval($n[1]) - 2], self::$UNIDADES[intval($n[2])]);
-            } else {
-                $output .= sprintf('%s%s', self::$DECENAS[intval($n[1]) - 2], self::$UNIDADES[intval($n[2])]);
-            }
-        }
-
-        return $output;
-    }
-}
-
-    $fecha_formato ='
-        <br><span>CONSTANCIA: </span>
-        <span>#######</span><br>
-
-        <span>FECHA DE INGRESO: </span>
-        <span>'.$today.'</span>
-    ';
+    $GLOBALS['fecha'] ='<span>'.$today.'</span>';
 
     ob_start();
 
@@ -208,7 +44,8 @@
                 <div style="border-width: 1; border-style: solid solid solid solid; border-color: black;">
                     <table>
                         <tr>
-                            <td width="70%" align="left">
+                            <td width="2%"></td>
+                            <td width="68%" align="left">
                                 <img width="350" src="../../img/logo_sedatum.png">
                             </td>
                             <td width="30%">
@@ -217,12 +54,10 @@
                                         <td align="center" colspan="3">
                                             <table border=".5">
                                                 <tr>
-                                                    <td colspan="3">Fecha</td>
+                                                    <td>Fecha</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>2</td>
-                                                    <td>3</td>
+                                                    <td>'.$GLOBALS['fecha'].'</td>
                                                 </tr>
                                             </table>
                                         </td>
@@ -242,42 +77,42 @@
                         </tr>
 
                         <tr>
-                            <td style="width: 5%;"></td>
+                            <td style="width: 3%;"></td>
                             <td style="width: 11%;">Destinatario: </td>    
-                            <td style="width: 79%;" colspan="4" class="borderBottom"></td>
+                            <td style="width: 79%;" colspan="4" class="borderBottom">'.$GLOBALS['datos_generales']['nombre'].'</td>
                         </tr>
 
                         <tr>
-                            <td style="width: 5%;"></td>
+                            <td style="width: 3%;"></td>
                             <td colspan="5">Por este conducto, me permito notificarle el número oficial por Usted solicitado a esta Dependencia.</td>
                         </tr>
 
                         <tr>
-                            <td style="width: 5%;"></td>
+                            <td style="width: 3%;"></td>
                             <td style="width: 8%;">Número: </td>
-                            <td style="width: 82%;" colspan="4" class="borderBottom"></td>
+                            <td style="width: 82%;" colspan="4" class="borderBottom">AQUI VA EL NÚMERO OFICIAL</td>
                         </tr>    
 
                         <tr>
-                            <td style="width: 5%;"></td>
+                            <td style="width: 3%;"></td>
                             <td style="width: 6%;">Calle: </td>
-                            <td style="width: 24%;" class="borderBottom"></td>
+                            <td style="width: 24%;" class="borderBottom">'.$GLOBALS['establecimiento']['calle'].'</td>
                             <td style="width: 9%;">Manzana: </td>
-                            <td style="width: 23%;" class="borderBottom"></td>
+                            <td style="width: 23%;" class="borderBottom">'.$GLOBALS['establecimiento']['manzana'].'</td>
                             <td style="width: 5%;">Lote: </td>
-                            <td style="width: 23%" class="borderBottom"></td>
+                            <td style="width: 23%" class="borderBottom">'.$GLOBALS['establecimiento']['lote'].'</td>
                         </tr>
 
                         <tr>
-                            <td style="width: 5%;"></td>
+                            <td style="width: 3%;"></td>
                             <td style="width: 36%;" colspan="3">Colonia / Fraccionamiento / Condominio: </td>
-                            <td style="width: 54%;" colspan="3" class="borderBottom"></td>
+                            <td style="width: 54%;" colspan="3" class="borderBottom">'.$GLOBALS['establecimiento']['colonia'].'</td>
                         </tr>
 
                         <tr>
-                            <td style="width: 5%;"></td>
+                            <td style="width: 3%;"></td>
                             <td style="width: 24%;" colspan="2">Localidad y / o Delegación: </td>
-                            <td style="width: 66%;" colspan="4" class="borderBottom"></td>
+                            <td style="width: 66%;" colspan="4" class="borderBottom">'.$GLOBALS['establecimiento']['localidad'].'</td>
                         </tr>
 
                         <tr><td></td></tr>
