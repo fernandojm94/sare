@@ -260,7 +260,7 @@
                     </table>
                 </div>';
     
-            $this->writeHTML($cabeza, false, 0, false, false, '');
+            $this->writeHTMLCell('', '', '', 10, $cabeza, $border=0, $ln=2, $fill=0, $reseth=true, $align='L', $autopadding=true);
         }  
     }
 
