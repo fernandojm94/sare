@@ -60,10 +60,10 @@ function create_dimensiones_establecimiento($frentel, $fondo, $derecho, $izquier
 
 	return $result;
 }
-function create_expediente($folio, $tipo_persona, $id_persona, $id_dg, $id_dimensiones)
+function create_expediente($folio, $tipo_persona, $id_persona, $id_dg, $id_dimensiones, $noficial)
 {
-	$sql = "INSERT INTO expedientes(folio, fecha_apertura, tipo_persona, id_persona, id_dg_establecimiento, id_dimensiones_establecimiento, etapa, status)
-					VALUES('".$folio."',now(),".$tipo_persona.", ".$id_persona.", ".$id_dg.", ".$id_dimensiones.", 2, 0)";
+	$sql = "INSERT INTO expedientes(folio, fecha_apertura, tipo_persona, id_persona, id_dg_establecimiento, id_dimensiones_establecimiento, etapa, status, solicita_noficial)
+					VALUES('".$folio."',now(),".$tipo_persona.", ".$id_persona.", ".$id_dg.", ".$id_dimensiones.", 2, 0, ".$noficial.")";
 	$result = querys($sql);
 
 	return $result;
@@ -115,7 +115,7 @@ function get_pendientes_etapa($etapa)
 
 function get_expediente($id)
 {
-	$sql = "SELECT folio, fecha_apertura, tipo_persona, id_persona, id_dg_establecimiento, id_dimensiones_establecimiento 
+	$sql = "SELECT folio, fecha_apertura, tipo_persona, id_persona, id_dg_establecimiento, id_dimensiones_establecimiento, solicita_noficial
 					FROM expedientes
 			WHERE id = $id";
 
