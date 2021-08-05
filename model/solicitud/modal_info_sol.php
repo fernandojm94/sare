@@ -6,7 +6,7 @@
 	$etapa = $_POST['etapa'];
 	$id = $_POST['id']; 
 	valida_visto($id, $etapa);
-	$orden_btn = '';
+	$orden_btn = $alerta = '';
 	$rechaz_btn = '<button type="button" class="btn btn-danger" onclick="actualiza_status('.$id.',2,0,0);"><i class="fa fa-ban"></i>&nbsp;Rechazar Solicitud</button>';
 	$aprob_btn = '<button type="button" class="btn btn-success" onclick="actualiza_status('.$id.',1,0,0);"><i class="fa fa-check"></i>&nbsp;Aprobar Solicitud</button>';	
 
@@ -65,13 +65,17 @@
 			}
 		}
 	}
+	if($expediente['solicita_noficial'])
+	{
+		$alerta = "Solicitan el número oficial";
+	}
 
 ?>
 <div id="modal_info" class="modal" tabindex="-1" style="overflow-y:auto;">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h1 class="blue">Solicitud <?=$expediente['folio'];?></h1>
+				<h1 class="blue">Solicitud <?=$expediente['folio'];?></h1><h1><?=$alerta;?> </h1>
 				<input type="hidden" id="folio_ruta" value="<?=$expediente['folio'];?>">
 			</div>
 

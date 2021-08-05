@@ -3,9 +3,8 @@
 	include('../../controller/solicitud/funciones_solicitud.php');
 
 	//VARIABLE DEL CHECK PARA SOLICITAR NÚMERO OFICIAL A SEDATUM
-	$check = $_POST['checkNumOficial'];//Manda la variable solo si está checada, de lo contrario no manda nada.
+	//$check = $_POST['checkNumOficial'];//Manda la variable solo si está checada, de lo contrario no manda nada.
 	//POSICIÓN DEL POST PARA EL COMPROBANTE --> $_POST['cp_no'];
-	
 	$folio = "SARE/".date("Y/m/d H:m:s");
 	$docs =str_replace(' ', '-', str_replace(':', '-',str_replace('/', '-', $folio)));
 	$id_persona = $_POST['id_per'];
@@ -17,7 +16,12 @@
 	$ine = $ruta.'/'.basename($_FILES['ine']['name']);
 	$contrato = $ruta.'/'.basename($_FILES['contrato']['name']);
 	$noficial = $ruta.'/'.basename($_FILES['no']['name']);
-	
+	$noficial = 0;
+	if(isset($_POST['checkNumOficial']))
+	{
+		$noficial = 1;	
+	}
+
 	$tipo_persona = $_POST['tipo_persona'];
 
 	if ($tipo_persona == 'p_moral') {
@@ -53,7 +57,7 @@
 		}
 	}
 
-	if(create_expediente($docs, $tipo_persona, $id_persona, $id_dg, $id_dimensiones))
+	if(create_expediente($docs, $tipo_persona, $id_persona, $id_dg, $id_dimensiones, $noficial))
 	{
 
 		$mensaje = "correcto";
