@@ -2,6 +2,7 @@
     include('../../model/solicitud/fill.php');
     
     $id = $_GET['id'];
+    $numero_oficial = $_GET['numero_oficial'];
 
     $expediente = fill_expediente($id);
 
@@ -90,7 +91,7 @@
                         <tr>
                             <td style="width: 3%;"></td>
                             <td style="width: 8%;">Número: </td>
-                            <td style="width: 82%;" colspan="4" class="borderBottom">AQUI VA EL NÚMERO OFICIAL</td>
+                            <td style="width: 82%;" colspan="4" class="borderBottom">'.$GLOBALS['numero_oficial'].'</td>
                         </tr>    
 
                         <tr>

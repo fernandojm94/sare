@@ -194,7 +194,6 @@
                 <div style="border-width: 1px; border-style: solid solid solid solid; border-color: black;">
                     <table>
                         <tr>
-                            <td width="2%"></td>
                             <td width="68%" align="left">
                                 <img width="350" src="../../img/logo_finanzas.png">
                             </td>
