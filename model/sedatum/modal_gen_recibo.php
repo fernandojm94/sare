@@ -1,7 +1,30 @@
 <?php
 	include('../../model/solicitud/fill.php');
-	$id = $_POST['id']; 
+	$id = $_POST['id'];	
 	$expediente = fill_expediente($id);
+	$num_of = $expediente['solicita_noficial'];
+	$alerta=$input="";
+
+	if($num_of==1)
+	{
+		$alerta = "Ingresar el número oficial de la solicitud, así como el costo que tendra el uso de suelo. Se generarán los documentos automáticamente.";
+		$input = '<div class="form-group">
+                                <label class="col-md-12 control-label">Número oficial </label>  
+                                <div class="col-md-12 inputGroupContainer">
+                                    <div class="input-group col-sm-12">
+                                        <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                        <input name="num_off" id="num_off" placeholder="Número oficial" class="col-xs-10 col-sm-10" type="number" required/>
+                                    </div>
+                                </div>
+                            </div><br><br><br><br>';
+	} else{
+		$alerta = "Ingresar costo que tendra el uso de suelo. Se generará el documento automáticamente.";
+		$input = '<div class="form-group">
+	                    <div class="col-md-12 inputGroupContainer">
+	                        <input name="num_off" id="num_off" placeholder="Número oficial" class="col-xs-10 col-sm-10" type="hidden" value="na"/>                                    
+	                    </div>
+                    </div>';
+	}
 ?>
 
 <style type="text/css">
@@ -26,22 +49,13 @@
 							<i class="ace-icon fa fa-times"></i>
 						</button>
 						<i class="ace-icon fa fa-info-circle yellow"></i>
-						Ingresar el número oficial de la solicitud, así como el costo que tendra el uso de suelo. Se generarán los documentos automáticamente.
+						<?= $alerta;?>
 					</div>
 					<div class="col-xs-2">
 					</div>
 					<div class="col-xs-8">
 						<form id="form_gen_re" name="form_gen_re">
-                            <div class="form-group">
-                                <label class="col-md-12 control-label">Número oficial </label>  
-                                <div class="col-md-12 inputGroupContainer">
-                                    <div class="input-group col-sm-12">
-                                        <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                        <input name="num_off" id="num_off" placeholder="Número oficial" class="col-xs-10 col-sm-10" type="number" required/>
-                                    </div>
-                                </div>
-                            </div>
-                            <br><br><br><br>							
+                            <?= $input;?>                            
                        		<div class="form-group">
                                 <label class="col-md-12 control-label">Costo uso de suelo </label>  
                                 <div class="col-md-12 inputGroupContainer">

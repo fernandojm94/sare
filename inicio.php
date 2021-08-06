@@ -1276,7 +1276,7 @@
 				});
 			}
 			
-			function actualiza_status(id_solicitud,status,complemento,complemento2,folio)
+			function actualiza_status(id_solicitud,status,complemento,complemento2)
 			{
 				var etapa = $("#pantalla").val();
 				var director = "";
@@ -1434,6 +1434,7 @@
 										url:   './model/sedatum/actualiza_status.php',
 										type:  'post', 
 
+
 										success:  function (data) {
 										
 											if (data==='correcto'){
@@ -1446,9 +1447,12 @@
 													
 												});
 
-												if (etapa==2)
+												if ((etapa==2)&&(complemento=="na"))
 												{
 													window.open('pdf/sare/orden_pago_licencia.php?id='+id_solicitud+'&monto='+complemento2, '_blank');
+												} else{
+													window.open('pdf/sare/orden_pago_licencia.php?id='+id_solicitud+'&monto='+complemento2, '_blank');
+													window.open('pdf/sedatum/numero_oficial.php?id='+id_solicitud+'&numero_oficial='+complemento, '_blank');
 												}
 
 											}

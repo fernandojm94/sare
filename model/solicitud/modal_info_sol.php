@@ -7,6 +7,8 @@
 	$id = $_POST['id']; 
 	valida_visto($id, $etapa);
 	$orden_btn = $alerta = '';
+	$expediente = fill_expediente($id);
+	$num_of = $expediente['solicita_noficial'];
 	$rechaz_btn = '<button type="button" class="btn btn-danger" onclick="actualiza_status('.$id.',2,0,0);"><i class="fa fa-ban"></i>&nbsp;Rechazar Solicitud</button>';
 	$aprob_btn = '<button type="button" class="btn btn-success" onclick="actualiza_status('.$id.',1,0,0);"><i class="fa fa-check"></i>&nbsp;Aprobar Solicitud</button>';	
 
@@ -24,7 +26,6 @@
 	//FIN BOTONES DE CADA ETAPA	
 	
 	$archivos = $documentos = "";
-	$expediente = fill_expediente($id);
 
 	if($expediente['tipo_persona'])
 	{
@@ -67,7 +68,7 @@
 	}
 	if($expediente['solicita_noficial'])
 	{
-		$alerta = "Solicitan el número oficial";
+		$alerta = "(Solicitan el número oficial)";
 	}
 
 ?>
@@ -75,7 +76,7 @@
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h1 class="blue">Solicitud <?=$expediente['folio'];?></h1><h1><?=$alerta;?> </h1>
+				<h1 class="blue">Solicitud <?=$expediente['folio'];?></h1>
 				<input type="hidden" id="folio_ruta" value="<?=$expediente['folio'];?>">
 			</div>
 
@@ -352,7 +353,7 @@
 										<div id="id-message-list-navbar" class="message-navbar clearfix">
 											<div class="message-bar">
 												<div class="message-infobar" id="id-message-infobar">
-													<span class="blue bigger-150">Documentación</span>
+													<span class="blue bigger-150">Documentación</span><span class="red">&nbsp;<?=$alerta;?></span>
 												</div>
 											</div>
 										</div>
