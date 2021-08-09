@@ -348,4 +348,10 @@ function fill_establecimiento_separado($id)
 
 	return $establecimiento;
 }
-?>
+
+function fill_ventanilla_id($id)
+{
+	$ventanilla = get_ventanilla_id($id);
+	return $ventanilla;
+}
+
