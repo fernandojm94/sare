@@ -16,7 +16,7 @@
 	$ine = $ruta.'/'.basename($_FILES['ine']['name']);
 	$contrato = $ruta.'/'.basename($_FILES['contrato']['name']);
 	$noficial = $ruta.'/'.basename($_FILES['no']['name']);
-	$noficial = 0;
+	$noficial = $id_expediente = 0; 
 	if(isset($_POST['checkNumOficial']))
 	{
 		$noficial = 1;	
@@ -56,11 +56,15 @@
 			}
 		}
 	}
-
-	if(create_expediente($docs, $tipo_persona, $id_persona, $id_dg, $id_dimensiones, $noficial))
+	$id_expediente = create_expediente($docs, $tipo_persona, $id_persona, $id_dg, $id_dimensiones, $noficial);
+	if($id_expediente)
 	{
-
+		if(create_ventanilla_id($id_expediente))
+		{
 		$mensaje = "correcto";
+		}else{
+			$mensaje = "error";
+		}
 	}else{
 		$mensaje = "error";
 	}

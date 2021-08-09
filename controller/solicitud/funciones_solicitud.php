@@ -64,7 +64,7 @@ function create_expediente($folio, $tipo_persona, $id_persona, $id_dg, $id_dimen
 {
 	$sql = "INSERT INTO expedientes(folio, fecha_apertura, tipo_persona, id_persona, id_dg_establecimiento, id_dimensiones_establecimiento, etapa, status, solicita_noficial)
 					VALUES('".$folio."',now(),".$tipo_persona.", ".$id_persona.", ".$id_dg.", ".$id_dimensiones.", 2, 0, ".$noficial.")";
-	$result = querys($sql);
+	$result = query_last_id($sql);
 
 	return $result;
 }
@@ -296,6 +296,16 @@ function get_ventanilla_id($id)
 			 WHERE id_expediente = $id AND status = 1";
 
 	$result = query_row_id($sql);
+
+	return $result;
+}
+
+function create_ventanilla_id($id)
+{
+	$sql = "INSERT INTO ventanilla (id_expediente, recibido)
+				VALUES ($id, NOW())";
+
+	$result = querys($sql);
 
 	return $result;
 }
