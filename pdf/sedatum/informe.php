@@ -7,13 +7,14 @@
     $id = $_GET['id'];
 
     $expediente = fill_expediente($id);
-
+    $fecha_ingreso = fill_ventanilla_id($id);//fcha_ingreso[recibido] tiene la fecha    
     $datos_generales = fill_datos_generales($expediente['id_persona'],$expediente['tipo_persona']);
     $establecimiento = fill_establecimiento_separado($expediente['id_dg_establecimiento']);
     $dimensiones = fill_dimensiones($expediente['id_dimensiones_establecimiento']);
     $folio_str = str_replace(array("/", " ",":"),array("-","-","-"),$expediente['folio']);
     $dictamen = file_get_contents('../../assets/expedientes/'.$folio_str.'/docs/documentacion/suelo.txt', FILE_USE_INCLUDE_PATH);
     $dictamenLen = strlen($dictamen);
+
     
     $dict_1 = "";
     $dict_2 = "";

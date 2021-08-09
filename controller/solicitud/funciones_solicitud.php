@@ -287,3 +287,15 @@ function get_establecimiento_separado($id)
 
 	return $result;
 }
+
+
+function get_ventanilla_id($id)
+{
+	$sql = " SELECT recibido
+				FROM ventanilla
+			 WHERE id_expediente = $id AND status = 1";
+
+	$result = query_row_id($sql);
+
+	return $result;
+}
