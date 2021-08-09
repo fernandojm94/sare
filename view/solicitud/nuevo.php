@@ -309,6 +309,12 @@
                                     <div style="display: flex; justify-content: center;">
                                         <a role="button" onclick="mapa_inicial();" class="btn btn-success"><i class="fa fa-refresh"></i>&nbsp;Refrescar Mapa</a>
                                     </div>
+
+                                    <div id="MyPix">
+                                    </div>
+
+
+                                    <div id="panel"></div>
                                     
                                     <div class="form-group"></div>
                                     <h3 class="header smaller lighter center"></h3>
@@ -1115,7 +1121,6 @@
         }
     }
 
-
     function mapa_inicial(){
         document.getElementById("map").innerHTML = "";
         //$(map).empty();
@@ -1126,6 +1131,36 @@
         var localidad = document.getElementById('localidad_dg');
         var cp = document.getElementById('cp_dg');
         var latlong = document.getElementById('latlong');
+
+        function capture(resultContainer, map, ui) {
+            // Capturing area of the map is asynchronous, callback function receives HTML5 canvas
+            // element with desired map area rendered on it.
+            // We also pass an H.ui.UI reference in order to see the ScaleBar in the output.
+            // If dimensions are omitted, whole veiw port will be captured
+            map.capture(function(canvas) {
+                if (canvas) {
+                    //resultContainer.innerHTML = '';
+                    //resultContainer.appendChild(canvas);
+                    if (canvas.getContext){
+                        console.log("entro captura");
+                        var ctx = canvas.getContext("2d");                
+                        var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+                       $.ajax({
+                            type: "POST",
+                            url: "./model/solicitud/save_img_map.php",
+                            data: { 
+                                img_map: image
+                            }
+                        }).done(function(o) {
+                          console.log('saved'); 
+                        });
+                    }
+                } else {
+                    // For example when map is in Panorama mode
+                    resultContainer.innerHTML = 'Capturing is not supported';
+                }
+            }, [ui]);
+        }
 
         function moveMapToAgs(map){
             map.setCenter({lat:21.961431132297992, lng:-102.34325996858598});
@@ -1162,6 +1197,7 @@
                         colonia.value= data.Response.View[0].Result[0].Location.Address.District;
                         localidad.value= data.Response.View[0].Result[0].Location.Address.City;
                         cp.value= data.Response.View[0].Result[0].Location.Address.PostalCode;
+                        capture(resultContainer, map, ui);
                     }
                 });
             });
@@ -1182,6 +1218,7 @@
           tileSize: pixelRatio === 1 ? 256 : 512,
           ppi: pixelRatio === 1 ? undefined : 320
         });
+        var mapContainer = document.getElementById('map');
 
         //Step 2: initialize a map  - not specificing a location will give a whole world view.
         var map = new H.Map(document.getElementById('map'),
@@ -1197,6 +1234,28 @@
 
         // Now use the map as required...
         moveMapToAgs(map);
+
+        // Step 6: Create "Capture" button and place for showing the captured area
+        var resultContainer = document.getElementById('panel');
+
+        // Create container for the "Capture" button
+        var containerNode = document.createElement('div');
+        containerNode.className = 'btn-group';
+
+        // Create the "Capture" button
+        var captureBtn = document.createElement('input');
+        captureBtn.value = 'Capture';
+        captureBtn.type = 'button';
+        captureBtn.className = 'btn btn-sm btn-default';
+
+        // Add both button and container to the DOM
+        containerNode.appendChild(captureBtn);
+        mapContainer.appendChild(containerNode);
+
+        // Step 7: Handle capture button click event
+        captureBtn.onclick = function() {
+            capture(resultContainer, map, ui);
+        };
     }
 
 
