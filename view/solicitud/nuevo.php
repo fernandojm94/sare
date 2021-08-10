@@ -501,7 +501,7 @@
                                         <label for="frente" class="col-sm-2 control-label no-padding-right"> Frente</label>
 
                                         <div class="col-sm-2">
-                                            <input type="number" id="frente" name="frente" placeholder="Frente" class="col-xs-10 col-sm-10">
+                                            <input type="number" id="frente" name="frente" onchange="superficie()" placeholder="Frente" class="col-xs-10 col-sm-10">
                                             <span class="help-inline col-xs-1 col-sm-1">
                                                 <span class="middle">m</span>
                                             </span>
@@ -892,14 +892,15 @@
             });
         });
 
-        $('#terreno').on('change', function() {
-            if ($('#terreno').val() >= 150){
+        $('#local').on('change', function() {
+            if ($('#local').val() >= 150){
                 swal({
-                    title: "Este terreno no aplica para SARE",
-                    text: "La superficie del terreno excede el tamaño establecido para SARE.",
+                    title: "Este local no aplica para SARE",
+                    text: "La superficie del local excede el tamaño establecido para SARE.",
                     icon: "error",
                     button: "Aceptar"
                 });
+                $('#local').val("");
             }
         });    
     });
