@@ -7,7 +7,9 @@
     $id = $_GET['id'];
 
     $expediente = fill_expediente($id);
-    $fecha_ingreso = fill_ventanilla_id($id);//fcha_ingreso[recibido] tiene la fecha    
+    $fecha_ingreso = fill_ventanilla_id($id);//fecha_ingreso[recibido] tiene la fecha
+    $recibido = date("d/m/Y", strtotime($fecha_ingreso['recibido']));
+
     $datos_generales = fill_datos_generales($expediente['id_persona'],$expediente['tipo_persona']);
     $establecimiento = fill_establecimiento_separado($expediente['id_dg_establecimiento']);
     $dimensiones = fill_dimensiones($expediente['id_dimensiones_establecimiento']);
@@ -352,7 +354,7 @@
                         <td>Fecha de Ingreso</td>
                     </tr>
                     <tr>
-                        <td class="border_b"></td>
+                        <td class="border_b">'.$recibido.'</td>
                     </tr>
                 </table>
             </td>
