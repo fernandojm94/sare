@@ -7,6 +7,14 @@
     $id = $_GET['id'];
 
     $expediente = fill_expediente($id);
+
+    $tipo_persona = "";
+    if ($expediente['tipo_persona'] == 0) {
+        $tipo_persona = "FÍSICA";
+    }else{
+        $tipo_persona = "MORAL";
+    }
+
     $fecha_ingreso = fill_ventanilla_id($id);//fecha_ingreso[recibido] tiene la fecha
     $recibido = date("d/m/Y", strtotime($fecha_ingreso['recibido']));
 
@@ -32,16 +40,6 @@
     $letras = NumeroALetras::convertir($monto, 'pesos', 'centavos');
     $letras = strtolower($letras);
     $letras = ucfirst($letras);
-
-    /*
-        FALTA RECIBIR: 
-
-            -DESTINATARIO
-            -MONTO EN NÚMERO Y LETRA
-            -CONCEPTO DEL TRÁMITE
-            -MANDAR EL USUARIO QUE EMITE LA ORDEN
-    */
-
 
     class NumeroALetras
 {
@@ -299,7 +297,7 @@
             <td><h4 align="center">INFORME DE COMPATIBILIDAD URBANÍSTICA</h4></td>    
         </tr>
         <tr><td>
-                <h4>DATOS DE LA PERSONA ######</h4>
+                <h4>DATOS DE LA PERSONA '.$tipo_persona.'</h4>
             </td>
         </tr>
     </table>
