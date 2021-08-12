@@ -1287,11 +1287,11 @@
 				var texto="";
 				var pantalla="";
 
-				console.log("id:"+id_solicitud+" etapa: "+etapa+" status: "+status+" adicional_1: "+complemento+" adicional_2: "+complemento2+" director: "+director+" tipo_usuario: "+tipo_usuario+" id_usuario: "+id_usuario+" folio: "+folio);
+				//console.log("id:"+id_solicitud+" etapa: "+etapa+" status: "+status+" adicional_1: "+complemento+" adicional_2: "+complemento2+" director: "+director+" tipo_usuario: "+tipo_usuario+" id_usuario: "+id_usuario+" folio: "+folio);
 
-				console.log(complemento==="");console.log(complemento2==="");
+				//console.log(complemento==="");console.log(complemento2==="");
 
-				console.log(complemento.length);console.log(complemento2.length);
+				//console.log(complemento.length);console.log(complemento2.length);
 				
 				if (etapa==2)
 				{
@@ -1355,7 +1355,7 @@
 								  	content: "input",
 							    }).then((value) => {
 							    	if (value) {
-							    		console.log("id:"+id_solicitud+" etapa: "+etapa+" status: "+status+" adicional_1: "+complemento+" adicional_2: "+complemento2+" director: "+director+" tipo_usuario: "+tipo_usuario+" id_usuario: "+id_usuario+" folio: "+folio);
+							    		//console.log("id:"+id_solicitud+" etapa: "+etapa+" status: "+status+" adicional_1: "+complemento+" adicional_2: "+complemento2+" director: "+director+" tipo_usuario: "+tipo_usuario+" id_usuario: "+id_usuario+" folio: "+folio);
 
 							    		var data = {
 											'id' : id_solicitud,
@@ -1402,7 +1402,7 @@
 							    });								
 							} else{
 								
-								console.log("id:"+id_solicitud+" etapa: "+etapa+" status: "+status+" adicional_1: "+complemento+" adicional_2: "+complemento2+" director: "+director+" tipo_usuario: "+tipo_usuario+" id_usuario: "+id_usuario+" folio: "+folio);
+								//console.log("id:"+id_solicitud+" etapa: "+etapa+" status: "+status+" adicional_1: "+complemento+" adicional_2: "+complemento2+" director: "+director+" tipo_usuario: "+tipo_usuario+" id_usuario: "+id_usuario+" folio: "+folio);
 
 								if ((etapa==2)&&(complemento===0)&&(complemento2===0))
 								{
@@ -1427,8 +1427,7 @@
 										'ruta' : folio,
 									}
 
-									console.log(data);
-
+									
 									$.ajax({
 										data:  data,
 										url:   './model/sedatum/actualiza_status.php',
@@ -1450,7 +1449,8 @@
 												if ((etapa==2)&&(complemento=="na"))
 												{
 													window.open('pdf/sare/orden_pago_licencia.php?id='+id_solicitud+'&monto='+complemento2, '_blank');
-												} else{
+												} 
+												if ((etapa==2)&&(complemento!="na")){
 													window.open('pdf/sare/orden_pago_licencia.php?id='+id_solicitud+'&monto='+complemento2, '_blank');
 													window.open('pdf/sedatum/numero_oficial.php?id='+id_solicitud+'&numero_oficial='+complemento, '_blank');
 												}
