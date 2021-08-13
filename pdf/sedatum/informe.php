@@ -7,7 +7,17 @@
     $id = $_GET['id'];
 
     $expediente = fill_expediente($id);
-    $fecha_ingreso = fill_ventanilla_id($id);//fcha_ingreso[recibido] tiene la fecha    
+
+    $tipo_persona = "";
+    if ($expediente['tipo_persona'] == 0) {
+        $tipo_persona = "FÍSICA";
+    }else{
+        $tipo_persona = "MORAL";
+    }
+
+    $fecha_ingreso = fill_ventanilla_id($id);//fecha_ingreso[recibido] tiene la fecha
+    $recibido = date("d/m/Y", strtotime($fecha_ingreso['recibido']));
+
     $datos_generales = fill_datos_generales($expediente['id_persona'],$expediente['tipo_persona']);
     $establecimiento = fill_establecimiento_separado($expediente['id_dg_establecimiento']);
     $dimensiones = fill_dimensiones($expediente['id_dimensiones_establecimiento']);
@@ -30,16 +40,6 @@
     $letras = NumeroALetras::convertir($monto, 'pesos', 'centavos');
     $letras = strtolower($letras);
     $letras = ucfirst($letras);
-
-    /*
-        FALTA RECIBIR: 
-
-            -DESTINATARIO
-            -MONTO EN NÚMERO Y LETRA
-            -CONCEPTO DEL TRÁMITE
-            -MANDAR EL USUARIO QUE EMITE LA ORDEN
-    */
-
 
     class NumeroALetras
 {
@@ -297,7 +297,7 @@
             <td><h4 align="center">INFORME DE COMPATIBILIDAD URBANÍSTICA</h4></td>    
         </tr>
         <tr><td>
-                <h4>DATOS DE LA PERSONA ######</h4>
+                <h4>DATOS DE LA PERSONA '.$tipo_persona.'</h4>
             </td>
         </tr>
     </table>
@@ -352,7 +352,7 @@
                         <td>Fecha de Ingreso</td>
                     </tr>
                     <tr>
-                        <td class="border_b"></td>
+                        <td class="border_b">'.$recibido.'</td>
                     </tr>
                 </table>
             </td>

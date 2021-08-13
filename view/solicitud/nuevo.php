@@ -501,7 +501,7 @@
                                         <label for="frente" class="col-sm-2 control-label no-padding-right"> Frente</label>
 
                                         <div class="col-sm-2">
-                                            <input type="number" id="frente" name="frente" placeholder="Frente" class="col-xs-10 col-sm-10">
+                                            <input type="number" id="frente" name="frente" onchange="superficie()" placeholder="Frente" class="col-xs-10 col-sm-10">
                                             <span class="help-inline col-xs-1 col-sm-1">
                                                 <span class="middle">m</span>
                                             </span>
@@ -601,6 +601,9 @@
                                     <div class="hidden" id="inst_iddg"></div>
                                     <div class="hidden" id="inst_iddim"></div>
 
+                                    <input type="text" id="img_map" name="img_map" />
+                                   
+
                                     <div class="form-group">
                                         <label class="col-md-4 control-label">Escritura o titulo de propiedad (en su caso carta notariada de escritura en trámite).</label>  
                                         <div class="col-md-4 inputGroupContainer">
@@ -648,6 +651,7 @@
                                         <label class="col-md-4 control-label">¿Solicitar Número Oficial a SEDATUM?</label>
                                         <label class="col-md-4 inputGroupContainer">
                                             <input type="checkbox" name="checkNumOficial" id="checkNumOficial" class="ace ace-switch ace-switch-5">
+
                                             <span class="lbl middle"></span>
                                         </label>
                                     </div>
@@ -892,14 +896,15 @@
             });
         });
 
-        $('#terreno').on('change', function() {
-            if ($('#terreno').val() >= 150){
+        $('#local').on('change', function() {
+            if ($('#local').val() >= 150){
                 swal({
-                    title: "Este terreno no aplica para SARE",
-                    text: "La superficie del terreno excede el tamaño establecido para SARE.",
+                    title: "Este local no aplica para SARE",
+                    text: "La superficie del local excede el tamaño establecido para SARE.",
                     icon: "error",
                     button: "Aceptar"
                 });
+                $('#local').val("");
             }
         });    
     });
@@ -1144,17 +1149,11 @@
                     if (canvas.getContext){
                         console.log("entro captura");
                         var ctx = canvas.getContext("2d");                
-                        var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-                       $.ajax({
-                            type: "POST",
-                            url: "./model/solicitud/save_img_map.php",
-                            data: { 
-                                img_map: image
-                            }
-                        }).done(function(o) {
-                          console.log('saved'); 
-                        });
+                        var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");                       
                     }
+                    var imageElement = document.getElementById("img_map");
+                    imageElement.value = image;
+
                 } else {
                     // For example when map is in Panorama mode
                     resultContainer.innerHTML = 'Capturing is not supported';

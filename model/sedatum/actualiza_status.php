@@ -108,20 +108,26 @@ echo $mensaje;
 
 function create_html($ruta, $adicional_1, $adicional_2, $nombre)
 {
-	if (file_exists($ruta.$nombre.".txt"))
+	$file_type = '.txt';
+	if ($nombre == 'suelo') {
+		$nombre = 'Dictamen';
+		$file_type = '.html';
+	}
+
+	if (file_exists($ruta.$nombre."".$file_type.""))
 	{
-		$archivo = fopen($ruta.$nombre.".txt", "a");		
+		$archivo = fopen($ruta.$nombre."".$file_type."", "a");		
 	}else{
-		$archivo = fopen($ruta.$nombre.".txt", "w");
+		$archivo = fopen($ruta.$nombre."".$file_type."", "w");
 	}
 	 fwrite($archivo, PHP_EOL ."$adicional_1");
 	fclose($archivo);
 
-	if (file_exists($ruta."observaciones.txt"))
+	if (file_exists($ruta."observaciones".$file_type.""))
 	{
-		$archivo = fopen($ruta."observaciones.txt", "a");		
+		$archivo = fopen($ruta."observaciones".$file_type."", "a");		
 	}else{
-		$archivo = fopen($ruta."observaciones.txt", "w");
+		$archivo = fopen($ruta."observaciones".$file_type."", "w");
 	}
 	 fwrite($archivo, PHP_EOL ."$adicional_2");
 	fclose($archivo);
