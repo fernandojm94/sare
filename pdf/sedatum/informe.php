@@ -23,6 +23,7 @@
     $dimensiones = fill_dimensiones($expediente['id_dimensiones_establecimiento']);
     $folio_str = str_replace(array("/", " ",":"),array("-","-","-"),$expediente['folio']);
     $dictamen = file_get_contents('../../assets/expedientes/'.$folio_str.'/docs/documentacion/suelo.txt', FILE_USE_INCLUDE_PATH);
+    $mapa = '../../assets/expedientes/'.$folio_str.'/docs/documentacion/mapa.png';
     $dictamenLen = strlen($dictamen);
 
     
@@ -421,7 +422,7 @@
 
     <table cellspacing="2" cellpadding="3" class="border_c">
         <tr><td align="center">Identificar las calles que limitan a la manzana donde se ubica el predio señalando donde se encuentra el mismo.</td></tr>
-        <tr><td align="center"><img width="200" height="200" src="../../img/map.png"></td></tr>
+        <tr><td align="center"><img width="200" height="200" src="'.$mapa.'"></td></tr>
     </table>
 
     <table>
