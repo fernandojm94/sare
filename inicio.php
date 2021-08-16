@@ -1555,13 +1555,13 @@
 								'folder-close-icon' : 'ace-icon tree-minus'
 							});
 
-							
 							function initiateDemoData(){
 								
 								var tree_data_2 = {
 									'documentacion' : {text: 'Documentación', type: 'folder', 'icon-class':'orange'},
 									'pagos' : {text: 'Pagos', type: 'folder', 'icon-class':'red'},
-									'anexos' : {text: 'Anexos', type: 'folder', 'icon-class':'blue'}	
+									'anexos' : {text: 'Anexos', type: 'folder', 'icon-class':'blue'},
+									'mapa' : {text: '<a href="/assets/expedientes/'+folio_exp+'/docs/mapa.png" target="_blank"><i class="ace-icon glyphicon glyphicon-picture green"></i> Mapa</a>', type: 'item'}	
 								}
 
 								tree_data_2['documentacion']['additionalParameters'] = {
