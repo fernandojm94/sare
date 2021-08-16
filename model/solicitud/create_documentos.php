@@ -11,7 +11,7 @@
 	$data = explode(",", $_POST['img_map']);	
 	$data_64 = base64_decode($data[1]);	
 	$data = getImageSizeFromString($data_64);
-	$ruta_img = "../../assets/expedientes/".$docs."/docs/documentacion/mapa.".substr($data['mime'], 6);	
+	$ruta_img = "../../assets/expedientes/".$docs."/docs/mapa.".substr($data['mime'], 6);	
 	
 
 	$id_persona = $_POST['id_per'];

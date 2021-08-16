@@ -23,7 +23,7 @@
     $dimensiones = fill_dimensiones($expediente['id_dimensiones_establecimiento']);
     $folio_str = str_replace(array("/", " ",":"),array("-","-","-"),$expediente['folio']);
     $dictamen = file_get_contents('../../assets/expedientes/'.$folio_str.'/docs/documentacion/suelo.txt', FILE_USE_INCLUDE_PATH);
-    $mapa = '../../assets/expedientes/'.$folio_str.'/docs/documentacion/mapa.png';
+    $mapa = '../../assets/expedientes/'.$folio_str.'/docs/mapa.png';
     $dictamenLen = strlen($dictamen);
 
     
