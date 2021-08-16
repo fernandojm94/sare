@@ -218,8 +218,9 @@
 												<div class="profile-info-name"> Localización: </div>
 
 												<div class="profile-info-value">
-													<i class="fa fa-map-marker green bigger-110"></i>&nbsp;
-													<span><?=$establecimiento['latitud_longitud']?></span>
+													<!--<i class="fa fa-map-marker green bigger-110"></i>&nbsp;
+													 <span><?=$establecimiento['latitud_longitud']?></span> -->
+													 <a href="https://maps.google.com/?q=<?=$establecimiento['latitud_longitud']?>&z=23" target="_blank"><img src="./assets/expedientes/<?=$expediente['folio'];?>/docs/mapa.png" width="50%" height="50%"></a>
 												</div>
 											</div>
 
