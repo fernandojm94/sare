@@ -125,7 +125,7 @@
 
     $pdf->SetFont('times', '', 12, '', true);
 
-    $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+    $pdf->SetAutoPageBreak(TRUE, 85);
 
     $pdf->AddPage();
 
@@ -338,7 +338,7 @@
 
     <table cellspacing="2" cellpadding="3">
         <tr>
-            <td class="border_c" style="width: 70%; height: 150px;">$dict_1</td>
+            <td align="justify" class="border_c" style="width: 70%; height: 150px;">'.strip_tags($dict_1).'...</td>
             <td class="border_c" style="width: 30%; height: 150px;"></td>
         </tr>
     </table>';
@@ -366,7 +366,7 @@
     
     <table cellspacing="2" cellpadding="3">
         <tr>
-            <td class="border_c"><p>$dict_2</p></td>
+            <td align="justify" class="border_c"><p>'.strip_tags($dict_2).'</p></td>
         </tr>
     </table>';
 
