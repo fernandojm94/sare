@@ -976,6 +976,7 @@
                     document.getElementById("ocultos_fisica").innerHTML=xmlhttp.responseText;
                     $("#editar").css("display", "block");
                     switch_edit();
+                    mask_data();
                 }
             }
 
@@ -1083,12 +1084,13 @@
                     $("#editar").css("display", "block");
                     switch_edit();
                     date_pick();
+                    mask_data();
                 }
             }
 
             document.getElementById("loading").innerHTML = '<img src="./img/loader_2.gif" alt="Cargando, favor de esperar"/>'; // Set here the image before sending request
             xmlhttp.open("POST","./model/sedatum/datos_persona_moral.php",true);
-            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");            
             xmlhttp.send(value);
         });
 
@@ -1345,6 +1347,15 @@
     $('.mask_tel').mask('9999999999', {reverse: true});
     $('.mask_cp').mask('99999', {reverse: true});
     $('.mask_rfc_fis').mask('aaaa999999aa9', {reverse: true});
+
+    function mask_data(){
+        $.mask.definitions['~']='[+-]';
+        $('.mask_curp').mask('aaaa999999aaaaaa99', {reverse: true});
+        $('.mask_tel').mask('9999999999', {reverse: true});
+        $('.mask_cp').mask('99999', {reverse: true});
+        $('.mask_rfc_fis').mask('aaaa999999aa9', {reverse: true});
+        $('.mask_rfc_mor').mask('aaa999999aa9', {reverse: true});
+    }
 
     function mayus(e) {
         e.value = e.value.toUpperCase();
