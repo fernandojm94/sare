@@ -73,7 +73,7 @@ function get_atendidas()
 {
 	$sql ="SELECT id, fecha_apertura, nombre_comercial, domicilio, telefono, status, etapa
 				FROM resueltas
-			WHERE 1";
+			WHERE 1 ORDER BY id DESC";
 
 	$result = querys($sql);
 
@@ -84,7 +84,8 @@ function get_atendidas_etapa($join)
 {
 	 $sql ="SELECT r.id, r.fecha_apertura, r.nombre_comercial, r.domicilio, r.telefono, e.status, r.etapa
 				FROM resueltas AS r
-			".$join;
+			".$join."
+			WHERE 1 ORDER BY id DESC";
 
 	$result = querys($sql);
 
