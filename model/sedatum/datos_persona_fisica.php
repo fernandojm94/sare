@@ -111,7 +111,7 @@ include("../../model/solicitud/fill.php");
     <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-            <input name="cp" id="cp" placeholder="Código Postal" value="<?php echo $pfisica['c_p'];?>" class="form-control mask_cp" type="number" maxlength="5" required <?=$readonly?>/>
+            <input name="cp" id="cp" placeholder="Código Postal" value="<?php echo $pfisica['c_p'];?>" class="form-control mask_cp" type="text" maxlength="5" required <?=$readonly?>/>
         </div>
     </div>
 </div>
