@@ -21,7 +21,7 @@
 
 		$aprob_btn = '';		
 		$rechaz_btn = '';
-		$orden_btn = '<button type="button" class="btn btn-primary" onclick="fill_modal_comp_uso('.$id.');"><i class="fa fa-pencil"></i>&nbsp;Redactar dictámen</button>';
+		$orden_btn = '<button type="button" class="btn btn-primary" onclick="fill_modal_comp_uso('.$id.');"><i class="fa fa-pencil"></i>&nbsp;Redactar dictamen</button>';
 	}
 	//FIN BOTONES DE CADA ETAPA	
 	
