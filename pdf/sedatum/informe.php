@@ -27,6 +27,7 @@
     $dictamenLen = strip_tags($dictamen);
     $dictamenLen = substr($dictamenLen, 0, 550);
     
+    $fecha_autorizacion = date('d / m / Y');
     ob_start();
 
     require_once('../../assets/TCPDF/tcpdf.php');
@@ -92,7 +93,8 @@
                             <td style="height: 70px;" class="border_c"></td>
                             <td style="height: 70px;" class="border_c"></td>
                             <td style="height: 70px;" class="border_c"></td>
-                            <td style="height: 70px;" class="border_c"></td>
+                            <td style="height: 70px;" class="border_c">
+                            <h2>'.$GLOBALS['fecha_autorizacion'].'</h2></td>
                         </tr>
                     </table>
 
@@ -267,7 +269,7 @@
 
     <table cellspacing="2" cellpadding="3" class="border_c">
         <tr><td align="center">Identificar las calles que limitan a la manzana donde se ubica el predio señalando donde se encuentra el mismo.</td></tr>
-        <tr><td align="center"><img width="200" height="200" src="'.$mapa.'"></td></tr>
+        <tr><td align="center"><img width="300" height="200" src="'.$mapa.'"></td></tr>
     </table>
 
     <table>
@@ -330,7 +332,9 @@
     <table cellspacing="2" cellpadding="3">
         <tr>
             <td align="justify" class="border_c" style="width: 70%; height: 150px;">'.$dictamenLen.'...</td>
-            <td class="border_c" style="width: 30%; height: 150px;"></td>
+            <td align="center" class="border_c" style="width: 30%; height: 150px;">
+            <img src="../../img/sello-min.png" width="130">
+            </td>
         </tr>
     </table>';
 
