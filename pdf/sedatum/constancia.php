@@ -25,7 +25,7 @@
     $dictamen = file_get_contents('../../assets/expedientes/'.$folio_str.'/docs/documentacion/Dictamen.html', FILE_USE_INCLUDE_PATH);
     $mapa = '../../assets/expedientes/'.$folio_str.'/docs/mapa.png';
     $dictamenLen = strip_tags($dictamen);
-    $dictamenLen = substr($dictamenLen, 0, 550);
+    $dictamenLen = substr($dictamenLen, 0, 450);
     
     $fecha_autorizacion = date('d / m / Y');
     ob_start();
@@ -98,9 +98,9 @@
                         </tr>
                     </table>
 
-                    <h6 align="justify" style="font-size: 8px;">EL INFORME DE COMPATIBILIDAD URBANÍSTICA NO CONSTITUYE APEGO Y DESLINDE RESPECTO DEL INMUEBLE, NO ACREDITA LA PROPIEDAD O POSESIÓN DEL MISMO. ART. 138 DEL CÓDIGO DE ORDENAMIENTO TERRITORIAL, DESARROLLO URBANO Y VIVIENDA PARA EL ESTADO DE AGS. ESTE INFORME NO TIENE VALIDEZ LEGAL PARA REALIZAR TRÁMITES DE FRACCIONAMIENTOS, CONDOMINIOS, RELOTIFICACIONES, FUSIONES O SUBDIVISIONES DE ÁREAS Y PREDIOS, ASÍ COMO LICENCIAS DE CONSTRUCCIÓN O DE FUNCIONAMIENTO, TRÁMITES DE ESCRITURACIÓN, CONTRATOS DE AGUA Y DE LUZ. EL INFORME DE COMPATIBILIDAD URBANISTICA TENDRÁ UNA VIGENCIA DE 1 AÑO CONTANDO A PARTIR DE LA FECHA DE EXPEDICIÓN ART. 141 DEL CÓDIGO DE ORDENAMIENTO TERRITORIAL, DESARROLLO URBANO Y VIVIENDA PARA EL ESTADO DE AGS. NO SERÁ VALIDO DE PRESENTAR TACHADURAS O ENMENDADURAS. LOS RECUADROS SOMBREADOS SON DE USO EXCLUSIVO DE LA SECRETARÍA.</h6>';
+                    <h6 align="justify" style="font-size: 8px;">ESTE DOCUMENTO TENDRÁ UNA VIGENCIA DE 3 AÑOS A PARTIR DE LA FECHA DE AUTORIZACIÓN, ART 137 DEL CÓDIGO DE ORDENAMIENTO TERRITORIAL, DESARROLLO URBANO, Y VIVIENDA PARA EL ESTADO DE AGUASCALIENTES. LA CONSTANCIA MUNICIPAL DE COMPATIBILIDAD URBANISTICA NO CONSTITUYE APEO Y DESLINDE RESPECTO DEL INMUEBLE, NO ACREDITA LA PROPIEDAD O POSESIÓN DEL MISMO. ART 138 DEL CÓDIGO DE ORDENAMIENTO TERRITORIAL, DESARROLLO URBANO Y VIVIENDA PARA EL ESTADO DE AGUASCALIENTES, ESTE DOCUMENTO NO SERÁ VÁLIDO DE PRESENTAR TACHADURAS O ENMENDADURAS. LOS RECUADROS SOMBREADOS SON DE USO EXCLUSIVO DE LA SECRETARÍA.</h6>';
 
-            $this->writeHTMLCell('', '', '', 275, $pie, $border=0, $ln=2, $fill=0, $reseth=true, $align='C', $autopadding=true);
+            $this->writeHTMLCell('', '', '', 285, $pie, $border=0, $ln=2, $fill=0, $reseth=true, $align='C', $autopadding=true);
 
         }
     }
@@ -135,6 +135,15 @@
             border-bottom-width: 1px;
         }
 
+        .border_wt{
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+            border-right-style: solid;
+            border-right-width: 1px;
+            border-left-style: solid;
+            border-left-width: 1px;
+        }
+
         td{
             font-size: 10px;
         }
@@ -142,7 +151,7 @@
 
     <table>
         <tr>
-            <td><h4 align="center">INFORME DE COMPATIBILIDAD URBANÍSTICA</h4></td>    
+            <td><h4 align="center">CONSTANCIA MUNICIPAL DE COMPATIBILIDAD URBANÍSTICA</h4></td>    
         </tr>
         <tr><td>
                 <h4>DATOS DE LA PERSONA '.$tipo_persona.'</h4>
@@ -263,14 +272,75 @@
 
     <table>
         <tr>
+            <td width="63%;"><h4>USO O DESTINO DEL SUELO AUTORIZADO</h4></td>
+            <td width="37%;"><h5>FIRMA DEL PROPIETARIO O POSEEDOR LEGAL</h5></td>
+        </tr>
+    </table> 
+
+    <table cellspacing="2" cellpadding="3">
+        <tr>
+            <td class="border_c" style="width:64%;">
+                <table>
+                    <tr>
+                        <td style="width: 46%">Uso o destino del suelo autorizado: </td>
+                        <td style="width: 54%" class="border_b"></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 66%">Programa de desarrollo urbano del cual se califica: </td>
+                        <td style="width: 34%"></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 66%" class="border_b"></td>
+                        <td style="width: 34%" class="border_b"></td>
+                    </tr>
+                </table>
+
+                <table>
+                    <tr style="font-size: 8px;">
+                        <td style="width: 80%; font-size: 8px;">(En caso de cambio de uso o destino del suelo, agregar la fecha de autorización) </td>
+                        <td style="width: 20%;" class="border_wt"></td>
+                    </tr>
+                </table>
+            </td>
+            <td class="border_c" style="width:36%;">
+                <table>
+                    <tr>
+                         <td></td>
+                    </tr>
+                    <tr>
+                         <td></td>
+                    </tr>
+                    <tr>
+                         <td class="border_b"></td>
+                    </tr>
+                    <tr align="center">
+                         <td>Bajo protesta de decir verdad</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
             <td><h4>LUGAR PARA CROQUIS</h4></td>
         </tr>
     </table> 
 
     <table cellspacing="2" cellpadding="3" class="border_c">
         <tr><td align="center">Identificar las calles que limitan a la manzana donde se ubica el predio señalando donde se encuentra el mismo.</td></tr>
-        <tr><td align="center"><img width="300" height="200" src="'.$mapa.'"></td></tr>
+        <tr><td align="center"><img height="130" src="'.$mapa.'"></td></tr>
     </table>
+
+    <table>
+        <tr>
+            <td><h4></h4></td>
+        </tr>
+    </table>
+
+    <table cellspacing="2" cellpadding="3" class="border_c">
+        <tr align="justify"><td style="font-size: 8px;">COMPETENCIA. La presente constancia se emite con fundamento en los artículos 3, 7, 9 Fracción III, 11 Fracción VI del reglamento de Desarrollo Agrario, Territorial y Urbano para el Municipio de Jesús María publicado en el Periódico del Estado de Aguascalientes del 31 de Mayo de 2019.</td></tr>
+    </table> 
 
     <table>
         <tr>
@@ -331,9 +401,9 @@
 
     <table cellspacing="2" cellpadding="3">
         <tr>
-            <td align="justify" class="border_c" style="width: 70%; height: 150px;">'.$dictamenLen.'...</td>
-            <td align="center" class="border_c" style="width: 30%; height: 150px;">
-            <img src="../../img/sello-min.png" width="130">
+            <td align="justify" class="border_c" style="width: 70%; height: 100px;">'.$dictamenLen.'...</td>
+            <td align="center" class="border_c" style="width: 30%; height: 100px;">
+            <img src="../../img/sello-min.png" width="100">
             </td>
         </tr>
     </table>';
@@ -355,9 +425,9 @@
         }
     </style>
 
-    <h3 align="center">INFORME DE COMPATIBILIDAD URBANÍSTICA</h3>
+    <h3 align="center">CONSTANCIA MUNICIPAL DE COMPATIBILIDAD URBANÍSTICA</h3>
 
-    <p>OBSERVACIONES DE INFORME DE COMPATIBILIDAD URBANISTICA (Continuación)</p>
+    <p>DATOS DE COMPATIBILIDAD URBANISTICA (Continuación)</p>
     
     <table cellspacing="2" cellpadding="3">
         <tr>
