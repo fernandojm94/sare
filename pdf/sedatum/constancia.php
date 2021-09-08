@@ -448,6 +448,6 @@
     $pdf->Ln(25, false);
     $pdf->SetFont('times', '', 14, '', true);
 
-    $pdf->Output($_SERVER['DOCUMENT_ROOT'] . '/assets/expedientes/'.$folio_str.'/docs/documentacion/Informe.pdf', 'FI');
+    $pdf->Output($_SERVER['DOCUMENT_ROOT'] . '/assets/expedientes/'.$folio_str.'/docs/documentacion/Constancia.pdf', 'FI');
     
 ?>
