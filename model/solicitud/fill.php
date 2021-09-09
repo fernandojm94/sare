@@ -127,7 +127,7 @@ function fill_solicitudes($solicitudes, $pantalla)
 								</a>';					
 		}
 
-		if ($solicitud['etapa'] > 4  && $pantalla != 1) 
+		if ($solicitud['etapa'] > 4  && $pantalla != 1 && $pantalla != 8) 
 		{
 			$url = '../../pdf/sedatum/informe.php?id=';
 			$id = $solicitud['id'];
