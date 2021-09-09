@@ -12,7 +12,7 @@
 	$rechaz_btn = '<button type="button" class="btn btn-danger" onclick="actualiza_status('.$id.',2,0,0);"><i class="fa fa-ban"></i>&nbsp;Rechazar Solicitud</button>';
 	$aprob_btn = '<button type="button" class="btn btn-success" onclick="actualiza_status('.$id.',1,0,0);"><i class="fa fa-check"></i>&nbsp;Aprobar Solicitud</button>';	
 
-	if (($pantalla == 1 && $etapa == 2) || ($pantalla == 1 && $etapa == 3) || ($pantalla == 2 && $etapa == 3) || ($pantalla == 1 && $etapa == 4) || ($pantalla == 1 && $etapa == 5) || ($pantalla == 1 && $etapa == 6)) {
+	if (($pantalla == 1 && $etapa == 2) || ($pantalla == 1 && $etapa == 3) || ($pantalla == 2 && $etapa == 3) || ($pantalla == 1 && $etapa == 4) || ($pantalla == 1 && $etapa == 5) || ($pantalla == 1 && $etapa == 6) || $etapa == 7 ) {
 		
 		$rechaz_btn = '';
 		$aprob_btn = '';
