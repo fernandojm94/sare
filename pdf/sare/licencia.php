@@ -23,7 +23,7 @@
 
         public function Header() {
             // $this->SetY(-215); 
-            $this->SetFont('times', 'R', 14);
+            $this->SetFont('times', 'R', 12);
             
             global $expediente;
             global $datos_generales;
@@ -49,39 +49,47 @@
                 <table border="1" cellpadding="3" cellspacing="0">
                     <tr>
                         <td colspan="3" rowspan="2" align="center"><img width="320" src="../../img/sde.png"></td>
-                        <td align="center">2021</td>
+                        <td align="center">2019</td>
                     </tr>
+
                     <tr>
                         <td align="center">FIRMA</td>
                     </tr>
+
                     <tr>
-                        <td align="center" colspan="3">LICENCIA</td>
-                        <td align="center">2022</td>
+                        <td align="center" colspan="3" style="font-size: 14px;"><b>LICENCIA</b></td>
+                        <td align="center">2020</td>
                     </tr>
+
                     <tr>
-                        <td colspan="3" align="right">Folio: '.$expediente['folio'] .'</td>
+                        <td colspan="3" align="right"><b>Folio:</b> '.$expediente['folio'] .'</td>
                         <td rowspan="3" align="center">FIRMA</td>
                     </tr>
+
                     <tr>
-                        <td colspan="3">Giro: '.$establecimiento['giro_scian'].'</td>
+                        <td colspan="3"><b> Nombre del Establecimiento:</b> '.$establecimiento['nombre_comercial'].'</td>
                     </tr>
+
                     <tr>
-                        <td colspan="3">Nombre: '.$datos_generales['nombre'].'</td>
+                        <td colspan="3"><b> Giro:</b> '.$establecimiento['giro_scian'].'</td>
                     </tr>
+
                     <tr>
-                        <td colspan="3">Domicilio: '.$datos_generales['domicilio'].'</td>
-                        <td align="center">2023</td>
+                        <td colspan="3"><b> Nombre:</b> '.$datos_generales['nombre'].'</td>
+                        <td align="center">2021</td>
                     </tr>
+
                     <tr>
-                        <td colspan="3">Fecha: '.$expediente['fecha_apertura'].'</td>
+                        <td colspan="3"><b> Domicilio:</b> '.$datos_generales['domicilio'].'</td>
                         <td rowspan="3" align="center">FIRMA</td>
                     </tr>
+
                     <tr>
-                        <td colspan="3" rowspan="3"></td>
-                        
+                        <td colspan="3"><b> Fecha:</b> '.$expediente['fecha_apertura'].'</td>
                     </tr>
+
                     <tr>
-                        <td></td>
+                        <td colspan="3"></td>
                     </tr>
                 </table>';
 
