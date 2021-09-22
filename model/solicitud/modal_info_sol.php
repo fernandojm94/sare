@@ -72,10 +72,35 @@
 	}
 
 ?>
+<style type="text/css">
+	.sinborde {
+	  border: 0 !important;
+	}
+
+	input[disabled] {
+	    color: #000!important;
+	    background-color: #fff!important;
+	}
+</style>
 <div id="modal_info" class="modal" tabindex="-1" style="overflow-y:auto;">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header">				
+				<div class="widget-toolbar">
+					<label>
+						<small class="blue">
+							<b>Editar solicitud</b>
+						</small>
+
+						<input id="check_edit" name="check_edit" type="checkbox" class="ace ace-switch ace-switch-6" />
+						<span class="lbl middle"></span>
+
+						<button class="btn btn-app btn-grey btn-xs radius-4 pull-rigth" id="boton_actualiza" name="boton_actualiza" style="display:none;">
+							<i class="ace-icon fa fa-floppy-o bigger-160"></i>
+							<span style="font-size: 12px;">Actualizar</span>
+						</button>
+					</label>
+				</div>
 				<h1 class="blue">Solicitud <?=$expediente['folio'];?></h1>
 				<input type="hidden" id="folio_ruta" value="<?=$expediente['folio'];?>">
 			</div>
@@ -115,7 +140,9 @@
 										<span class="hid_spa">Documentación</span>
 									</a>
 								</li>
+
 							</ul>
+								
 
 							<div class="tab-content no-padding">		
 								<div id="datos" class="tab-pane fade in active">
@@ -126,63 +153,64 @@
 													<span style="display: block;" class="blue bigger-150">Datos Generales</span>
 												</div>
 											</div>
-										</div>		
-										<div class="profile-user-info profile-user-info-striped">
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Nombre: </div>
+										</div>	
+										<form id="form_edit_dg">
+											<div class="profile-user-info profile-user-info-striped">
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Nombre: </div>
 
-												<div class="profile-info-value">
+													<div class="profile-info-value">
+														<i class="fa fa-user blue bigger-110"></i>&nbsp;
+														<input type="text" class="sinborde" name="" value="<?=$datos_generales['nombre'];?>" disabled size="50">
+													</div>
+												</div>
+
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Dirección: </div>
+
+													<div class="profile-info-value">
+														<i class="fa fa-map-marker blue bigger-110"></i>&nbsp;
+														<input type="text" class="sinborde" name="" value="<?=$datos_generales['domicilio'];?>" disabled size="75">
+													</div>
+												</div>
+
+												<div class="profile-info-row">
+													<div class="profile-info-name"> RFC: </div>
+
+													<div class="profile-info-value">
 													<i class="fa fa-user blue bigger-110"></i>&nbsp;
-													<span><?=$datos_generales['nombre'];?></span>
+														<input type="text" class="sinborde" name="" value="<?=$datos_generales['rfc'];?>" disabled size="50">
+													</div>
+												</div>
+
+												<div class="profile-info-row">
+													<div class="profile-info-name"> CURP: </div>
+
+													<div class="profile-info-value">
+													<i class="fa fa-user blue bigger-110"></i>&nbsp;
+														<input type="text" class="sinborde" name="" value="<?=$datos_generales['curp'];?>" disabled size="50">
+													</div>
+												</div>									
+
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Teléfono: </div>
+
+													<div class="profile-info-value">
+													<i class="fa fa-phone blue bigger-110"></i>&nbsp;
+														<input type="text" class="sinborde" name="" value="<?=$datos_generales['telefono'];?>" disabled size="50">
+													</div>
+												</div>
+
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Correo: </div>
+
+													<div class="profile-info-value">
+													<i class="fa fa-envelope blue bigger-110"></i>&nbsp;
+														<input type="text" class="sinborde" name="" value="<?=$datos_generales['email'];?>" disabled size="50">
+													</div>
 												</div>
 											</div>
-
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Dirección: </div>
-
-												<div class="profile-info-value">
-													<i class="fa fa-map-marker blue bigger-110"></i>&nbsp;
-													<span><?=$datos_generales['domicilio']?></span>
-												</div>
-											</div>
-
-											<div class="profile-info-row">
-												<div class="profile-info-name"> RFC: </div>
-
-												<div class="profile-info-value">
-												<i class="fa fa-user blue bigger-110"></i>&nbsp;
-													<span><?=$datos_generales['rfc']?></span>
-												</div>
-											</div>
-
-											<div class="profile-info-row">
-												<div class="profile-info-name"> CURP: </div>
-
-												<div class="profile-info-value">
-												<i class="fa fa-user blue bigger-110"></i>&nbsp;
-													<span><?=$datos_generales['curp']?></span>
-												</div>
-											</div>									
-
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Teléfono: </div>
-
-												<div class="profile-info-value">
-												<i class="fa fa-phone blue bigger-110"></i>&nbsp;
-													<span><?=$datos_generales['telefono']?></span>
-												</div>
-											</div>
-
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Correo: </div>
-
-												<div class="profile-info-value">
-												<i class="fa fa-envelope blue bigger-110"></i>&nbsp;
-													<span><?=$datos_generales['email']?></span>
-												</div>
-											</div>
-
-										</div>
+										</form>
 									</div>
 								</div>
 								
@@ -196,88 +224,89 @@
 											</div>
 										</div>		
 										<div class="profile-user-info profile-user-info-striped">
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Nombre comercial: </div>
+											<form id="form_edit_de">
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Nombre comercial: </div>
 
-												<div class="profile-info-value">
-													<i class="fa fa-user green bigger-110"></i>&nbsp;
-													<span><?=$establecimiento['nombre_comercial']?></span>
+													<div class="profile-info-value">
+														<i class="fa fa-user green bigger-110"></i>&nbsp;
+														<input type="text" class="sinborde" name="" value="<?=$establecimiento['nombre_comercial'];?>" disabled size="50">
+													</div>
 												</div>
-											</div>
 
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Dirección: </div>
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Dirección: </div>
 
-												<div class="profile-info-value">
+													<div class="profile-info-value">
+														<i class="fa fa-map-marker green bigger-110"></i>&nbsp;
+														<input type="text" class="sinborde" name="" value="<?=$establecimiento['domicilio'];?>" disabled size="50">
+													</div>
+												</div>
+
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Localización: </div>
+
+													<div class="profile-info-value">
+														<!--<i class="fa fa-map-marker green bigger-110"></i>&nbsp;
+														 <span><?=$establecimiento['latitud_longitud']?></span> -->
+														 <a href="https://maps.google.com/?q=<?=$establecimiento['latitud_longitud']?>&z=23" target="_blank"><img src="./assets/expedientes/<?=$expediente['folio'];?>/docs/mapa.png" width="50%" height="50%"></a>
+													</div>
+												</div>
+
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Horario de trabajo: </div>
+
+													<div class="profile-info-value">
+													<i class="fa fa-clock-o green bigger-110"></i>&nbsp;
+														<input type="text" class="sinborde" name="" value="<?=$establecimiento['horario_trabajo'];?>" disabled size="50">
+													</div>
+												</div>
+
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Uso actual: </div>
+
+													<div class="profile-info-value">
+													<i class="fa fa-building green bigger-110"></i>&nbsp;
+														<input type="text" class="sinborde" name="" value="<?=$establecimiento['uso_actual'];?>" disabled size="50">
+													</div>
+												</div>									
+
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Teléfono: </div>
+
+													<div class="profile-info-value">
+													<i class="fa fa-phone green bigger-110"></i>&nbsp;
+														<input type="text" class="sinborde" name="" value="<?=$establecimiento['telefono'];?>" disabled size="50">
+													</div>
+												</div>
+
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Cuenta catastral: </div>
+
+													<div class="profile-info-value">
 													<i class="fa fa-map-marker green bigger-110"></i>&nbsp;
-													<span><?=$establecimiento['domicilio']?></span>
+														<input type="text" class="sinborde" name="" value="<?=$establecimiento['cuenta_catastral'];?>" disabled size="50">
+													</div>
 												</div>
-											</div>
 
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Localización: </div>
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Manzana - Lote: </div>
 
-												<div class="profile-info-value">
-													<!--<i class="fa fa-map-marker green bigger-110"></i>&nbsp;
-													 <span><?=$establecimiento['latitud_longitud']?></span> -->
-													 <a href="https://maps.google.com/?q=<?=$establecimiento['latitud_longitud']?>&z=23" target="_blank"><img src="./assets/expedientes/<?=$expediente['folio'];?>/docs/mapa.png" width="50%" height="50%"></a>
+													<div class="profile-info-value">
+													<i class="fa fa-map-marker green bigger-110"></i>&nbsp;
+														<input type="text" class="sinborde" name="" value="<?=$establecimiento['manzana'];?>" disabled size="50">
+													</div>
 												</div>
-											</div>
 
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Horario de trabajo: </div>
+												<div class="profile-info-row">
+													<div class="profile-info-name">Servicios existentes: </div>
 
-												<div class="profile-info-value">
-												<i class="fa fa-clock-o green bigger-110"></i>&nbsp;
-													<span><?=$establecimiento['horario_trabajo']?></span>
+													<div class="profile-info-value">
+													<i class="fa fa-cogs green bigger-110"></i>&nbsp;
+														<input type="text" class="sinborde" name="" value="<?=$establecimiento['servicios_existentes'];?>" disabled size="50">
+													</div>
 												</div>
-											</div>
-
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Uso actual: </div>
-
-												<div class="profile-info-value">
-												<i class="fa fa-building green bigger-110"></i>&nbsp;
-													<span><?=$establecimiento['uso_actual']?></span>
-												</div>
-											</div>									
-
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Teléfono: </div>
-
-												<div class="profile-info-value">
-												<i class="fa fa-phone green bigger-110"></i>&nbsp;
-													<span><?=$establecimiento['telefono']?></span>
-												</div>
-											</div>
-
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Cuenta catastral: </div>
-
-												<div class="profile-info-value">
-												<i class="fa fa-map-marker green bigger-110"></i>&nbsp;
-													<span><?=$establecimiento['cuenta_catastral']?></span>
-												</div>
-											</div>
-
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Manzana - Lote: </div>
-
-												<div class="profile-info-value">
-												<i class="fa fa-map-marker green bigger-110"></i>&nbsp;
-													<span><?=$establecimiento['manzana'].' -'.$establecimiento['lote']?></span>
-												</div>
-											</div>
-
-											<div class="profile-info-row">
-												<div class="profile-info-name">Servicios existentes: </div>
-
-												<div class="profile-info-value">
-												<i class="fa fa-cogs green bigger-110"></i>&nbsp;
-													<span><?=$establecimiento['servicios_existentes']?></span>
-												</div>
-											</div>
-
+											</form>
 										</div>
 									</div>
 								</div>
@@ -292,59 +321,70 @@
 											</div>
 										</div>		
 										<div class="profile-user-info profile-user-info-striped">
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Frente x Fondo: </div>
+											<form id="form_edit_dim">
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Frente: </div>
 
-												<div class="profile-info-value">
+													<div class="profile-info-value">
+														<i class="fa fa-map-marker red bigger-110"></i>&nbsp;
+														<input type="text" class="sinborde" name="" value="<?=$dimensiones['frente'];?>" disabled size="2"><span>mts</span>
+													</div>
+												</div>
+
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Fondo: </div>
+
+													<div class="profile-info-value">
+														<i class="fa fa-map-marker red bigger-110"></i>&nbsp;
+														<input type="text" class="sinborde" name="" value="<?=$dimensiones['fondo'];?>" disabled size="2"><span>mts</span>
+													</div>
+												</div>
+
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Costado derecho: </div>
+
+													<div class="profile-info-value">
+														<i class="fa fa-map-marker red bigger-110"></i>&nbsp;
+														<input type="text" class="sinborde" name="" value="<?=$dimensiones['derecho'];?>" disabled size="2"><span>mts</span>
+													</div>
+												</div>
+
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Costado izquierdo: </div>
+
+													<div class="profile-info-value">
+														<i class="fa fa-map-marker red bigger-110"></i>&nbsp;
+														<input type="text" class="sinborde" name="" value="<?=$dimensiones['izquierdo'];?>" disabled size="2"><span>mts</span>
+													</div>
+												</div>
+
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Superficie del terreno: </div>
+
+													<div class="profile-info-value">
 													<i class="fa fa-map-marker red bigger-110"></i>&nbsp;
-													<span><?=$dimensiones['frente'].' mts. X '.$dimensiones['fondo'].' mts.'?></span>
+														<input type="text" class="sinborde" name="" value="<?=$dimensiones['sup_terreno'];?>" disabled size="2"><span>mts<sup>2</sup></span>
+													</div>
 												</div>
-											</div>
 
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Costado derecho: </div>
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Superficie del local: </div>
 
-												<div class="profile-info-value">
+													<div class="profile-info-value">
 													<i class="fa fa-map-marker red bigger-110"></i>&nbsp;
-													<span><?=$dimensiones['derecho'].' mts.'?></span>
+														<input type="text" class="sinborde" name="" value="<?=$dimensiones['sup_local'];?>" disabled size="2"><span>mts<sup>2</sup></span>
+													</div>
+												</div>									
+
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Cuenta predial: </div>
+
+													<div class="profile-info-value">
+													<i class="fa fa-home red bigger-110"></i>&nbsp;
+														<input type="text" class="sinborde" name="" value="<?=$dimensiones['cuenta_predial'];?>" disabled size="50">
+													</div>
 												</div>
-											</div>
-
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Costado izquierdo: </div>
-
-												<div class="profile-info-value">
-													<i class="fa fa-map-marker red bigger-110"></i>&nbsp;
-													<span><?=$dimensiones['izquierdo'].' mts.'?></span>
-												</div>
-											</div>
-
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Superficie del terreno: </div>
-
-												<div class="profile-info-value">
-												<i class="fa fa-map-marker red bigger-110"></i>&nbsp;
-													<span><?=$dimensiones['sup_terreno'].' mts.'?><sup>2</sup>.</span>
-												</div>
-											</div>
-
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Superficie del local: </div>
-
-												<div class="profile-info-value">
-												<i class="fa fa-map-marker red bigger-110"></i>&nbsp;
-													<span><?=$dimensiones['sup_local'].' mts.'?><sup>2</sup>.</span>
-												</div>
-											</div>									
-
-											<div class="profile-info-row">
-												<div class="profile-info-name"> Cuenta predial: </div>
-
-												<div class="profile-info-value">
-												<i class="fa fa-home red bigger-110"></i>&nbsp;
-													<span><?=$dimensiones['cuenta_predial']?></span>
-												</div>
-											</div>											
+											</form>									
 										</div>
 									</div>
 								</div>

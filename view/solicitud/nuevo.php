@@ -313,6 +313,8 @@
                                     <div id="MyPix">
                                     </div>
 
+                                    <input type="text" id="img_map" name="img_map" />
+
 
                                     <div id="panel"></div>
                                     
@@ -601,7 +603,7 @@
                                     <div class="hidden" id="inst_iddg"></div>
                                     <div class="hidden" id="inst_iddim"></div>
 
-                                    <input type="text" id="img_map" name="img_map" />
+                                    
                                    
 
                                     <div class="form-group">
@@ -1167,7 +1169,10 @@
 
             map.addEventListener('tap', function (evt) {
 
-                //map.removeObjects();
+                var objects = map.getObjects();
+                console.log(objects);
+                if(objects.length>0){alert("hay marcadores anteriores");}
+                
                 var coord = map.screenToGeo(evt.currentPointer.viewportX, evt.currentPointer.viewportY);
                 var laticlick = coord.lat;
                 var longiclick = coord.lng;
@@ -1235,26 +1240,7 @@
         moveMapToAgs(map);
 
         // Step 6: Create "Capture" button and place for showing the captured area
-        var resultContainer = document.getElementById('panel');
-
-        // Create container for the "Capture" button
-        var containerNode = document.createElement('div');
-        containerNode.className = 'btn-group';
-
-        // Create the "Capture" button
-        var captureBtn = document.createElement('input');
-        captureBtn.value = 'Capture';
-        captureBtn.type = 'button';
-        captureBtn.className = 'btn btn-sm btn-default';
-
-        // Add both button and container to the DOM
-        containerNode.appendChild(captureBtn);
-        mapContainer.appendChild(containerNode);
-
-        // Step 7: Handle capture button click event
-        captureBtn.onclick = function() {
-            capture(resultContainer, map, ui);
-        };
+        var resultContainer = document.getElementById('panel');       
     }
 
 
@@ -1287,22 +1273,61 @@
                 var longitud = data.Response.View[0].Result[0].Location.DisplayPosition.Longitude;
                 var latitud = data.Response.View[0].Result[0].Location.DisplayPosition.Latitude;
 
+                function capture(resultContainer, map, ui) {
+                    // Capturing area of the map is asynchronous, callback function receives HTML5 canvas
+                    // element with desired map area rendered on it.
+                    // We also pass an H.ui.UI reference in order to see the ScaleBar in the output.
+                    // If dimensions are omitted, whole veiw port will be captured
+                    map.capture(function(canvas) {
+                        if (canvas) {
+                            //resultContainer.innerHTML = '';
+                            //resultContainer.appendChild(canvas);
+                            if (canvas.getContext){
+                                console.log("entro captura");
+                                var ctx = canvas.getContext("2d");                
+                                var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");                       
+                            }
+                            var imageElement = document.getElementById("img_map");
+                            imageElement.value = image;
+
+                        } else {
+                            // For example when map is in Panorama mode
+                            resultContainer.innerHTML = 'Capturing is not supported';
+                        }
+                    }, [ui]);
+                }
+
                 function moveMapToBerlin(map){
                     map.setCenter({lat:latitud, lng:longitud});
                     map.setZoom(17);
 
-                    latlong.value=latitud+", "+longitud;
-
-                    var direccionMarker = new H.map.Marker({lat:latitud, lng:longitud});
-                    map.addObject(direccionMarker);
-
                     map.addEventListener('tap', function (evt) {
-                        var coord = map.screenToGeo(evt.currentPointer.viewportX,
-                                evt.currentPointer.viewportY);
-                        alert('Clicked at ' + Math.abs(coord.lat.toFixed(4)) +
-                            ((coord.lat > 0) ? 'N' : 'S') +
-                            ' ' + Math.abs(coord.lng.toFixed(4)) +
-                             ((coord.lng > 0) ? 'E' : 'W'));
+                        //map.removeObjects();
+                        var coord = map.screenToGeo(evt.currentPointer.viewportX, evt.currentPointer.viewportY);
+                        var laticlick = coord.lat;
+                        var longiclick = coord.lng;
+                        //alert('Clicked at ' + Math.abs(coord.lat.toFixed(4)) +  ((coord.lat > 0) ? 'N' : 'S') + ' ' + Math.abs(coord.lng.toFixed(4)) + ((coord.lng > 0) ? 'E' : 'W'));
+                        latlong.value=laticlick+", "+longiclick;
+                        var direccionMarker = new H.map.Marker({lat:laticlick, lng:longiclick});
+                        map.addObject(direccionMarker);
+
+                        $.ajax({
+                            url: 'https://reverse.geocoder.api.here.com/6.2/reversegeocode.json',
+                            type: 'GET',
+                            dataType: 'jsonp',
+                            jsonp: 'jsoncallback',
+                            data: {
+                                prox: laticlick+','+longiclick,
+                                mode: 'retrieveAddresses',
+                                maxresults: '1',
+                                gen: '9',
+                                app_id: 'ZGz7zZ8IFFGIJi6gmhRE',
+                                app_code: 'dVGiTbgyVPotX-_dyzRd3A'
+                            },
+                            success: function (data) {
+                                capture(resultContainer, map, ui);
+                            }
+                        });
                     });
                 }
 
@@ -1333,6 +1358,8 @@
 
                 // Now use the map as required...
                 moveMapToBerlin(map);
+
+                var resultContainer = document.getElementById('panel');
             }
         });
     }       

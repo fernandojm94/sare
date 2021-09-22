@@ -1037,6 +1037,7 @@
 		                waitingDialog.hide();
 		                $('#modal_info').modal('show');
 		                documentacion(id);
+		                switch_editar();
 		            }
 		        }
 
@@ -1047,6 +1048,67 @@
 		        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		        xmlhttp.send(datos_modal);
 		    }
+
+		    function switch_editar(){
+
+	            $("#check_edit",).change(function() {
+
+	                var $inputs = $('#form_edit_dg :input');
+	                var $inputs2 = $('#form_edit_de :input');
+	                var $inputs3 = $('#form_edit_dim :input');
+
+	                $inputs.each(function() {
+
+	                    if ($(this).is('[disabled]')) {
+	                        console.log("estaban disabled");
+	                        $(this).prop("disabled", false);
+	                        $(this).removeClass("sinborde");
+	                        document.getElementById('boton_actualiza').style.display = 'inline';
+	                        document.getElementById('elimina_file').style.display = 'inline';
+	                    
+	                    }else{
+	                    	console.log("estaban editables");
+	                       	$(this).prop("disabled",true);
+	                       	$(this).addClass("sinborde");
+	                       	document.getElementById('boton_actualiza').style.display = 'none';
+	                       	document.getElementById('elimina_file').style.display = 'none';
+	                    }
+	                });
+
+	                $inputs2.each(function() {
+
+	                    if ($(this).is('[disabled]')) {
+	                        console.log("estaban disabled2");
+	                        $(this).prop("disabled", false);
+	                        $(this).removeClass("sinborde");
+	                    
+	                    }else{
+	                    	console.log("estaban editables2");
+	                       	$(this).prop("disabled",true);
+	                       	$(this).addClass("sinborde");
+	                    }
+	                });
+
+	                $inputs3.each(function() {
+
+	                    if ($(this).is('[disabled]')) {
+	                        console.log("estaban disabled2");
+	                        $(this).prop("disabled", false);
+	                        $(this).removeClass("sinborde");
+	                    
+	                    }else{
+	                    	console.log("estaban editables2");
+	                       	$(this).prop("disabled",true);
+	                       	$(this).addClass("sinborde");
+	                    }
+	                });
+
+	            });
+	        }
+
+	        function actualiza_solicitud(){
+	        	
+	        }
 
 			function fill_tabs(li)
 		    {
@@ -1592,7 +1654,7 @@
 									  	case 'd':
 									  		carpeta = "documentacion";
 									    	tree_data_2[carpeta]['additionalParameters']['children'][largo_d] = {text: ''};
-											tree_data_2[carpeta]['additionalParameters']['children'][largo_d]['text'] = '<a href="/assets/expedientes/'+folio_exp+'/docs/'+carpeta+'/'+archivo+'" target="_blank"><i class="ace-icon fa fa-file-pdf-o orange"></i> '+archivo+'</a>';
+											tree_data_2[carpeta]['additionalParameters']['children'][largo_d]['text'] = '<a href="/assets/expedientes/'+folio_exp+'/docs/'+carpeta+'/'+archivo+'" target="_blank"><i class="ace-icon fa fa-file-pdf-o orange"></i> '+archivo+'</a>&nbsp;<i id="elimina_file" class="ace-icon fa fa-times red" style="display: none"></i>';
 											tree_data_2[carpeta]['additionalParameters']['children'][largo_d]['type'] = 'item';
 											largo_d++;
 											
