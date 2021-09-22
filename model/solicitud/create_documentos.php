@@ -5,10 +5,15 @@
 	//VARIABLE DEL CHECK PARA SOLICITAR NÚMERO OFICIAL A SEDATUM
 	//$check = $_POST['checkNumOficial'];//Manda la variable solo si está checada, de lo contrario no manda nada.
 	//POSICIÓN DEL POST PARA EL COMPROBANTE --> $_POST['cp_no'];
-	var_dump($_FILES); var_dump($_POST["img_map"]); exit();
-
+	
 	$folio = "SARE/".date("Y/m/d H:m:s");
-	$docs =str_replace(' ', '-', str_replace(':', '-',str_replace('/', '-', $folio)));
+	$docs =str_replace(' ', '-', str_replace(':', '-',str_replace('/', '-', $folio)));	
+	$data = explode(",", $_POST['img_map']);	
+	$data_64 = base64_decode($data[1]);	
+	$data = getImageSizeFromString($data_64);
+	$ruta_img = "../../assets/expedientes/".$docs."/docs/mapa.".substr($data['mime'], 6);	
+	
+
 	$id_persona = $_POST['id_per'];
 	$id_dg = $_POST['id_dg'];
 	$id_dimensiones = $_POST['id_dim'];
@@ -63,6 +68,8 @@
 			move_uploaded_file($_FILES['contrato']['tmp_name'], $contrato);
 			move_uploaded_file($_FILES['no']['tmp_name'], $noficial);
 			move_uploaded_file($_FILES['cp_no']['tmp_name'], $cp_no);
+			file_put_contents($ruta_img, $data_64);
+
 			if($tipo_persona == 1)
 			{
 				move_uploaded_file($_FILES['acta']['tmp_name'], $acta);
