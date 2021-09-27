@@ -1106,7 +1106,7 @@
 	            });
 	        }
 
-	        function reinicia_solicitud(origen,etapa_new){
+	        function reinicia_solicitud(id_sol,tipo_persona,origen,etapa_new){
 	        	if(document.getElementById('boton_actualiza').style.display == 'inline'){
 	        		var titulo="";
 					var texto="";
@@ -1145,13 +1145,14 @@
 
 					var myform = document.getElementById(form);
 					var formdata = new FormData(myform);
-					var i=0;
 					var datos_form = [];
+					datos_form.push(tipo_persona);
+					datos_form.push(id_sol);
 
 					for (var value of formdata.values()) {
 						datos_form.push(value);
-					  	i++;
 					}
+					//console.log(datos_form);
 		        	swal({
 		        		title: titulo,
 					  	text: texto,
