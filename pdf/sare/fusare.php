@@ -1,5 +1,10 @@
 <?php
-    include('../../model/solicitud/fill.php');
+use setasign\Fpdi;
+
+require_once('../../assets/TCPDF/tcpdf.php');
+require_once('../../assets/FPDI/src/autoload.php');
+
+include('../../model/solicitud/fill.php');
 
     $id = $_GET['id'];
     $expediente = fill_expediente($id);
@@ -25,77 +30,38 @@
     $fecha_autorizacion = date('d / m / Y');
     ob_start();
 
-    require_once('../../assets/TCPDF/tcpdf.php');
+class Pdf extends Fpdi\Tcpdf\Fpdi {}
 
-    class MYPDF extends TCPDF {
-        
-        //Page header
-        public function Header() {
-            
-        }  
+$header = '
+    <table>
+        <tbody>
+            <tr>
+                <td><h4 style="text-align: center;">FORMATO ÚNICO PARA SISTEMA DE APERTURA RÁPIDA DE EMPRESAS (FUSARE)
+                    </h4></td>
+            </tr>
+            <tr>
+                <td><h5 style="text-align: center;">PARA LA OBTENCIÓN DE LICENCIA DE FUNCIONAMIENTO
+                    </h5></td>
+            </tr>
+        </tbody>
+    </table>
+';
 
-        // Page footer
-        public function Footer() {
-            $pie = '<style>
-                        .border_c{
-                            border-style: solid solid solid solid;
-                            border-width: 1px;
-                        }
-
-                        .border_b{
-                            border-bottom-style: solid;
-                            border-bottom-width: 1px;
-                        }
-
-                        td{
-                            font-size: 7px;
-                        }
-                    </style>
-
-                    <table>
-                        <tr bgcolor="#f2f2f2">
-                            <td style="width:12%;">
-                                <span>1 DE 3</span>
-                            </td>
-                            <td style="width:80%;"><b>
-                                Aguascalientes, Estado Líder en facilidades para hacer negocios con estándares internacionales</b>
-                            </td>
-                            <td style="width:12%;">
-                                <table>
-                                    <tr>
-                                        <td align="right" style="font-size: 6px;">FUSARE_BR</td>
-                                    </tr>
-                                    <tr>
-                                        <td align="right" style="font-size: 6px;">Rev.01/31.05.2018</td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                    </table>';
-
-            $this->writeHTMLCell(190, '', '', 267, $pie, $border=0, $ln=2, $fill=0, $reseth=true, $align='C', $autopadding=true);
-
+$pie = '
+    <style>
+        .border_c{
+            border-style: solid solid solid solid;
+            border-width: 1px;
         }
-    }
-
-    $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, 'LETTER', true, 'UTF-8', false);
-
-    $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-    $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
-
-    $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-
-    $pdf->SetMargins(9, 7, 9, TRUE);
-    $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-    $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
-    // $pdf->SetFont('times', '', 12, '', true);
-    //$pdf->SetAutoPageBreak(TRUE, 85);
-
-    $pdf->AddPage();
-
-    $pdf->SetFont('times', '', 10, true);
-
-    $header = '<table><tbody><tr><td><h4 style="text-align: center;">FORMATO ÚNICO PARA SISTEMA DE APERTURA RÁPIDA DE EMPRESAS (FUSARE)</h4></td></tr><tr><td><h5 style="text-align: center;">PARA LA OBTENCIÓN DE LICENCIA DE FUNCIONAMIENTO</h5></td></tr></tbody></table>';
+        .border_b{
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+        }
+        td{
+            font-size: 7px;
+        }
+    </style>
+    <table><tr bgcolor="#f2f2f2"><td style="width:12%;"><span>1 DE 3</span></td><td style="width:76%;"><b>Aguascalientes, Estado Líder en facilidades para hacer negocios con estándares internacionales</b></td><td style="width:12%;"><table><tr><td align="right" style="font-size: 6px;">FUSARE_BR</td></tr><tr><td align="right" style="font-size: 6px;">Rev.01/31.05.2018</td></tr></table></td></tr></table>';
 
 $html_1 = '
     <style type="text/css">
@@ -623,847 +589,77 @@ $croquis = '
             </td>
         </tr>
     </table>
+
+    <table>
+        <tr><td style="font-size:35px;"></td></tr>
+        <tr bgcolor="#f2f2f2">
+            <td style="width:12%;">
+                <span>1 DE 3</span>
+            </td>
+            <td align="center" style="width:76%;">
+                <b>Aguascalientes, Estado Líder en facilidades para hacer negocios con estándares internacionales</b>
+            </td>
+            <td style="width:12%;">
+                <table>
+                    <tr>
+                        <td align="right" style="font-size: 6px;">FUSARE_BR</td>
+                    </tr>
+                    <tr>
+                        <td align="right" style="font-size: 6px;">
+                            Rev.01/31.05.2018
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 ';
 
-$pagina_2 = '
-
-    <style>
-        .border_c{
-            border-style: solid solid solid solid;
-            border-width: 1px;
-        }
-
-        .border_b{
-            border-bottom-style: solid;
-            border-bottom-width: 1px;
-        }
-
-        td{
-            font-size: 7px;
-        }
-    </style>
-
-    <table cellspacing="4">
-        <tr>
-            <td bgcolor="black" style="color: white;">
-                <table cellpadding="2">
-                    <tr>
-                        <td align="center">
-                            <b>4. CUESTIONARIO DE INFORMACIÓN BÁSICA AMBIENTAL</b>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <table align="left">
-                    <tr>
-                        <td>
-                            <b>COLINDANCIAS DEL PREDIO:</b>
-                        </td>
-                        <td>
-                            <table>
-                                <tr>
-                                    <td width="10" class="border_c"></td>
-                                    <td width="60"> HABITACIONAL</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="20%">
-                            <table>
-                                <tr>
-                                    <td width="10" class="border_c"></td>
-                                    <td width="90"> COMERCIOS Y SERVICIOS</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td>
-                            <table>
-                                <tr>
-                                    <td width="10" class="border_c"></td>
-                                    <td> LOTE BALDÍO</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td>
-                            <table>
-                                <tr>
-                                    <td width="10" class="border_c"></td>
-                                    <td> INDUSTRIAL</td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-            </td>    
-        </tr>
-
-        <tr>
-            <td style="font-size: 1px;"></td>
-        </tr>
-
-        <tr>
-            <td>
-                <table>
-                    <tr>
-                        <td>
-                            <b>EQUIPO, MOBILIARIO Y MAQUINARIA NECESARIO PARA DESARROLLAR LA ACTIVIDAD</b> (características y cantidad de la misma):
-                        </td>
-                    </tr>
-                </table>
-            </td>    
-        </tr>
-
-        <tr>
-            <td>
-                <table border="1">
-                    <tr>
-                        <td height="60">
-                            
-                        </td>
-                    </tr>
-                </table>
-            </td>    
-        </tr>
-
-        <tr>
-            <td>
-                <table>
-                    <tr>
-                        <td>
-                            <b>MATERIAS PRIMAS, MATERIALES Y PRODUCTOS UTILIZADOS EN EL DESARROLLO DE LA ACTIVIDAD</b> (anexar características):
-                        </td>
-                    </tr>
-                </table>
-            </td>    
-        </tr>
-
-        <tr>
-            <td>
-                <table border="1">
-                    <tr>
-                        <td height="60">
-                            
-                        </td>
-                    </tr>
-                </table>
-            </td>    
-        </tr>
-
-        <tr>
-            <td>
-                <table align="left">
-                    <tr>
-                        <td width="12%">
-                            <b>COMBUSTIBLES:</b>
-                        </td>
-
-                        <td width="8%">
-                            <table>
-                                <tr>
-                                    <td width="10" class="border_c"></td>
-                                    <td width="60"> GAS L.P.</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="10%">
-                            <table>
-                                <tr>
-                                    <td width="10" class="border_c"></td>
-                                    <td width="90"> GASOLINA</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="9%">
-                            <table>
-                                <tr>
-                                    <td width="10" class="border_c"></td>
-                                    <td width="30"> DIESEL</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="7%">
-                            <table>
-                                <tr>
-                                    <td width="10" class="border_c"></td>
-                                    <td width="25"> LEÑA</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="9%">
-                            <table>
-                                <tr>
-                                    <td width="10" class="border_c"></td>
-                                    <td width="35"> CARBÓN</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="13%">
-                            <table>
-                                <tr>
-                                    <td width="10" class="border_c"></td>
-                                    <td width="60"> COMBUSTOLEO</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="12%">
-                            <table>
-                                <tr>
-                                    <td width="10" class="border_c"></td>
-                                    <td width="70"> GAS NATURAL</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="7%">
-                            <table>
-                                <tr>
-                                    <td width="10" class="border_c"></td>
-                                    <td width="25"> OTRO:</td>
-                                </tr>
-                            </table>
-                        </td>
-                        <td width="13%" class="border_b"></td>
-                    </tr>
-                </table>
-            </td>    
-        </tr>
-
-        <tr>
-            <td>
-                <table align="left" bgcolor="#f2f2f2">
-                    <tr><td style="font-size: 5px;"></td></tr>
-                    <tr>
-                        <td width="14%">
-                            <b>AGUA RESIDUAL:</b>
-                        </td>
-
-                        <td width="8%">
-                            <table>
-                                <tr>
-                                    <td width="10" class="border_c"></td>
-                                    <td width="60"> NO</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="19%">
-                            <table>
-                                <tr>
-                                    <td width="10" class="border_c"></td>
-                                    <td width="90"> SÍ (especificar tipos) TIPOS:</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="20%">
-                            <table>
-                                <tr>
-                                    <td width="10" class="border_c"></td>
-                                    <td width="100"> SANITARIOS Y SERVICIOS</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="9%">
-                            <table>
-                                <tr>
-                                    <td width="10" class="border_c"></td>
-                                    <td width="40"> PROCESO</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="7%">
-                            <table>
-                                <tr>
-                                    <td width="10" class="border_c"></td>
-                                    <td width="25"> OTRO:</td>
-                                </tr>
-                            </table>
-                        </td>
-                        <td width="23%" class="border_b"></td>
-                    </tr>
-                    <tr><td style="font-size: 5px;"></td></tr>
-                </table>
-            </td>    
-        </tr>
-
-        <tr>
-            <td width="40%">
-                <table>
-                    <tr>
-                        <td align="center" rowspan="3">RESIDUOS GENERADOS:</td>
-                        <td width="17%">LÍQUIDOS:</td>
-                        <td width="22%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="35"> ACEITES</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="40%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="45"> SOLVENTES</td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-
-                    <tr><td style="font-size: 5px;"></td></tr>
-
-                    <tr>
-                        <td></td>
-                        <td width="22%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="35"> GRASAS</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td>
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="45"> QUÍMICOS</td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>   
-            </td>
-
-            <td width="60%">
-                <table>
-                    <tr>
-                        <td width="10%" rowspan="3">SÓLIDOS:</td>
-                        <td width="14%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="33"> ESTOPAS</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="11%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="24"> PAPEL</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="15%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="34"> LLANTAS</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="13%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="31"> CARTÓN</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="37%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="93"> RESIDUOS HOSPITALARIOS</td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-
-                    <tr><td colspan="6" style="font-size: 5px;"></td></tr>
-
-                    <tr>
-                        <td width="14%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="33"> ASERRÍN</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="17%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="41"> CHATARRA</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="12%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="26"> LODOS</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="16%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="40"> PLÁSTICOS</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="28%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="77"> BASURA DE LIMPIEZA</td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-
-                    <tr><td colspan="6" style="font-size: 5px;"></td></tr>
-
-                    <tr>
-                        <td></td>
-                        <td width="14%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="33"> MADERA</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="12%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="27"> VIDRIO</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="18%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="45"> ESCOMBRO</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-
-        <tr>
-            <td width="100%">
-                <table>
-                    <tr>
-                        <td>
-                            <b>MANEJO Y DISPOSICIÓN FINAL DE LOS RESIDUOS ARRIBA MENCIONADOS:</b>
-                        </td>
-                    </tr>
-                </table>
-            </td>    
-        </tr>
-
-        <tr>
-            <td>
-                <table>
-                    <tr>
-                        <td width="7%">LÍQUIDOS:</td>
-                        <td width="10%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="45"> DRENAJE</td>
-                                </tr>
-                            </table>
-                        </td>
-                        <td width="7%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="45"> OTRO:</td>
-                                </tr>
-                            </table>
-                        </td>
-                        <td class="border_b"></td>
-                        <td align="right">SÓLIDOS:</td>
-                        <td width="12%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="50"> CONTENEDOR</td>
-                                </tr>
-                            </table>
-                        </td>
-                        <td width="18%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="90"> RELLENOS SANITARIOS</td>
-                                </tr>
-                            </table>
-                        </td>
-                        <td width="18%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="90"> REUSO O RECICLAJE</td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                <table>
-                    <tr>
-                        <td rowspan="3" width="7%">
-                            <b>RUIDO:</b>
-                        </td>
-                        <td width="12%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="90"> COMPRESORES</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td>
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="90"> MOTORES</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td>
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="90"> CIZALLAS</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td>
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="90"> TALADRO</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="8%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="90"> RAUTER</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="14%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="90"> SIERRA DE BANCO</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="12%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="90"> CANTEADORA</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td>
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="90"> PULIDORA</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td>
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="90"> TORNO</td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-
-                    <tr><td style="font-size: 5px;"></td></tr>
-
-                    <tr>
-                        <td width="22%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="120"> COMPRESOR DE REFRIGERADOR</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="18%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="90"> SIERRA DE MANO</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="11%">OTRO (especificar):</td>
-                        <td width="42%" class="border_b"></td>
-                    </tr>
-                </table>
-            </td>    
-        </tr>
-
-        <tr>
-            <td>
-                <table>
-                    <tr>
-                        <td align="center" rowspan="3" width="18%">
-                            <b>ELEMENTOS DE RIESGO:</b>
-                            <span>(La actividad a desarrollar se encuentra cerca de)</span>
-                        </td>
-
-                        <td width="34%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="165"> FALLA O FRACTURA GEOLOGICA (a menos de 30m)</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="32%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="165"> CAUCE DE UN RIO O ZONA INUNDABLE (500m)</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td>
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="90"> ESCUELAS (500m)</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                    </tr>
-
-                    <tr><td style="font-size: 5px;"></td></tr>
-
-                    <tr>
-                        <td width="34%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="170"> DUCTO DE PEMEX, GASOLINERA O GASERA (500m)</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="16%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="90"> HOSPITALES (500m)</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="22%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="120"> VIAS DE FERROCARRIL (500m)</td>
-                                </tr>
-                            </table>
-                        </td>
-
-                        <td width="18%">
-                            <table>
-                                <tr>
-                                    <td width="9" class="border_c"></td>
-                                    <td width="90"> NINGUNA</td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-            </td>    
-        </tr>
-
-        <tr>
-            <td bgcolor="black">
-                <table>
-                    <tr>
-                        <td>
-                            
-                        </td>
-                    </tr>
-                </table>
-            </td>    
-        </tr>
-
-        <tr>
-            <td>
-                <table>
-                    <tr>
-                        <td>
-                            espacio en blanco
-                        </td>
-                    </tr>
-                </table>
-            </td>    
-        </tr>
-
-        <tr>
-            <td>
-                <table>
-                    <tr>
-                        <td>
-                            <b>MANIFIESTO BAJO FORMAL PROTESTA DE DECIR VERDAD, QUE LOS DATOS ASENTADOS EN LA PRESENTE SOLICITUD SON CIERTOS Y VERIFICABLES EN CUALQUIER MOMENTO POR LAS AUTORIDADES COMPETENTES. HE LEÍDO, ENTIENDO Y ESTOY DE ACUERDO EN CUMPLIR CON LA NORMATIVIDAD APLICABLE A LA ACTIVIDAD ECONÓMICA A REALIZAR.</b>
-                        </td>
-                    </tr>
-                </table>
-            </td>    
-        </tr>
-
-        <tr>
-            <td>
-                <table>
-                    <tr>
-                        <td>
-                            <b align="center">COSAS PARA FIRMAS</b>
-                        </td>
-                    </tr>
-                </table>
-            </td>    
-        </tr>
-
-        <tr>
-            <td bgcolor="black" style="color: white;">
-                <table>
-                    <tr>
-                        <td align="center">
-                            <b align="center">REQUISITOS:</b>
-                        </td>
-                    </tr>
-                </table>
-            </td>    
-        </tr>
-
-        <tr>
-            <td>
-                <table>
-                    <tr>
-                        <td>
-                            <b>TABLA DE REQUISITOS</b>
-                        </td>
-                    </tr>
-                </table>
-            </td>    
-        </tr>
-
-        <tr>
-            <td>
-                <table>
-                    <tr>
-                        <td>
-                            <b>NOTAS</b>
-                        </td>
-                    </tr>
-                </table>
-            </td>    
-        </tr>
-    </table>    
-';
-
-    // output the HTML content
-    $pdf->writeHTML($header, false, false, false, false, '');
-    $pdf->writeHTML($html_1, false, false, false, false, '');
-    $pdf->writeHTML($html_2, false, false, false, false, '');
-    $pdf->writeHTML($croquis, false, false, false, false, '');
-    // --- Rotation --------------------------------------------
-    
-    // Start Transformation
-    $pdf->StartTransform();
-    $pdf->Rotate(90, 40, 215);
-    $pdf->SetFont('times', '', 8, '', true);
-    $pdf->Text(0, 180, 'Formato coordinado por el Instituto Estatal de Gestión Empresarial y Mejora Regulatoria conjuntamente con las dependencias estatales y municipales involucradas de los 11 municipios del estado.');
-    $pdf->StopTransform();
-
-    // Start Transformation
-    $pdf->StartTransform();
-    $pdf->Rotate(90, 72, 110);
-    $pdf->SetFont('times', '', 8, '', true);
-    $pdf->Text(0, 245, 'Formato de Libre Reproducción en hoja blanca, tamaño carta y papel bond');
-    $pdf->StopTransform();
-
-    $pdf->Image('../../img/escudo_estado.png', 9, 9.4, 15.5, 18, '', '', 'T', false, 300, '', false, false, 0, false, false, false);
-    $pdf->Image('../../img/escudos_municipios.png', '', 15, 95, 12, '', '', 'T', false, 300, '', false, false, 0, false, false, false);
-    //$pdf->AddPage();
-    //$pdf->writeHTML($pagina_2, false, false, false, false, '');
-
-    //$pdf->AddPage();
-    //$pdf->writeHTML($pagina_2, false, false, false, false, '');
-
-    $pdf->Output($_SERVER['DOCUMENT_ROOT'] . '/assets/expedientes/'.$folio_str.'/docs/documentacion/Informe.pdf', 'FI');
-    
-?>
+$left = 'Formato coordinado por el Instituto Estatal de Gestión Empresarial y Mejora Regulatoria conjuntamente con las dependencias estatales y municipales involucradas de los 11 municipios del estado.';
+
+$right = 'Formato de Libre Reproducción en hoja blanca, tamaño carta y papel bond.';
+
+// Inicializa instancia de TCPDF
+$tcpdf = new Pdf(PDF_PAGE_ORIENTATION, PDF_UNIT, 'LETTER', true, 'UTF-8', false);
+$tcpdf->setPrintHeader(false);
+$tcpdf->setPrintFooter(false);
+$tcpdf->SetMargins(9, 7, 9, TRUE);
+$tcpdf->SetFont('times', '', 10, true);
+$tcpdf->SetAutoPageBreak(false);
+
+$tcpdf->AddPage();
+$tcpdf->writeHTML($header, false, false, false, false, '');
+$tcpdf->writeHTML($html_1, false, false, false, false, '');
+$tcpdf->writeHTML($croquis, false, false, false, false, '');
+
+$tcpdf->Image('../../img/escudo_estado.png', 9, 9.4, 15.5, 18, '', '', 'T', false, 300, '', false, false, 0, false, false, false);
+$tcpdf->Image('../../img/escudos_municipios.png', '', 15, 95, 12, '', '', 'T', false, 300, '', false, false, 0, false, false, false);
+
+// Start Transformation
+$tcpdf->StartTransform();
+$tcpdf->Rotate(90, 40, 215);
+$tcpdf->SetFont('times', '', 8, '', true);
+$tcpdf->Text(0, 180, $left);
+$tcpdf->StopTransform();
+
+// Start Transformation
+$tcpdf->StartTransform();
+$tcpdf->Rotate(90, 72, 110);
+$tcpdf->SetFont('times', '', 8, '', true);
+$tcpdf->Text(0, 245, $right);
+$tcpdf->StopTransform();
+
+// Añade un pdf al pdf generado con código.
+$tcpdf->AddPage();
+$tcpdf->setSourceFile('FUSARE2.pdf');
+$tplIdx = $tcpdf->importPage(1);
+$tcpdf->useTemplate($tplIdx,0, 0, 216, 280);
+
+// Añade un segundo pdf.
+$tcpdf->AddPage();
+$tcpdf->setSourceFile('FUSARE3.pdf');
+$tplIdx = $tcpdf->importPage(1);
+$tcpdf->useTemplate($tplIdx,0, 0, 216, 280);
+
+// Genera el pdf completo.
+$tcpdf->Output($_SERVER['DOCUMENT_ROOT'] . '/assets/expedientes/'.$folio_str.'/docs/documentacion/Fusare.pdf', 'FI');
