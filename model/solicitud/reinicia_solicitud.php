@@ -1,19 +1,20 @@
 <?php
 	include("../../controller/solicitud/funciones_update_solicitud.php");
+	
 	$etapa = $_POST['etapa'];
-	$parametros[]= $_POST['parametros'];
+	$parametros= $_POST['parametros'];
 	switch ($etapa) {
 		case 'dg':			
 			if($parametros[0] == 1)
 			{
-				if(update_pmoral($parametros[]))
+				if(update_pmoral($parametros))
 				{
 					$mensaje = "correcto";
 				}else{
 					$mensaje = "error1";
 				}
 			}else{
-				if(update_pfisica($parametros[]))
+				if(update_pfisica($parametros))
 				{
 					$mensaje = "correcto";
 				}else{
@@ -21,7 +22,7 @@
 				}
 			}
 		case 'de':
-			if(update_dg_establecimiento($parametros[]))
+			if(update_dg_establecimiento($parametros))
 			{
 				$mensaje = "correcto";
 			}else{
@@ -29,7 +30,7 @@
 			}
 			break;
 		case 'dim':
-				if(update_dimensiones($parametros[]))
+				if(update_dimensiones($parametros))
 			{
 				$mensaje = "correcto";
 			}else{
