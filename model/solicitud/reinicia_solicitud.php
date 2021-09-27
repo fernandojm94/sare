@@ -1,7 +1,7 @@
 <?php
 	include("../../controller/solicitud/funciones_update_solicitud.php");
 	$etapa = $_POST['etapa'];
-	$parametros[] $_POST['parametros'];
+	$parametros[]= $_POST['parametros'];
 	switch ($etapa) {
 		case 'dg':			
 			if($parametros[0] == 1)
@@ -20,7 +20,6 @@
 					$mensaje = "error1";
 				}
 			}
-
 		case 'de':
 			if(update_dg_establecimiento($parametros[]))
 			{

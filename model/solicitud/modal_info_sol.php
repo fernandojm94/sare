@@ -95,7 +95,7 @@
 						<input id="check_edit" name="check_edit" type="checkbox" class="ace ace-switch ace-switch-6" />
 						<span class="lbl middle"></span>
 
-						<button class="btn btn-app btn-grey btn-xs radius-4 pull-rigth" id="boton_actualiza" name="boton_actualiza" style="display:none;">
+						<button class="btn btn-app btn-grey btn-xs radius-4 pull-rigth" id="boton_actualiza" name="boton_actualiza" style="display:none;" onclick="reinicia_solicitud('boton',0)">
 							<i class="ace-icon fa fa-floppy-o bigger-160"></i>
 							<span style="font-size: 12px;">Actualizar</span>
 						</button>
@@ -103,6 +103,7 @@
 				</div>
 				<h1 class="blue">Solicitud <?=$expediente['folio'];?></h1>
 				<input type="hidden" id="folio_ruta" value="<?=$expediente['folio'];?>">
+				<input type="hidden" id="paso_actual" name="paso_actual" value="1">
 			</div>
 
 			<div class="modal-body">
@@ -114,28 +115,28 @@
 				
 							<ul id="inbox-tabs" class="nav nav-tabs padding-16 tab-size-bigger tab-space-1">
 								<li class="active">
-									<a data-toggle="tab" href="#datos">
+									<a data-toggle="tab" href="#datos" onclick="reinicia_solicitud('pestana',1)">
 										<i class="blue ace-icon fa fa-user bigger-130"></i>
 										<span class="hid_spa">Datos Generales</span>
 									</a>
 								</li>
 
 								<li>
-									<a data-toggle="tab" href="#establecimiento">
+									<a data-toggle="tab" href="#establecimiento" onclick="reinicia_solicitud('pestana',2)">
 										<i class="green ace-icon fa fa-info-circle bigger-130"></i>
 										<span class="hid_spa">Datos del establecimiento</span>
 									</a>
 								</li>
 
 								<li>
-									<a data-toggle="tab" href="#dimensiones">
+									<a data-toggle="tab" href="#dimensiones" onclick="reinicia_solicitud('pestana',3)">
 										<i class="red ace-icon fa fa-building bigger-130"></i>
 										<span class="hid_spa">Dimensiones del establecimento</span>
 									</a>
 								</li>
 
 								<li>
-									<a data-toggle="tab" href="#documentos">
+									<a data-toggle="tab" href="#documentos" onclick="reinicia_solicitud('pestana',4)">
 										<i class="orange ace-icon fa fa-folder-open bigger-130"></i>
 										<span class="hid_spa">Documentación</span>
 									</a>
@@ -161,7 +162,7 @@
 
 													<div class="profile-info-value">
 														<i class="fa fa-user blue bigger-110"></i>&nbsp;
-														<input type="text" class="sinborde" name="" value="<?=$datos_generales['nombre'];?>" disabled size="50">
+														<input id="dg0" name="dg0" type="text" class="sinborde" name="" value="<?=$datos_generales['nombre'];?>" disabled size="50">
 													</div>
 												</div>
 
@@ -170,7 +171,7 @@
 
 													<div class="profile-info-value">
 														<i class="fa fa-map-marker blue bigger-110"></i>&nbsp;
-														<input type="text" class="sinborde" name="" value="<?=$datos_generales['domicilio'];?>" disabled size="75">
+														<input id="dg1" name="dg1" type="text" class="sinborde" name="" value="<?=$datos_generales['domicilio'];?>" disabled size="75">
 													</div>
 												</div>
 
@@ -179,7 +180,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-user blue bigger-110"></i>&nbsp;
-														<input type="text" class="sinborde" name="" value="<?=$datos_generales['rfc'];?>" disabled size="50">
+														<input id="dg2" name="dg2" type="text" class="sinborde" name="" value="<?=$datos_generales['rfc'];?>" disabled size="50">
 													</div>
 												</div>
 
@@ -188,7 +189,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-user blue bigger-110"></i>&nbsp;
-														<input type="text" class="sinborde" name="" value="<?=$datos_generales['curp'];?>" disabled size="50">
+														<input id="dg3" name="dg3" type="text" class="sinborde" name="" value="<?=$datos_generales['curp'];?>" disabled size="50">
 													</div>
 												</div>									
 
@@ -197,7 +198,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-phone blue bigger-110"></i>&nbsp;
-														<input type="text" class="sinborde" name="" value="<?=$datos_generales['telefono'];?>" disabled size="50">
+														<input id="dg4" name="dg4" type="text" class="sinborde" name="" value="<?=$datos_generales['telefono'];?>" disabled size="50">
 													</div>
 												</div>
 
@@ -206,7 +207,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-envelope blue bigger-110"></i>&nbsp;
-														<input type="text" class="sinborde" name="" value="<?=$datos_generales['email'];?>" disabled size="50">
+														<input id="dg5" name="dg5" type="text" class="sinborde" name="" value="<?=$datos_generales['email'];?>" disabled size="50">
 													</div>
 												</div>
 											</div>

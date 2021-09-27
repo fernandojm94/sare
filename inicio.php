@@ -1064,14 +1064,14 @@
 	                        $(this).prop("disabled", false);
 	                        $(this).removeClass("sinborde");
 	                        document.getElementById('boton_actualiza').style.display = 'inline';
-	                        document.getElementById('elimina_file').style.display = 'inline';
+	                        //document.getElementById('elimina_file').style.display = 'inline';
 	                    
 	                    }else{
 	                    	console.log("estaban editables");
 	                       	$(this).prop("disabled",true);
 	                       	$(this).addClass("sinborde");
 	                       	document.getElementById('boton_actualiza').style.display = 'none';
-	                       	document.getElementById('elimina_file').style.display = 'none';
+	                       	//document.getElementById('elimina_file').style.display = 'none';
 	                    }
 	                });
 
@@ -1106,8 +1106,93 @@
 	            });
 	        }
 
-	        function actualiza_solicitud(){
-	        	
+	        function reinicia_solicitud(origen,etapa_new){
+	        	if(document.getElementById('boton_actualiza').style.display == 'inline'){
+	        		var titulo="";
+					var texto="";
+	        		var form="";
+	        		var etapa_set="";
+	        		var paso_new="";
+	        		var etapa = document.getElementById("paso_actual").value;
+
+	        		if(origen=="boton")
+					{
+						titulo="Guardar";
+						texto="¿Desea guardar la Información?";
+						paso_new=etapa;
+					} else{
+						titulo="Antes de continuar";
+						texto="¿Desea guardar la Información?";
+						paso_new=etapa_new;
+					}
+
+	        		switch (etapa) {									  	
+					  	case "1":
+					  		form = "form_edit_dg";	
+					  		etapa_set = "dg";							
+					    break;
+
+					  	case "2":
+					    	form = "form_edit_de";
+					    	etapa_set = "de";					
+				    	break;
+
+					  	case "3":
+					    	form = "form_edit_dim";
+					    	etapa_set = "dim";						
+				    	break;
+					}
+
+					var myform = document.getElementById(form);
+					var formdata = new FormData(myform);
+					var i=0;
+					var datos_form = [];
+
+					for (var value of formdata.values()) {
+						datos_form.push(value);
+					  	i++;
+					}
+		        	swal({
+		        		title: titulo,
+					  	text: texto,
+					  	icon: "info",
+					 	buttons: ["Cancelar", "Ok"],
+					  	dangerMode: true,
+		        	}).then((willDelete) =>{
+		        		if (willDelete) {
+		        			var data = {
+								'parametros' : datos_form,
+								'etapa' : etapa_set,
+							}
+							$.ajax({
+								data:  data,
+								url:   './model/solicitud/reinicia_solicitud.php',
+								type:  'post', 
+
+								success:  function (data) {
+								
+									if (data==='correcto'){
+										swal({
+										  title: "¡Datos actualizados correctamente!",
+										  icon: "success",
+										});
+										document.getElementById("paso_actual").value=paso_new;
+									}
+
+									if (data==='error'){
+										swal({
+										  title: "¡Error!",
+										  text: "¡Ocurrio algo al actualizar",
+										  icon: "error",
+										});
+									}
+								}
+							});
+		        		} else{
+		        			//swal("¡Cancelado!", "No se han hecho cambios la solicitud", "error");
+		        		}
+		        	});
+		        } else{console.log("no pasa nada");}
 	        }
 
 			function fill_tabs(li)
