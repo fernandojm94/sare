@@ -91,7 +91,7 @@
 						<input id="check_edit" name="check_edit" type="checkbox" class="ace ace-switch ace-switch-6" />
 						<span class="lbl middle"></span>
 
-						<button class="btn btn-app btn-grey btn-xs radius-4 pull-rigth" id="boton_actualiza" name="boton_actualiza" style="display:none;" onclick="reinicia_solicitud('boton',0)">
+						<button class="btn btn-app btn-grey btn-xs radius-4 pull-rigth" id="boton_actualiza" name="boton_actualiza" style="display:none;" onclick="reinicia_solicitud(<?=$id;?>,<?=$expediente['tipo_persona'];?>,'boton',0)">
 							<i class="ace-icon fa fa-floppy-o bigger-160"></i>
 							<span style="font-size: 12px;">Actualizar</span>
 						</button>
@@ -111,28 +111,28 @@
 				
 							<ul id="inbox-tabs" class="nav nav-tabs padding-16 tab-size-bigger tab-space-1">
 								<li class="active">
-									<a data-toggle="tab" href="#datos" onclick="reinicia_solicitud('pestana',1)">
+									<a data-toggle="tab" href="#datos" onclick="reinicia_solicitud(<?=$id;?>,<?=$expediente['tipo_persona'];?>,'pestana',1)">
 										<i class="blue ace-icon fa fa-user bigger-130"></i>
 										<span class="hid_spa">Datos Generales</span>
 									</a>
 								</li>
 
 								<li>
-									<a data-toggle="tab" href="#establecimiento" onclick="reinicia_solicitud('pestana',2)">
+									<a data-toggle="tab" href="#establecimiento" onclick="reinicia_solicitud(<?=$id;?>,<?=$expediente['tipo_persona'];?>,'pestana',2)">
 										<i class="green ace-icon fa fa-info-circle bigger-130"></i>
 										<span class="hid_spa">Datos del establecimiento</span>
 									</a>
 								</li>
 
 								<li>
-									<a data-toggle="tab" href="#dimensiones" onclick="reinicia_solicitud('pestana',3)">
+									<a data-toggle="tab" href="#dimensiones" onclick="reinicia_solicitud(<?=$id;?>,<?=$expediente['tipo_persona'];?>,'pestana',3)">
 										<i class="red ace-icon fa fa-building bigger-130"></i>
 										<span class="hid_spa">Dimensiones del establecimento</span>
 									</a>
 								</li>
 
 								<li>
-									<a data-toggle="tab" href="#documentos" onclick="reinicia_solicitud('pestana',4)">
+									<a data-toggle="tab" href="#documentos" onclick="reinicia_solicitud(<?=$id;?>,<?=$expediente['tipo_persona'];?>,'pestana',4)">
 										<i class="orange ace-icon fa fa-folder-open bigger-130"></i>
 										<span class="hid_spa">Documentación</span>
 									</a>
@@ -167,7 +167,13 @@
 
 													<div class="profile-info-value">
 														<i class="fa fa-map-marker blue bigger-110"></i>&nbsp;
-														<input id="dg1" name="dg1" type="text" class="sinborde" name="" value="<?=$datos_generales['domicilio'];?>" disabled size="75">
+														<input id="dg1" name="dg1" type="text" class="sinborde" name="" value="<?=$datos_generales['calle'];?>" disabled size="10">
+														<input id="dg2" name="dg2" type="text" class="sinborde" name="" value="<?=$datos_generales['no_exterior'];?>" disabled size="2">
+														<input id="dg3" name="dg3" type="text" class="sinborde" name="" value="<?=$datos_generales['no_interior'];?>" disabled size="2">
+														<input id="dg4" name="dg4" type="text" class="sinborde" name="" value="<?=$datos_generales['colonia'];?>" disabled size="10">
+														<input id="dg5" name="dg5" type="text" class="sinborde" name="" value="<?=$datos_generales['municipio'];?>" disabled size="10">
+														<input id="dg6" name="dg6" type="text" class="sinborde" name="" value="<?=$datos_generales['localidad'];?>" disabled size="10">
+														<input id="dg7" name="dg7" type="text" class="sinborde" name="" value="<?=$datos_generales['c_p'];?>" disabled size="2">
 													</div>
 												</div>
 
@@ -176,7 +182,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-user blue bigger-110"></i>&nbsp;
-														<input id="dg2" name="dg2" type="text" class="sinborde" name="" value="<?=$datos_generales['rfc'];?>" disabled size="50">
+														<input id="dg8" name="dg8" type="text" class="sinborde" name="" value="<?=$datos_generales['rfc'];?>" disabled size="50">
 													</div>
 												</div>
 
@@ -185,7 +191,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-user blue bigger-110"></i>&nbsp;
-														<input id="dg3" name="dg3" type="text" class="sinborde" name="" value="<?=$datos_generales['curp'];?>" disabled size="50">
+														<input id="dg9" name="dg9" type="text" class="sinborde" name="" value="<?=$datos_generales['curp'];?>" disabled size="50">
 													</div>
 												</div>									
 
@@ -194,7 +200,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-phone blue bigger-110"></i>&nbsp;
-														<input id="dg4" name="dg4" type="text" class="sinborde" name="" value="<?=$datos_generales['telefono'];?>" disabled size="50">
+														<input id="dg10" name="dg10" type="text" class="sinborde" name="" value="<?=$datos_generales['telefono'];?>" disabled size="50">
 													</div>
 												</div>
 
@@ -203,7 +209,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-envelope blue bigger-110"></i>&nbsp;
-														<input id="dg5" name="dg5" type="text" class="sinborde" name="" value="<?=$datos_generales['email'];?>" disabled size="50">
+														<input id="dg11" name="dg11" type="text" class="sinborde" name="" value="<?=$datos_generales['email'];?>" disabled size="50">
 													</div>
 												</div>
 											</div>
@@ -227,7 +233,7 @@
 
 													<div class="profile-info-value">
 														<i class="fa fa-user green bigger-110"></i>&nbsp;
-														<input type="text" class="sinborde" name="" value="<?=$establecimiento['nombre_comercial'];?>" disabled size="50">
+														<input id="de0" name="de0" type="text" class="sinborde" name="" value="<?=$establecimiento['nombre_comercial'];?>" disabled size="50">
 													</div>
 												</div>
 
@@ -236,7 +242,13 @@
 
 													<div class="profile-info-value">
 														<i class="fa fa-map-marker green bigger-110"></i>&nbsp;
-														<input type="text" class="sinborde" name="" value="<?=$establecimiento['domicilio'];?>" disabled size="50">
+														<input id="de1" name="de1" type="text" class="sinborde" name="" value="<?=$establecimiento['calle'];?>" disabled size="10">
+														<input id="de2" name="de2" type="text" class="sinborde" name="" value="<?=$establecimiento['no_exterior'];?>" disabled size="2">
+														<input id="de3" name="de3" type="text" class="sinborde" name="" value="<?=$establecimiento['no_interior'];?>" disabled size="2">
+														<input id="de4" name="de4" type="text" class="sinborde" name="" value="<?=$establecimiento['colonia'];?>" disabled size="10">
+														<input id="de5" name="de5" type="text" class="sinborde" name="" value="<?=$establecimiento['municipio'];?>" disabled size="10">
+														<input id="de6" name="de6" type="text" class="sinborde" name="" value="<?=$establecimiento['localidad'];?>" disabled size="10">
+														<input id="de7" name="de7" type="text" class="sinborde" name="" value="<?=$establecimiento['cp'];?>" disabled size="2">
 													</div>
 												</div>
 
@@ -255,7 +267,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-clock-o green bigger-110"></i>&nbsp;
-														<input type="text" class="sinborde" name="" value="<?=$establecimiento['horario_trabajo'];?>" disabled size="50">
+														<input id="de8" name="de8" type="text" class="sinborde" name="" value="<?=$establecimiento['horario_trabajo'];?>" disabled size="50">
 													</div>
 												</div>
 
@@ -264,7 +276,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-building green bigger-110"></i>&nbsp;
-														<input type="text" class="sinborde" name="" value="<?=$establecimiento['uso_actual'];?>" disabled size="50">
+														<input id="de9" name="de9" type="text" class="sinborde" name="" value="<?=$establecimiento['uso_actual'];?>" disabled size="50">
 													</div>
 												</div>									
 
@@ -273,7 +285,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-phone green bigger-110"></i>&nbsp;
-														<input type="text" class="sinborde" name="" value="<?=$establecimiento['telefono'];?>" disabled size="50">
+														<input id="de10" name="de10" type="text" class="sinborde" name="" value="<?=$establecimiento['telefono'];?>" disabled size="50">
 													</div>
 												</div>
 
@@ -282,7 +294,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-map-marker green bigger-110"></i>&nbsp;
-														<input type="text" class="sinborde" name="" value="<?=$establecimiento['cuenta_catastral'];?>" disabled size="50">
+														<input id="de11" name="de11" type="text" class="sinborde" name="" value="<?=$establecimiento['cuenta_catastral'];?>" disabled size="50">
 													</div>
 												</div>
 
@@ -291,7 +303,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-map-marker green bigger-110"></i>&nbsp;
-														<input type="text" class="sinborde" name="" value="<?=$establecimiento['manzana'];?>" disabled size="50">
+														<input id="de12" name="de12" type="text" class="sinborde" name="" value="<?=$establecimiento['manzana'];?>" disabled size="50">
 													</div>
 												</div>
 
@@ -300,7 +312,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-cogs green bigger-110"></i>&nbsp;
-														<input type="text" class="sinborde" name="" value="<?=$establecimiento['servicios_existentes'];?>" disabled size="50">
+														<input id="de13" name="de13" type="text" class="sinborde" name="" value="<?=$establecimiento['servicios_existentes'];?>" disabled size="50">
 													</div>
 												</div>
 											</form>
@@ -324,7 +336,7 @@
 
 													<div class="profile-info-value">
 														<i class="fa fa-map-marker red bigger-110"></i>&nbsp;
-														<input type="text" class="sinborde" name="" value="<?=$dimensiones['frente'];?>" disabled size="2"><span>mts</span>
+														<input id="dim0" name="dim0" type="text" class="sinborde" name="" value="<?=$dimensiones['frente'];?>" disabled size="2"><span>mts</span>
 													</div>
 												</div>
 
@@ -333,7 +345,7 @@
 
 													<div class="profile-info-value">
 														<i class="fa fa-map-marker red bigger-110"></i>&nbsp;
-														<input type="text" class="sinborde" name="" value="<?=$dimensiones['fondo'];?>" disabled size="2"><span>mts</span>
+														<input id="dim1" name="dim1" type="text" class="sinborde" name="" value="<?=$dimensiones['fondo'];?>" disabled size="2"><span>mts</span>
 													</div>
 												</div>
 
@@ -342,7 +354,7 @@
 
 													<div class="profile-info-value">
 														<i class="fa fa-map-marker red bigger-110"></i>&nbsp;
-														<input type="text" class="sinborde" name="" value="<?=$dimensiones['derecho'];?>" disabled size="2"><span>mts</span>
+														<input id="dim2" name="dim2" type="text" class="sinborde" name="" value="<?=$dimensiones['derecho'];?>" disabled size="2"><span>mts</span>
 													</div>
 												</div>
 
@@ -351,7 +363,7 @@
 
 													<div class="profile-info-value">
 														<i class="fa fa-map-marker red bigger-110"></i>&nbsp;
-														<input type="text" class="sinborde" name="" value="<?=$dimensiones['izquierdo'];?>" disabled size="2"><span>mts</span>
+														<input id="dim3" name="dim3" type="text" class="sinborde" name="" value="<?=$dimensiones['izquierdo'];?>" disabled size="2"><span>mts</span>
 													</div>
 												</div>
 
@@ -360,7 +372,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-map-marker red bigger-110"></i>&nbsp;
-														<input type="text" class="sinborde" name="" value="<?=$dimensiones['sup_terreno'];?>" disabled size="2"><span>mts<sup>2</sup></span>
+														<input id="dim4" name="dim4" type="text" class="sinborde" name="" value="<?=$dimensiones['sup_terreno'];?>" disabled size="2"><span>mts<sup>2</sup></span>
 													</div>
 												</div>
 
@@ -369,7 +381,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-map-marker red bigger-110"></i>&nbsp;
-														<input type="text" class="sinborde" name="" value="<?=$dimensiones['sup_local'];?>" disabled size="2"><span>mts<sup>2</sup></span>
+														<input id="dim5" name="dim5" type="text" class="sinborde" name="" value="<?=$dimensiones['sup_local'];?>" disabled size="2"><span>mts<sup>2</sup></span>
 													</div>
 												</div>									
 
@@ -378,7 +390,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-home red bigger-110"></i>&nbsp;
-														<input type="text" class="sinborde" name="" value="<?=$dimensiones['cuenta_predial'];?>" disabled size="50">
+														<input id="dim6" name="dim6" type="text" class="sinborde" name="" value="<?=$dimensiones['cuenta_predial'];?>" disabled size="50">
 													</div>
 												</div>
 											</form>									

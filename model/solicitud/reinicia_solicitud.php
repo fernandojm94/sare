@@ -2,7 +2,7 @@
 	include("../../controller/solicitud/funciones_update_solicitud.php");
 	
 	$etapa = $_POST['etapa'];
-	$parametros= $_POST['parametros'];
+	$parametros[]= $_POST['parametros'];//0:persona_fisica; 1:persona_moral
 	switch ($etapa) {
 		case 'dg':			
 			if($parametros[0] == 1)
