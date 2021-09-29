@@ -18,7 +18,49 @@ include('../../model/solicitud/fill.php');
 
     $fecha_ingreso = fill_ventanilla_id($id);//fecha_ingreso[recibido] tiene la fecha
     $recibido = date("d/m/Y", strtotime($fecha_ingreso['recibido']));
-    $datos_generales = fill_datos_generales($expediente['id_persona'],$expediente['tipo_persona']);
+
+    $estado_pmoral = $estado_pfisica = "Aguascalientes";
+    if($expediente['tipo_persona'])
+    {
+        $datos_pmoral = fill_datos_generales($expediente['id_persona'],$expediente['tipo_persona']);
+        $datos_pfisica["id"] = "";
+        $datos_pfisica["nombre"] = "";
+        $datos_pfisica["calle"] = "";
+        $datos_pfisica["no_exterior"] = "";
+        $datos_pfisica["no_interior"] = "";
+        $datos_pfisica["colonia"] = "";
+        $datos_pfisica["municipio"] = "";
+        $datos_pfisica["localidad"] = "";
+        $datos_pfisica["C_P"] = "";
+        $datos_pfisica["rfc"] = "";
+        $datos_pfisica["curp"] = "";
+        $datos_pfisica["telefono"] = "";
+        $datos_pfisica["email"] = "";
+        $estado_pfisica = "";
+
+    }else{
+        $datos_pfisica = fill_datos_generales($expediente['id_persona'],$expediente['tipo_persona']);
+        $datos_pmoral["id"] = "";
+        $datos_pmoral["nombre"] = "";
+        $datos_pmoral["fecha_constitucion"] = "";
+        $datos_pmoral["rfc_empresa"] = "";
+        $datos_pmoral["email_empresa"] = "";
+        $datos_pmoral["telefono_empresa"] = "";
+        $datos_pmoral["nombre_rl"] = "";
+        $datos_pmoral["rfc"] = "";
+        $datos_pmoral["curp"] = "";
+        $datos_pmoral["calle"] = "";
+        $datos_pmoral["no_exterior"] = "";
+        $datos_pmoral["no_interior"] = "";
+        $datos_pmoral["colonia"] = "";
+        $datos_pmoral["estado"] = "";
+        $datos_pmoral["municipio"] = "";
+        $datos_pmoral["localidad"] = "";
+        $datos_pmoral["c_p"] = "";
+        $datos_pmoral["telefono"] = "";
+        $datos_pmoral["email"] = "";
+        $estado_pmoral = "";
+    }    
     $establecimiento = fill_establecimiento_separado($expediente['id_dg_establecimiento']);
     $dimensiones = fill_dimensiones($expediente['id_dimensiones_establecimiento']);
     $folio_str = str_replace(array("/", " ",":"),array("-","-","-"),$expediente['folio']);
@@ -81,16 +123,16 @@ $html_1 = '
             <td class="border_b">
                 <table>
                     <tr>
-                        <td style="width: 60%"></td>
-                        <td style="width: 40%">
+                        <td style="width: 59%"></td>
+                        <td style="width: 41%">
                             <table cellspacing="5">
                                 <tr>
                                     <td align="center" bgcolor="#d9d9d9" style="font-size: 8px;">FECHA DE INGRESO</td>
                                     <td align="center" bgcolor="#d9d9d9" style="font-size: 8px;">FOLIO NO.</td>
                                 </tr>
                                 <tr>
-                                    <td align="center" class="border_b" style="font-size: 9px;">20 / 09 / 1994</td>
-                                    <td align="center" class="border_b" style="font-size: 9px;">SARE-98987</td>
+                                    <td align="center" class="border_b" style="font-size: 9px;">'.$fecha_ingreso['recibido'].'</td>
+                                    <td align="center" class="border_b" style="font-size: 9px;">'.$expediente['folio'].'</td>
                                 </tr>
                             </table>     
                         </td>
@@ -118,11 +160,11 @@ $html_1 = '
                 <table>
                     <tr>
                         <td width="6%">NOMBRE:</td>
-                        <td width="54%" class="border_b"></td>
+                        <td width="54%" class="border_b">'.$datos_pfisica["nombre"].'</td>
                         <td width="3%">RFC:</td>
-                        <td class="border_b"></td>
+                        <td class="border_b">'.$datos_pfisica["rfc"].'</td>
                         <td width="4%">CURP:</td>
-                        <td class="border_b"></td>
+                        <td class="border_b">'.$datos_pfisica["curp"].'</td>
                     </tr>
                 </table>
             </td>
@@ -132,11 +174,11 @@ $html_1 = '
                 <table>
                     <tr>
                         <td width="16%">DOMICILIO PARTICULAR:</td>
-                        <td width="60%" class="border_b"></td>
+                        <td width="60%" class="border_b">'.$datos_pfisica['calle'].'</td>
                         <td width="6%">NO. EXT:</td>
-                        <td width="6%" class="border_b"></td>
+                        <td width="6%" class="border_b">'.$datos_pfisica["no_exterior"].'</td>
                         <td width="6%">NO. INT:</td>
-                        <td width="6%" class="border_b"></td>
+                        <td width="6%" class="border_b">'.$datos_pfisica["interior"].'</td>
                     </tr>
                 </table>
             </td> 
@@ -146,13 +188,13 @@ $html_1 = '
                 <table>
                     <tr>
                         <td width="7%">COLONIA:</td>
-                        <td width="22%" class="border_b"></td>
+                        <td width="22%" class="border_b">'.$datos_pfisica["colonia"].'</td>
                         <td width="8%">MUNICIPIO:</td>
-                        <td width="22%" class="border_b"></td>
+                        <td width="22%" class="border_b">'.$datos_pfisica["municipio"].'</td>
                         <td width="8%">LOCALIDAD:</td>
-                        <td width="22%" class="border_b"></td>
+                        <td width="22%" class="border_b">'.$datos_pfisica["localidad"].'</td>
                         <td width="3%">C.P.:</td>
-                        <td width="8%" class="border_b"></td>
+                        <td width="8%" class="border_b">'.$datos_pfisica["c_p"].'</td>
                     </tr>
                 </table>
             </td> 
@@ -162,11 +204,11 @@ $html_1 = '
                 <table>
                     <tr>
                         <td width="7%">ESTADO:</td>
-                        <td width="22%" class="border_b"></td>
+                        <td width="22%" class="border_b">'.$estado_pfisica.'</td>
                         <td width="8%">TELÉFONO:</td>
-                        <td width="22%" class="border_b"></td>
+                        <td width="22%" class="border_b">'.$datos_pfisica["telefono"].'</td>
                         <td width="6%">EMAIL:</td>
-                        <td width="35%" class="border_b"></td>
+                        <td width="35%" class="border_b">'.$datos_pfisica["email"].'</td>
                     </tr>
                 </table>
             </td>     
@@ -181,9 +223,9 @@ $html_1 = '
                 <table>
                     <tr>
                         <td width="17%">NOMBRE DE LA EMPRESA:</td>
-                        <td width="54%" class="border_b"></td>
+                        <td width="54%" class="border_b">'.$datos_pmoral["nombre"].'</td>
                         <td width="17%">FECHA DE CONSTITUCIÓN:</td>
-                        <td width="12%" class="border_b"></td>
+                        <td width="12%" class="border_b">'.$datos_pmoral["fecha_constitucion"].'</td>
                     </tr>
                 </table>
             </td>
@@ -193,11 +235,11 @@ $html_1 = '
                 <table>
                     <tr>
                         <td width="3%">RFC:</td>
-                        <td width="25%" class="border_b"></td>
+                        <td width="25%" class="border_b">'.$datos_pmoral["rfc_empresa"].'</td>
                         <td width="7%">TELÉFONO:</td>
-                        <td width="24%" class="border_b"></td>
+                        <td width="24%" class="border_b">'.$datos_pmoral["telefono_empresa"].'</td>
                         <td width="6%">EMAIL:</td>
-                        <td width="35%" class="border_b"></td>
+                        <td width="35%" class="border_b">'.$datos_pmoral["email_empresa"].'</td>
                     </tr>
                 </table>
             </td> 
@@ -216,11 +258,11 @@ $html_1 = '
                 <table>
                     <tr>
                         <td width="6%">NOMBRE:</td>
-                        <td width="54%" class="border_b"></td>
+                        <td width="54%" class="border_b">'.$datos_pmoral["nombre_rl"].'</td>
                         <td width="3%">RFC:</td>
-                        <td class="border_b"></td>
+                        <td class="border_b">'.$datos_pmoral["rfc"].'</td>
                         <td width="4%">CURP:</td>
-                        <td class="border_b"></td>
+                        <td class="border_b">'.$datos_pmoral["curp"].'</td>
                     </tr>
                 </table>
             </td>     
@@ -230,11 +272,11 @@ $html_1 = '
                 <table>
                     <tr>
                         <td width="8%">DOMICILIO:</td>
-                        <td width="68%" class="border_b"></td>
+                        <td width="68%" class="border_b">'.$datos_pmoral['calle'].'</td>
                         <td width="6%">NO. EXT:</td>
-                        <td width="6%" class="border_b"></td>
+                        <td width="6%" class="border_b">'.$datos_pmoral["no_exterior"].'</td>
                         <td width="6%">NO. INT:</td>
-                        <td width="6%" class="border_b"></td>
+                        <td width="6%" class="border_b">'.$datos_pmoral["no_interior"].'</td>
                     </tr>
                 </table>
             </td>     
@@ -244,13 +286,13 @@ $html_1 = '
                 <table>
                     <tr>
                         <td width="7%">COLONIA:</td>
-                        <td width="22%" class="border_b"></td>
+                        <td width="22%" class="border_b">'.$datos_pmoral["colonia"].'</td>
                         <td width="8%">MUNICIPIO:</td>
-                        <td width="22%" class="border_b"></td>
+                        <td width="22%" class="border_b">'.$datos_pmoral["municipio"].'</td>
                         <td width="8%">LOCALIDAD:</td>
-                        <td width="22%" class="border_b"></td>
+                        <td width="22%" class="border_b">'.$datos_pmoral["localidad"].'</td>
                         <td width="3%">C.P.:</td>
-                        <td width="8%" class="border_b"></td>
+                        <td width="8%" class="border_b">'.$datos_pmoral["c_p"].'</td>
                     </tr>
                 </table>
             </td>     
@@ -260,11 +302,11 @@ $html_1 = '
                 <table>
                     <tr>
                         <td width="7%">ESTADO:</td>
-                        <td width="22%" class="border_b"></td>
+                        <td width="22%" class="border_b">'.$estado_pmoral.'</td>
                         <td width="8%">TELÉFONO:</td>
-                        <td width="22%" class="border_b"></td>
+                        <td width="22%" class="border_b">'.$datos_pmoral["telefono"].'</td>
                         <td width="6%">EMAIL:</td>
-                        <td width="35%" class="border_b"></td>
+                        <td width="35%" class="border_b">'.$datos_pmoral["email"].'</td>
                     </tr>
                 </table>
             </td>     
@@ -279,9 +321,9 @@ $html_1 = '
                 <table>
                     <tr>
                         <td width="14%">NOMBRE COMERCIAL:</td>
-                        <td width="75%" class="border_b"></td>
+                        <td width="75%" class="border_b">'.$establecimiento['nombre_comercial'].'</td>
                         <td width="3%">C.P.:</td>
-                        <td width="8%" class="border_b"></td>
+                        <td width="8%" class="border_b">'.$establecimiento['cp'].'</td>
                     </tr>
                 </table>
             </td>
@@ -291,13 +333,13 @@ $html_1 = '
                 <table>
                     <tr>
                         <td width="8%">DOMICILIO:</td>
-                        <td width="40%" class="border_b"></td>
+                        <td width="40%" class="border_b">'.$establecimiento['calle'].'</td>
                         <td width="6%">NO. EXT:</td>
-                        <td width="6%" class="border_b"></td>
+                        <td width="6%" class="border_b">'.$establecimiento['no_exterior'].'</td>
                         <td width="6%">NO. INT:</td>
-                        <td width="6%" class="border_b"></td>
+                        <td width="6%" class="border_b">'.$establecimiento['no_interior'].'</td>
                         <td width="7%">COLONIA:</td>
-                        <td width="21%" class="border_b"></td>
+                        <td width="21%" class="border_b">'.$establecimiento['colonia'].'</td>
                     </tr>
                 </table>
             </td> 
@@ -317,11 +359,11 @@ $html_1 = '
                 <table>
                     <tr>
                         <td width="8%">LOCALIDAD:</td>
-                        <td width="25%" class="border_b"></td>
+                        <td width="25%" class="border_b">'.$establecimiento['localidad'].'</td>
                         <td width="8%">MUNICIPIO:</td>
-                        <td width="25%" class="border_b"></td>
+                        <td width="25%" class="border_b">'.$establecimiento['municipio'].'</td>
                         <td width="8%">TELÉFONO:</td>
-                        <td width="26%" class="border_b"></td>
+                        <td width="26%" class="border_b">'.$establecimiento['telefono'].'</td>
                     </tr>
                 </table>
             </td>     
@@ -331,7 +373,7 @@ $html_1 = '
                 <table>
                     <tr>
                         <td>CUENTA CATASTRAL:</td>
-                        <td class="border_b"></td>
+                        <td class="border_b">'.$establecimiento['cuenta_catastral'].'</td>
                         <td>CUENTA PREDIAL:</td>
                         <td class="border_b"></td>
                     </tr>
@@ -343,13 +385,13 @@ $html_1 = '
                 <table>
                     <tr>
                         <td width="7%">MANZANA:</td>
-                        <td width="11%" class="border_b"></td>
+                        <td width="11%" class="border_b">'.$establecimiento['manzana'].'</td>
                         <td width="4%">LOTE:</td>
-                        <td width="11%" class="border_b"></td>
+                        <td width="11%" class="border_b">'.$establecimiento['lote'].'</td>
                         <td width="25%">DISTANCIA A ESQUINA MÁS CERCANA:</td>
-                        <td width="11%" class="border_b">m</td>
+                        <td width="11%" class="border_b">'.$establecimiento['distancia_esquina'].'m</td>
                         <td width="21%">CAJONES DE ESTABLECIMIENTO:</td>
-                        <td width="10%" class="border_b"></td>
+                        <td width="10%" class="border_b">'.$establecimiento['cajones_estacionamiento'].'</td>
                     </tr>
                 </table>
             </td>     
@@ -359,10 +401,10 @@ $html_1 = '
                 <table>
                     <tr>
                         <td width="9%">USO ACTUAL:</td>
-                        <td width="91%" class="border_b"></td>
+                        <td width="91%" class="border_b">'.$establecimiento['uso_actual'].'</td>
                     </tr>
                 </table>
-            </td>     
+            </td>
         </tr>
         <tr>
             <td>
@@ -372,8 +414,8 @@ $html_1 = '
                         <td width="85%" align="center">USO ESPECÍFICO PROPUESTO(DESCRIPCIÓN DE LA ACTIVIDAD)</td>
                     </tr>
                     <tr>
-                        <td width="15%" align="center" class="border_b">23412341234</td>
-                        <td width="85%" align="center" class="border_b">el suasdamlasdlknasdnaskbjdbjkasdbjkasd</td>
+                        <td width="15%" align="center" class="border_b">'.$establecimiento['giro_scian'].'</td>
+                        <td width="85%" align="center" class="border_b">'.$establecimiento['uso_solicitado'].'</td>
                     </tr>
                 </table>
             </td>     
@@ -383,7 +425,7 @@ $html_1 = '
                 <table>
                     <tr>
                         <td width="16%"><b>SERVICIOS EXISTENTES:</b></td>
-                        <td width="84%" class="border_b"></td>
+                        <td width="84%" class="border_b">'.$establecimiento['servicios_existentes'].'</td>
                     </tr>
                 </table>
             </td>     
@@ -424,33 +466,33 @@ $croquis = '
                                 </tr>
                                 <tr>
                                     <td>FRENTE:</td>
-                                    <td>m</td>
+                                    <td>'.$dimensiones['frente'].'m</td>
                                 </tr>
                                 <tr>
                                     <td>FONDO:</td>
-                                    <td>m</td>
+                                    <td>'.$dimensiones['fondo'].'m</td>
                                 </tr>
                                 <tr>
                                     <td>COSTADO:</td>
                                 </tr>
                                 <tr>
                                     <td>DERECHO:</td>
-                                    <td>m</td>
+                                    <td>'.$dimensiones['derecho'].'m</td>
                                 </tr>
                                 <tr>
                                     <td>IZQUIERDO:</td>
-                                    <td>m</td>
+                                    <td>'.$dimensiones['izquierdo'].'m</td>
                                 </tr>
                                 <tr>
                                     <td>SUPERFICIE:</td>
                                 </tr>
                                 <tr>
                                     <td>DEL TERRENO:</td>
-                                    <td>m<span>2</span></td>
+                                    <td>'.$dimensiones['sup_terreno'].'m<span>2</span></td>
                                 </tr>
                                 <tr>
                                     <td>DEL LOCAL:</td>
-                                    <td>m<span>2</span></td>
+                                    <td>'.$dimensiones['sup_local'].'m<span>2</span></td>
                                 </tr>
                                 <tr>
                                     <td align="center" colspan="2">
@@ -494,7 +536,7 @@ $croquis = '
                                             <tr><td></td></tr>
                                         </table>
                                     </td>
-                                    <td width="90%" height="210" class="border_c" style="border-color: grey;"></td>
+                                    <td width="90%" height="210" class="border_c" style="border-color: grey;"><img src="'.$mapa.'"></td>
                                     <td width="5%">
                                         <table>
                                             <tr><td></td></tr>
@@ -579,11 +621,11 @@ $croquis = '
                 <table cellpadding="1">
                     <tr>
                         <td width="70%">MONTO DE LA INVERSIÓN O CAPITAL SOCIAL (M.N.):</td>
-                        <td class="border_b" width="30%">$</td>
+                        <td class="border_b" width="30%">$'.$establecimiento['monto_inversion'].'</td>
                     </tr>
                     <tr>
                         <td width="40%">PERSONAL OCUPADO(PO):</td>
-                        <td class="border_b" width="25%"></td>
+                        <td class="border_b" width="25%">'.$establecimiento['pesonal_ocupado'].'</td>
                     </tr>
                 </table>
             </td>
@@ -591,7 +633,7 @@ $croquis = '
     </table>
 
     <table>
-        <tr><td style="font-size:35px;"></td></tr>
+        <tr><td style="font-size:19px;"></td></tr>
         <tr bgcolor="#f2f2f2">
             <td style="width:12%;">
                 <span>1 DE 3</span>
