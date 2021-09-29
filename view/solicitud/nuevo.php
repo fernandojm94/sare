@@ -297,7 +297,7 @@
                                     </div>
                                     <!-- Button -->
                                     <div class="form-group">
-                                        <button onclick="buscar_direccion();" style="display: block; margin-right: auto; margin-left: auto;" class="btn btn-success"> <i class="ace-icon fa fa-floppy-o"></i> &nbsp Buscar </button>
+                                        <button onclick="buscar_direccion();" style="display: block; margin-right: auto; margin-left: auto;" class="btn btn-info"> <i class="ace-icon fa fa-search"></i> &nbsp Buscar domicilio </button>
                                     </div>
                                     <div class="form-group"></div>
                                     
@@ -311,9 +311,7 @@
                                     </div>
 
                                     <div id="MyPix">
-                                    </div>
-
-                                    <input type="text" id="img_map" name="img_map" />
+                                    </div>                                    
 
 
                                     <div id="panel"></div>
@@ -599,7 +597,7 @@
 
                                     <div class="hidden" id="inst_idpf"></div>
                                     <div class="hidden" id="inst_idpm"></div>
-
+                                    <input type="hidden" id="img_map" name="img_map" />
                                     <div class="hidden" id="inst_iddg"></div>
                                     <div class="hidden" id="inst_iddim"></div>
 
