@@ -23,7 +23,7 @@ function get_nombre_rfc_pmoral()
 
 function get_pfisica_rfc($rfc)
 {
-	$sql = "SELECT id, nombre_completo, calle, no_exterior, no_interior, colonia, municipio, localidad, c_p, rfc, curp, telefono, email
+	$sql = "SELECT id, nombre_completo, calle, no_exterior, no_interior, colonia, municipio, localidad, estado, c_p, rfc, curp, telefono, email
 				FROM personas_fisicas
 				WHERE  rfc = '".$rfc."'";
 	$result = query_row_id($sql);
@@ -270,7 +270,7 @@ function get_pmoral_separado($id_persona)
 
 function get_pfisica_separado($id)
 {
-	$sql = "SELECT id, nombre_completo AS nombre, calle, no_exterior, no_interior, colonia, municipio, localidad, c_p, rfc, curp, telefono, email
+	$sql = "SELECT id, nombre_completo AS nombre, calle, no_exterior, no_interior, colonia, municipio, localidad, estado, c_p, rfc, curp, telefono, email
 				FROM personas_fisicas
 				WHERE  id = '".$id."'";
 	$result = query_row_id($sql);
