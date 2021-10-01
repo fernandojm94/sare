@@ -2,7 +2,7 @@
 	include("../../controller/solicitud/funciones_update_solicitud.php");
 	
 	$etapa = $_POST['etapa'];
-	$parametros[]= $_POST['parametros'];//0:persona_fisica; 1:persona_moral
+	$parametros= $_POST['parametros'];//0:persona_fisica; 1:persona_moral
 	switch ($etapa) {
 		case 'dg':			
 			if($parametros[0] == 1)
@@ -21,6 +21,7 @@
 					$mensaje = "error1";
 				}
 			}
+			break;
 		case 'de':
 			if(update_dg_establecimiento($parametros))
 			{
@@ -37,6 +38,14 @@
 				$mensaje = "error3";
 			}
 			break;
+		case 're':
+			if(reinicia_expediente($parametros))
+			{
+				$mensaje = "correcto";
+			}else{
+				$mensaje = "error4";
+			}
 	}
+
 
 	echo $mensaje;
