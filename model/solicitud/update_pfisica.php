@@ -7,12 +7,13 @@ include('../../controller/pfisica/funciones_pfisica.php');
 	$colonia = $_POST['colonia'];
 	$municipio = $_POST['municipio'];
 	$localidad = $_POST['localidad'];
+	$estado = $_POST['estado'];
 	$cp = $_POST['cp'];	
 	$telefono = $_POST['telefono'];
 	$email = $_POST['email'];
 	$id = $_POST['id'];
 
-	if(update_pfisica($calle, $exterior, $interior, $colonia, $municipio, $localidad, $cp, $telefono, $email, $id))
+	if(update_pfisica($calle, $exterior, $interior, $colonia, $municipio, $localidad, $estado, $cp, $telefono, $email, $id))
 	{
 		$mensaje = "correcto, ".$id;
 	}else{

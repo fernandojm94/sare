@@ -19,7 +19,6 @@ include('../../model/solicitud/fill.php');
     $fecha_ingreso = fill_ventanilla_id($id);//fecha_ingreso[recibido] tiene la fecha
     $recibido = date("d/m/Y", strtotime($fecha_ingreso['recibido']));
 
-    $estado_pfisica = "Aguascalientes";
     if($expediente['tipo_persona'])
     {
         $datos_pmoral = fill_datos_generales($expediente['id_persona'],$expediente['tipo_persona']);
@@ -31,6 +30,7 @@ include('../../model/solicitud/fill.php');
         $datos_pfisica["colonia"] = "";
         $datos_pfisica["municipio"] = "";
         $datos_pfisica["localidad"] = "";
+        $datos_pfisica["estado"] = "";
         $datos_pfisica["C_P"] = "";
         $datos_pfisica["rfc"] = "";
         $datos_pfisica["curp"] = "";
@@ -203,7 +203,7 @@ $html_1 = '
                 <table>
                     <tr>
                         <td width="5.5%">ESTADO:</td>
-                        <td width="23.5%" class="border_b"> '.$estado_pfisica.'</td>
+                        <td width="23.5%" class="border_b"> '.$datos_pfisica["estado"].'</td>
                         <td width="7%">TELÉFONO:</td>
                         <td width="22%" class="border_b"> '.$datos_pfisica["telefono"].'</td>
                         <td width="4.5%">EMAIL:</td>

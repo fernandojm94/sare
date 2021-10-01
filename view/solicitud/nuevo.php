@@ -1565,6 +1565,7 @@
                                 "colonia" : $('#colonia').val(),
                                 "municipio" : $('#municipio').val(),
                                 "localidad" : $('#localidad').val(),
+                                "estado" : $('#estado_f').val(),
                                 "cp" : $('#cp').val(),
                                 "rfc" : $('#rfc').val(),
                                 "curp_fis" : $('#curp_fis').val(),
@@ -1964,6 +1965,10 @@
                     required: true
                 },
 
+                estado_f: {
+                    required: true
+                },
+
                 cp: {
                     required: true,
                     minlength: 5,
@@ -2014,6 +2019,10 @@
 
                 localidad: {
                     required: "Favor de ingresar la localidad."
+                },
+
+                estado_f: {
+                    required: "Favor de seleccionar el estado."
                 },
 
                 cp: {

@@ -13,6 +13,42 @@ include("../../model/solicitud/fill.php");
                 <option value="El Llano">El Llano</option>
                 <option value="San Francisco de los Romo">San Francisco de los Romo</option>';
 
+$select_estado = '
+      <option value="">Seleccionar estado...</option>
+      <option value="Aguascalientes">Aguascalientes</option>
+      <option value="Baja California">Baja California</option>
+      <option value="Baja California Sur">Baja California Sur</option>
+      <option value="Campeche">Campeche</option>
+      <option value="Chiapas">Chiapas</option>
+      <option value="Chihuahua">Chihuahua</option>
+      <option value="CDMX">Ciudad de México</option>
+      <option value="Coahuila">Coahuila</option>
+      <option value="Colima">Colima</option>
+      <option value="Durango">Durango</option>
+      <option value="Estado de México">Estado de México</option>
+      <option value="Guanajuato">Guanajuato</option>
+      <option value="Guerrero">Guerrero</option>
+      <option value="Hidalgo">Hidalgo</option>
+      <option value="Jalisco">Jalisco</option>
+      <option value="Michoacán">Michoacán</option>
+      <option value="Morelos">Morelos</option>
+      <option value="Nayarit">Nayarit</option>
+      <option value="Nuevo León">Nuevo León</option>
+      <option value="Oaxaca">Oaxaca</option>
+      <option value="Puebla">Puebla</option>
+      <option value="Querétaro">Querétaro</option>
+      <option value="Quintana Roo">Quintana Roo</option>
+      <option value="San Luis Potosí">San Luis Potosí</option>
+      <option value="Sinaloa">Sinaloa</option>
+      <option value="Sonora">Sonora</option>
+      <option value="Tabasco">Tabasco</option>
+      <option value="Tamaulipas">Tamaulipas</option>
+      <option value="Tlaxcala">Tlaxcala</option>
+      <option value="Veracruz">Veracruz</option>
+      <option value="Yucatán">Yucatán</option>
+      <option value="Zacatecas">Zacatecas</option>
+';
+
     $persona =array_keys($_POST);
 
     if(strpos($persona[0], '-'))
@@ -20,6 +56,7 @@ include("../../model/solicitud/fill.php");
         $pfisica = explode('-', $persona[0]);        
         $pfisica = fill_pfisica_rfc($pfisica[1]);
         $select_municipio.= "<option value='".$pfisica['municipio']."' selected>".$pfisica['municipio']."</option>'";
+        $select_estado.= "<option value='".$pfisica['estado']."' selected>".$pfisica['estado']."</option>'";
         $readonly = "readonly";
         $disabled = "disabled";
 
@@ -102,6 +139,18 @@ include("../../model/solicitud/fill.php");
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
             <input  name="localidad" id="localidad" placeholder="Localidad" value="<?php echo $pfisica['localidad'];?>" class="form-control" type="text" required <?=$readonly?>/>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-4 control-label">Estado</label>  
+    <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+             <select class="form-control" name="estado_f" id="estado_f" required <?=$disabled?>/>
+            <?= $select_estado ?>
+             </select>
         </div>
     </div>
 </div>
