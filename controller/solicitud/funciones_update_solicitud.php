@@ -11,7 +11,7 @@ function update_pmoral($parametros)
 }
 
 function update_pfisica($parametros)
-{
+{	
 	$sql = "UPDATE personas_fisicas SET nombre_completo = '".$parametros[2]."', calle = '".$parametros[3]."', no_exterior = '".$parametros[4]."', no_interior = '".$parametros[5]."', municipio = '".$parametros[6]."', rfc = '".$parametros[7]."', curp = '".$parametros[8]."', telefono = '".$parametros[9]."', email = '".$parametros[10]."' WHERE id = $parametros[1]";
 
  	$result = querys($sql);
@@ -31,6 +31,20 @@ function update_dg_establecimiento($parametros)
 function update_dimensiones($parametros)
 {
 	$sql = "UPDATE dimensiones_establecimiento SET frente = '".$parametros[1]."', fondo = '".$parametros[2]."', derecho = '".$parametros[3]."', izquierdo = '".$parametros[4]."', sup_local = '".$parametros[5]."', cuenta_predial = '".$parametros[6]."', WHERE id = $parametros[0]";
+
+	$result = querys($sql);
+
+	return $result;
+}
+
+function reinicia_expediente($parametros)
+{
+	$sql = "UPDATE expedientes SET fecha_apertura = now(), etapa = 2, status = 0 WHERE id = $parametros[0]";
+	$sql.= "UPDATE director  SET status IS NULL, recibido IS NULL, visto IS NULL, resuelto IS NULL WHERE id_expediente = $parametros[0]";
+	$sql.= "UPDATE pagos  SET status IS NULL, recibido IS NULL, visto IS NULL, resuelto IS NULL WHERE id_expediente = $parametros[0]";
+	$sql.= "UPDATE secretario  SET status IS NULL, recibido IS NULL, visto IS NULL, resuelto IS NULL WHERE id_expediente = $parametros[0]";
+	$sql.= "UPDATE suelo  SET status IS NULL, recibido IS NULL, visto IS NULL, resuelto IS NULL WHERE id_expediente = $parametros[0]";
+	$sql.= "UPDATE ventanilla  SET status IS NULL, recibido IS NULL, visto IS NULL, resuelto IS NULL WHERE id_expediente = $parametros[0]";
 
 	$result = querys($sql);
 
