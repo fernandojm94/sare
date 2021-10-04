@@ -21,7 +21,7 @@ function update_pfisica($parametros)
 
 function update_dg_establecimiento($parametros)
 {
-	$sql = "UPDATE dg_establecimiento SET nombre_empresa = '".$parametros[1]."', calle = '".$parametros[2]."', no_exterior = '".$parametros[3]."', no_interior = '".$parametros[4]."', colonia = '".$parametros[5]."', municipio = '".$parametros[6]."', horario_trabajo = '".$parametros[7]."', latitud_longitud = '".$parametros[8]."', uso_actual = '".$parametros[9]."', telefono = '".$parametros[10]."', cuenta_catastral = '".$parametros[11]."', manzana = '".$parametros[12]."', lote = '".$parametros[13]."', servicios_existentes = '".$parametros[14]."' WHERE id = $parametros[0]";
+	$sql = "UPDATE dg_establecimiento SET nombre_comercial = '".$parametros[2]."', calle = '".$parametros[3]."', no_exterior = '".$parametros[4]."', no_interior = '".$parametros[5]."', colonia = '".$parametros[6]."', municipio = '".$parametros[7]."', horario_trabajo = '".$parametros[8]."', latitud_longitud = '".$parametros[9]."', uso_actual = '".$parametros[10]."', telefono = '".$parametros[11]."', cuenta_catastral = '".$parametros[12]."', manzana = '".$parametros[13]."', lote = '".$parametros[14]."', servicios_existentes = '".$parametros[15]."' WHERE id = $parametros[1]";
 
 	$result = querys($sql);
 
