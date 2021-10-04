@@ -45,6 +45,7 @@
 			}else{
 				$mensaje = "error4";
 			}
+			break;
 	}
 
 
