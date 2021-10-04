@@ -22,6 +22,7 @@ include('../../model/solicitud/fill.php');
     if($expediente['tipo_persona'])
     {
         $datos_pmoral = fill_datos_generales($expediente['id_persona'],$expediente['tipo_persona']);
+        $datos_pmoral["fecha_constitucion"] = date("d/m/Y", strtotime($datos_pmoral["fecha_constitucion"]));
         $datos_pfisica["id"] = "";
         $datos_pfisica["nombre"] = "";
         $datos_pfisica["calle"] = "";
@@ -59,7 +60,7 @@ include('../../model/solicitud/fill.php');
         $datos_pmoral["c_p"] = "";
         $datos_pmoral["telefono"] = "";
         $datos_pmoral["email"] = "";
-    }    
+    }
     $establecimiento = fill_establecimiento_separado($expediente['id_dg_establecimiento']);
     $dimensiones = fill_dimensiones($expediente['id_dimensiones_establecimiento']);
     $folio_str = str_replace(array("/", " ",":"),array("-","-","-"),$expediente['folio']);
@@ -130,7 +131,7 @@ $html_1 = '
                                     <td align="center" bgcolor="#d9d9d9" style="font-size: 8px;">FOLIO NO.</td>
                                 </tr>
                                 <tr>
-                                    <td align="center" class="border_b" style="font-size: 9px;">'.$fecha_ingreso['recibido'].'</td>
+                                    <td align="center" class="border_b" style="font-size: 9px;">'.$recibido.'</td>
                                     <td align="center" class="border_b" style="font-size: 9px;">'.$expediente['folio'].'</td>
                                 </tr>
                             </table>     
@@ -348,7 +349,7 @@ $html_1 = '
                 <table>
                     <tr>
                         <td width="12.5%">ENTRE LAS CALLES:</td>
-                        <td width="87.5%" class="border_b"></td>
+                        <td width="87.5%" class="border_b"> '.$establecimiento['entre_calles'].'</td>
                     </tr>
                 </table>
             </td> 
