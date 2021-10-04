@@ -30,6 +30,7 @@
 		<link rel="stylesheet" href="assets/css/daterangepicker.min.css" />
 		<link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="assets/css/bootstrap-colorpicker.min.css" />
+		<link rel="stylesheet" href="assets/css/bootstrap-treeview.css" />
 
 		<link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1549984893" />
 
@@ -254,6 +255,7 @@
 		<script src="assets/js/wizard.min.js"></script>
 		<script src="assets/js/jquery.gritter.min.js"></script>
 		<script src="assets/js/bootstrap-load.js"></script>
+		<script src="assets/js/bootstrap-treeview.js"></script>
 
 
 
@@ -1065,6 +1067,7 @@
 	                        $(this).removeClass("sinborde");
 	                        document.getElementById('boton_actualiza').style.display = 'inline';
 	                        //document.getElementById('elimina_file').style.display = 'inline';
+	                        document.getElementById('btn_re').style.display = 'inline';
 	                    
 	                    }else{
 	                    	console.log("estaban editables");
@@ -1072,6 +1075,7 @@
 	                       	$(this).addClass("sinborde");
 	                       	document.getElementById('boton_actualiza').style.display = 'none';
 	                       	//document.getElementById('elimina_file').style.display = 'none';
+	                       	document.getElementById('btn_re').style.display = 'none';
 	                    }
 	                });
 
@@ -1104,6 +1108,49 @@
 	                });
 
 	            });
+	        }
+
+	        function revivir_sol(id_sol){
+	        	swal({
+	        		title: "Guardar",
+				  	text: "¿Desea reiniciar la solicutud?",
+				  	icon: "info",
+				 	buttons: ["Cancelar", "Ok"],
+				  	dangerMode: true,
+	        	}).then((willDelete) =>{
+	        		if (willDelete) {
+	        			var data = {
+							'parametros' : id_sol,
+							'etapa' : "re",
+						}
+						$.ajax({
+							data:  data,
+							url:   './model/solicitud/reinicia_solicitud.php',
+							type:  'post', 
+
+							success:  function (data) {
+							
+								if (data==='correcto'){
+									swal({
+									  title: "¡Datos actualizados correctamente!",
+									  icon: "success",
+									});
+									location.reload();
+								}
+
+								if (data==='error'){
+									swal({
+									  title: "¡Error!",
+									  text: "¡Ocurrio algo al actualizar",
+									  icon: "error",
+									});
+								}
+							}
+						});
+	        		} else{
+	        			//swal("¡Cancelado!", "No se han hecho cambios la solicitud", "error");
+	        		}
+	        	});
 	        }
 
 	        function reinicia_solicitud(id_sol,tipo_persona,origen,etapa_new){
@@ -1657,30 +1704,123 @@
 		        }
 			}
 
-			//esto es para agregarlos a manita con un botón
+			function getTree(id) {
+				var folio_exp = $('#folio_ruta').val();
+				$.ajax({
+		            type:'POST',
+		            url:'./model/solicitud/get_docs.php',
+		            dataType: "json",
+		            data:{id:id},
+		            success:function(data){
+		            	for(var i=0; i<data.length; i++){
+							var datadiv = data[i].split(",", 3);
+                            var tipo = datadiv[0];
+                            var archivo = datadiv[1];
+                            var carpeta = "";
+		                    
+		                    switch (tipo) {
+								case 'd':
+									console.log("d");
+									tree[0].nodes.push(
+									{
+										text: archivo,
+										icon: "fa fa-file-pdf-o",
+										color: "#FF892A",
+										href: "/assets/expedientes/"+folio_exp+"/docs/"+carpeta+"/"+archivo+"",
+										tags: ['<i class="fa fa-times"></i>']
+									});
+								break;
+								case 'p':
+								console.log("p");
+									tree[1].nodes.push(
+									{
+										text: archivo,
+										icon: "fa fa-file-pdf-o",
+										color: "#FF892A",
+										href: "/assets/expedientes/"+folio_exp+"/docs/"+carpeta+"/"+archivo+"",
+										tags: ['<i class="fa fa-times"></i>']
+									});
 
-			function agregar_elemento(){
-				// console.log("holi");
-				var list_docs = "<li class=tree-item role=treeitem><span class=tree-item-name><span class=tree-label><a href=inicio.php><i class=ace-icon fa fa-file blue></i>&nbsp;Nombre del arhivo</a></span></span></li>";
-				var boxc = $("#here");
 
-				$(list_docs).appendTo(boxc);
+								break;
+								case 'a':
+									console.log("a");
+									tree[2].nodes.push(
+									{
+										text: archivo,
+										icon: "fa fa-file-pdf-o",
+										color: "#FF892A",
+										href: "/assets/expedientes/"+folio_exp+"/docs/"+carpeta+"/"+archivo+"",
+										tags: ['<i class="fa fa-times"></i>']
+									});
 
-				var arboles = document.getElementsByClassName("tree-branch");
-					$(arboles[1]).append(list_docs);				
+								break;
+							}
+						}
+					}
+			    });
+			 
+				var tree = [
+				  	{
+					    text: "Documentación",
+					    icon: "fa fa-folder",
+						selectedIcon: "fa fa-folder-open",
+						color: "#FF892A",
+						selectable: true,
+						state: {
+						    expanded: false
+						},						
+						nodes: []
+					},
+					{
+						text: "Pagos",
+					    icon: "fa fa-folder",
+						selectedIcon: "fa fa-folder-open",
+						color: "#DD5A43",
+						selectable: true,
+						state: {
+						    expanded: true
+						},						
+						nodes: []
+					},
+					{
+						text: "Anexos",
+					    icon: "fa fa-folder",
+						selectedIcon: "fa fa-folder-open",
+						color: "#478FCA",
+						selectable: true,
+						state: {
+						    expanded: true
+						},						
+						nodes: []
+					},
+					{
+					    text: "Mapa",
+					    icon: "fa fa-file-image-o",
+					    color: "#69AA46"
+					}
+				];
+				
 
-					// for(var i= 1; i<4; i++){
-					// 	var si = $(arboles[i]).has("ul").append(list_docs);
-			
-					// 	console.log(si);
-					// }				
+			 	return tree;
 			}
+
+			function carga_arbol(id){
+				$('#tree_new').treeview({
+					data: getTree(id),
+					showTags: true,
+					enableLinks: true
+				});
+			}
+
+			
 
 			//esta es la función que viene del ace min
 			function documentacion(id){
+				
 				var folio_exp = $('#folio_ruta').val();
 				jQuery(function($){
-					 $.ajax({
+					$.ajax({
 			            type:'POST',
 			            url:'./model/solicitud/get_docs.php',
 			            dataType: "json",
