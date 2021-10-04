@@ -10,7 +10,8 @@
 	$expediente = fill_expediente($id);
 	$num_of = $expediente['solicita_noficial'];
 	$rechaz_btn = '<button type="button" class="btn btn-danger" onclick="actualiza_status('.$id.',2,0,0);"><i class="fa fa-ban"></i>&nbsp;Rechazar Solicitud</button>';
-	$aprob_btn = '<button type="button" class="btn btn-success" onclick="actualiza_status('.$id.',1,0,0);"><i class="fa fa-check"></i>&nbsp;Aprobar Solicitud</button>';	
+	$aprob_btn = '<button type="button" class="btn btn-success" onclick="actualiza_status('.$id.',1,0,0);"><i class="fa fa-check"></i>&nbsp;Aprobar Solicitud</button>';
+	$reinicia_btn = '<button id="btn_re" name="btn_re" type="button" class="btn btn-danger" style="display: none" onclick="revivir_sol('.$id.');"><i class="fa fa-refresh"></i>&nbsp;Reiniciar Solicitud</button>';
 
 	if (($pantalla == 1 && $etapa == 2) || ($pantalla == 1 && $etapa == 3) || ($pantalla == 2 && $etapa == 3) || ($pantalla == 1 && $etapa == 4) || ($pantalla == 1 && $etapa == 5) || ($pantalla == 1 && $etapa == 6) || $etapa == 7 ) {
 		
@@ -111,28 +112,28 @@
 				
 							<ul id="inbox-tabs" class="nav nav-tabs padding-16 tab-size-bigger tab-space-1">
 								<li class="active">
-									<a data-toggle="tab" href="#datos" onclick="reinicia_solicitud(<?=$id;?>,<?=$expediente['tipo_persona'];?>,'pestana',1)">
+									<a data-toggle="tab" href="#datos" onclick="reinicia_solicitud(<?=$expediente['id_persona'];?>,<?=$expediente['tipo_persona'];?>,'pestana',1)">
 										<i class="blue ace-icon fa fa-user bigger-130"></i>
 										<span class="hid_spa">Datos Generales</span>
 									</a>
 								</li>
 
 								<li>
-									<a data-toggle="tab" href="#establecimiento" onclick="reinicia_solicitud(<?=$id;?>,<?=$expediente['tipo_persona'];?>,'pestana',2)">
+									<a data-toggle="tab" href="#establecimiento" onclick="reinicia_solicitud(<?=$expediente['id_dg_establecimiento'];?>,<?=$expediente['tipo_persona'];?>,'pestana',2)">
 										<i class="green ace-icon fa fa-info-circle bigger-130"></i>
 										<span class="hid_spa">Datos del establecimiento</span>
 									</a>
 								</li>
 
 								<li>
-									<a data-toggle="tab" href="#dimensiones" onclick="reinicia_solicitud(<?=$id;?>,<?=$expediente['tipo_persona'];?>,'pestana',3)">
+									<a data-toggle="tab" href="#dimensiones" onclick="reinicia_solicitud(<?=$expediente['id_dimensiones_establecimiento'];?>,<?=$expediente['tipo_persona'];?>,'pestana',3)">
 										<i class="red ace-icon fa fa-building bigger-130"></i>
 										<span class="hid_spa">Dimensiones del establecimento</span>
 									</a>
 								</li>
 
 								<li>
-									<a data-toggle="tab" href="#documentos" onclick="reinicia_solicitud(<?=$id;?>,<?=$expediente['tipo_persona'];?>,'pestana',4)">
+									<a data-toggle="tab" href="#documentos" onclick="reinicia_solicitud(carga_arbol(<?=$id;?>)">
 										<i class="orange ace-icon fa fa-folder-open bigger-130"></i>
 										<span class="hid_spa">Documentación</span>
 									</a>
@@ -413,6 +414,7 @@
 
 											<div class="col-xs-12">
 												<div class="widget-body">
+													<div id="tree_new"></div>
 													<div class="widget-main padding-8">
 														<ul id="tree2"></ul>
 													</div>
@@ -436,6 +438,7 @@
 				<?= $orden_btn; ?>
 				<?= $aprob_btn; ?>
 				<?= $rechaz_btn; ?>
+				<?= $reinicia_btn; ?>
 				
 			</div>
 
