@@ -1153,40 +1153,46 @@
 	        	});
 	        }
 
-	        function reinicia_solicitud(id_sol,tipo_persona,origen,etapa_new){
+	        function new_step(paso_new){
+	        	document.getElementById("paso_actual").value=paso_new;
+	        }
+
+	        function reinicia_solicitud(tipo_persona,origen,id_persona,id_dg_establecimiento,id_dimensiones_establecimiento){
 	        	if(document.getElementById('boton_actualiza').style.display == 'inline'){
 	        		var titulo="";
 					var texto="";
 	        		var form="";
 	        		var etapa_set="";
-	        		var paso_new="";
+	        		var id_form_etapa="";
 	        		var etapa = document.getElementById("paso_actual").value;
 
 	        		if(origen=="boton")
 					{
 						titulo="Guardar";
 						texto="¿Desea guardar la Información?";
-						paso_new=etapa;
 					} else{
 						titulo="Antes de continuar";
 						texto="¿Desea guardar la Información?";
-						paso_new=etapa_new;
 					}
 
 	        		switch (etapa) {									  	
 					  	case "1":
 					  		form = "form_edit_dg";	
-					  		etapa_set = "dg";							
+					  		etapa_set = "dg";
+					  		id_form_etapa = id_persona;
+
 					    break;
 
 					  	case "2":
 					    	form = "form_edit_de";
-					    	etapa_set = "de";					
+					    	etapa_set = "de";
+					    	id_form_etapa = id_dg_establecimiento;				
 				    	break;
 
 					  	case "3":
 					    	form = "form_edit_dim";
-					    	etapa_set = "dim";						
+					    	etapa_set = "dim";
+					    	id_form_etapa = id_dimensiones_establecimiento;				
 				    	break;
 					}
 
@@ -1194,7 +1200,7 @@
 					var formdata = new FormData(myform);
 					var datos_form = [];
 					datos_form.push(tipo_persona);
-					datos_form.push(id_sol);
+					datos_form.push(id_form_etapa);
 
 					for (var value of formdata.values()) {
 						datos_form.push(value);
@@ -1224,7 +1230,6 @@
 										  title: "¡Datos actualizados correctamente!",
 										  icon: "success",
 										});
-										document.getElementById("paso_actual").value=paso_new;
 									}
 
 									if (data==='error'){
@@ -1702,10 +1707,53 @@
 		                 else $('#form-field-select-4').removeClass('tag-input-style');
 		            });            
 		        }
-			}
+			}			
 
-			function getTree(id) {
+			function carga_arbol(id){
+
 				var folio_exp = $('#folio_ruta').val();
+				var tree = [
+				  	{
+					    text: "Documentación",
+					    icon: "fa fa-folder",
+						selectedIcon: "fa fa-folder-open",
+						color: "#FF892A",
+						selectable: true,
+						state: {
+						    expanded: false
+						},						
+						nodes: []
+					},
+					{
+						text: "Pagos",
+					    icon: "fa fa-folder",
+						selectedIcon: "fa fa-folder-open",
+						color: "#DD5A43",
+						selectable: true,
+						state: {
+						    expanded: true
+						},						
+						nodes: []
+					},
+					{
+						text: "Anexos",
+					    icon: "fa fa-folder",
+						selectedIcon: "fa fa-folder-open",
+						color: "#478FCA",
+						selectable: true,
+						state: {
+						    expanded: true
+						},						
+						nodes: []
+					},
+					{
+					    text: "Mapa",
+					    icon: "fa fa-file-image-o",
+					    color: "#69AA46"
+					}
+				];
+
+
 				$.ajax({
 		            type:'POST',
 		            url:'./model/solicitud/get_docs.php',
@@ -1759,55 +1807,13 @@
 						}
 					}
 			    });
-			 
-				var tree = [
-				  	{
-					    text: "Documentación",
-					    icon: "fa fa-folder",
-						selectedIcon: "fa fa-folder-open",
-						color: "#FF892A",
-						selectable: true,
-						state: {
-						    expanded: false
-						},						
-						nodes: []
-					},
-					{
-						text: "Pagos",
-					    icon: "fa fa-folder",
-						selectedIcon: "fa fa-folder-open",
-						color: "#DD5A43",
-						selectable: true,
-						state: {
-						    expanded: true
-						},						
-						nodes: []
-					},
-					{
-						text: "Anexos",
-					    icon: "fa fa-folder",
-						selectedIcon: "fa fa-folder-open",
-						color: "#478FCA",
-						selectable: true,
-						state: {
-						    expanded: true
-						},						
-						nodes: []
-					},
-					{
-					    text: "Mapa",
-					    icon: "fa fa-file-image-o",
-					    color: "#69AA46"
-					}
-				];
-				
 
-			 	return tree;
+				show_tree(tree);				
 			}
 
-			function carga_arbol(id){
+			function show_tree(tree){
 				$('#tree_new').treeview({
-					data: getTree(id),
+					data: tree,
 					showTags: true,
 					enableLinks: true
 				});
