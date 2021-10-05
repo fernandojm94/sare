@@ -219,7 +219,7 @@
 
 													<div class="profile-info-value">
 														<i class="fa fa-user blue bigger-110"></i>&nbsp;
-														<input id="dg0" name="dg0" type="text" class="sinborde" name="" value="<?=$datos_generales['nombre'];?>" disabled size="50">
+														<input id="dg0" name="dg0" type="text" class="sinborde"  value="<?=$datos_generales['nombre'];?>" disabled size="50">
 													</div>
 												</div>
 
@@ -234,31 +234,31 @@
 
 															<div>
 																<label class="input-sizer">
-																	<input onInput="this.parentNode.dataset.value = this.value" id="dg1" name="dg1" type="text" class="sinborde" name="" value="<?=$datos_generales['calle'];?>" placeholder="Calle" disabled size="1">
+																	<input onInput="inputs_width(this);" id="dg1" name="dg1" type="text" class="sinborde"  value="<?=$datos_generales['calle'];?>" placeholder="Calle" disabled size="1">
 																</label>
 
 																<label class="input-sizer">
-																	<input onInput="this.parentNode.dataset.value = this.value" id="dg2" name="dg2" type="text" class="sinborde" name="" value="<?=$datos_generales['no_exterior'];?>" placeholder="No. Ext." disabled size="1">
+																	<input onInput="inputs_width(this)" id="dg2" name="dg2" type="text" class="sinborde"  value="<?=$datos_generales['no_exterior'];?>" placeholder="No. Ext." disabled size="1">
 																</label>
 
 																<label class="input-sizer">
-																	<input onInput="this.parentNode.dataset.value = this.value" id="dg3" name="dg3" type="text" class="sinborde" name="" value="<?=$datos_generales['no_interior'];?>" placeholder="No. Int." disabled size="1">
+																	<input onInput="inputs_width(this)" id="dg3" name="dg3" type="text" class="sinborde"  value="<?=$datos_generales['no_interior'];?>" placeholder="No. Int." disabled size="1">
 																</label>
 
 																<label class="input-sizer">
-																	<input onInput="this.parentNode.dataset.value = this.value" id="dg4" name="dg4" type="text" class="sinborde" name="" value="<?=$datos_generales['colonia'];?>" placeholder="Colonia" disabled size="1">
+																	<input onInput="inputs_width(this)" id="dg4" name="dg4" type="text" class="sinborde"  value="<?=$datos_generales['colonia'];?>" placeholder="Colonia" disabled size="1">
 																</label>
 
 																<label class="input-sizer">
-																	<input onInput="this.parentNode.dataset.value = this.value" id="dg5" name="dg5" type="text" class="sinborde" name="" value="<?=$datos_generales['municipio'];?>" placeholder="Municipio" disabled size="1">
+																	<input onInput="inputs_width(this)" id="dg6" name="dg6" type="text" class="sinborde"  value="<?=$datos_generales['localidad'];?>" placeholder="Localidad" disabled size="1">
 																</label>
 
 																<label class="input-sizer">
-																	<input onInput="this.parentNode.dataset.value = this.value" id="dg6" name="dg6" type="text" class="sinborde" name="" value="<?=$datos_generales['localidad'];?>" placeholder="Localidad" disabled size="1">
+																	<input onInput="inputs_width(this)" id="dg5" name="dg5" type="text" class="sinborde"  value="<?=$datos_generales['municipio'];?>" placeholder="Municipio" disabled size="1">
 																</label>
 
 																<label class="input-sizer">
-																	<input onfocus="this.parentNode.dataset.value = this.value" onInput="this.parentNode.dataset.value = this.value" id="dg7" name="dg7" type="text" class="sinborde" name="" value="<?=$datos_generales['c_p'];?>" placeholder="CP" disabled size="1"> 
+																	<input onInput="inputs_width(this)" id="dg7" name="dg7" type="text" class="sinborde"  value="<?=$datos_generales['c_p'];?>" placeholder="CP" disabled size="1"> 
 																</label>
 															</div>
 														</div>
@@ -270,7 +270,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-user blue bigger-110"></i>&nbsp;
-														<input id="dg8" name="dg8" type="text" class="sinborde" name="" value="<?=$datos_generales['rfc'];?>" disabled size="50">
+														<input id="dg8" name="dg8" type="text" class="sinborde"  value="<?=$datos_generales['rfc'];?>" disabled size="50">
 													</div>
 												</div>
 
@@ -279,7 +279,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-user blue bigger-110"></i>&nbsp;
-														<input id="dg9" name="dg9" type="text" class="sinborde" name="" value="<?=$datos_generales['curp'];?>" disabled size="50">
+														<input id="dg9" name="dg9" type="text" class="sinborde"  value="<?=$datos_generales['curp'];?>" disabled size="50">
 													</div>
 												</div>									
 
@@ -288,7 +288,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-phone blue bigger-110"></i>&nbsp;
-														<input id="dg10" name="dg10" type="text" class="sinborde" name="" value="<?=$datos_generales['telefono'];?>" disabled size="50">
+														<input id="dg10" name="dg10" type="text" class="sinborde"  value="<?=$datos_generales['telefono'];?>" disabled size="50">
 													</div>
 												</div>
 
@@ -297,7 +297,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-envelope blue bigger-110"></i>&nbsp;
-														<input id="dg11" name="dg11" type="text" class="sinborde" name="" value="<?=$datos_generales['email'];?>" disabled size="50">
+														<input id="dg11" name="dg11" type="text" class="sinborde"  value="<?=$datos_generales['email'];?>" disabled size="50">
 													</div>
 												</div>
 											</div>
@@ -321,7 +321,7 @@
 
 													<div class="profile-info-value">
 														<i class="fa fa-user green bigger-110"></i>&nbsp;
-														<input id="de0" name="de0" type="text" class="sinborde" name="" value="<?=$establecimiento['nombre_comercial'];?>" disabled size="50">
+														<input id="de0" name="de0" type="text" class="sinborde"  value="<?=$establecimiento['nombre_comercial'];?>" disabled size="50">
 													</div>
 												</div>
 
@@ -336,25 +336,25 @@
 
 															<div>
 																<label class="input-sizer">
-																	<input onInput="this.parentNode.dataset.value = this.value" id="de1" name="de1" type="text" class="sinborde" name="" value="<?=$establecimiento['calle'];?>" disabled size="1">
+																	<input onInput="inputs_width(this)" id="de1" name="de1" type="text" class="sinborde"  value="<?=$establecimiento['calle'];?>" disabled placeholder="Calle" size="1">
 																</label>
 																<label class="input-sizer">
-																	<input onInput="this.parentNode.dataset.value = this.value" id="de2" name="de2" type="text" class="sinborde" name="" value="<?=$establecimiento['no_exterior'];?>" disabled size="1">
+																	<input onInput="inputs_width(this)" id="de2" name="de2" type="text" class="sinborde"  value="<?=$establecimiento['no_exterior'];?>" disabled placeholder="No. Ext." size="1">
 																</label>
 																<label class="input-sizer">
-																	<input onInput="this.parentNode.dataset.value = this.value" id="de3" name="de3" type="text" class="sinborde" name="" value="<?=$establecimiento['no_interior'];?>" disabled size="1">
+																	<input onInput="inputs_width(this)" id="de3" name="de3" type="text" class="sinborde"  value="<?=$establecimiento['no_interior'];?>" disabled placeholder="No. Int." size="1">
 																</label>
 																<label class="input-sizer">
-																	<input onInput="this.parentNode.dataset.value = this.value" id="de4" name="de4" type="text" class="sinborde" name="" value="<?=$establecimiento['colonia'];?>" disabled size="1">
+																	<input onInput="inputs_width(this)" id="de4" name="de4" type="text" class="sinborde"  value="<?=$establecimiento['colonia'];?>" disabled placeholder="Colonia" size="1">
 																</label>
 																<label class="input-sizer">
-																	<input onInput="this.parentNode.dataset.value = this.value" id="de5" name="de5" type="text" class="sinborde" name="" value="<?=$establecimiento['municipio'];?>" disabled size="1">
+																	<input onInput="inputs_width(this)" id="de6" name="de6" type="text" class="sinborde"  value="<?=$establecimiento['localidad'];?>" disabled placeholder="Localidad" size="1">
 																</label>
 																<label class="input-sizer">
-																	<input onInput="this.parentNode.dataset.value = this.value" id="de6" name="de6" type="text" class="sinborde" name="" value="<?=$establecimiento['localidad'];?>" disabled size="1">
+																	<input onInput="inputs_width(this)" id="de5" name="de5" type="text" class="sinborde"  value="<?=$establecimiento['municipio'];?>" disabled placeholder="Municipio" size="1">
 																</label>
 																<label class="input-sizer">
-																	<input onInput="this.parentNode.dataset.value = this.value" id="de7" name="de7" type="text" class="sinborde" name="" value="<?=$establecimiento['cp'];?>" disabled size="1">
+																	<input onInput="inputs_width(this)" id="de7" name="de7" type="text" class="sinborde"  value="<?=$establecimiento['cp'];?>" disabled placeholder="CP" size="1">
 																</label>
 															</div>
 														</div>	
@@ -376,7 +376,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-clock-o green bigger-110"></i>&nbsp;
-														<input id="de8" name="de8" type="text" class="sinborde" name="" value="<?=$establecimiento['horario_trabajo'];?>" disabled size="50">
+														<input id="de8" name="de8" type="text" class="sinborde"  value="<?=$establecimiento['horario_trabajo'];?>" disabled size="50">
 													</div>
 												</div>
 
@@ -385,7 +385,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-building green bigger-110"></i>&nbsp;
-														<input id="de9" name="de9" type="text" class="sinborde" name="" value="<?=$establecimiento['uso_actual'];?>" disabled size="50">
+														<input id="de9" name="de9" type="text" class="sinborde"  value="<?=$establecimiento['uso_actual'];?>" disabled size="50">
 													</div>
 												</div>									
 
@@ -394,7 +394,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-phone green bigger-110"></i>&nbsp;
-														<input id="de10" name="de10" type="text" class="sinborde" name="" value="<?=$establecimiento['telefono'];?>" disabled size="50">
+														<input id="de10" name="de10" type="text" class="sinborde"  value="<?=$establecimiento['telefono'];?>" disabled size="50">
 													</div>
 												</div>
 
@@ -403,7 +403,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-map-marker green bigger-110"></i>&nbsp;
-														<input id="de11" name="de11" type="text" class="sinborde" name="" value="<?=$establecimiento['cuenta_catastral'];?>" disabled size="50">
+														<input id="de11" name="de11" type="text" class="sinborde"  value="<?=$establecimiento['cuenta_catastral'];?>" disabled size="50">
 													</div>
 												</div>
 
@@ -412,7 +412,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-map-marker green bigger-110"></i>&nbsp;
-														<input id="de12" name="de12" type="text" class="sinborde" name="" value="<?=$establecimiento['manzana'];?>" disabled size="50">
+														<input id="de12" name="de12" type="text" class="sinborde"  value="<?=$establecimiento['manzana'];?>" disabled size="50">
 													</div>
 												</div>
 
@@ -421,7 +421,9 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-cogs green bigger-110"></i>&nbsp;
-														<input id="de13" name="de13" type="text" class="sinborde" name="" value="<?=$establecimiento['servicios_existentes'];?>" disabled size="50">
+														<label class="input-sizer">
+															<input id="de13" name="de13" type="text" class="sinborde"  value="<?=$establecimiento['servicios_existentes'];?>" disabled>
+														</label>	
 													</div>
 												</div>
 											</form>
@@ -445,7 +447,7 @@
 
 													<div class="profile-info-value">
 														<i class="fa fa-map-marker red bigger-110"></i>&nbsp;
-														<input id="dim0" name="dim0" type="text" class="sinborde" name="" value="<?=$dimensiones['frente'];?>" disabled size="2"><span>mts</span>
+														<input id="dim0" name="dim0" type="text" class="sinborde"  value="<?=$dimensiones['frente'];?>" disabled size="2"><span>mts</span>
 													</div>
 												</div>
 
@@ -454,7 +456,7 @@
 
 													<div class="profile-info-value">
 														<i class="fa fa-map-marker red bigger-110"></i>&nbsp;
-														<input id="dim1" name="dim1" type="text" class="sinborde" name="" value="<?=$dimensiones['fondo'];?>" disabled size="2"><span>mts</span>
+														<input id="dim1" name="dim1" type="text" class="sinborde"  value="<?=$dimensiones['fondo'];?>" disabled size="2"><span>mts</span>
 													</div>
 												</div>
 
@@ -463,7 +465,7 @@
 
 													<div class="profile-info-value">
 														<i class="fa fa-map-marker red bigger-110"></i>&nbsp;
-														<input id="dim2" name="dim2" type="text" class="sinborde" name="" value="<?=$dimensiones['derecho'];?>" disabled size="2"><span>mts</span>
+														<input id="dim2" name="dim2" type="text" class="sinborde"  value="<?=$dimensiones['derecho'];?>" disabled size="2"><span>mts</span>
 													</div>
 												</div>
 
@@ -472,7 +474,7 @@
 
 													<div class="profile-info-value">
 														<i class="fa fa-map-marker red bigger-110"></i>&nbsp;
-														<input id="dim3" name="dim3" type="text" class="sinborde" name="" value="<?=$dimensiones['izquierdo'];?>" disabled size="2"><span>mts</span>
+														<input id="dim3" name="dim3" type="text" class="sinborde"  value="<?=$dimensiones['izquierdo'];?>" disabled size="2"><span>mts</span>
 													</div>
 												</div>
 
@@ -481,7 +483,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-map-marker red bigger-110"></i>&nbsp;
-														<input id="dim4" name="dim4" type="text" class="sinborde" name="" value="<?=$dimensiones['sup_terreno'];?>" disabled size="2"><span>mts<sup>2</sup></span>
+														<input id="dim4" name="dim4" type="text" class="sinborde"  value="<?=$dimensiones['sup_terreno'];?>" disabled size="2"><span>mts<sup>2</sup></span>
 													</div>
 												</div>
 
@@ -490,7 +492,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-map-marker red bigger-110"></i>&nbsp;
-														<input id="dim5" name="dim5" type="text" class="sinborde" name="" value="<?=$dimensiones['sup_local'];?>" disabled size="2"><span>mts<sup>2</sup></span>
+														<input id="dim5" name="dim5" type="text" class="sinborde"  value="<?=$dimensiones['sup_local'];?>" disabled size="2"><span>mts<sup>2</sup></span>
 													</div>
 												</div>									
 
@@ -499,7 +501,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-home red bigger-110"></i>&nbsp;
-														<input id="dim6" name="dim6" type="text" class="sinborde" name="" value="<?=$dimensiones['cuenta_predial'];?>" disabled size="50">
+														<input id="dim6" name="dim6" type="text" class="sinborde"  value="<?=$dimensiones['cuenta_predial'];?>" disabled size="50">
 													</div>
 												</div>
 											</form>									
