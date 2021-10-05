@@ -1950,6 +1950,15 @@
 				});
 			}
 
+			function inputs_width(element){
+				var valor = element.value;
+				if(valor == ''){
+					element.parentNode.dataset.value = element.placeholder;
+				}else{
+					element.parentNode.dataset.value = element.value;
+				}
+			}
+
 			function input_size(){
 				var inputs = document.getElementsByClassName("sinborde");
 				var largo = inputs.length;
