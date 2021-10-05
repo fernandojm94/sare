@@ -70,6 +70,66 @@
 
 ?>
 <style type="text/css">
+	
+	*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.input-sizer {
+  display: inline-grid;
+  vertical-align: top;
+  align-items: center;
+  position: relative;
+  padding: 0.25em 0.5em;
+  margin: 0px;
+}
+.input-sizer.stacked {
+  padding: 0.5em;
+  align-items: stretch;
+}
+.input-sizer.stacked::after,
+.input-sizer.stacked input,
+.input-sizer.stacked textarea {
+  grid-area: 2/1;
+}
+.input-sizer::after,
+.input-sizer input,
+.input-sizer textarea {
+  width: auto;
+  min-width: 1em;
+  grid-area: 1/2;
+  font: inherit;
+  padding: 0.25em;
+  margin: 0;
+  resize: none;
+  background: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+.input-sizer span {
+  padding: 0.25em;
+}
+.input-sizer::after {
+  content: attr(data-value) " ";
+  visibility: hidden;
+  white-space: pre-wrap;
+}
+.input-sizer:focus-within {
+
+}
+.input-sizer:focus-within > span {
+  color: blue;
+}
+.input-sizer:focus-within textarea:focus,
+.input-sizer:focus-within input:focus {
+  outline: none;
+}
+
+/* ---------------------------------- */
+
 	.sinborde {
 	  border: 0 !important;
 	}
@@ -167,14 +227,41 @@
 													<div class="profile-info-name"> Dirección: </div>
 
 													<div class="profile-info-value">
-														<i class="fa fa-map-marker blue bigger-110"></i>&nbsp;
-														<input id="dg1" name="dg1" type="text" class="sinborde" name="" value="<?=$datos_generales['calle'];?>" disabled size="10">
-														<input id="dg2" name="dg2" type="text" class="sinborde" name="" value="<?=$datos_generales['no_exterior'];?>" disabled size="2">
-														<input id="dg3" name="dg3" type="text" class="sinborde" name="" value="<?=$datos_generales['no_interior'];?>" disabled size="2">
-														<input id="dg4" name="dg4" type="text" class="sinborde" name="" value="<?=$datos_generales['colonia'];?>" disabled size="10">
-														<input id="dg5" name="dg5" type="text" class="sinborde" name="" value="<?=$datos_generales['municipio'];?>" disabled size="10">
-														<input id="dg6" name="dg6" type="text" class="sinborde" name="" value="<?=$datos_generales['localidad'];?>" disabled size="10">
-														<input id="dg7" name="dg7" type="text" class="sinborde" name="" value="<?=$datos_generales['c_p'];?>" disabled size="2">
+														<div style="display: flex;">
+															<div style="align-self: center;">
+																<i class="fa fa-map-marker blue bigger-110"></i>&nbsp;
+															</div>
+
+															<div>
+																<label class="input-sizer">
+																	<input onInput="this.parentNode.dataset.value = this.value" id="dg1" name="dg1" type="text" class="sinborde" name="" value="<?=$datos_generales['calle'];?>" placeholder="Calle" disabled size="1">
+																</label>
+
+																<label class="input-sizer">
+																	<input onInput="this.parentNode.dataset.value = this.value" id="dg2" name="dg2" type="text" class="sinborde" name="" value="<?=$datos_generales['no_exterior'];?>" placeholder="No. Ext." disabled size="1">
+																</label>
+
+																<label class="input-sizer">
+																	<input onInput="this.parentNode.dataset.value = this.value" id="dg3" name="dg3" type="text" class="sinborde" name="" value="<?=$datos_generales['no_interior'];?>" placeholder="No. Int." disabled size="1">
+																</label>
+
+																<label class="input-sizer">
+																	<input onInput="this.parentNode.dataset.value = this.value" id="dg4" name="dg4" type="text" class="sinborde" name="" value="<?=$datos_generales['colonia'];?>" placeholder="Colonia" disabled size="1">
+																</label>
+
+																<label class="input-sizer">
+																	<input onInput="this.parentNode.dataset.value = this.value" id="dg5" name="dg5" type="text" class="sinborde" name="" value="<?=$datos_generales['municipio'];?>" placeholder="Municipio" disabled size="1">
+																</label>
+
+																<label class="input-sizer">
+																	<input onInput="this.parentNode.dataset.value = this.value" id="dg6" name="dg6" type="text" class="sinborde" name="" value="<?=$datos_generales['localidad'];?>" placeholder="Localidad" disabled size="1">
+																</label>
+
+																<label class="input-sizer">
+																	<input onfocus="this.parentNode.dataset.value = this.value" onInput="this.parentNode.dataset.value = this.value" id="dg7" name="dg7" type="text" class="sinborde" name="" value="<?=$datos_generales['c_p'];?>" placeholder="CP" disabled size="1"> 
+																</label>
+															</div>
+														</div>
 													</div>
 												</div>
 
@@ -242,14 +329,35 @@
 													<div class="profile-info-name"> Dirección: </div>
 
 													<div class="profile-info-value">
-														<i class="fa fa-map-marker green bigger-110"></i>&nbsp;
-														<input id="de1" name="de1" type="text" class="sinborde" name="" value="<?=$establecimiento['calle'];?>" disabled size="10">
-														<input id="de2" name="de2" type="text" class="sinborde" name="" value="<?=$establecimiento['no_exterior'];?>" disabled size="2">
-														<input id="de3" name="de3" type="text" class="sinborde" name="" value="<?=$establecimiento['no_interior'];?>" disabled size="2">
-														<input id="de4" name="de4" type="text" class="sinborde" name="" value="<?=$establecimiento['colonia'];?>" disabled size="10">
-														<input id="de5" name="de5" type="text" class="sinborde" name="" value="<?=$establecimiento['municipio'];?>" disabled size="10">
-														<input id="de6" name="de6" type="text" class="sinborde" name="" value="<?=$establecimiento['localidad'];?>" disabled size="10">
-														<input id="de7" name="de7" type="text" class="sinborde" name="" value="<?=$establecimiento['cp'];?>" disabled size="2">
+														<div style="display: flex;">
+															<div style="align-self: center;">
+																<i class="fa fa-map-marker green bigger-110"></i>&nbsp;
+															</div>
+
+															<div>
+																<label class="input-sizer">
+																	<input onInput="this.parentNode.dataset.value = this.value" id="de1" name="de1" type="text" class="sinborde" name="" value="<?=$establecimiento['calle'];?>" disabled size="1">
+																</label>
+																<label class="input-sizer">
+																	<input onInput="this.parentNode.dataset.value = this.value" id="de2" name="de2" type="text" class="sinborde" name="" value="<?=$establecimiento['no_exterior'];?>" disabled size="1">
+																</label>
+																<label class="input-sizer">
+																	<input onInput="this.parentNode.dataset.value = this.value" id="de3" name="de3" type="text" class="sinborde" name="" value="<?=$establecimiento['no_interior'];?>" disabled size="1">
+																</label>
+																<label class="input-sizer">
+																	<input onInput="this.parentNode.dataset.value = this.value" id="de4" name="de4" type="text" class="sinborde" name="" value="<?=$establecimiento['colonia'];?>" disabled size="1">
+																</label>
+																<label class="input-sizer">
+																	<input onInput="this.parentNode.dataset.value = this.value" id="de5" name="de5" type="text" class="sinborde" name="" value="<?=$establecimiento['municipio'];?>" disabled size="1">
+																</label>
+																<label class="input-sizer">
+																	<input onInput="this.parentNode.dataset.value = this.value" id="de6" name="de6" type="text" class="sinborde" name="" value="<?=$establecimiento['localidad'];?>" disabled size="1">
+																</label>
+																<label class="input-sizer">
+																	<input onInput="this.parentNode.dataset.value = this.value" id="de7" name="de7" type="text" class="sinborde" name="" value="<?=$establecimiento['cp'];?>" disabled size="1">
+																</label>
+															</div>
+														</div>	
 													</div>
 												</div>
 
