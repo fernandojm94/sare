@@ -1952,7 +1952,11 @@
 			}
 
 
-			function delete_file(){
+			function delete_file(deleteSpan){
+				var aElement = deleteSpan.previousSibling;
+				var hrefFile = aElement.getAttribute("href");
+				console.info(hrefFile);
+
 				swal({
 					  	title: "Archivo eliminado!",
 					  	icon: "error",
