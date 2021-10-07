@@ -1957,11 +1957,51 @@
 				var hrefFile = aElement.getAttribute("href");
 				console.info(hrefFile);
 
-				swal({
-					  	title: "Archivo eliminado!",
-					  	icon: "error",
-					});
+				var data_split = hrefFile.split("/", 7);
+                var filename = data_split[6];
+                console.log(filename);
+                swal({
+	        		title: "Eliminar archivo",
+				  	text: "¿Desea eliminar este archivo?, no se podrá recuperar.",
+				  	icon: "info",
+				 	buttons: ["Cancelar", "Ok"],
+				  	dangerMode: true,
+	        	}).then((willDelete) =>{
+	        		if (willDelete) {
+	        			var data = {
+							'nombre_archivo' : filename,
+						}
+						$.ajax({
+							data:  data,
+							url:   './model/solicitud/delete_file.php',
+							type:  'post', 
+
+							success:  function (data) {
+							
+								if (data==='correcto'){
+									swal({
+									  title: "¡Datos actualizados correctamente!",
+									  icon: "success",
+									});
+									location.reload();
+								}
+
+								if (data==='error'){
+									swal({
+									  title: "¡Error!",
+									  text: "¡Ocurrio algo al actualizar",
+									  icon: "error",
+									});
+								}
+							}
+						});
+	        		} else{
+	        			swal("¡Cancelado!", "No se han hecho cambios en los archivos", "error");
+	        		}
+	        	});
 			}
+
+
 			function inputs_width(element){
 				var valor = element.value;
 				if(valor == ''){
@@ -1970,6 +2010,7 @@
 					element.parentNode.dataset.value = element.value;
 				}
 			}
+
 
 			function input_size(){
 				var inputs = document.getElementsByClassName("sinborde");
