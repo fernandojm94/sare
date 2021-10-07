@@ -66,6 +66,11 @@
 		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
 
+		<style type="text/css">
+			body{
+				padding: 0 !important;
+			}
+		</style>
 
 	</head>
 
@@ -1081,6 +1086,7 @@
 		                $('#modal_info').modal('show');
 		                //documentacion(id);
 		                switch_editar();
+		                input_size();
 		            }
 		        }
 
@@ -1945,11 +1951,28 @@
 				});
 			}
 
+
 			function delete_file(){
 				swal({
 					  	title: "Archivo eliminado!",
 					  	icon: "error",
 					});
+			}
+			function inputs_width(element){
+				var valor = element.value;
+				if(valor == ''){
+					element.parentNode.dataset.value = element.placeholder;
+				}else{
+					element.parentNode.dataset.value = element.value;
+				}
+			}
+
+			function input_size(){
+				var inputs = document.getElementsByClassName("sinborde");
+				var largo = inputs.length;
+				for(i=0; i < largo; i++){
+					inputs[i].parentNode.dataset.value = inputs[i].value;
+				}
 			}
 
 			function push(){
