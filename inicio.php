@@ -1087,6 +1087,7 @@
 		                //documentacion(id);
 		                switch_editar();
 		                input_size();
+		             
 		            }
 		        }
 
@@ -1205,6 +1206,7 @@
 	        }
 
 	        function reinicia_solicitud(tipo_persona,origen,id_persona,id_dg_establecimiento,id_dimensiones_establecimiento){
+		        
 	        	if(document.getElementById('boton_actualiza').style.display == 'inline'){
 	        		var titulo="";
 					var texto="";
@@ -1293,6 +1295,7 @@
 		        		}
 		        	});
 		        } else{console.log("no pasa nada");}
+
 	        }
 
 			function fill_tabs(li)
@@ -2001,6 +2004,9 @@
 	        	});
 			}
 
+			function toggDelete(){
+				$(".treeDeleteFile").toggle();
+			}
 
 			function inputs_width(element){
 				var valor = element.value;
