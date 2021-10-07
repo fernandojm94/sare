@@ -184,6 +184,7 @@
 						Municipio de Jesús María 2019 - 2021
 					</span>
 
+
 					&nbsp; &nbsp;
 					<span class="action-buttons">
 					</span>
@@ -287,6 +288,7 @@
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
 			jQuery(function($) {
+				
 				setTimeout(function() {
 					$($('.tableTools-container')).find('a.dt-button').each(function() {
 						var div = $(this).find(' > div').first();
@@ -873,6 +875,46 @@
 		</script>
 
 		<script type="text/javascript">
+			var tree = [
+			  	{
+				    text: "Documentación",
+				    icon: "fa fa-folder",
+					selectedIcon: "fa fa-folder-open",
+					color: "#FF892A",
+					selectable: true,
+					state: {
+					    expanded: true
+					},						
+					nodes: []
+				},
+				{
+					text: "Pagos",
+				    icon: "fa fa-folder",
+					selectedIcon: "fa fa-folder-open",
+					color: "#DD5A43",
+					selectable: true,
+					state: {
+					    expanded: true
+					},						
+					nodes: []
+				},
+				{
+					text: "Anexos",
+				    icon: "fa fa-folder",
+					selectedIcon: "fa fa-folder-open",
+					color: "#478FCA",
+					selectable: true,
+					state: {
+					    expanded: true
+					},						
+					nodes: []
+				},
+				{
+				    text: "Mapa",
+				    icon: "fa fa-file-image-o",
+				    color: "#69AA46"
+				}
+			];
 
 		    function fill_modal_comp_uso(id)
 		    {
@@ -1024,7 +1066,6 @@
 		    function fill_modal_info(id, etapa)
 		    {
 		    	var pantalla = $('#pantalla').val();
-		    	console.log(pantalla);
 		        var xmlhttp;
 
 		        if (window.XMLHttpRequest){
@@ -1043,9 +1084,10 @@
 		                document.getElementById("load_modal_info").innerHTML=xmlhttp.responseText;
 		                waitingDialog.hide();
 		                $('#modal_info').modal('show');
-		                documentacion(id);
+		                //documentacion(id);
 		                switch_editar();
 		                input_size();
+		             
 		            }
 		        }
 
@@ -1068,7 +1110,7 @@
 	                $inputs.each(function() {
 
 	                    if ($(this).is('[disabled]')) {
-	                        console.log("estaban disabled");
+	                        //console.log("estaban disabled");
 	                        $(this).prop("disabled", false);
 	                        $(this).removeClass("sinborde");
 	                        document.getElementById('boton_actualiza').style.display = 'inline';
@@ -1076,7 +1118,7 @@
 	                        document.getElementById('btn_re').style.display = 'inline';
 	                    
 	                    }else{
-	                    	console.log("estaban editables");
+	                    	//console.log("estaban editables");
 	                       	$(this).prop("disabled",true);
 	                       	$(this).addClass("sinborde");
 	                       	document.getElementById('boton_actualiza').style.display = 'none';
@@ -1088,12 +1130,12 @@
 	                $inputs2.each(function() {
 
 	                    if ($(this).is('[disabled]')) {
-	                        console.log("estaban disabled2");
+	                        //console.log("estaban disabled2");
 	                        $(this).prop("disabled", false);
 	                        $(this).removeClass("sinborde");
 	                    
 	                    }else{
-	                    	console.log("estaban editables2");
+	                    	//console.log("estaban editables2");
 	                       	$(this).prop("disabled",true);
 	                       	$(this).addClass("sinborde");
 	                    }
@@ -1102,12 +1144,12 @@
 	                $inputs3.each(function() {
 
 	                    if ($(this).is('[disabled]')) {
-	                        console.log("estaban disabled2");
+	                        //console.log("estaban disabled2");
 	                        $(this).prop("disabled", false);
 	                        $(this).removeClass("sinborde");
 	                    
 	                    }else{
-	                    	console.log("estaban editables2");
+	                    	//console.log("estaban editables2");
 	                       	$(this).prop("disabled",true);
 	                       	$(this).addClass("sinborde");
 	                    }
@@ -1164,6 +1206,7 @@
 	        }
 
 	        function reinicia_solicitud(tipo_persona,origen,id_persona,id_dg_establecimiento,id_dimensiones_establecimiento){
+		        
 	        	if(document.getElementById('boton_actualiza').style.display == 'inline'){
 	        		var titulo="";
 					var texto="";
@@ -1252,6 +1295,7 @@
 		        		}
 		        	});
 		        } else{console.log("no pasa nada");}
+
 	        }
 
 			function fill_tabs(li)
@@ -1717,48 +1761,7 @@
 
 			function carga_arbol(id){
 
-				var folio_exp = $('#folio_ruta').val();
-				var tree = [
-				  	{
-					    text: "Documentación",
-					    icon: "fa fa-folder",
-						selectedIcon: "fa fa-folder-open",
-						color: "#FF892A",
-						selectable: true,
-						state: {
-						    expanded: false
-						},						
-						nodes: []
-					},
-					{
-						text: "Pagos",
-					    icon: "fa fa-folder",
-						selectedIcon: "fa fa-folder-open",
-						color: "#DD5A43",
-						selectable: true,
-						state: {
-						    expanded: true
-						},						
-						nodes: []
-					},
-					{
-						text: "Anexos",
-					    icon: "fa fa-folder",
-						selectedIcon: "fa fa-folder-open",
-						color: "#478FCA",
-						selectable: true,
-						state: {
-						    expanded: true
-						},						
-						nodes: []
-					},
-					{
-					    text: "Mapa",
-					    icon: "fa fa-file-image-o",
-					    color: "#69AA46"
-					}
-				];
-
+				var folio_exp = $('#folio_ruta').val();			
 
 				$.ajax({
 		            type:'POST',
@@ -1774,37 +1777,37 @@
 		                    
 		                    switch (tipo) {
 								case 'd':
-									console.log("d");
+									
 									tree[0].nodes.push(
 									{
 										text: archivo,
 										icon: "fa fa-file-pdf-o",
 										color: "#FF892A",
-										href: "/assets/expedientes/"+folio_exp+"/docs/"+carpeta+"/"+archivo+"",
+										href: "/assets/expedientes/"+folio_exp+"/docs/documentacion/"+archivo+"",
 										tags: ['<i class="fa fa-times"></i>']
 									});
 								break;
 								case 'p':
-								console.log("p");
+								
 									tree[1].nodes.push(
 									{
 										text: archivo,
 										icon: "fa fa-file-pdf-o",
-										color: "#FF892A",
-										href: "/assets/expedientes/"+folio_exp+"/docs/"+carpeta+"/"+archivo+"",
+										color: "#DD5A43",
+										href: "/assets/expedientes/"+folio_exp+"/docs/pagos/"+archivo+"",
 										tags: ['<i class="fa fa-times"></i>']
 									});
 
 
 								break;
 								case 'a':
-									console.log("a");
+									
 									tree[2].nodes.push(
 									{
 										text: archivo,
 										icon: "fa fa-file-pdf-o",
-										color: "#FF892A",
-										href: "/assets/expedientes/"+folio_exp+"/docs/"+carpeta+"/"+archivo+"",
+										color: "#478FCA",
+										href: "/assets/expedientes/"+folio_exp+"/docs/anexos/"+archivo+"",
 										tags: ['<i class="fa fa-times"></i>']
 									});
 
@@ -1813,19 +1816,20 @@
 						}
 					}
 			    });
-
-				show_tree(tree);				
+				
+				setTimeout(show_tree, 500, tree);
 			}
 
 			function show_tree(tree){
+				
 				$('#tree_new').treeview({
 					data: tree,
 					showTags: true,
 					enableLinks: true
 				});
-			}
 
-			
+				console.log($('#tree_new').treeview('getNode', 5));
+			}			
 
 			//esta es la función que viene del ace min
 			function documentacion(id){
@@ -1950,6 +1954,60 @@
 				});
 			}
 
+
+			function delete_file(deleteSpan){
+				var aElement = deleteSpan.previousSibling;
+				var hrefFile = aElement.getAttribute("href");
+				console.info(hrefFile);
+
+				var data_split = hrefFile.split("/", 7);
+                var filename = data_split[6];
+                console.log(filename);
+                swal({
+	        		title: "Eliminar archivo",
+				  	text: "¿Desea eliminar este archivo?, no se podrá recuperar.",
+				  	icon: "info",
+				 	buttons: ["Cancelar", "Ok"],
+				  	dangerMode: true,
+	        	}).then((willDelete) =>{
+	        		if (willDelete) {
+	        			var data = {
+							'nombre_archivo' : filename,
+						}
+						$.ajax({
+							data:  data,
+							url:   './model/solicitud/delete_file.php',
+							type:  'post', 
+
+							success:  function (data) {
+							
+								if (data==='correcto'){
+									swal({
+									  title: "¡Datos actualizados correctamente!",
+									  icon: "success",
+									});
+									location.reload();
+								}
+
+								if (data==='error'){
+									swal({
+									  title: "¡Error!",
+									  text: "¡Ocurrio algo al actualizar",
+									  icon: "error",
+									});
+								}
+							}
+						});
+	        		} else{
+	        			swal("¡Cancelado!", "No se han hecho cambios en los archivos", "error");
+	        		}
+	        	});
+			}
+
+			function toggDelete(){
+				$(".treeDeleteFile").toggle();
+			}
+
 			function inputs_width(element){
 				var valor = element.value;
 				if(valor == ''){
@@ -1958,6 +2016,7 @@
 					element.parentNode.dataset.value = element.value;
 				}
 			}
+
 
 			function input_size(){
 				var inputs = document.getElementsByClassName("sinborde");

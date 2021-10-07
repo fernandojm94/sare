@@ -149,7 +149,7 @@
 							<b>Editar solicitud</b>
 						</small>
 
-						<input id="check_edit" name="check_edit" type="checkbox" class="ace ace-switch ace-switch-6" />
+						<input onclick="toggDelete();" id="check_edit" name="check_edit" type="checkbox" class="ace ace-switch ace-switch-6" />
 						<span class="lbl middle"></span>
 
 						<button class="btn btn-app btn-grey btn-xs radius-4 pull-rigth" id="boton_actualiza" name="boton_actualiza" style="display:none;" onclick="reinicia_solicitud(<?=$id;?>,<?=$expediente['tipo_persona'];?>,'boton',0)">
@@ -160,7 +160,7 @@
 				</div>
 				<h1 class="blue">Solicitud <?=$expediente['folio'];?></h1>
 				<input type="hidden" id="folio_ruta" value="<?=$expediente['folio'];?>">
-				<input type="text" id="paso_actual" name="paso_actual" value="1">
+				<input type="hidden" id="paso_actual" name="paso_actual" value="1">
 			</div>
 
 			<div class="modal-body">

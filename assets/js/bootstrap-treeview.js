@@ -692,10 +692,10 @@
 		indent: '<span class="indent"></span>',
 		icon: '<span class="icon"></span>',
 		link: '<a href="#" style="color:inherit;" target="_blank"></a>',
-		badge: '<span class="badge badge-danger" id="elimina_file"></span>'
+		badge: '<span class="badge badge-danger treeDeleteFile" onclick="delete_file(this)" ></span>'
 	};
 
-	Tree.prototype.css = '.treeview .list-group-item{cursor:pointer}.treeview span.indent{margin-left:10px;margin-right:10px}.treeview span.icon{width:12px;margin-right:5px}.treeview .node-disabled{color:silver;cursor:not-allowed}'
+	Tree.prototype.css = '.treeview .list-group-item{cursor:pointer}.treeview span.indent{margin-left:10px;margin-right:10px}.treeview span.icon{width:12px;margin-right:5px}.treeview .node-disabled{color:silver;cursor:not-allowed}.treeDeleteFile{display:none}'
 
 
 	/**
