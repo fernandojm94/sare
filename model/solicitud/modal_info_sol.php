@@ -100,7 +100,7 @@
 				</div>
 				<h1 class="blue">Solicitud <?=$expediente['folio'];?></h1>
 				<input type="hidden" id="folio_ruta" value="<?=$expediente['folio'];?>">
-				<input type="text" id="paso_actual" name="paso_actual" value="1">
+				<input type="hidden" id="paso_actual" name="paso_actual" value="1">
 			</div>
 
 			<div class="modal-body">
