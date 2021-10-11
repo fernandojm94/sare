@@ -1,6 +1,6 @@
 <?php
 	include("../../controller/solicitud/funciones_update_solicitud.php");
-	var_dump($_POST); exit();
+	
 	$etapa = $_POST['etapa'];
 	$parametros= $_POST['parametros'];//0:persona_fisica; 1:persona_moral
 	switch ($etapa) {

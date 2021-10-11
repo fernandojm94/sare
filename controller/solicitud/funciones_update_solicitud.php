@@ -21,7 +21,7 @@ function update_pfisica($parametros)
 
 function update_dg_establecimiento($parametros)
 {
-	$sql = "UPDATE dg_establecimiento SET nombre_comercial = '".$parametros[2]."', calle = '".$parametros[3]."', no_exterior = '".$parametros[4]."', no_interior = '".$parametros[5]."', colonia = '".$parametros[6]."', municipio = '".$parametros[7]."', horario_trabajo = '".$parametros[8]."', latitud_longitud = '".$parametros[9]."', uso_actual = '".$parametros[10]."', telefono = '".$parametros[11]."', cuenta_catastral = '".$parametros[12]."', manzana = '".$parametros[13]."', lote = '".$parametros[14]."', servicios_existentes = '".$parametros[15]."' WHERE id = $parametros[1]";
+	$sql = "UPDATE dg_establecimiento SET nombre_comercial = '".$parametros[2]."', calle = '".$parametros[3]."', no_exterior = '".$parametros[4]."', no_interior = '".$parametros[5]."', colonia = '".$parametros[6]."', municipio = '".$parametros[7]."', horario_trabajo = '".$parametros[10]."', uso_actual = '".$parametros[11]."', telefono = '".$parametros[12]."', cuenta_catastral = '".$parametros[13]."', manzana = '".$parametros[14]."', lote = '".$parametros[14]."', servicios_existentes = '".$parametros[15]."' WHERE id = $parametros[1]";
 
 	$result = querys($sql);
 
@@ -30,7 +30,7 @@ function update_dg_establecimiento($parametros)
 
 function update_dimensiones($parametros)
 {
-	$sql = "UPDATE dimensiones_establecimiento SET frente = '".$parametros[1]."', fondo = '".$parametros[2]."', derecho = '".$parametros[3]."', izquierdo = '".$parametros[4]."', sup_local = '".$parametros[5]."', cuenta_predial = '".$parametros[6]."', WHERE id = $parametros[0]";
+	$sql = "UPDATE dimensiones_establecimiento SET frente = '".$parametros[2]."', fondo = '".$parametros[3]."', derecho = '".$parametros[4]."', izquierdo = '".$parametros[5]."',sup_terreno = '".$parametros[6]."', sup_local = '".$parametros[7]."', cuenta_predial = '".$parametros[8]."' WHERE id = $parametros[1]";
 
 	$result = querys($sql);
 
