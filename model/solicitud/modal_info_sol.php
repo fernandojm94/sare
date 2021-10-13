@@ -72,63 +72,63 @@
 <style type="text/css">
 	
 	*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+	*::before,
+	*::after {
+	  box-sizing: border-box;
+	}
 
-.input-sizer {
-  display: inline-grid;
-  vertical-align: top;
-  align-items: center;
-  position: relative;
-  padding: 0.25em 0.5em;
-  margin: 0px;
-}
-.input-sizer.stacked {
-  padding: 0.5em;
-  align-items: stretch;
-}
-.input-sizer.stacked::after,
-.input-sizer.stacked input,
-.input-sizer.stacked textarea {
-  grid-area: 2/1;
-}
-.input-sizer::after,
-.input-sizer input,
-.input-sizer textarea {
-  width: auto;
-  min-width: 1em;
-  grid-area: 1/2;
-  font: inherit;
-  padding: 0.25em;
-  margin: 0;
-  resize: none;
-  background: none;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-}
-.input-sizer span {
-  padding: 0.25em;
-}
-.input-sizer::after {
-  content: attr(data-value) " ";
-  visibility: hidden;
-  white-space: pre-wrap;
-}
-.input-sizer:focus-within {
+	.input-sizer {
+	  display: inline-grid;
+	  vertical-align: top;
+	  align-items: center;
+	  position: relative;
+	  padding: 0.25em 0.5em;
+	  margin: 0px;
+	}
+	.input-sizer.stacked {
+	  padding: 0.5em;
+	  align-items: stretch;
+	}
+	.input-sizer.stacked::after,
+	.input-sizer.stacked input,
+	.input-sizer.stacked textarea {
+	  grid-area: 2/1;
+	}
+	.input-sizer::after,
+	.input-sizer input,
+	.input-sizer textarea {
+	  width: auto;
+	  min-width: 1em;
+	  grid-area: 1/2;
+	  font: inherit;
+	  padding: 0.25em;
+	  margin: 0;
+	  resize: none;
+	  background: none;
+	  -webkit-appearance: none;
+	     -moz-appearance: none;
+	          appearance: none;
+	}
+	.input-sizer span {
+	  padding: 0.25em;
+	}
+	.input-sizer::after {
+	  content: attr(data-value) " ";
+	  visibility: hidden;
+	  white-space: pre-wrap;
+	}
+	.input-sizer:focus-within {
 
-}
-.input-sizer:focus-within > span {
-  color: blue;
-}
-.input-sizer:focus-within textarea:focus,
-.input-sizer:focus-within input:focus {
-  outline: none;
-}
+	}
+	.input-sizer:focus-within > span {
+	  color: blue;
+	}
+	.input-sizer:focus-within textarea:focus,
+	.input-sizer:focus-within input:focus {
+	  outline: none;
+	}
 
-/* ---------------------------------- */
+	/* ---------------------------------- */
 
 	.sinborde {
 	  border: 0 !important;
@@ -139,6 +139,7 @@
 	    background-color: #fff!important;
 	}
 </style>
+
 <div id="modal_info" class="modal" tabindex="-1" style="overflow-y:auto;">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
@@ -519,8 +520,34 @@
 											</div>
 										</div>
 
-										<div class="message-footer clearfix" style="display:flex; justify-content:space-around;">
+										<div class="message-footer clearfix">
 											<!-- <?=$documentos?> -->
+
+											<div class="treeDeleteFile" style="display: none;">
+												<form class="well form-horizontal" method="post" id="form_drop_docs" name="form_drop_docs">
+													<fieldset>
+														<br>
+														<div class="form-group">
+															<div class="col-xs-12">
+																<div class="widget-box">
+																	<div class="widget-body">
+																		<div class="widget-main">
+																			<div class="form-group">
+																				<div class="col-xs-12">
+																					<input multiple="multiple" class="form-control" type="file" id="dropFileInput" name="dropFileInput" />
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</fieldset>
+													<div align="center">
+														<a onclick="reupload_files();" role="button" type="button" class="btn btn-success"><i class="fa fa-cloud-upload"></i>&nbsp;Subir Archivos</a>
+													</div>
+												</form>
+											</div>
 
 											<div class="col-xs-12">
 												<div class="widget-body">
