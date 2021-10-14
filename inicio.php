@@ -2096,7 +2096,10 @@
 			}
 
 			function toggDelete(){
-				$(".treeDeleteFile").toggle();
+				const treeElements = $(".treeEditFile");
+				treeElements.each(function(){
+					$(this).toggle();
+				});
 			}
 
 			function inputs_width(element){

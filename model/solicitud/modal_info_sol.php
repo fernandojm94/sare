@@ -523,7 +523,7 @@
 										<div class="message-footer clearfix">
 											<!-- <?=$documentos?> -->
 
-											<div class="treeDeleteFile" style="display: none;">
+											<div class="treeEditFile" style="display: none;">
 												<form class="well form-horizontal" method="post" id="form_drop_docs" name="form_drop_docs">
 													<fieldset>
 														<br>
