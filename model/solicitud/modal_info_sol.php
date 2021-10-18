@@ -201,7 +201,7 @@
 								</li>
 
 								<li>
-									<a data-toggle="tab" href="#documentos" onclick="carga_arbol(<?=$id;?>)">
+									<a data-toggle="tab" href="#documentos">
 										<i class="orange ace-icon fa fa-folder-open bigger-130"></i>
 										<span class="hid_spa">Documentación</span>
 									</a>
