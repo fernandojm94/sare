@@ -12,8 +12,29 @@
 	$rechaz_btn = '<button type="button" class="btn btn-danger" onclick="actualiza_status('.$id.',2,0,0);"><i class="fa fa-ban"></i>&nbsp;Rechazar Solicitud</button>';
 	$aprob_btn = '<button type="button" class="btn btn-success" onclick="actualiza_status('.$id.',1,0,0);"><i class="fa fa-check"></i>&nbsp;Aprobar Solicitud</button>';
 	$reinicia_btn = '<button id="btn_re" name="btn_re" type="button" class="btn btn-danger" style="display: none" onclick="revivir_sol('.$id.');"><i class="fa fa-refresh"></i>&nbsp;Reiniciar Solicitud</button>';
+	
+	if(($expediente['status'] == 2) && ($pantalla == 1)){
+		$parametros_editar = $id . ',' . $expediente['tipo_persona'] . ',boton' . ',' . 0;
+		$editar_btn = '<div class="widget-toolbar">
+					<label>
+						<small class="blue">
+							<b>Editar solicitud</b>
+						</small>
 
-	if (($pantalla == 1 && $etapa == 2) || ($pantalla == 1 && $etapa == 3) || ($pantalla == 2 && $etapa == 3) || ($pantalla == 1 && $etapa == 4) || ($pantalla == 1 && $etapa == 5) || ($pantalla == 1 && $etapa == 6) || $etapa == 7 ) {
+						<input onclick="toggDelete();" id="check_edit" name="check_edit" type="checkbox" class="ace ace-switch ace-switch-6" />
+						<span class="lbl middle"></span>
+
+						<button class="btn btn-app btn-grey btn-xs radius-4 pull-rigth" id="boton_actualiza" name="boton_actualiza" style="display:none;" onclick="reinicia_solicitud('.$parametros_editar.')">
+							<i class="ace-icon fa fa-floppy-o bigger-160"></i>
+							<span style="font-size: 12px;">Actualizar</span>
+						</button>
+					</label>
+				</div>';
+	}else{
+		$editar_btn = '';
+	}
+
+	if (($pantalla == 1 && $etapa == 2) || ($pantalla == 1 && $etapa == 3) || ($pantalla == 2 && $etapa == 3) || ($pantalla == 1 && $etapa == 4) || ($pantalla == 1 && $etapa == 5) || ($pantalla == 1 && $etapa == 6) || $etapa == 7 || $pantalla == 8 || $expediente['status'] == 2) {
 		
 		$rechaz_btn = '';
 		$aprob_btn = '';
@@ -144,21 +165,7 @@
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">				
-				<div class="widget-toolbar">
-					<label>
-						<small class="blue">
-							<b>Editar solicitud</b>
-						</small>
-
-						<input onclick="toggDelete();" id="check_edit" name="check_edit" type="checkbox" class="ace ace-switch ace-switch-6" />
-						<span class="lbl middle"></span>
-
-						<button class="btn btn-app btn-grey btn-xs radius-4 pull-rigth" id="boton_actualiza" name="boton_actualiza" style="display:none;" onclick="reinicia_solicitud(<?=$id;?>,<?=$expediente['tipo_persona'];?>,'boton',0)">
-							<i class="ace-icon fa fa-floppy-o bigger-160"></i>
-							<span style="font-size: 12px;">Actualizar</span>
-						</button>
-					</label>
-				</div>
+				<?= $editar_btn; ?>
 				<h1 class="blue">Solicitud <?=$expediente['folio'];?></h1>
 				<input type="hidden" id="folio_ruta" value="<?=$expediente['folio'];?>">
 				<input type="hidden" id="paso_actual" name="paso_actual" value="1">
@@ -194,7 +201,7 @@
 								</li>
 
 								<li>
-									<a data-toggle="tab" href="#documentos" onclick="carga_arbol(<?=$id;?>)">
+									<a data-toggle="tab" href="#documentos">
 										<i class="orange ace-icon fa fa-folder-open bigger-130"></i>
 										<span class="hid_spa">Documentación</span>
 									</a>

@@ -875,47 +875,6 @@
 		</script>
 
 		<script type="text/javascript">
-			var tree = [
-			  	{
-				    text: "Documentación",
-				    icon: "fa fa-folder",
-					selectedIcon: "fa fa-folder-open",
-					color: "#FF892A",
-					selectable: true,
-					state: {
-					    expanded: true
-					},						
-					nodes: []
-				},
-				{
-					text: "Pagos",
-				    icon: "fa fa-folder",
-					selectedIcon: "fa fa-folder-open",
-					color: "#DD5A43",
-					selectable: true,
-					state: {
-					    expanded: true
-					},						
-					nodes: []
-				},
-				{
-					text: "Anexos",
-				    icon: "fa fa-folder",
-					selectedIcon: "fa fa-folder-open",
-					color: "#478FCA",
-					selectable: true,
-					state: {
-					    expanded: true
-					},						
-					nodes: []
-				},
-				{
-				    text: "Mapa",
-				    icon: "fa fa-file-image-o",
-				    color: "#69AA46"
-				}
-			];
-
 		    function fill_modal_comp_uso(id)
 		    {
 		    	var xmlhttp;
@@ -1088,6 +1047,7 @@
 		                switch_editar();
 		                input_size();
 		                dropzone_documentacion();
+		                carga_arbol(id);
 		             
 		            }
 		        }
@@ -1761,6 +1721,46 @@
 			}			
 
 			function carga_arbol(id){
+				var tree = [
+				  	{
+					    text: "Documentación",
+					    icon: "fa fa-folder",
+						selectedIcon: "fa fa-folder-open",
+						color: "#FF892A",
+						selectable: true,
+						state: {
+						    expanded: true
+						},						
+						nodes: []
+					},
+					{
+						text: "Pagos",
+					    icon: "fa fa-folder",
+						selectedIcon: "fa fa-folder-open",
+						color: "#DD5A43",
+						selectable: true,
+						state: {
+						    expanded: true
+						},						
+						nodes: []
+					},
+					{
+						text: "Anexos",
+					    icon: "fa fa-folder",
+						selectedIcon: "fa fa-folder-open",
+						color: "#478FCA",
+						selectable: true,
+						state: {
+						    expanded: true
+						},						
+						nodes: []
+					},
+					{
+					    text: "Mapa",
+					    icon: "fa fa-file-image-o",
+					    color: "#69AA46"
+					}
+				];
 
 				var folio_exp = $('#folio_ruta').val();			
 
