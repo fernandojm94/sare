@@ -12,8 +12,29 @@
 	$rechaz_btn = '<button type="button" class="btn btn-danger" onclick="actualiza_status('.$id.',2,0,0);"><i class="fa fa-ban"></i>&nbsp;Rechazar Solicitud</button>';
 	$aprob_btn = '<button type="button" class="btn btn-success" onclick="actualiza_status('.$id.',1,0,0);"><i class="fa fa-check"></i>&nbsp;Aprobar Solicitud</button>';
 	$reinicia_btn = '<button id="btn_re" name="btn_re" type="button" class="btn btn-danger" style="display: none" onclick="revivir_sol('.$id.');"><i class="fa fa-refresh"></i>&nbsp;Reiniciar Solicitud</button>';
+	
+	if(($expediente['status'] == 2) && ($pantalla == 1)){
+		$parametros_editar = $id . ',' . $expediente['tipo_persona'] . ',boton' . ',' . 0;
+		$editar_btn = '<div class="widget-toolbar">
+					<label>
+						<small class="blue">
+							<b>Editar solicitud</b>
+						</small>
 
-	if (($pantalla == 1 && $etapa == 2) || ($pantalla == 1 && $etapa == 3) || ($pantalla == 2 && $etapa == 3) || ($pantalla == 1 && $etapa == 4) || ($pantalla == 1 && $etapa == 5) || ($pantalla == 1 && $etapa == 6) || $etapa == 7 ) {
+						<input onclick="toggDelete();" id="check_edit" name="check_edit" type="checkbox" class="ace ace-switch ace-switch-6" />
+						<span class="lbl middle"></span>
+
+						<button class="btn btn-app btn-grey btn-xs radius-4 pull-rigth" id="boton_actualiza" name="boton_actualiza" style="display:none;" onclick="reinicia_solicitud('.$parametros_editar.')">
+							<i class="ace-icon fa fa-floppy-o bigger-160"></i>
+							<span style="font-size: 12px;">Actualizar</span>
+						</button>
+					</label>
+				</div>';
+	}else{
+		$editar_btn = '';
+	}
+
+	if (($pantalla == 1 && $etapa == 2) || ($pantalla == 1 && $etapa == 3) || ($pantalla == 2 && $etapa == 3) || ($pantalla == 1 && $etapa == 4) || ($pantalla == 1 && $etapa == 5) || ($pantalla == 1 && $etapa == 6) || $etapa == 7 || $pantalla == 8 || $expediente['status'] == 2) {
 		
 		$rechaz_btn = '';
 		$aprob_btn = '';
@@ -72,63 +93,63 @@
 <style type="text/css">
 	
 	*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+	*::before,
+	*::after {
+	  box-sizing: border-box;
+	}
 
-.input-sizer {
-  display: inline-grid;
-  vertical-align: top;
-  align-items: center;
-  position: relative;
-  padding: 0.25em 0.5em;
-  margin: 0px;
-}
-.input-sizer.stacked {
-  padding: 0.5em;
-  align-items: stretch;
-}
-.input-sizer.stacked::after,
-.input-sizer.stacked input,
-.input-sizer.stacked textarea {
-  grid-area: 2/1;
-}
-.input-sizer::after,
-.input-sizer input,
-.input-sizer textarea {
-  width: auto;
-  min-width: 1em;
-  grid-area: 1/2;
-  font: inherit;
-  padding: 0.25em;
-  margin: 0;
-  resize: none;
-  background: none;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-}
-.input-sizer span {
-  padding: 0.25em;
-}
-.input-sizer::after {
-  content: attr(data-value) " ";
-  visibility: hidden;
-  white-space: pre-wrap;
-}
-.input-sizer:focus-within {
+	.input-sizer {
+	  display: inline-grid;
+	  vertical-align: top;
+	  align-items: center;
+	  position: relative;
+	  padding: 0.25em 0.5em;
+	  margin: 0px;
+	}
+	.input-sizer.stacked {
+	  padding: 0.5em;
+	  align-items: stretch;
+	}
+	.input-sizer.stacked::after,
+	.input-sizer.stacked input,
+	.input-sizer.stacked textarea {
+	  grid-area: 2/1;
+	}
+	.input-sizer::after,
+	.input-sizer input,
+	.input-sizer textarea {
+	  width: auto;
+	  min-width: 1em;
+	  grid-area: 1/2;
+	  font: inherit;
+	  padding: 0.25em;
+	  margin: 0;
+	  resize: none;
+	  background: none;
+	  -webkit-appearance: none;
+	     -moz-appearance: none;
+	          appearance: none;
+	}
+	.input-sizer span {
+	  padding: 0.25em;
+	}
+	.input-sizer::after {
+	  content: attr(data-value) " ";
+	  visibility: hidden;
+	  white-space: pre-wrap;
+	}
+	.input-sizer:focus-within {
 
-}
-.input-sizer:focus-within > span {
-  color: blue;
-}
-.input-sizer:focus-within textarea:focus,
-.input-sizer:focus-within input:focus {
-  outline: none;
-}
+	}
+	.input-sizer:focus-within > span {
+	  color: blue;
+	}
+	.input-sizer:focus-within textarea:focus,
+	.input-sizer:focus-within input:focus {
+	  outline: none;
+	}
 
-/* ---------------------------------- */
+	/* ---------------------------------- */
 
 	.sinborde {
 	  border: 0 !important;
@@ -139,25 +160,12 @@
 	    background-color: #fff!important;
 	}
 </style>
+
 <div id="modal_info" class="modal" tabindex="-1" style="overflow-y:auto;">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">				
-				<div class="widget-toolbar">
-					<label>
-						<small class="blue">
-							<b>Editar solicitud</b>
-						</small>
-
-						<input onclick="toggDelete();" id="check_edit" name="check_edit" type="checkbox" class="ace ace-switch ace-switch-6" />
-						<span class="lbl middle"></span>
-
-						<button class="btn btn-app btn-grey btn-xs radius-4 pull-rigth" id="boton_actualiza" name="boton_actualiza" style="display:none;" onclick="reinicia_solicitud(<?=$id;?>,<?=$expediente['tipo_persona'];?>,'boton',0)">
-							<i class="ace-icon fa fa-floppy-o bigger-160"></i>
-							<span style="font-size: 12px;">Actualizar</span>
-						</button>
-					</label>
-				</div>
+				<?= $editar_btn; ?>
 				<h1 class="blue">Solicitud <?=$expediente['folio'];?></h1>
 				<input type="hidden" id="folio_ruta" value="<?=$expediente['folio'];?>">
 				<input type="hidden" id="paso_actual" name="paso_actual" value="1">
@@ -193,7 +201,7 @@
 								</li>
 
 								<li>
-									<a data-toggle="tab" href="#documentos" onclick="carga_arbol(<?=$id;?>)">
+									<a data-toggle="tab" href="#documentos">
 										<i class="orange ace-icon fa fa-folder-open bigger-130"></i>
 										<span class="hid_spa">Documentación</span>
 									</a>
@@ -519,8 +527,34 @@
 											</div>
 										</div>
 
-										<div class="message-footer clearfix" style="display:flex; justify-content:space-around;">
+										<div class="message-footer clearfix">
 											<!-- <?=$documentos?> -->
+
+											<div class="treeEditFile" style="display: none;">
+												<form class="well form-horizontal" method="post" id="form_drop_docs" name="form_drop_docs">
+													<fieldset>
+														<br>
+														<div class="form-group">
+															<div class="col-xs-12">
+																<div class="widget-box">
+																	<div class="widget-body">
+																		<div class="widget-main">
+																			<div class="form-group">
+																				<div class="col-xs-12">
+																					<input multiple="multiple" class="form-control" type="file" id="dropFileInput" name="dropFileInput" />
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</fieldset>
+													<div align="center">
+														<a onclick="reupload_files();" role="button" type="button" class="btn btn-success"><i class="fa fa-cloud-upload"></i>&nbsp;Subir Archivos</a>
+													</div>
+												</form>
+											</div>
 
 											<div class="col-xs-12">
 												<div class="widget-body">

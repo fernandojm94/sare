@@ -875,47 +875,6 @@
 		</script>
 
 		<script type="text/javascript">
-			var tree = [
-			  	{
-				    text: "Documentación",
-				    icon: "fa fa-folder",
-					selectedIcon: "fa fa-folder-open",
-					color: "#FF892A",
-					selectable: true,
-					state: {
-					    expanded: true
-					},						
-					nodes: []
-				},
-				{
-					text: "Pagos",
-				    icon: "fa fa-folder",
-					selectedIcon: "fa fa-folder-open",
-					color: "#DD5A43",
-					selectable: true,
-					state: {
-					    expanded: true
-					},						
-					nodes: []
-				},
-				{
-					text: "Anexos",
-				    icon: "fa fa-folder",
-					selectedIcon: "fa fa-folder-open",
-					color: "#478FCA",
-					selectable: true,
-					state: {
-					    expanded: true
-					},						
-					nodes: []
-				},
-				{
-				    text: "Mapa",
-				    icon: "fa fa-file-image-o",
-				    color: "#69AA46"
-				}
-			];
-
 		    function fill_modal_comp_uso(id)
 		    {
 		    	var xmlhttp;
@@ -1087,6 +1046,8 @@
 		                //documentacion(id);
 		                switch_editar();
 		                input_size();
+		                dropzone_documentacion();
+		                carga_arbol(id);
 		             
 		            }
 		        }
@@ -1760,6 +1721,46 @@
 			}			
 
 			function carga_arbol(id){
+				var tree = [
+				  	{
+					    text: "Documentación",
+					    icon: "fa fa-folder",
+						selectedIcon: "fa fa-folder-open",
+						color: "#FF892A",
+						selectable: true,
+						state: {
+						    expanded: true
+						},						
+						nodes: []
+					},
+					{
+						text: "Pagos",
+					    icon: "fa fa-folder",
+						selectedIcon: "fa fa-folder-open",
+						color: "#DD5A43",
+						selectable: true,
+						state: {
+						    expanded: true
+						},						
+						nodes: []
+					},
+					{
+						text: "Anexos",
+					    icon: "fa fa-folder",
+						selectedIcon: "fa fa-folder-open",
+						color: "#478FCA",
+						selectable: true,
+						state: {
+						    expanded: true
+						},						
+						nodes: []
+					},
+					{
+					    text: "Mapa",
+					    icon: "fa fa-file-image-o",
+					    color: "#69AA46"
+					}
+				];
 
 				var folio_exp = $('#folio_ruta').val();			
 
@@ -1828,7 +1829,7 @@
 					enableLinks: true
 				});
 
-				console.log($('#tree_new').treeview('getNode', 5));
+				// console.log($('#tree_new').treeview('getNode', 5));
 			}			
 
 			//esta es la función que viene del ace min
@@ -1958,11 +1959,11 @@
 			function delete_file(deleteSpan){
 				var aElement = deleteSpan.previousSibling;
 				var hrefFile = aElement.getAttribute("href");
-				console.info(hrefFile);
+				// console.info(hrefFile);
 
 				var data_split = hrefFile.split("/", 7);
                 var filename = data_split[6];
-                console.log(filename);
+                // console.log(filename);
                 swal({
 	        		title: "Eliminar archivo",
 				  	text: "¿Desea eliminar este archivo?, no se podrá recuperar.",
@@ -2004,8 +2005,101 @@
 	        	});
 			}
 
+			function reupload_files(){
+				// var form_docs = document.getElementById("form_drop_docs");
+				var myFormDocs = new FormData();
+				// console.info(myFormDocs);
+				// Variable to store your files
+				var archivos="";
+
+				// Add events
+				var archivos = $('input[type=file]');
+				// console.info(archivos[0].files);
+
+				if (archivos[0].files != ""){
+					$.each(archivos[0].files, function(key, value)
+				    {
+				        myFormDocs.append(key, value);
+				        // console.warn(myFormDocs);
+				    });
+				}
+
+				// console.error(myFormDocs);
+
+				$.ajax({
+					data:  myFormDocs,
+					url:   './model/solicitud/upload_documentos.php',
+					type:  'post',
+					processData: false,
+	            contentType: false, 
+
+					success:  function (data) {
+					
+						if (data==='correcto'){
+							swal({
+							  title: "¡Datos actualizados correctamente!",
+							  icon: "success",
+							});
+							location.reload();
+						}
+
+						if (data==='error'){
+							swal({
+							  title: "¡Error!",
+							  text: "¡Ocurrio algo al actualizar",
+							  icon: "error",
+							});
+						}
+					}
+				});
+			}
+
+			function dropzone_documentacion(){
+				$('#dropFileInput').ace_file_input({
+					style: 'well',
+					btn_choose: 'Seleccionar o arrastrar archivo(s) a anexar',
+					btn_change: null,
+					no_icon: 'ace-icon fa fa-file',
+					droppable: true,
+					thumbnail: 'small'//large | fit
+					,icon_remove:'ace-icon fa fa-times'//set null, to hide remove/reset button
+					/**,before_change:function(files, dropped) {
+						//Check an example below
+						//or examples/file-upload.html
+						return true;
+					}*/
+					,before_remove : function() {
+						files="";
+						return true;
+					}
+					,
+					preview_error : function(filename, error_code) {
+						//name of the file that failed
+						//error_code values
+						//1 = 'FILE_LOAD_FAILED',
+						//2 = 'IMAGE_LOAD_FAILED',
+						//3 = 'THUMBNAIL_FAILED'
+						//alert(error_code);
+					}
+
+				}).on('change', function(){
+					
+					// console.info($(this).data('ace_input_files'));
+					//console.log($(this).data('ace_input_method'));
+				});
+				
+				//$('#id-input-file-3')
+				//.ace_file_input('show_file_list', [
+					//{type: 'image', name: 'name of image', path: 'http://path/to/image/for/preview'},
+					//{type: 'file', name: 'hello.txt'}
+				//]);
+			}
+
 			function toggDelete(){
-				$(".treeDeleteFile").toggle();
+				const treeElements = $(".treeEditFile");
+				treeElements.each(function(){
+					$(this).toggle();
+				});
 			}
 
 			function inputs_width(element){

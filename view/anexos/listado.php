@@ -196,15 +196,16 @@
 					if (data==='correcto'){
 						swal({
 							title: "¡Correcto!",
-							text: "¡El status fue cambiado!",
+							text: "¡Agregado Correctamente!",
 							icon: "success"
 						});
+						cambiarcont('view/anexos/listado.php?pantalla=8');
 					}
 
 					if (data==='error'){
 						swal({
 							title: "¡Error!",
-							text: "¡Ocurrió algo al cambiar el status!",
+							text: "¡Ocurrió algo al guardar!",
 							icon: "error"
 						});
 					}

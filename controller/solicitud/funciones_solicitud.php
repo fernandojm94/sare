@@ -116,7 +116,7 @@ function get_pendientes_etapa($etapa)
 
 function get_expediente($id)
 {
-	$sql = "SELECT folio, fecha_apertura, tipo_persona, id_persona, id_dg_establecimiento, id_dimensiones_establecimiento, solicita_noficial
+	$sql = "SELECT folio, fecha_apertura, tipo_persona, id_persona, id_dg_establecimiento, id_dimensiones_establecimiento, solicita_noficial, status
 					FROM expedientes
 			WHERE id = $id";
 
