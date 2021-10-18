@@ -15,7 +15,7 @@
 	
 	if(($expediente['status'] == 2) && ($pantalla == 1)){
 		$parametros_editar = $id . ',' . $expediente['tipo_persona'] . ',' . "'boton'" . ',' . 0;
-		echo $parametros_editar;
+		$parametros_editar;
 		$editar_btn = '<div class="widget-toolbar">
 					<label>
 						<small class="blue">
