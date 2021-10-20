@@ -39,13 +39,17 @@ function update_dimensiones($parametros)
 
 function reinicia_expediente($parametros)
 {
-	$sql = "UPDATE expedientes SET fecha_apertura = now(), etapa = 2, status = 0 WHERE id = $parametros[0]";
-	$sql.= "UPDATE director  SET status IS NULL, recibido IS NULL, visto IS NULL, resuelto IS NULL WHERE id_expediente = $parametros[0]";
-	$sql.= "UPDATE pagos  SET status IS NULL, recibido IS NULL, visto IS NULL, resuelto IS NULL WHERE id_expediente = $parametros[0]";
-	$sql.= "UPDATE secretario  SET status IS NULL, recibido IS NULL, visto IS NULL, resuelto IS NULL WHERE id_expediente = $parametros[0]";
-	$sql.= "UPDATE suelo  SET status IS NULL, recibido IS NULL, visto IS NULL, resuelto IS NULL WHERE id_expediente = $parametros[0]";
-	$sql.= "UPDATE ventanilla  SET status IS NULL, recibido IS NULL, visto IS NULL, resuelto IS NULL WHERE id_expediente = $parametros[0]";
-
+	$sql = "UPDATE expedientes SET fecha_apertura = now(), etapa = 2, status = 0 WHERE id = $parametros";
+	$result = querys($sql);
+	$sql = "UPDATE director  SET status = 0, recibido = NULL, visto = NULL, resuelto = NULL WHERE id_expediente = $parametros";
+	$result = querys($sql);
+	$sql = "UPDATE pagos  SET status = 0, recibido = NULL, visto = NULL, resuelto = NULL WHERE id_expediente = $parametros";
+	$result = querys($sql);
+	$sql = "UPDATE secretario  SET status = 0, recibido = NULL, visto = NULL, resuelto = NULL WHERE id_expediente = $parametros";
+	$result = querys($sql);
+	$sql = "UPDATE suelo  SET status = 0, recibido = NULL, visto = NULL, resuelto IS = WHERE id_expediente = $parametros";
+	$result = querys($sql);
+	$sql = "UPDATE ventanilla  SET status = 0, recibido = NULL, visto = NULL, resuelto = NULL WHERE id_expediente = $parametros";
 	$result = querys($sql);
 
 	return $result;
