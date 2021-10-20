@@ -2148,9 +2148,10 @@
 				{
 					document.getElementById("push").innerHTML="0";
 		  		}
+		  		setTimeout('push()',10000);
 			}
 
-			setInterval('push()',10000);
+			setTimeout('push()',10000);
 				
 		</script>
 	</body>

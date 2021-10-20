@@ -14,7 +14,8 @@
 	$reinicia_btn = '<button id="btn_re" name="btn_re" type="button" class="btn btn-danger" style="display: none" onclick="revivir_sol('.$id.');"><i class="fa fa-refresh"></i>&nbsp;Reiniciar Solicitud</button>';
 	
 	if(($expediente['status'] == 2) && ($pantalla == 1)){
-		$parametros_editar = $id . ',' . $expediente['tipo_persona'] . ',boton' . ',' . 0;
+		$parametros_editar = $id . ',' . $expediente['tipo_persona'] . ',' . "'boton'" . ',' . 0;
+		$parametros_editar;
 		$editar_btn = '<div class="widget-toolbar">
 					<label>
 						<small class="blue">
@@ -268,6 +269,10 @@
 																<label class="input-sizer">
 																	<input onInput="inputs_width(this)" id="dg7" name="dg7" type="text" class="sinborde"  value="<?=$datos_generales['c_p'];?>" placeholder="CP" disabled size="1"> 
 																</label>
+
+																<label class="input-sizer">
+																	<input onInput="inputs_width(this)" id="dg8" name="dg8" type="text" class="sinborde"  value="<?=$datos_generales['estado'];?>" placeholder="Estado" disabled size="1"> 
+																</label>
 															</div>
 														</div>
 													</div>
@@ -278,7 +283,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-user blue bigger-110"></i>&nbsp;
-														<input id="dg8" name="dg8" type="text" class="sinborde"  value="<?=$datos_generales['rfc'];?>" disabled size="50">
+														<input id="dg9" name="dg9" type="text" class="sinborde"  value="<?=$datos_generales['rfc'];?>" disabled size="50">
 													</div>
 												</div>
 
@@ -287,7 +292,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-user blue bigger-110"></i>&nbsp;
-														<input id="dg9" name="dg9" type="text" class="sinborde"  value="<?=$datos_generales['curp'];?>" disabled size="50">
+														<input id="dg10" name="dg10" type="text" class="sinborde"  value="<?=$datos_generales['curp'];?>" disabled size="50">
 													</div>
 												</div>									
 
@@ -296,7 +301,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-phone blue bigger-110"></i>&nbsp;
-														<input id="dg10" name="dg10" type="text" class="sinborde"  value="<?=$datos_generales['telefono'];?>" disabled size="50">
+														<input id="dg11" name="dg11" type="text" class="sinborde"  value="<?=$datos_generales['telefono'];?>" disabled size="50">
 													</div>
 												</div>
 
@@ -305,7 +310,7 @@
 
 													<div class="profile-info-value">
 													<i class="fa fa-envelope blue bigger-110"></i>&nbsp;
-														<input id="dg11" name="dg11" type="text" class="sinborde"  value="<?=$datos_generales['email'];?>" disabled size="50">
+														<input id="dg12" name="dg12" type="text" class="sinborde"  value="<?=$datos_generales['email'];?>" disabled size="50">
 													</div>
 												</div>
 											</div>
