@@ -1963,7 +1963,7 @@
 
 				var data_split = hrefFile.split("/", 7);
                 var filename = data_split[6];
-                // console.log(filename);
+                // console.log(data_split);
                 swal({
 	        		title: "Eliminar archivo",
 				  	text: "¿Desea eliminar este archivo?, no se podrá recuperar.",
@@ -1973,6 +1973,9 @@
 	        	}).then((willDelete) =>{
 	        		if (willDelete) {
 	        			var data = {
+							'nivel-1' : data_split[3],
+							'nivel-2' : data_split[4],
+							'nivel-3' : data_split[5],
 							'nombre_archivo' : filename,
 						}
 						$.ajax({
