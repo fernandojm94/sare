@@ -44,6 +44,7 @@
 				<div class="message-container">
 					<div id="id-message-list-navbar" class="message-navbar clearfix">
 						<div class="">
+							
 							<div class="message-infobar clearfix" id="id-message-infobar">
 								<span style="display: block;" class="blue bigger-170"></span>
 								<span style="display: inline-block;" class="grey bigger-140">Solicitudes registradas</span>
@@ -104,9 +105,8 @@
 </div>
 
 <script>
-
+	
 	function upload_comprobante(){
-
 		var comp = $('#comprobante').next();
 		comp = $(comp).hasClass("selected");
 		
@@ -195,5 +195,7 @@
 			//console.log($(this).data('ace_input_method'));
 		});
     }
+
+    
 
 </script>

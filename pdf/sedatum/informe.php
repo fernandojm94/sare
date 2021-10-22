@@ -24,18 +24,10 @@
     $folio_str = str_replace(array("/", " ",":"),array("-","-","-"),$expediente['folio']);
     $dictamen = file_get_contents('../../assets/expedientes/'.$folio_str.'/docs/documentacion/Dictamen.html', FILE_USE_INCLUDE_PATH);
     $mapa = '../../assets/expedientes/'.$folio_str.'/docs/mapa.png';
-    $dictamenLen = strlen($dictamen);
+    $dictamenLen = strip_tags($dictamen);
+    $dictamenLen = substr($dictamenLen, 0, 550);
     
-    $dict_1 = $dict_2 = '';
-    for($i = 0; $i < $dictamenLen; $i++){
-        if ($i < 481) {
-            $dict_1 .=  $dictamen[$i];
-        }else{
-            $dict_2 .= $dictamen[$i];
-        }
-    }
-    // echo $dict_1.$dict_2;exit();
-    
+    $fecha_autorizacion = date('d / m / Y');
     ob_start();
 
     require_once('../../assets/TCPDF/tcpdf.php');
@@ -101,7 +93,8 @@
                             <td style="height: 70px;" class="border_c"></td>
                             <td style="height: 70px;" class="border_c"></td>
                             <td style="height: 70px;" class="border_c"></td>
-                            <td style="height: 70px;" class="border_c"></td>
+                            <td style="height: 70px;" class="border_c">
+                            <h2>'.$GLOBALS['fecha_autorizacion'].'</h2></td>
                         </tr>
                     </table>
 
@@ -276,7 +269,7 @@
 
     <table cellspacing="2" cellpadding="3" class="border_c">
         <tr><td align="center">Identificar las calles que limitan a la manzana donde se ubica el predio señalando donde se encuentra el mismo.</td></tr>
-        <tr><td align="center"><img width="200" height="200" src="'.$mapa.'"></td></tr>
+        <tr><td align="center"><img width="300" height="200" src="'.$mapa.'"></td></tr>
     </table>
 
     <table>
@@ -338,8 +331,10 @@
 
     <table cellspacing="2" cellpadding="3">
         <tr>
-            <td align="justify" class="border_c" style="width: 70%; height: 150px;">'.strip_tags($dict_1).'...</td>
-            <td class="border_c" style="width: 30%; height: 150px;"></td>
+            <td align="justify" class="border_c" style="width: 70%; height: 150px;">'.$dictamenLen.'...</td>
+            <td align="center" class="border_c" style="width: 30%; height: 150px;">
+            <img src="../../img/sello-min.png" width="130">
+            </td>
         </tr>
     </table>';
 
@@ -366,7 +361,7 @@
     
     <table cellspacing="2" cellpadding="3">
         <tr>
-            <td align="justify" class="border_c"><p>'.strip_tags($dict_2).'</p></td>
+            <td align="justify" class="border_c"><p>'.$dictamen.'</p></td>
         </tr>
     </table>';
 

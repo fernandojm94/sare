@@ -30,6 +30,7 @@
 		<link rel="stylesheet" href="assets/css/daterangepicker.min.css" />
 		<link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css" />
 		<link rel="stylesheet" href="assets/css/bootstrap-colorpicker.min.css" />
+		<link rel="stylesheet" href="assets/css/bootstrap-treeview.css" />
 
 		<link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1549984893" />
 
@@ -65,6 +66,11 @@
 		<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
 
+		<style type="text/css">
+			body{
+				padding: 0 !important;
+			}
+		</style>
 
 	</head>
 
@@ -178,6 +184,7 @@
 						Municipio de Jesús María 2019 - 2021
 					</span>
 
+
 					&nbsp; &nbsp;
 					<span class="action-buttons">
 					</span>
@@ -254,6 +261,7 @@
 		<script src="assets/js/wizard.min.js"></script>
 		<script src="assets/js/jquery.gritter.min.js"></script>
 		<script src="assets/js/bootstrap-load.js"></script>
+		<script src="assets/js/bootstrap-treeview.js"></script>
 
 
 
@@ -280,6 +288,7 @@
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
 			jQuery(function($) {
+				
 				setTimeout(function() {
 					$($('.tableTools-container')).find('a.dt-button').each(function() {
 						var div = $(this).find(' > div').first();
@@ -866,9 +875,8 @@
 		</script>
 
 		<script type="text/javascript">
-
-		    function fill_modal_comp_uso(id)
-		    {
+		   function fill_modal_comp_uso(id)
+		   {
 		    	var xmlhttp;
 
 		        if (window.XMLHttpRequest){
@@ -1017,7 +1025,6 @@
 		    function fill_modal_info(id, etapa)
 		    {
 		    	var pantalla = $('#pantalla').val();
-		    	console.log(pantalla);
 		        var xmlhttp;
 
 		        if (window.XMLHttpRequest){
@@ -1036,7 +1043,12 @@
 		                document.getElementById("load_modal_info").innerHTML=xmlhttp.responseText;
 		                waitingDialog.hide();
 		                $('#modal_info').modal('show');
-		                documentacion(id);
+		                //documentacion(id);
+		                switch_editar();
+		                input_size();
+		                dropzone_documentacion();
+		                carga_arbol(id);
+		             
 		            }
 		        }
 
@@ -1047,6 +1059,205 @@
 		        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		        xmlhttp.send(datos_modal);
 		    }
+
+		    function switch_editar(){
+
+	            $("#check_edit",).change(function() {
+
+	                var $inputs = $('#form_edit_dg :input');
+	                var $inputs2 = $('#form_edit_de :input');
+	                var $inputs3 = $('#form_edit_dim :input');
+
+	                $inputs.each(function() {
+
+	                    if ($(this).is('[disabled]')) {
+	                        //console.log("estaban disabled");
+	                        $(this).prop("disabled", false);
+	                        $(this).removeClass("sinborde");
+	                        document.getElementById('boton_actualiza').style.display = 'inline';
+	                        //document.getElementById('elimina_file').style.display = 'inline';
+	                        document.getElementById('btn_re').style.display = 'inline';
+	                    
+	                    }else{
+	                    	//console.log("estaban editables");
+	                       	$(this).prop("disabled",true);
+	                       	$(this).addClass("sinborde");
+	                       	document.getElementById('boton_actualiza').style.display = 'none';
+	                       	//document.getElementById('elimina_file').style.display = 'none';
+	                       	document.getElementById('btn_re').style.display = 'none';
+	                    }
+	                });
+
+	                $inputs2.each(function() {
+
+	                    if ($(this).is('[disabled]')) {
+	                        //console.log("estaban disabled2");
+	                        $(this).prop("disabled", false);
+	                        $(this).removeClass("sinborde");
+	                    
+	                    }else{
+	                    	//console.log("estaban editables2");
+	                       	$(this).prop("disabled",true);
+	                       	$(this).addClass("sinborde");
+	                    }
+	                });
+
+	                $inputs3.each(function() {
+
+	                    if ($(this).is('[disabled]')) {
+	                        //console.log("estaban disabled2");
+	                        $(this).prop("disabled", false);
+	                        $(this).removeClass("sinborde");
+	                    
+	                    }else{
+	                    	//console.log("estaban editables2");
+	                       	$(this).prop("disabled",true);
+	                       	$(this).addClass("sinborde");
+	                    }
+	                });
+
+	            });
+	        }
+
+	        function revivir_sol(id_sol){
+	        	swal({
+	        		title: "Guardar",
+				  	text: "¿Desea reiniciar la solicutud?",
+				  	icon: "info",
+				 	buttons: ["Cancelar", "Ok"],
+				  	dangerMode: true,
+	        	}).then((willDelete) =>{
+	        		if (willDelete) {
+	        			var data = {
+							'parametros' : id_sol,
+							'etapa' : "re",
+						}
+						$.ajax({
+							data:  data,
+							url:   './model/solicitud/reinicia_solicitud.php',
+							type:  'post', 
+
+							success:  function (data) {
+							
+								if (data==='correcto'){
+									swal({
+									  title: "¡Datos actualizados correctamente!",
+									  icon: "success",
+									});
+									location.reload();
+								}
+
+								if (data==='error'){
+									swal({
+									  title: "¡Error!",
+									  text: "¡Ocurrio algo al actualizar",
+									  icon: "error",
+									});
+								}
+							}
+						});
+	        		} else{
+	        			//swal("¡Cancelado!", "No se han hecho cambios la solicitud", "error");
+	        		}
+	        	});
+	        }
+
+	        function new_step(paso_new){
+	        	document.getElementById("paso_actual").value=paso_new;
+	        }
+
+	        function reinicia_solicitud(tipo_persona,origen,id_persona,id_dg_establecimiento,id_dimensiones_establecimiento){
+		        
+	        	if(document.getElementById('boton_actualiza').style.display == 'inline'){
+	        		var titulo="";
+					var texto="";
+	        		var form="";
+	        		var etapa_set="";
+	        		var id_form_etapa="";
+	        		var etapa = document.getElementById("paso_actual").value;
+
+	        		if(origen=="boton")
+					{
+						titulo="Guardar";
+						texto="¿Desea guardar la Información?";
+					} else{
+						titulo="Antes de continuar";
+						texto="¿Desea guardar la Información?";
+					}
+
+	        		switch (etapa) {									  	
+					  	case "1":
+					  		form = "form_edit_dg";	
+					  		etapa_set = "dg";
+					  		id_form_etapa = id_persona;
+
+					    break;
+
+					  	case "2":
+					    	form = "form_edit_de";
+					    	etapa_set = "de";
+					    	id_form_etapa = id_dg_establecimiento;				
+				    	break;
+
+					  	case "3":
+					    	form = "form_edit_dim";
+					    	etapa_set = "dim";
+					    	id_form_etapa = id_dimensiones_establecimiento;				
+				    	break;
+					}
+
+					var myform = document.getElementById(form);
+					var formdata = new FormData(myform);
+					var datos_form = [];
+					datos_form.push(tipo_persona);
+					datos_form.push(id_form_etapa);
+
+					for (var value of formdata.values()) {
+						datos_form.push(value);
+					}
+					//console.log(datos_form);
+		        	swal({
+		        		title: titulo,
+					  	text: texto,
+					  	icon: "info",
+					 	buttons: ["Cancelar", "Ok"],
+					  	dangerMode: true,
+		        	}).then((willDelete) =>{
+		        		if (willDelete) {
+		        			var data = {
+								'parametros' : datos_form,
+								'etapa' : etapa_set,
+							}
+							$.ajax({
+								data:  data,
+								url:   './model/solicitud/reinicia_solicitud.php',
+								type:  'post', 
+
+								success:  function (data) {
+								
+									if (data==='correcto'){
+										swal({
+										  title: "¡Datos actualizados correctamente!",
+										  icon: "success",
+										});
+									}
+
+									if (data==='error'){
+										swal({
+										  title: "¡Error!",
+										  text: "¡Ocurrio algo al actualizar",
+										  icon: "error",
+										});
+									}
+								}
+							});
+		        		} else{
+		        			//swal("¡Cancelado!", "No se han hecho cambios la solicitud", "error");
+		        		}
+		        	});
+		        } else{console.log("no pasa nada");}
+
+	        }
 
 			function fill_tabs(li)
 		    {
@@ -1257,8 +1468,8 @@
 				});
 			}
 
-		    function show_hide_modals()
-		    {
+		   function show_hide_modals()
+		   {
 				$('#modal_comp').on('shown.bs.modal', function (e) {
 		  			$('#modal_info').modal('hide');
 				});
@@ -1507,32 +1718,126 @@
 		                 else $('#form-field-select-4').removeClass('tag-input-style');
 		            });            
 		        }
+			}			
+
+			function carga_arbol(id){
+				var tree = [
+				  	{
+					    text: "Documentación",
+					    icon: "fa fa-folder",
+						selectedIcon: "fa fa-folder-open",
+						color: "#FF892A",
+						selectable: true,
+						state: {
+						    expanded: true
+						},						
+						nodes: []
+					},
+					{
+						text: "Pagos",
+					    icon: "fa fa-folder",
+						selectedIcon: "fa fa-folder-open",
+						color: "#DD5A43",
+						selectable: true,
+						state: {
+						    expanded: true
+						},						
+						nodes: []
+					},
+					{
+						text: "Anexos",
+					    icon: "fa fa-folder",
+						selectedIcon: "fa fa-folder-open",
+						color: "#478FCA",
+						selectable: true,
+						state: {
+						    expanded: true
+						},						
+						nodes: []
+					},
+					{
+					    text: "Mapa",
+					    icon: "fa fa-file-image-o",
+					    color: "#69AA46"
+					}
+				];
+
+				var folio_exp = $('#folio_ruta').val();			
+
+				$.ajax({
+		            type:'POST',
+		            url:'./model/solicitud/get_docs.php',
+		            dataType: "json",
+		            data:{id:id},
+		            success:function(data){
+		            	for(var i=0; i<data.length; i++){
+							var datadiv = data[i].split(",", 3);
+                            var tipo = datadiv[0];
+                            var archivo = datadiv[1];
+                            var carpeta = "";
+		                    
+		                    switch (tipo) {
+								case 'd':
+									
+									tree[0].nodes.push(
+									{
+										text: archivo,
+										icon: "fa fa-file-pdf-o",
+										color: "#FF892A",
+										href: "/assets/expedientes/"+folio_exp+"/docs/documentacion/"+archivo+"",
+										tags: ['<i class="fa fa-times"></i>']
+									});
+								break;
+								case 'p':
+								
+									tree[1].nodes.push(
+									{
+										text: archivo,
+										icon: "fa fa-file-pdf-o",
+										color: "#DD5A43",
+										href: "/assets/expedientes/"+folio_exp+"/docs/pagos/"+archivo+"",
+										tags: ['<i class="fa fa-times"></i>']
+									});
+
+
+								break;
+								case 'a':
+									
+									tree[2].nodes.push(
+									{
+										text: archivo,
+										icon: "fa fa-file-pdf-o",
+										color: "#478FCA",
+										href: "/assets/expedientes/"+folio_exp+"/docs/anexos/"+archivo+"",
+										tags: ['<i class="fa fa-times"></i>']
+									});
+
+								break;
+							}
+						}
+					}
+			    });
+				
+				setTimeout(show_tree, 500, tree);
 			}
 
-			//esto es para agregarlos a manita con un botón
+			function show_tree(tree){
+				
+				$('#tree_new').treeview({
+					data: tree,
+					showTags: true,
+					enableLinks: true
+				});
 
-			function agregar_elemento(){
-				// console.log("holi");
-				var list_docs = "<li class=tree-item role=treeitem><span class=tree-item-name><span class=tree-label><a href=inicio.php><i class=ace-icon fa fa-file blue></i>&nbsp;Nombre del arhivo</a></span></span></li>";
-				var boxc = $("#here");
-
-				$(list_docs).appendTo(boxc);
-
-				var arboles = document.getElementsByClassName("tree-branch");
-					$(arboles[1]).append(list_docs);				
-
-					// for(var i= 1; i<4; i++){
-					// 	var si = $(arboles[i]).has("ul").append(list_docs);
-			
-					// 	console.log(si);
-					// }				
-			}
+				// console.log($('#tree_new').treeview('getNode', 5));
+			}			
 
 			//esta es la función que viene del ace min
 			function documentacion(id){
+				
 				var folio_exp = $('#folio_ruta').val();
 				jQuery(function($){
-					 $.ajax({
+					$.ajax({
 			            type:'POST',
 			            url:'./model/solicitud/get_docs.php',
 			            dataType: "json",
@@ -1592,7 +1897,7 @@
 									  	case 'd':
 									  		carpeta = "documentacion";
 									    	tree_data_2[carpeta]['additionalParameters']['children'][largo_d] = {text: ''};
-											tree_data_2[carpeta]['additionalParameters']['children'][largo_d]['text'] = '<a href="/assets/expedientes/'+folio_exp+'/docs/'+carpeta+'/'+archivo+'" target="_blank"><i class="ace-icon fa fa-file-pdf-o orange"></i> '+archivo+'</a>';
+											tree_data_2[carpeta]['additionalParameters']['children'][largo_d]['text'] = '<a href="/assets/expedientes/'+folio_exp+'/docs/'+carpeta+'/'+archivo+'" target="_blank"><i class="ace-icon fa fa-file-pdf-o orange"></i> '+archivo+'</a>&nbsp;<i id="elimina_file" class="ace-icon fa fa-times red" style="display: none"></i>';
 											tree_data_2[carpeta]['additionalParameters']['children'][largo_d]['type'] = 'item';
 											largo_d++;
 											
@@ -1650,6 +1955,168 @@
 				});
 			}
 
+			function delete_file(deleteSpan){
+				var aElement = deleteSpan.previousSibling;
+				var hrefFile = aElement.getAttribute("href");
+				// console.info(hrefFile);
+
+				var data_split = hrefFile.split("/", 7);
+                var filename = data_split[6];
+                // console.log(data_split);
+                swal({
+	        		title: "Eliminar archivo",
+				  	text: "¿Desea eliminar este archivo?, no se podrá recuperar.",
+				  	icon: "info",
+				 	buttons: ["Cancelar", "Ok"],
+				  	dangerMode: true,
+	        	}).then((willDelete) =>{
+	        		if (willDelete) {
+	        			var data = {
+							'nivel-1' : data_split[3],
+							'nivel-2' : data_split[4],
+							'nivel-3' : data_split[5],
+							'nombre_archivo' : filename,
+						}
+						$.ajax({
+							data:  data,
+							url:   './model/solicitud/delete_file.php',
+							type:  'post', 
+
+							success:  function (data) {
+							
+								if (data==='correcto'){
+									swal({
+									  title: "¡Datos actualizados correctamente!",
+									  icon: "success",
+									});
+									location.reload();
+								}
+
+								if (data==='error'){
+									swal({
+									  title: "¡Error!",
+									  text: "¡Ocurrio algo al actualizar",
+									  icon: "error",
+									});
+								}
+							}
+						});
+	        		} else{
+	        			swal("¡Cancelado!", "No se han hecho cambios en los archivos", "error");
+	        		}
+	        	});
+			}
+
+			function reupload_files(){
+				var form_docs = document.getElementById("form_drop_docs");
+				form_docs = new FormData(form_docs);
+				// console.info(form_docs);
+				var archivos="";// Variable to store your files
+				var archivos = $('input[type=file]');// Add events
+				// console.info(archivos[0].files);
+				if (archivos[0].files != ""){
+					$.each(archivos[0].files, function(key, value)
+				    {
+				        form_docs.append(key, value);
+				        // console.warn(form_docs);
+				    });
+				}
+				// console.info(form_docs);
+
+				$.ajax({
+					data:  form_docs,
+					url:   './model/solicitud/upload_documentos.php',
+					type:  'post',
+					processData: false,
+	            contentType: false, 
+
+					success:  function (data) {
+					
+						if (data==='correcto'){
+							swal({
+							  title: "¡Datos actualizados correctamente!",
+							  icon: "success",
+							});
+							location.reload();
+						}
+
+						if (data==='error'){
+							swal({
+							  title: "¡Error!",
+							  text: "¡Ocurrio algo al actualizar",
+							  icon: "error",
+							});
+						}
+					}
+				});
+			}
+
+			function dropzone_documentacion(){
+				$('#dropFileInput').ace_file_input({
+					style: 'well',
+					btn_choose: 'Seleccionar o arrastrar archivo(s) a anexar',
+					btn_change: null,
+					no_icon: 'ace-icon fa fa-file',
+					droppable: true,
+					thumbnail: 'small'//large | fit
+					,icon_remove:'ace-icon fa fa-times'//set null, to hide remove/reset button
+					/**,before_change:function(files, dropped) {
+						//Check an example below
+						//or examples/file-upload.html
+						return true;
+					}*/
+					,before_remove : function() {
+						files="";
+						return true;
+					}
+					,
+					preview_error : function(filename, error_code) {
+						//name of the file that failed
+						//error_code values
+						//1 = 'FILE_LOAD_FAILED',
+						//2 = 'IMAGE_LOAD_FAILED',
+						//3 = 'THUMBNAIL_FAILED'
+						//alert(error_code);
+					}
+
+				}).on('change', function(){
+					
+					// console.info($(this).data('ace_input_files'));
+					//console.log($(this).data('ace_input_method'));
+				});
+				
+				//$('#id-input-file-3')
+				//.ace_file_input('show_file_list', [
+					//{type: 'image', name: 'name of image', path: 'http://path/to/image/for/preview'},
+					//{type: 'file', name: 'hello.txt'}
+				//]);
+			}
+
+			function toggDelete(){
+				const treeElements = $(".treeEditFile");
+				treeElements.each(function(){
+					$(this).toggle();
+				});
+			}
+
+			function inputs_width(element){
+				var valor = element.value;
+				if(valor == ''){
+					element.parentNode.dataset.value = element.placeholder;
+				}else{
+					element.parentNode.dataset.value = element.value;
+				}
+			}
+
+
+			function input_size(){
+				var inputs = document.getElementsByClassName("sinborde");
+				var largo = inputs.length;
+				for(i=0; i < largo; i++){
+					inputs[i].parentNode.dataset.value = inputs[i].value;
+				}
+			}
+
 			function push(){
 				if(typeof(EventSource)!=="undefined")
 				{
@@ -1678,9 +2145,10 @@
 				{
 					document.getElementById("push").innerHTML="0";
 		  		}
+		  		setTimeout('push()',10000);
 			}
 
-			setInterval('push()',10000);
+			setTimeout('push()',10000);
 				
 		</script>
 	</body>

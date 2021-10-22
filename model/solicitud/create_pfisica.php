@@ -8,6 +8,7 @@
 	$colonia = $_POST['colonia'];
 	$municipio = $_POST['municipio'];
 	$localidad = $_POST['localidad'];
+	$estado = $_POST['estado'];
 	$cp = $_POST['cp'];
 	$rfc = $_POST['rfc'];
 	$curp = $_POST['curp_fis'];
@@ -19,7 +20,7 @@
 	{
 		$mensaje = "correcto,".$id;
 	}else{
-		$id = create_pfisica($nombre[0], $calle, $exterior, $interior, $colonia, $municipio, $localidad, $cp, $rfc, $curp, $telefono, $email);
+		$id = create_pfisica($nombre[0], $calle, $exterior, $interior, $colonia, $municipio, $localidad, $estado, $cp, $rfc, $curp, $telefono, $email);
 		if($id)
 		{
 			$mensaje = "correcto,".$id;

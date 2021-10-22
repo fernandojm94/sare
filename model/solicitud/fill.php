@@ -127,9 +127,9 @@ function fill_solicitudes($solicitudes, $pantalla)
 								</a>';					
 		}
 
-		if ($solicitud['status'] == 1  && $pantalla != 1) 
+		if ($solicitud['etapa'] > 4  && $pantalla != 1 && $pantalla != 8) 
 		{
-			$url = '../../pdf/sedatum/informe.php?id=';
+			$url = '../../pdf/sare/fusare.php?id=';
 			$id = $solicitud['id'];
 			$informe= '<a title="Imprimir Informe" class="btn btn-xs btn-success" href="'.$url.$id.'" target="_blank" role="button">
 						<i class="ace-icon fa fa-print bigger-130"></i>
@@ -140,7 +140,7 @@ function fill_solicitudes($solicitudes, $pantalla)
 		{
 			$url = '../../pdf/sare/licencia.php?id=';
 			$id = $solicitud['id'];
-			$informe= '<a title="Imprimir Informe" class="btn btn-xs btn-success" href="'.$url.$id.'" target="_blank" role="button">
+			$informe= '<a title="Imprimir Licencia" class="btn btn-xs btn-success" href="'.$url.$id.'" target="_blank" role="button">
 						<i class="ace-icon fa fa-print bigger-130"></i>
 					</a>';
 		}

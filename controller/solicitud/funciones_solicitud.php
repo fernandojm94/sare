@@ -23,7 +23,7 @@ function get_nombre_rfc_pmoral()
 
 function get_pfisica_rfc($rfc)
 {
-	$sql = "SELECT id, nombre_completo, calle, no_exterior, no_interior, colonia, municipio, localidad, c_p, rfc, curp, telefono, email
+	$sql = "SELECT id, nombre_completo, calle, no_exterior, no_interior, colonia, municipio, localidad, estado, c_p, rfc, curp, telefono, email
 				FROM personas_fisicas
 				WHERE  rfc = '".$rfc."'";
 	$result = query_row_id($sql);
@@ -43,7 +43,7 @@ function get_pmoral_rfc($rfc)
 
 function create_dg_establecimiento($nombre_comercial, $horario_trabajo, $calle_dg, $no_ex_dg, $no_int_dg, $colonia_dg, $entre_calles, $municipio_dg, $localidad_dg, $cp_dg, $latlong, $telefono_dg, $uso, $uso_sol, $scian, $catastral, $manzana, $lote, $distancia_esquina, $cajones, $inversion, $personal_ocupado, $servicios_chosen)
 {
-	$sql= "INSERT INTO dg_establecimiento(nombre_comercial, horario_trabajo, calle, no_exterior, no_interior, colonia, entre_calles, municipio, localidad, cp, latitud_longitud, telefono, uso_actual, uso_solicitado, giro_scian, cuenta_catastral, manzana, lote, distancia_esquina, cajones_estacionamiento, monto_inversion, pesonal_ocupado, servicios_existentes) 
+$sql= "INSERT INTO dg_establecimiento(nombre_comercial, horario_trabajo, calle, no_exterior, no_interior, colonia, entre_calles, municipio, localidad, cp, latitud_longitud, telefono, uso_actual, uso_solicitado, giro_scian, cuenta_catastral, manzana, lote, distancia_esquina, cajones_estacionamiento, monto_inversion, pesonal_ocupado, servicios_existentes) 
 			VALUES ('".$nombre_comercial."', '".$horario_trabajo."', '".$calle_dg."', ".$no_ex_dg.", '".$no_int_dg."', '".$colonia_dg."', '".$entre_calles."', '".$municipio_dg."', '".$localidad_dg."', ".$cp_dg.", '".$latlong."', '".$telefono_dg."', '".$uso."', '".$uso_sol."', '".$scian."', '".$catastral."', '".$manzana."', '".$lote."', '".$distancia_esquina."', '".$cajones."', '".$inversion."', '".$personal_ocupado."', '".$servicios_chosen."')";
 
 	$result = query_last_id($sql);
@@ -62,7 +62,7 @@ function create_dimensiones_establecimiento($frentel, $fondo, $derecho, $izquier
 }
 function create_expediente($folio, $tipo_persona, $id_persona, $id_dg, $id_dimensiones, $noficial)
 {
-	$sql = "INSERT INTO expedientes(folio, fecha_apertura, tipo_persona, id_persona, id_dg_establecimiento, id_dimensiones_establecimiento, etapa, status, solicita_noficial)
+	 $sql = "INSERT INTO expedientes(folio, fecha_apertura, tipo_persona, id_persona, id_dg_establecimiento, id_dimensiones_establecimiento, etapa, status, solicita_noficial)
 					VALUES('".$folio."',now(),".$tipo_persona.", ".$id_persona.", ".$id_dg.", ".$id_dimensiones.", 2, 0, ".$noficial.")";
 	$result = query_last_id($sql);
 
@@ -116,7 +116,7 @@ function get_pendientes_etapa($etapa)
 
 function get_expediente($id)
 {
-	$sql = "SELECT folio, fecha_apertura, tipo_persona, id_persona, id_dg_establecimiento, id_dimensiones_establecimiento, solicita_noficial
+	$sql = "SELECT folio, fecha_apertura, tipo_persona, id_persona, id_dg_establecimiento, id_dimensiones_establecimiento, solicita_noficial, status
 					FROM expedientes
 			WHERE id = $id";
 
@@ -268,9 +268,9 @@ function get_pmoral_separado($id_persona)
 	return $result;
 }
 
-function  get_pfisica_separado($id)
+function get_pfisica_separado($id)
 {
-	$sql = "SELECT id, nombre_completo AS nombre, calle, no_exterior, no_interior, colonia, municipio, localidad, c_p, rfc, curp, telefono, email
+	$sql = "SELECT id, nombre_completo AS nombre, calle, no_exterior, no_interior, colonia, municipio, localidad, estado, c_p, rfc, curp, telefono, email
 				FROM personas_fisicas
 				WHERE  id = '".$id."'";
 	$result = query_row_id($sql);
