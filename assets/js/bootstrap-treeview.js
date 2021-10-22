@@ -691,11 +691,10 @@
 		item: '<li class="list-group-item"></li>',
 		indent: '<span class="indent"></span>',
 		icon: '<span class="icon"></span>',
-		link: '<a href="#" style="color:inherit;" target="_blank"></a>',
-		badge: '<span class="badge badge-danger treeEditFile" onclick="delete_file(this)" ></span>'
+		link: '<a href="#" style="color:inherit;" target="_blank"></a>'
 	};
 
-	Tree.prototype.css = '.treeview .list-group-item{cursor:pointer}.treeview span.indent{margin-left:10px;margin-right:10px}.treeview span.icon{width:12px;margin-right:5px}.treeview .node-disabled{color:silver;cursor:not-allowed}.treeEditFile{display:none}'
+	Tree.prototype.css = '.treeview .list-group-item{cursor:pointer}.treeview span.indent{margin-left:10px;margin-right:10px}.treeview span.icon{width:12px;margin-right:5px}.treeview .node-disabled{color:silver;cursor:not-allowed}'
 
 
 	/**
