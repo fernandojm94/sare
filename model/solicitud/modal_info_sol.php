@@ -546,6 +546,7 @@
 																		<div class="widget-main">
 																			<div class="form-group">
 																				<div class="col-xs-12">
+																					<input type="hidden" name="id_expediente" id="id_expediente" value="<?=$id;?>">
 																					<input type="hidden" name="folio_docs" id="folio_docs" value="<?=$expediente['folio'];?>">
 																					<input multiple="multiple" class="form-control" type="file" id="dropFileInput" name="dropFileInput" />
 																				</div>
