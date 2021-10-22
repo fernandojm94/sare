@@ -57,6 +57,19 @@
 	$folio_str= str_replace(array("/", " ",":"),array("-","-","-"),$expediente['folio']);
 	$ruta = '../../assets/expedientes/'.$folio_str.'/docs';
 
+	$filesDir = scandir('../../assets/expedientes/'.$folio_str.'/docs/documentacion/');
+	$filesDir = array_diff($filesDir, array('.', '..'));
+	
+
+
+	$list = '<ul>';
+	$url = '';
+	foreach($filesDir as $dirFile){
+		$url = '/assets/expedientes/'.$folio_str.'/docs/documentacion/'.$dirFile;
+		$list .= '<li class="list-group-item node-tree_new" data-nodeid="1" style="color:#FF892A;background-color:undefined;"><span class="indent"></span><span class="icon glyphicon"></span><span class="icon node-icon fa fa-file-pdf-o"></span><a href="'.$url.'" style="color:inherit;" target="_blank"> '.$dirFile.'</a><span class="badge badge-danger" onclick="delete_file(this)"><i class="fa fa-times"></i></span></li>';
+	}
+	$list .= '</ul>';
+
 	if(is_dir($ruta))
 	{
 		$archivos = scandir($ruta);	
@@ -533,9 +546,25 @@
 										</div>
 
 										<div class="message-footer clearfix">
-											<!-- <?=$documentos?> -->
+											
+											<div class="col-xs-12 treeEditFile" style="display: none;">
+												<div class="widget-body">
+													<div style="padding: 2em;">
+														<?= $list; ?>
+													</div>
+												</div>
+											</div>
 
-											<div class="treeEditFile" style="display: none;">
+											<div class="col-xs-12 treeEditFile" style="display: initial;">
+												<div class="widget-body">
+													<div id="tree_new"></div>
+													<div class="widget-main padding-8">
+														<ul id="tree2"></ul>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-xs-12 treeEditFile" style="display: none;">
 												<form class="well form-horizontal" method="post" id="form_drop_docs" name="form_drop_docs">
 													<fieldset>
 														<br>
@@ -561,15 +590,6 @@
 														<a onclick="reupload_files();" role="button" type="button" class="btn btn-success"><i class="fa fa-cloud-upload"></i>&nbsp;Subir Archivos</a>
 													</div>
 												</form>
-											</div>
-
-											<div class="col-xs-12">
-												<div class="widget-body">
-													<div id="tree_new"></div>
-													<div class="widget-main padding-8">
-														<ul id="tree2"></ul>
-													</div>
-												</div>
 											</div>
 
 										</div>

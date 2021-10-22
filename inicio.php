@@ -875,8 +875,8 @@
 		</script>
 
 		<script type="text/javascript">
-		    function fill_modal_comp_uso(id)
-		    {
+		   function fill_modal_comp_uso(id)
+		   {
 		    	var xmlhttp;
 
 		        if (window.XMLHttpRequest){
@@ -1468,8 +1468,8 @@
 				});
 			}
 
-		    function show_hide_modals()
-		    {
+		   function show_hide_modals()
+		   {
 				$('#modal_comp').on('shown.bs.modal', function (e) {
 		  			$('#modal_info').modal('hide');
 				});
@@ -1954,7 +1954,6 @@
 
 				});
 			}
-
 
 			function delete_file(deleteSpan){
 				var aElement = deleteSpan.previousSibling;
