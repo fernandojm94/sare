@@ -2009,28 +2009,23 @@
 			}
 
 			function reupload_files(){
-				// var form_docs = document.getElementById("form_drop_docs");
-				var myFormDocs = new FormData();
-				// console.info(myFormDocs);
-				// Variable to store your files
-				var archivos="";
-
-				// Add events
-				var archivos = $('input[type=file]');
+				var form_docs = document.getElementById("form_drop_docs");
+				form_docs = new FormData(form_docs);
+				// console.info(form_docs);
+				var archivos="";// Variable to store your files
+				var archivos = $('input[type=file]');// Add events
 				// console.info(archivos[0].files);
-
 				if (archivos[0].files != ""){
 					$.each(archivos[0].files, function(key, value)
 				    {
-				        myFormDocs.append(key, value);
-				        // console.warn(myFormDocs);
+				        form_docs.append(key, value);
+				        // console.warn(form_docs);
 				    });
 				}
-
-				// console.error(myFormDocs);
+				// console.info(form_docs);
 
 				$.ajax({
-					data:  myFormDocs,
+					data:  form_docs,
 					url:   './model/solicitud/upload_documentos.php',
 					type:  'post',
 					processData: false,
