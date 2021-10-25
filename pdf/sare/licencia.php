@@ -48,48 +48,47 @@
 
                 <table border="1" cellpadding="3" cellspacing="0">
                     <tr>
-                        <td colspan="3" rowspan="2" align="center"><img width="320" src="../../img/sde.png"></td>
-                        <td align="center">2019</td>
+                        <td rowspan="4" width="75%" align="center"><img width="320" src="../../img/sde.png"></td>
+                        <td align="center" width="25%">2021</td>
                     </tr>
-
                     <tr>
-                        <td align="center">FIRMA</td>
+                        <td style="color: lightgrey;" rowspan="2" align="center">Firma</td>
                     </tr>
-
                     <tr>
-                        <td align="center" colspan="3" style="font-size: 14px;"><b>LICENCIA</b></td>
-                        <td align="center">2020</td>
+                        <td></td>
                     </tr>
-
                     <tr>
-                        <td colspan="3" align="right"><b>Folio:</b> '.$expediente['folio'] .'</td>
-                        <td rowspan="3" align="center">FIRMA</td>
+                        <td align="center">2022</td>
                     </tr>
-
                     <tr>
-                        <td colspan="3"><b> Nombre del Establecimiento:</b> '.$establecimiento['nombre_comercial'].'</td>
+                        <td align="center" style="font-size: 14px;"><b>LICENCIA</b></td>
+                        <td style="color: lightgrey;" rowspan="2" align="center">Firma</td>
                     </tr>
-
                     <tr>
-                        <td colspan="3"><b> Giro:</b> '.$establecimiento['giro_scian'].'</td>
+                        <td align="right"><b>Folio:</b> '.$expediente['folio'] .'</td>
+                        
                     </tr>
-
                     <tr>
-                        <td colspan="3"><b> Nombre:</b> '.$datos_generales['nombre'].'</td>
-                        <td align="center">2021</td>
+                        <td><b> Nombre del Establecimiento:</b> '.$establecimiento['nombre_comercial'].'</td>
+                        <td align="center">2023</td>
                     </tr>
-
                     <tr>
-                        <td colspan="3"><b> Domicilio:</b> '.$datos_generales['domicilio'].'</td>
-                        <td rowspan="3" align="center">FIRMA</td>
+                        <td><b> Giro:</b> '.$establecimiento['giro_scian'].'</td>
+                        <td style="color: lightgrey;" rowspan="2" align="center">Firma</td>
                     </tr>
-
                     <tr>
-                        <td colspan="3"><b> Fecha:</b> '.$expediente['fecha_apertura'].'</td>
+                        <td><b> Nombre:</b> '.$datos_generales['nombre'].'</td>
                     </tr>
-
                     <tr>
-                        <td colspan="3"></td>
+                        <td><b> Domicilio:</b> '.$datos_generales['domicilio'].'</td>
+                        <td align="center">2024</td>
+                    </tr>
+                    <tr>
+                        <td><b> Fecha:</b> '.$expediente['fecha_apertura'].'</td>
+                        <td style="color: lightgrey;" rowspan="2" align="center">Firma</td>
+                    </tr>
+                    <tr>
+                        <td></td>
                     </tr>
                 </table>';
 
