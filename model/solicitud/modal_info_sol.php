@@ -14,8 +14,7 @@
 	$reinicia_btn = '<button id="btn_re" name="btn_re" type="button" class="btn btn-danger" style="display: none" onclick="revivir_sol('.$id.');"><i class="fa fa-refresh"></i>&nbsp;Reiniciar Solicitud</button>';
 	
 	if(($expediente['status'] == 2) && ($pantalla == 1)){
-		$parametros_editar = $id . ',' . $expediente['tipo_persona'] . ',' . "'boton'" . ',' . 0;
-		$parametros_editar;
+		$parametros_editar = $expediente['tipo_persona'] . ',' . "'boton'" . ',' . $expediente['id_persona'] . ',' .$expediente['id_dg_establecimiento']  . ',' . $expediente['id_dimensiones_establecimiento'];
 		$editar_btn = '<div class="widget-toolbar">
 					<label>
 						<small class="blue">
@@ -440,16 +439,23 @@
 													<i class="fa fa-map-marker green bigger-110"></i>&nbsp;
 														<input id="de12" name="de12" type="text" class="sinborde"  value="<?=$establecimiento['manzana'];?>" disabled size="50">
 													</div>
-												</div>
+												</div>														
 
 												<div class="profile-info-row">
 													<div class="profile-info-name">Servicios existentes: </div>
 
 													<div class="profile-info-value">
-													<i class="fa fa-cogs green bigger-110"></i>&nbsp;
-														<label class="input-sizer">
-															<input id="de13" name="de13" type="text" class="sinborde"  value="<?=$establecimiento['servicios_existentes'];?>" disabled>
-														</label>	
+														<div style="display: flex;">
+															<div style="align-self: center;">
+																<i class="fa fa-cogs green bigger-110"></i>&nbsp;
+															</div>
+
+															<div>
+																<label class="input-sizer">
+																	<textarea rows="1" id="de13" name="de13" type="text" class="sinborde"  value="<?=$establecimiento['servicios_existentes'];?>" disabled><?=$establecimiento['servicios_existentes'];?></textarea>
+																</label>
+															</div>
+														</div>	
 													</div>
 												</div>
 											</form>
