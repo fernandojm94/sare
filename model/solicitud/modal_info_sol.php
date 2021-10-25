@@ -66,7 +66,7 @@
 	$url = '';
 	foreach($filesDir as $dirFile){
 		$url = '/assets/expedientes/'.$folio_str.'/docs/documentacion/'.$dirFile;
-		$list .= '<li class="list-group-item node-tree_new" data-nodeid="1" style="color:#FF892A;background-color:undefined;"><span class="indent"></span><span class="icon glyphicon"></span><span class="icon node-icon fa fa-file-pdf-o"></span><a href="'.$url.'" style="color:inherit;" target="_blank"> '.$dirFile.'</a><span class="badge badge-danger" onclick="delete_file(this)"><i class="fa fa-times"></i></span></li>';
+		$list .= '<li class="list-group-item node-tree_new" data-nodeid="1" style="color:#FF892A;background-color:undefined;"><span class="indent"></span><span class="icon glyphicon"></span><span class="icon node-icon fa fa-file-pdf-o"></span><a href="'.$url.'" style="color:inherit;" target="_blank"> '.$dirFile.'</a><span style="cursor: pointer;" class="badge badge-danger" onclick="delete_file(this)"><i class="fa fa-times"></i></span></li>';
 	}
 	$list .= '</ul>';
 
