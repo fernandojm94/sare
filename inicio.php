@@ -1754,11 +1754,6 @@
 						    expanded: true
 						},						
 						nodes: []
-					},
-					{
-					    text: "Mapa",
-					    icon: "fa fa-file-image-o",
-					    color: "#69AA46"
 					}
 				];
 
