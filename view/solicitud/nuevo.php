@@ -428,7 +428,8 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-road"></i></span>
-                                                <input  name="distancia_esquina" id="distancia_esquina" placeholder="Distancia a esquina mas cercana" class="form-control" type="text" required/>
+                                                <input  name="distancia_esquina" id="distancia_esquina" placeholder="Distancia en metros" class="form-control" type="text" required/>
+                                                <span class="input-group-addon"><i></i>m</span>
                                             </div>
                                         </div>
                                     </div>
