@@ -14,8 +14,7 @@
 	$reinicia_btn = '<button id="btn_re" name="btn_re" type="button" class="btn btn-danger" style="display: none" onclick="revivir_sol('.$id.');"><i class="fa fa-refresh"></i>&nbsp;Reiniciar Solicitud</button>';
 	
 	if(($expediente['status'] == 2) && ($pantalla == 1)){
-		$parametros_editar = $id . ',' . $expediente['tipo_persona'] . ',' . "'boton'" . ',' . 0;
-		$parametros_editar;
+		$parametros_editar = $expediente['tipo_persona'] . ',' . "'boton'" . ',' . $expediente['id_persona'] . ',' .$expediente['id_dg_establecimiento']  . ',' . $expediente['id_dimensiones_establecimiento'];
 		$editar_btn = '<div class="widget-toolbar">
 					<label>
 						<small class="blue">
