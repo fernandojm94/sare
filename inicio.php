@@ -1958,7 +1958,7 @@
 			function delete_file(deleteSpan){
 				var aElement = deleteSpan.previousSibling;
 				var hrefFile = aElement.getAttribute("href");
-				// console.info(hrefFile);
+				// console.info();
 
 				var data_split = hrefFile.split("/", 7);
                 var filename = data_split[6];
@@ -1986,10 +1986,10 @@
 							
 								if (data==='correcto'){
 									swal({
-									  title: "¡Datos actualizados correctamente!",
+									  title: "¡Archivo eliminado correctamente!",
 									  icon: "success",
 									});
-									location.reload();
+									deleteSpan.parentElement.style.display="none";
 								}
 
 								if (data==='error'){
