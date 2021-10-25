@@ -455,6 +455,7 @@
 																	<textarea rows="1" id="de13" name="de13" type="text" class="sinborde"  value="<?=$establecimiento['servicios_existentes'];?>" disabled><?=$establecimiento['servicios_existentes'];?></textarea>
 																</label>
 															</div>
+														</div>	
 													</div>
 												</div>
 											</form>
