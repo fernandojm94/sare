@@ -1,5 +1,9 @@
 <?php
 
+	var_dump($_FILES); 
+	var_dump($_POST); 
+		exit();
+
 	include('../../controller/solicitud/funciones_solicitud.php');
 	
 	//VARIABLE DEL CHECK PARA SOLICITAR NÚMERO OFICIAL A SEDATUM

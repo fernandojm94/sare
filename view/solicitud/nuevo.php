@@ -592,74 +592,84 @@
 <!-- ------------------------------------ COMIENZA PASO 5 ---------------------------------------------------- -->
 
                         <div class="step-pane" data-step="5">
-                            <form class="well form-horizontal" method="post"  id="form_documentos" name="form_documentos">
+                            <form class="form-horizontal" method="post"  id="form_documentos" name="form_documentos">
                                 <fieldset>
                                     <legend class="center">Carga de Documentos</legend>
 
-                                    <div class="hidden" id="inst_idpf"></div>
-                                    <div class="hidden" id="inst_idpm"></div>
-                                    <input type="hidden" id="img_map" name="img_map" />
-                                    <div class="hidden" id="inst_iddg"></div>
-                                    <div class="hidden" id="inst_iddim"></div>
-
-                                    
-                                   
-
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">Escritura o titulo de propiedad (en su caso carta notariada de escritura en trámite).</label>  
-                                        <div class="col-md-4 inputGroupContainer">
-                                            <input type="file" id="titulo" name="titulo" required/>                                            
-                                        </div>
-                                    </div> 
-
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">Recibo predial año en curso.</label>  
-                                        <div class="col-md-4 inputGroupContainer">
-                                            <input type="file" id="pred" name="pred" required/>                                            
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">Identificación oficial (de los implicados).</label>  
-                                        <div class="col-md-4 inputGroupContainer">
-                                            <input type="file" id="ine" name="ine" required/>                                            
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">Contrato de arrendamiento (en donde se especifiquen las medidas rentadas, el giro comercial, la ubicación del local y la vigencia del contrato).</label>  
-                                        <div class="col-md-4 inputGroupContainer">
-                                            <input type="file" id="contrato" name="contrato" required/>                                            
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group" id="noOf">
-                                        <label class="col-md-4 control-label">Número oficial.</label>  
-                                        <div class="col-md-4 inputGroupContainer">
-                                            <input type="file" id="no" name="no" required/>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group" id="comnoOf" hidden>
-                                        <label class="col-md-4 control-label">Comprobante de Pago del Número oficial.</label>  
-                                        <div class="col-md-4 inputGroupContainer">
-                                            <input type="file" id="cp_no" name="cp_no"/>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">¿Solicitar Número Oficial a SEDATUM?</label>
-                                        <label class="col-md-4 inputGroupContainer">
-                                            <input type="checkbox" name="checkNumOficial" id="checkNumOficial" class="ace ace-switch ace-switch-5">
-
-                                            <span class="lbl middle"></span>
-                                        </label>
-                                    </div>
-
-                                    <div id="upmoral"></div>                  
+                                    <div class="" id="inst_idpf"></div>
+                                    <div class="" id="inst_idpm"></div>
+                                    <input type="text" id="img_map" name="img_map" />
+                                    <div class="" id="inst_iddg"></div>
+                                    <div class="" id="inst_iddim"></div>
                                 </fieldset>
+                            </form>        
+                                   
+                            <form id="form_title" class=" form-horizontal">                               
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Escritura o titulo de propiedad (en su caso carta notariada de escritura en trámite).</label>  
+                                    <div class="col-md-4 inputGroupContainer">
+                                        <input type="file" id="titulo" name="titulo" required/>                                            
+                                    </div>
+                                </div>                                
                             </form>
+
+                            <form id="form_pre" class=" form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Recibo predial año en curso.</label>  
+                                    <div class="col-md-4 inputGroupContainer">
+                                        <input type="file" id="pred" name="pred" required/>                                            
+                                    </div>
+                                </div>
+                            </form>
+                            
+                            <form id="form_ine" class=" form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Identificación oficial (de los implicados).</label>  
+                                    <div class="col-md-4 inputGroupContainer">
+                                        <input type="file" id="ine" name="ine" required/>                                            
+                                    </div>
+                                </div>
+                            </form>
+
+                            <form id="form_cont" class=" form-horizontal">        
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Contrato de arrendamiento (en donde se especifiquen las medidas rentadas, el giro comercial, la ubicación del local y la vigencia del contrato).</label>  
+                                    <div class="col-md-4 inputGroupContainer">
+                                        <input type="file" id="contrato" name="contrato" required/>                                            
+                                    </div>
+                                </div>
+                            </form>
+
+                            <form id="form_no" class=" form-horizontal">
+                                <div class="form-group" id="noOf">
+                                    <label class="col-md-4 control-label">Número oficial.</label>  
+                                    <div class="col-md-4 inputGroupContainer">
+                                        <input type="file" id="no" name="no" required/>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <form id="form_num" class=" form-horizontal">
+                                <div class="form-group" id="comnoOf" hidden>
+                                    <label class="col-md-4 control-label">Comprobante de Pago del Número oficial.</label>  
+                                    <div class="col-md-4 inputGroupContainer">
+                                        <input type="file" id="cp_no" name="cp_no"/>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <form id="" class=" form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">¿Solicitar Número Oficial a SEDATUM?</label>
+                                    <label class="col-md-4 inputGroupContainer">
+                                        <input type="checkbox" name="checkNumOficial" id="checkNumOficial" class="ace ace-switch ace-switch-5">
+
+                                        <span class="lbl middle"></span>
+                                    </label>
+                                </div>
+                            </form>
+
+                            <div id="upmoral"></div>
                         </div> 
                     </div>
 
@@ -760,6 +770,35 @@
     
         $('#catastral').mask('**-**-**-***-***-***');
 
+        function show_msg()
+        {
+            $.gritter.add({
+                title: '<i class="fa fa-check"></i> Archivo cargado correctamente',
+                text: '',
+                class_name: 'gritter-success'
+            });
+            return false;
+        }
+
+        function send_file(form)
+        {
+            waitingDialog.show('Subiendo archivo', {dialogSize: 'sm', progressType: 'warning'})
+            $.ajax({
+                data:  form,
+                url:   './model/solicitud/create_documentos.php',
+                type:  'post',
+                processData: false,
+                contentType: false, 
+
+                success:  function (data) {                
+                    waitingDialog.hide();
+                    show_msg();
+                    if (data==='correcto'){
+                    }                    
+                }
+            });
+        }
+
         $('#titulo').ace_file_input({
 
             no_file:'Seleccione un documento ...',
@@ -775,17 +814,21 @@
         }).on('change', function() {
             swal({
                 title: "¿El documento cumple con lo siguiente?:",
-                text: "La escritura o titulo de propiedad debe coincidir con el comprobante de domicilio, el predial actual y el contrato de arrendamiento en cuanto a dueño de la propiedad, ubicación de la propiedad, área de la propiedad total y de uso comercial, asi como la vigencia del contrato de arrendamiento.",
+                text: "La escritura o titulo de propiedad debe coincidir con el comprobante de domicilio, el form_preial actual y el contrato de arrendamiento en cuanto a dueño de la propiedad, ubicación de la propiedad, área de la propiedad total y de uso comercial, asi como la vigencia del contrato de arrendamiento.",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
                 buttons: ["Sí", "No"]
-            }).then((value) => {
+            }).then((value) => {                
+               
+                fd_title = new FormData(document.getElementById("form_title"));
+                send_file(fd_title);
                 if (value) {
                     $("#"+this.id).next().next().click();
                 }
             });
         });
+
 
         $('#pred').ace_file_input({
             no_file:'Seleccione un documento ...',
@@ -803,13 +846,15 @@
                 dangerMode: true,
                 buttons: ["Sí", "No"]
             }).then((value) => {
+                fd_pred = new FormData(document.getElementById("form_pre"));
+                send_file(fd_pred);
                 if (value) {
                     $("#"+this.id).next().next().click();
                 }
             });
         });
 
-         $('#ine').ace_file_input({
+        $('#ine').ace_file_input({
             no_file:'Seleccione un documento ...',
             btn_choose:'Seleccionar',
             btn_change:'Cambiar',
@@ -825,6 +870,8 @@
                 dangerMode: true,
                 buttons: ["Sí", "No"]
             }).then((value) => {
+                fd_ine = new FormData(document.getElementById("form_ine"));
+                send_file(fd_ine);
                 if (value) {
                     $("#"+this.id).next().next().click();
                 }
@@ -847,6 +894,8 @@
                 dangerMode: true,
                 buttons: ["Sí", "No"]
             }).then((value) => {
+                fd_cont = new FormData(document.getElementById("form_cont"));
+                send_file(fd_cont);
                 if (value) {
                     $("#"+this.id).next().next().click();
                 }
@@ -869,6 +918,8 @@
                 dangerMode: true,
                 buttons: ["Sí", "No"]
             }).then((value) => {
+                fd_no = new FormData(document.getElementById("form_no"));
+                send_file(fd_no);
                 if (value) {
                     $("#"+this.id).next().next().click();
                 }
@@ -891,6 +942,8 @@
                 dangerMode: true,
                 buttons: ["Sí", "No"]
             }).then((value) => {
+                fd_num = new FormData(document.getElementById("form_num"));
+                send_file(fd_num);
                 if (value) {
                     $("#"+this.id).next().next().click();
                 }
@@ -1019,7 +1072,6 @@
             });
         }
     }
-
 
     function tags_moral(){
     
@@ -1244,7 +1296,6 @@
         var resultContainer = document.getElementById('panel');       
     }
 
-
     function buscar_direccion(){
         $(map).empty();
         var calle = document.getElementById('calle_dg').value;
@@ -1442,6 +1493,34 @@
         })
         .on('actionclicked.fu.wizard' , function(e, info){
             var tipo_persona = $('#tipo_persona:checked').val();
+            function send_file(form)
+            {
+                waitingDialog.show('Subiendo archivo', {dialogSize: 'sm', progressType: 'warning'})
+                $.ajax({
+                    data:  form,
+                    url:   './model/solicitud/create_documentos.php',
+                    type:  'post',
+                    processData: false,
+                    contentType: false, 
+
+                    success:  function (data) {                
+                        waitingDialog.hide();
+                        show_msg();
+                        if (data==='correcto'){
+                        }                    
+                    }
+                });
+            }
+
+            function show_msg()
+            {
+                $.gritter.add({
+                    title: '<i class="fa fa-check"></i> Archivo cargado correctamente',
+                    text: '',
+                    class_name: 'gritter-success'
+                });
+                return false;
+            }
 
             if(info.step == 1) {
                 e.preventDefault();
@@ -1466,7 +1545,7 @@
                         });
                         tags_moral();
 
-                        var codehtml='<h3 class="header smaller lighter center"><small>Persona Moral</small></h3><div class="form-group"><label class="col-md-4 control-label">Acta constitutiva de la empresa.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="acta" name="acta"/></div></div><div class="form-group"><label class="col-md-4 control-label">Poder notarial.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="poder" name="poder"/></div></div><div class="form-group"><label class="col-md-4 control-label">Solicitud firmada por el representante legal de la empresa.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="solicitud" name="solicitud" /></div></div>';
+                        var codehtml='<h3 class="header smaller lighter center"><small>Persona Moral</small></h3><form id="form_acta" class=" form-horizontal"><div class="form-group"><label class="col-md-4 control-label">Acta constitutiva de la empresa.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="acta" name="acta"/></div></div></form><form id="form_pod" class=" form-horizontal"><div class="form-group"><label class="col-md-4 control-label">Poder notarial.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="poder" name="poder"/></div></div></form><form id="form_sol" class=" form-horizontal"><div class="form-group"><label class="col-md-4 control-label">Solicitud firmada por el representante legal de la empresa.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="solicitud" name="solicitud" /></div></div></form>';
                         document.getElementById("upmoral").innerHTML=codehtml;
 
                         $('#acta').ace_file_input({
@@ -1485,6 +1564,8 @@
                                 dangerMode: true,
                                 buttons: ["Sí", "No"]
                             }).then((value) => {
+                                fd_act = new FormData(document.getElementById("form_acta"));
+                                send_file(fd_act);
                                 if (value) {
                                     $("#"+this.id).next().next().click();
                                 }
@@ -1507,6 +1588,8 @@
                                 dangerMode: true,
                                 buttons: ["Sí", "No"]
                             }).then((value) => {
+                                fd_pod = new FormData(document.getElementById("form_pod"));
+                                send_file(fd_pod);
                                 if (value) {
                                     $("#"+this.id).next().next().click();
                                 }
@@ -1529,6 +1612,8 @@
                                 dangerMode: true,
                                 buttons: ["Sí", "No"]
                             }).then((value) => {
+                                fd_sol = new FormData(document.getElementById("form_sol"));
+                                send_file(fd_sol);
                                 if (value) {
                                     $("#"+this.id).next().next().click();
                                 }
@@ -1847,62 +1932,59 @@
             if(info.step == 5) {
                 if(info.direction == 'next')
                 {
-                    if(!$('#form_documentos').valid()){
-                        e.preventDefault();
-                    }
-                    else{
-                        e.preventDefault();
+                    
+                    e.preventDefault();
 
-                        // PARA SELECCIONAR EL INPUT QUE SE ENVIARÁ DE LOS RADIOBUTTONS
-                        var radio_fisica = document.getElementsByName("tipo_persona")[0];
-                        var radio_moral = document.getElementsByName("tipo_persona")[1];
+                    // PARA SELECCIONAR EL INPUT QUE SE ENVIARÁ DE LOS RADIOBUTTONS
+                    var radio_fisica = document.getElementsByName("tipo_persona")[0];
+                    var radio_moral = document.getElementsByName("tipo_persona")[1];
+                    
+                    if (radio_fisica.checked == true) {
+                        $(radio_fisica).appendTo('#form_documentos');
+                    }else if(radio_moral.checked == true){
+                        $(radio_moral).appendTo('#form_documentos');
+                    }
+
+                    var myForm = document.getElementById('form_documentos');
+
+                    var formData = new FormData(myForm);
+                 
+                    $.ajax({
+                        data:  formData,
+                        url:   './model/solicitud/create_documentos.php',
+                        type:  'post',
+                        processData: false,
+                        contentType: false,
                         
-                        if (radio_fisica.checked == true) {
-                            $(radio_fisica).appendTo('#form_documentos');
-                        }else if(radio_moral.checked == true){
-                            $(radio_moral).appendTo('#form_documentos');
-                        }
-
-                        var myForm = document.getElementById('form_documentos');
-
-                        var formData = new FormData(myForm);
-                     
-                        $.ajax({
-                            data:  formData,
-                            url:   './model/solicitud/create_documentos.php',
-                            type:  'post',
-                            processData: false,
-                            contentType: false,
-                            
-                            success:  function (data) {
-                                                                    
-                                if (data==='correcto'){
-                                    swal({
-                                        title: "¡Datos guardados correctamente!",
-                                        timer: 3000,
-                                        icon: "success",
-                                        button: "Aceptar"
-                                    }).then((value) => {
-                                        if(value) {
-                                            
-                                        }
-                                    });   
-                                    cambiarcont('view/solicitud/listado.php?pantalla=1');                 
-                                }
-                                
-                                if (data==='error'){
-                                    swal({
-                                        title: "¡Error!",
-                                        text: "¡Ocurrio algo al guardar!",
-                                        timer: 3000,
-                                        icon: "error",
-                                        button: "Aceptar"
-                                    });
-                                }
+                        success:  function (data) {
+                                                                
+                            if (data==='correcto'){
+                                swal({
+                                    title: "¡Datos guardados correctamente!",
+                                    timer: 3000,
+                                    icon: "success",
+                                    button: "Aceptar"
+                                }).then((value) => {
+                                    if(value) {
+                                        
+                                    }
+                                });   
+                                cambiarcont('view/solicitud/listado.php?pantalla=1');                 
                             }
-
-                        });
-                    }
+                            
+                            if (data==='error'){
+                                swal({
+                                    title: "¡Error!",
+                                    text: "¡Ocurrio algo al guardar!",
+                                    timer: 3000,
+                                    icon: "error",
+                                    button: "Aceptar"
+                                });
+                            }
+                        }
+                        
+                    });
+                    
                 }                
             }
         })
@@ -2614,71 +2696,11 @@
             focusInvalid: false,
             ignore: "",
             rules: {
-                titulo: {
-                    required: true
-                },
-
-                pred: {
-                    required: true
-                },
-
-                ine: {
-                    required: true
-                },
-
-                contrato: {
-                    required: true
-                },
-
-                acta: {
-                    required: true
-                },
-
-                poder: {
-                    required: true
-                },
-
-                solicitud: {
-                    required: true
-                }
+                
             },     
 
             messages: {
-                titulo: {
-                    required: "Favor de seleccionar el documento."
-                },
-
-                pred: {
-                    required: "Favor de seleccionar el documento."
-                },
                 
-                ine: {
-                    required: "Favor de seleccionar el documento."
-                },
-                
-                contrato: {
-                    required: "Favor de seleccionar el documento."
-                },
-
-                no: {
-                    required: "Favor de seleccionar el documento."
-                },
-
-                cp_no: {
-                    required: "Favor de seleccionar el documento."
-                },
-
-                acta: {
-                    required: "Favor de seleccionar el documento."
-                },
-
-                poder: {
-                    required: "Favor de seleccionar el documento."
-                },
-
-                solicitud: {
-                    required: "Favor de seleccionar el documento."
-                }
             },
 
 
