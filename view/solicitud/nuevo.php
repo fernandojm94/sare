@@ -608,7 +608,8 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Escritura o titulo de propiedad (en su caso carta notariada de escritura en trámite).</label>  
                                     <div class="col-md-4 inputGroupContainer">
-                                        <input type="file" id="titulo" name="titulo" required/>                                            
+                                        <input type="file" id="titulo" name="titulo" required/> 
+                                        <input type="text" class="fill_fol" name="folio" id="folio">                                           
                                     </div>
                                 </div>                                
                             </form>
@@ -617,7 +618,8 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Recibo predial año en curso.</label>  
                                     <div class="col-md-4 inputGroupContainer">
-                                        <input type="file" id="pred" name="pred" required/>                                            
+                                        <input type="file" id="pred" name="pred" required/>     
+                                        <input type="text" class="fill_fol" name="folio" id="folio">                                        
                                     </div>
                                 </div>
                             </form>
@@ -626,7 +628,8 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Identificación oficial (de los implicados).</label>  
                                     <div class="col-md-4 inputGroupContainer">
-                                        <input type="file" id="ine" name="ine" required/>                                            
+                                        <input type="file" id="ine" name="ine" required/>     
+                                        <input type="text" class="fill_fol" name="folio" id="folio">                                        
                                     </div>
                                 </div>
                             </form>
@@ -635,7 +638,8 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Contrato de arrendamiento (en donde se especifiquen las medidas rentadas, el giro comercial, la ubicación del local y la vigencia del contrato).</label>  
                                     <div class="col-md-4 inputGroupContainer">
-                                        <input type="file" id="contrato" name="contrato" required/>                                            
+                                        <input type="file" id="contrato" name="contrato" required/>  
+                                        <input type="text" class="fill_fol" name="folio" id="folio">                                           
                                     </div>
                                 </div>
                             </form>
@@ -645,6 +649,7 @@
                                     <label class="col-md-4 control-label">Número oficial.</label>  
                                     <div class="col-md-4 inputGroupContainer">
                                         <input type="file" id="no" name="no" required/>
+                                        <input type="text" class="fill_fol" name="folio" id="folio">
                                     </div>
                                 </div>
                             </form>
@@ -654,6 +659,7 @@
                                     <label class="col-md-4 control-label">Comprobante de Pago del Número oficial.</label>  
                                     <div class="col-md-4 inputGroupContainer">
                                         <input type="file" id="cp_no" name="cp_no"/>
+                                        <input type="text" class="fill_fol" name="folio" id="folio">
                                     </div>
                                 </div>
                             </form>
@@ -682,7 +688,7 @@
                         Anterior
                     </button>
 
-                    <button class="btn btn-success btn-next" data-last="Finalizar">
+                    <button class="btn btn-success btn-next" data-last="Finalizar" id="btn_next">
                         Continuar
                         <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
                     </button>
@@ -770,6 +776,18 @@
     
         $('#catastral').mask('**-**-**-***-***-***');
 
+        $('#local').on('change', function() {
+            if ($('#local').val() >= 150){
+                swal({
+                    title: "Este local no aplica para SARE",
+                    text: "La superficie del local excede el tamaño establecido para SARE.",
+                    icon: "error",
+                    button: "Aceptar"
+                });
+                $('#local').val("");
+            }
+        });
+
         function show_msg()
         {
             $.gritter.add({
@@ -792,8 +810,11 @@
 
                 success:  function (data) {                
                     waitingDialog.hide();
-                    show_msg();
-                    if (data==='correcto'){
+                    var datos = data.split(',');
+                    if (datos[0]==='correcto'){
+                       //document.getElementById("folio").value=datos[1];
+                       $('.fill_fol').val(datos[1]);
+                       show_msg();
                     }                    
                 }
             });
@@ -807,9 +828,7 @@
             droppable:false,
             onchange:null,
             thumbnail:true,
-            remove: function hey(){
-                alert('qué pasa aqui');
-            }
+            icon_remove : false
 
         }).on('change', function() {
             swal({
@@ -820,11 +839,11 @@
                 dangerMode: true,
                 buttons: ["Sí", "No"]
             }).then((value) => {                
-               
-                fd_title = new FormData(document.getElementById("form_title"));
-                send_file(fd_title);
                 if (value) {
                     $("#"+this.id).next().next().click();
+                } else{
+                    fd_title = new FormData(document.getElementById("form_title"));
+                    send_file(fd_title);
                 }
             });
         });
@@ -836,20 +855,23 @@
             btn_change:'Cambiar',
             droppable:false,
             onchange:null,
-            thumbnail:true
+            thumbnail:true,
+            icon_remove : false
         }).on('change', function() {
             swal({
                 title: "¿El documento cumple con lo siguiente?:",
-                text: "Recibo del predial actual (2020).",
+                text: "Recibo del predial actual (2022).",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
                 buttons: ["Sí", "No"]
             }).then((value) => {
-                fd_pred = new FormData(document.getElementById("form_pre"));
-                send_file(fd_pred);
+                
                 if (value) {
                     $("#"+this.id).next().next().click();
+                } else{
+                   fd_pred = new FormData(document.getElementById("form_pre"));
+                   send_file(fd_pred); 
                 }
             });
         });
@@ -860,7 +882,8 @@
             btn_change:'Cambiar',
             droppable:false,
             onchange:null,
-            thumbnail:true
+            thumbnail:true,
+            icon_remove : false
         }).on('change', function() {
             swal({
                 title: "¿El documento cumple con lo siguiente?:",
@@ -870,10 +893,12 @@
                 dangerMode: true,
                 buttons: ["Sí", "No"]
             }).then((value) => {
-                fd_ine = new FormData(document.getElementById("form_ine"));
-                send_file(fd_ine);
+                
                 if (value) {
                     $("#"+this.id).next().next().click();
+                } else{
+                    fd_ine = new FormData(document.getElementById("form_ine"));
+                    send_file(fd_ine);
                 }
             });
         });
@@ -884,7 +909,8 @@
             btn_change:'Cambiar',
             droppable:false,
             onchange:null,
-            thumbnail:true
+            thumbnail:true,
+            icon_remove : false
         }).on('change', function() {
             swal({
                 title: "¿El documento cumple con lo siguiente?:",
@@ -894,10 +920,12 @@
                 dangerMode: true,
                 buttons: ["Sí", "No"]
             }).then((value) => {
-                fd_cont = new FormData(document.getElementById("form_cont"));
-                send_file(fd_cont);
+                
                 if (value) {
                     $("#"+this.id).next().next().click();
+                } else{
+                    fd_cont = new FormData(document.getElementById("form_cont"));
+                    send_file(fd_cont);
                 }
             });
         });
@@ -908,7 +936,8 @@
             btn_change:'Cambiar',
             droppable:false,
             onchange:null,
-            thumbnail:true
+            thumbnail:true,
+            icon_remove : false
         }).on('change', function() {
             swal({
                 title: "¿Está usted seguro?:",
@@ -918,10 +947,12 @@
                 dangerMode: true,
                 buttons: ["Sí", "No"]
             }).then((value) => {
-                fd_no = new FormData(document.getElementById("form_no"));
-                send_file(fd_no);
+                
                 if (value) {
                     $("#"+this.id).next().next().click();
+                } else{
+                    fd_no = new FormData(document.getElementById("form_no"));
+                    send_file(fd_no);
                 }
             });
         });
@@ -932,7 +963,8 @@
             btn_change:'Cambiar',
             droppable:false,
             onchange:null,
-            thumbnail:true
+            thumbnail:true,
+            icon_remove : false
         }).on('change', function() {
             swal({
                 title: "¿Está usted seguro?:",
@@ -942,25 +974,17 @@
                 dangerMode: true,
                 buttons: ["Sí", "No"]
             }).then((value) => {
-                fd_num = new FormData(document.getElementById("form_num"));
-                send_file(fd_num);
+                
                 if (value) {
                     $("#"+this.id).next().next().click();
+                } else{
+                    fd_num = new FormData(document.getElementById("form_num"));
+                    send_file(fd_num);
                 }
             });
         });
 
-        $('#local').on('change', function() {
-            if ($('#local').val() >= 150){
-                swal({
-                    title: "Este local no aplica para SARE",
-                    text: "La superficie del local excede el tamaño establecido para SARE.",
-                    icon: "error",
-                    button: "Aceptar"
-                });
-                $('#local').val("");
-            }
-        });    
+            
     });
 </script>
 
@@ -1486,354 +1510,209 @@
 
     
     //var $validation = false;
-        $('#fuelux-wizard-container')
-        .ace_wizard({
-            //step: 2 //optional argument. wizard will jump to step "2" at first
-            //buttons: '.wizard-actions:eq(0)'
-        })
-        .on('actionclicked.fu.wizard' , function(e, info){
-            var tipo_persona = $('#tipo_persona:checked').val();
-            function send_file(form)
+    $('#fuelux-wizard-container')
+    .ace_wizard({
+        //step: 2 //optional argument. wizard will jump to step "2" at first
+        //buttons: '.wizard-actions:eq(0)'
+    })
+    .on('actionclicked.fu.wizard' , function(e, info){
+        var tipo_persona = $('#tipo_persona:checked').val();
+        
+        function send_file(form)
+        {
+            waitingDialog.show('Subiendo archivo', {dialogSize: 'sm', progressType: 'warning'})
+            $.ajax({
+                data:  form,
+                url:   './model/solicitud/create_documentos.php',
+                type:  'post',
+                processData: false,
+                contentType: false, 
+
+                success:  function (data) {                
+                    waitingDialog.hide();
+                    var datos = data.split(',');
+                    if (datos[0]==='correcto'){
+                       //document.getElementById("folio").value=datos[1];
+                       $('.fill_fol').val(datos[1]);
+                       show_msg();
+                    }                    
+                }
+            });
+        }
+
+        function show_msg()
+        {
+            $.gritter.add({
+                title: '<i class="fa fa-check"></i> Archivo cargado correctamente',
+                text: '',
+                class_name: 'gritter-success'
+            });
+            return false;
+        }
+
+        if(info.step == 1) {
+            e.preventDefault();
+
+            if(typeof tipo_persona !== "undefined")
             {
-                waitingDialog.show('Subiendo archivo', {dialogSize: 'sm', progressType: 'warning'})
-                $.ajax({
-                    data:  form,
-                    url:   './model/solicitud/create_documentos.php',
-                    type:  'post',
-                    processData: false,
-                    contentType: false, 
-
-                    success:  function (data) {                
-                        waitingDialog.hide();
-                        show_msg();
-                        if (data==='correcto'){
-                        }                    
-                    }
-                });
-            }
-
-            function show_msg()
-            {
-                $.gritter.add({
-                    title: '<i class="fa fa-check"></i> Archivo cargado correctamente',
-                    text: '',
-                    class_name: 'gritter-success'
-                });
-                return false;
-            }
-
-            if(info.step == 1) {
-                e.preventDefault();
-
-                if(typeof tipo_persona !== "undefined")
+                if(tipo_persona=="p_fisica")
                 {
-                    if(tipo_persona=="p_fisica")
-                    {
-                        document.getElementById("titulo_paso").innerHTML="Información Personas Físicas";
-                        $("#div_morales").removeAttr("data-step");
-                        $('#div_fisicas').attr('data-step','2');                            
-                        $('#fuelux-wizard-container').wizard('selectedItem', {
-                            step: 2
-                        }); 
-                        tags_fisica();                           
-                    } else{
-                        document.getElementById("titulo_paso").innerHTML="Información Personas Morales";
-                        $("#div_fisicas").removeAttr("data-step");
-                        $('#div_morales').attr('data-step','2');
-                        $('#fuelux-wizard-container').wizard('selectedItem', {
-                            step: 2
-                        });
-                        tags_moral();
+                    document.getElementById("titulo_paso").innerHTML="Información Personas Físicas";
+                    $("#div_morales").removeAttr("data-step");
+                    $('#div_fisicas').attr('data-step','2');                            
+                    $('#fuelux-wizard-container').wizard('selectedItem', {
+                        step: 2
+                    }); 
+                    tags_fisica();                           
+                } else{
+                    document.getElementById("titulo_paso").innerHTML="Información Personas Morales";
+                    $("#div_fisicas").removeAttr("data-step");
+                    $('#div_morales').attr('data-step','2');
+                    $('#fuelux-wizard-container').wizard('selectedItem', {
+                        step: 2
+                    });
+                    tags_moral();
 
-                        var codehtml='<h3 class="header smaller lighter center"><small>Persona Moral</small></h3><form id="form_acta" class=" form-horizontal"><div class="form-group"><label class="col-md-4 control-label">Acta constitutiva de la empresa.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="acta" name="acta"/></div></div></form><form id="form_pod" class=" form-horizontal"><div class="form-group"><label class="col-md-4 control-label">Poder notarial.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="poder" name="poder"/></div></div></form><form id="form_sol" class=" form-horizontal"><div class="form-group"><label class="col-md-4 control-label">Solicitud firmada por el representante legal de la empresa.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="solicitud" name="solicitud" /></div></div></form>';
-                        document.getElementById("upmoral").innerHTML=codehtml;
+                    var codehtml='<h3 class="header smaller lighter center"><small>Persona Moral</small></h3><form id="form_acta" class=" form-horizontal"><div class="form-group"><label class="col-md-4 control-label">Acta constitutiva de la empresa.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="acta" name="acta"/><input type="text" class="fill_fol" name="folio" id="folio"></div></div></form><form id="form_pod" class=" form-horizontal"><div class="form-group"><label class="col-md-4 control-label">Poder notarial.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="poder" name="poder"/><input type="text" class="fill_fol" name="folio" id="folio"></div></div></form><form id="form_sol" class=" form-horizontal"><div class="form-group"><label class="col-md-4 control-label">Solicitud firmada por el representante legal de la empresa.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="solicitud" name="solicitud" /><input type="text" class="fill_fol" name="folio" id="folio"></div></div></form>';
+                    document.getElementById("upmoral").innerHTML=codehtml;
 
-                        $('#acta').ace_file_input({
-                            no_file:'Seleccione un documento ...',
-                            btn_choose:'Seleccionar',
-                            btn_change:'Cambiar',
-                            droppable:false,
-                            onchange:null,
-                            thumbnail:true
-                        }).on('change', function() {
-                            swal({
-                                title: "¿El documento cumple con los requerimientos?:",
-                                text: "",
-                                icon: "warning",
-                                buttons: true,
-                                dangerMode: true,
-                                buttons: ["Sí", "No"]
-                            }).then((value) => {
+                    $('#acta').ace_file_input({
+                        no_file:'Seleccione un documento ...',
+                        btn_choose:'Seleccionar',
+                        btn_change:'Cambiar',
+                        droppable:false,
+                        onchange:null,
+                        thumbnail:true,
+                        icon_remove : false
+                    }).on('change', function() {
+                        swal({
+                            title: "¿El documento cumple con los requerimientos?:",
+                            text: "",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true,
+                            buttons: ["Sí", "No"]
+                        }).then((value) => {
+                            
+                            if (value) {
+                                $("#"+this.id).next().next().click();
+                            } else{
                                 fd_act = new FormData(document.getElementById("form_acta"));
                                 send_file(fd_act);
-                                if (value) {
-                                    $("#"+this.id).next().next().click();
-                                }
-                            });
+                            }
                         });
+                    });
 
-                        $('#poder').ace_file_input({
-                            no_file:'Seleccione un documento ...',
-                            btn_choose:'Seleccionar',
-                            btn_change:'Cambiar',
-                            droppable:false,
-                            onchange:null,
-                            thumbnail:true
-                        }).on('change', function() {
-                            swal({
-                                title: "¿El documento cumple con los requerimientos?:",
-                                text: "",
-                                icon: "warning",
-                                buttons: true,
-                                dangerMode: true,
-                                buttons: ["Sí", "No"]
-                            }).then((value) => {
+                    $('#poder').ace_file_input({
+                        no_file:'Seleccione un documento ...',
+                        btn_choose:'Seleccionar',
+                        btn_change:'Cambiar',
+                        droppable:false,
+                        onchange:null,
+                        thumbnail:true,
+                        icon_remove : false
+                    }).on('change', function() {
+                        swal({
+                            title: "¿El documento cumple con los requerimientos?:",
+                            text: "",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true,
+                            buttons: ["Sí", "No"]
+                        }).then((value) => {
+                            
+                            if (value) {
+                                $("#"+this.id).next().next().click();
+                            } else{
                                 fd_pod = new FormData(document.getElementById("form_pod"));
                                 send_file(fd_pod);
-                                if (value) {
-                                    $("#"+this.id).next().next().click();
-                                }
-                            });
+                            }
                         });
+                    });
 
-                        $('#solicitud').ace_file_input({
-                            no_file:'Seleccione un documento ...',
-                            btn_choose:'Seleccionar',
-                            btn_change:'Cambiar',
-                            droppable:false,
-                            onchange:null,
-                            thumbnail:true
-                        }).on('change', function() {
-                            swal({
-                                title: "¿El documento cumple con los requerimientos?:",
-                                text: "",
-                                icon: "warning",
-                                buttons: true,
-                                dangerMode: true,
-                                buttons: ["Sí", "No"]
-                            }).then((value) => {
+                    $('#solicitud').ace_file_input({
+                        no_file:'Seleccione un documento ...',
+                        btn_choose:'Seleccionar',
+                        btn_change:'Cambiar',
+                        droppable:false,
+                        onchange:null,
+                        thumbnail:true,
+                        icon_remove : false
+                    }).on('change', function() {
+                        swal({
+                            title: "¿El documento cumple con los requerimientos?:",
+                            text: "",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true,
+                            buttons: ["Sí", "No"]
+                        }).then((value) => {
+                            
+                            if (value) {
+                                $("#"+this.id).next().next().click();
+                            } else{
                                 fd_sol = new FormData(document.getElementById("form_sol"));
                                 send_file(fd_sol);
-                                if (value) {
-                                    $("#"+this.id).next().next().click();
-                                }
-                            });
+                            }
                         });
-                    }
-
-                } else{
-                    swal({
-                        title: "¡Atención!",
-                        text: "Favor de seleccionar una opción",
-                        icon: "info",
-                        button: "Aceptar"
                     });
                 }
-                
+
+            } else{
+                swal({
+                    title: "¡Atención!",
+                    text: "Favor de seleccionar una opción",
+                    icon: "info",
+                    button: "Aceptar"
+                });
             }
-
-            if(info.step == 2) {
-                if(info.direction == 'next')
-                {                    
-                    if(tipo_persona=="p_fisica")
-                    {
-                        if(!$('#form_fisica').valid()){
-                            e.preventDefault();
-                        }
-                        else{
-
-                            e.preventDefault();
-                            var parametros_conyugue = {                     
-                                "nombre" : $('#nombre').val(),
-                                "calle" : $('#calle').val(),
-                                "no_ex" : $('#no_ex').val(),
-                                "no_int" : $('#no_int').val(),
-                                "colonia" : $('#colonia').val(),
-                                "municipio" : $('#municipio').val(),
-                                "localidad" : $('#localidad').val(),
-                                "estado" : $('#estado_f').val(),
-                                "cp" : $('#cp').val(),
-                                "rfc" : $('#rfc').val(),
-                                "curp_fis" : $('#curp_fis').val(),
-                                "telefono" : $('#telefono').val(),
-                                "email" : $('#email').val(),
-                                "id" : $('#id_pfisica').val(),
-                            };
-                            
-                            if($("#switch_edit").is('[readonly]')){
-                                var url_fisica = './model/solicitud/update_pfisica.php';    
-                            }else{
-                                url_fisica = './model/solicitud/create_pfisica.php';
-                            }
-                            
-                            $.ajax({
-                                    data:  parametros_conyugue,
-                                    url:   url_fisica,
-                                    type:  'post',
-                                    
-                                    success:  function (data) {
-
-                                        var datos = data.split(',');
-                                                                     
-                                        if (datos[0]==='correcto'){
-                                            swal({
-                                                title: "¡Datos guardados correctamente!",
-                                                timer: 3000,
-                                                icon: "success",
-                                                button: "Aceptar"
-                                            });                  
-
-                                            $('#fuelux-wizard-container').wizard('selectedItem', {
-                                                step: 3
-                                            });
-
-                                            var code_idpf='<input type="text" name="id_per" id="id_per" value="'+datos[1]+'"/>';
-                                            document.getElementById("inst_idpf").innerHTML=code_idpf;
-
-                                            mapa_inicial();             
-                                        }
-                                        
-                                        if (data==='error2'){
-                                            swal({
-                                                title: "¡Error Grave!",
-                                                text: "¡Ocurrio algo al guardar!",
-                                                timer: 3000,
-                                                icon: "error",
-                                                button: "Aceptar"
-                                            });
-                                        }
-                                    }
-
-                            });
-                        }
-                    } else{
-                        if(!$('#form_moral').valid()){
-                            e.preventDefault();
-                        }
-                        else{
-
-                            e.preventDefault();
-                            var parametros_moral = {                     
-                                "nombre_empresa" : $('#nombre_empresa').val(),
-                                "fecha_constitucion" : $('#fecha_constitucion').val(),
-                                "rfc_pm" : $('#rfc_pm').val(),
-                                "telefono_pm" : $('#telefono_pm').val(),
-                                "email_pm" : $('#email_pm').val(),
-                                "nombre_rl" : $('#nombre_rl').val(),
-                                "rfc_rl" : $('#rfc_rl').val(),
-                                "curp_rl" : $('#curp_rl').val(),
-                                "calle_rl" : $('#calle_rl').val(),
-                                "no_ex_rl" : $('#no_ex_rl').val(),
-                                "no_int_rl" : $('#no_int_rl').val(),
-                                "colonia_rl" : $('#colonia_rl').val(),
-                                "municipio_rl" : $('#municipio_rl').val(),
-                                "localidad_rl" : $('#localidad_rl').val(),
-                                "cp_rl" : $('#cp_rl').val(),
-                                "estado_rl" : $('#estado_rl').val(),
-                                "telefono_rl" : $('#telefono_rl').val(),
-                                "email_rl" : $('#email_rl').val(),
-                                "id" : $('#id_pmoral').val(),
-                            };
-
-                            if($("#switch_edit").is('[readonly]')){
-                                var url_moral = './model/solicitud/update_pmoral.php';    
-                            }else{
-                                url_moral = './model/solicitud/create_pmoral.php';
-                            }
-                            
-                            $.ajax({
-                                    data:  parametros_moral,
-                                    url:   url_moral,
-                                    type:  'post',
-                                    
-                                    success:  function (data) {
             
-                                        var datos = data.split(',');
+        }
 
-                                        if (datos[0]==='correcto'){
-                                            swal({
-                                                title: "¡Datos guardados correctamente!",
-                                                timer: 3000,
-                                                icon: "success",
-                                                button: "Aceptar"
-                                            });                  
-
-                                            $('#fuelux-wizard-container').wizard('selectedItem', {
-                                                step: 3
-                                            });
-
-                                            var code_idpm='<input type="text" name="id_per" id="id_per" value="'+datos[1]+'"/>';
-                                            document.getElementById("inst_idpm").innerHTML=code_idpm;
-
-                                            mapa_inicial();                 
-                                        }
-                                        
-                                        if (data==='error2'){
-                                            swal({
-                                                title: "¡Error Grave!",
-                                                text: "¡Ocurrio algo al guardar!",
-                                                timer: 3000,
-                                                icon: "error",
-                                                button: "Aceptar"
-                                            });
-                                        }
-                                    }
-
-                            });
-                        }
-                    }
-                }                
-            }
-
-
-            if(info.step == 3) {
-                if(info.direction == 'next')
+        if(info.step == 2) {
+            if(info.direction == 'next')
+            {                    
+                if(tipo_persona=="p_fisica")
                 {
-                    if(!$('#form_dg').valid()){
+                    if(!$('#form_fisica').valid()){
                         e.preventDefault();
                     }
                     else{
-                        
-                        e.preventDefault();
 
-                        var parametros_dg = {                     
-                            "id_solicitud" : $('#id_solicitud').val(),
-                            "nombre_comercial" : $('#nombre_comercial').val(), 
-                            "horario_trabajo" : $('#horario_trabajo').val(),
-                            "calle_dg" : $('#calle_dg').val(),
-                            "no_ex_dg" : $('#no_ex_dg').val(),
-                            "no_int_dg" : $('#no_int_dg').val(),
-                            "colonia_dg" : $('#colonia_dg').val(),
-                            "entre_calles" : $('#entre_calles').val(),
-                            "municipio_dg" : $('#municipio_dg').val(),     
-                            "localidad_dg" : $('#localidad_dg').val(),
-                            "cp_dg" : $('#cp_dg').val(),
-                            "telefono_dg" : $('#telefono_dg').val(),
-                            "uso" : $('#uso').val(),
-                            "uso_sol" : $('#uso_sol').val(),
-                            "scian" : $('#scian').val(),
-                            "catastral" : $('#catastral').val(),
-                            "manzana"  : $('#manzana').val(),
-                            "lote" : $('#lote').val(),
-                            "distancia_esquina" : $('#distancia_esquina').val(),
-                            "cajones" : $('#cajones').val(),
-                            "inversion" : $('#inversion').val(),
-                            "personal_ocupado" : $('#personal_ocupado').val(),
-                            "servicios" : $('#servicios').val(),
-                            "latlong" : $('#latlong').val(),
+                        e.preventDefault();
+                        var parametros_conyugue = {                     
+                            "nombre" : $('#nombre').val(),
+                            "calle" : $('#calle').val(),
+                            "no_ex" : $('#no_ex').val(),
+                            "no_int" : $('#no_int').val(),
+                            "colonia" : $('#colonia').val(),
+                            "municipio" : $('#municipio').val(),
+                            "localidad" : $('#localidad').val(),
+                            "estado" : $('#estado_f').val(),
+                            "cp" : $('#cp').val(),
+                            "rfc" : $('#rfc').val(),
+                            "curp_fis" : $('#curp_fis').val(),
+                            "telefono" : $('#telefono').val(),
+                            "email" : $('#email').val(),
+                            "id" : $('#id_pfisica').val(),
                         };
                         
+                        if($("#switch_edit").is('[readonly]')){
+                            var url_fisica = './model/solicitud/update_pfisica.php';    
+                        }else{
+                            url_fisica = './model/solicitud/create_pfisica.php';
+                        }
+                        
                         $.ajax({
-                                data:  parametros_dg,
-                                url:   './model/solicitud/create_dg.php',
+                                data:  parametros_conyugue,
+                                url:   url_fisica,
                                 type:  'post',
                                 
                                 success:  function (data) {
-                                    var datadiv = data.split(",", 3);
-                                    var mensaje = datadiv[0];
-                                    var id_dg = datadiv[1];
-                                                                        
-                                    if (mensaje==='correcto'){
+
+                                    var datos = data.split(',');
+                                                                 
+                                    if (datos[0]==='correcto'){
                                         swal({
                                             title: "¡Datos guardados correctamente!",
                                             timer: 3000,
@@ -1842,16 +1721,18 @@
                                         });                  
 
                                         $('#fuelux-wizard-container').wizard('selectedItem', {
-                                            step: 4
-                                        });        
+                                            step: 3
+                                        });
 
-                                        var code_iddg='<input type="text" name="id_dg" id="id_dg" value="'+id_dg+'"/>';
-                                        document.getElementById("inst_iddg").innerHTML=code_iddg;             
+                                        var code_idpf='<input type="text" name="id_per" id="id_per" value="'+datos[1]+'"/>';
+                                        document.getElementById("inst_idpf").innerHTML=code_idpf;
+
+                                        mapa_inicial();             
                                     }
                                     
-                                    if (mensaje==='error1'){
+                                    if (data==='error2'){
                                         swal({
-                                            title: "¡Error!",
+                                            title: "¡Error Grave!",
                                             text: "¡Ocurrio algo al guardar!",
                                             timer: 3000,
                                             icon: "error",
@@ -1862,57 +1743,150 @@
 
                         });
                     }
-                }                
-            }
-
-
-            if(info.step == 4) {
-                if(info.direction == 'next')
-                {
-                    if(!$('#form_dimensiones').valid()){
+                } else{
+                    if(!$('#form_moral').valid()){
                         e.preventDefault();
                     }
                     else{
-                        
-                        e.preventDefault();
 
-                        var parametros_dim = {                     
-                            "frente" : $('#frente').val(),
-                            "fondo" : $('#fondo').val(), 
-                            "derecho" : $('#derecho').val(),
-                            "izquierdo" : $('#izquierdo').val(),
-                            "terreno" : $('#terreno').val(),
-                            "local" : $('#local').val(),
-                            "predial" : $('#predial').val()
+                        e.preventDefault();
+                        var parametros_moral = {                     
+                            "nombre_empresa" : $('#nombre_empresa').val(),
+                            "fecha_constitucion" : $('#fecha_constitucion').val(),
+                            "rfc_pm" : $('#rfc_pm').val(),
+                            "telefono_pm" : $('#telefono_pm').val(),
+                            "email_pm" : $('#email_pm').val(),
+                            "nombre_rl" : $('#nombre_rl').val(),
+                            "rfc_rl" : $('#rfc_rl').val(),
+                            "curp_rl" : $('#curp_rl').val(),
+                            "calle_rl" : $('#calle_rl').val(),
+                            "no_ex_rl" : $('#no_ex_rl').val(),
+                            "no_int_rl" : $('#no_int_rl').val(),
+                            "colonia_rl" : $('#colonia_rl').val(),
+                            "municipio_rl" : $('#municipio_rl').val(),
+                            "localidad_rl" : $('#localidad_rl').val(),
+                            "cp_rl" : $('#cp_rl').val(),
+                            "estado_rl" : $('#estado_rl').val(),
+                            "telefono_rl" : $('#telefono_rl').val(),
+                            "email_rl" : $('#email_rl').val(),
+                            "id" : $('#id_pmoral').val(),
                         };
 
+                        if($("#switch_edit").is('[readonly]')){
+                            var url_moral = './model/solicitud/update_pmoral.php';    
+                        }else{
+                            url_moral = './model/solicitud/create_pmoral.php';
+                        }
+                        
                         $.ajax({
-                            data:  parametros_dim,
-                            url:   './model/solicitud/create_dimensiones.php',
-                            type: "POST",
+                                data:  parametros_moral,
+                                url:   url_moral,
+                                type:  'post',
+                                
+                                success:  function (data) {
+        
+                                    var datos = data.split(',');
+
+                                    if (datos[0]==='correcto'){
+                                        swal({
+                                            title: "¡Datos guardados correctamente!",
+                                            timer: 3000,
+                                            icon: "success",
+                                            button: "Aceptar"
+                                        });                  
+
+                                        $('#fuelux-wizard-container').wizard('selectedItem', {
+                                            step: 3
+                                        });
+
+                                        var code_idpm='<input type="text" name="id_per" id="id_per" value="'+datos[1]+'"/>';
+                                        document.getElementById("inst_idpm").innerHTML=code_idpm;
+
+                                        mapa_inicial();                 
+                                    }
+                                    
+                                    if (data==='error2'){
+                                        swal({
+                                            title: "¡Error Grave!",
+                                            text: "¡Ocurrio algo al guardar!",
+                                            timer: 3000,
+                                            icon: "error",
+                                            button: "Aceptar"
+                                        });
+                                    }
+                                }
+
+                        });
+                    }
+                }
+            }                
+        }
+
+
+        if(info.step == 3) {
+            if(info.direction == 'next')
+            {
+                if(!$('#form_dg').valid()){
+                    e.preventDefault();
+                }
+                else{
+                    
+                    e.preventDefault();
+
+                    var parametros_dg = {                     
+                        "id_solicitud" : $('#id_solicitud').val(),
+                        "nombre_comercial" : $('#nombre_comercial').val(), 
+                        "horario_trabajo" : $('#horario_trabajo').val(),
+                        "calle_dg" : $('#calle_dg').val(),
+                        "no_ex_dg" : $('#no_ex_dg').val(),
+                        "no_int_dg" : $('#no_int_dg').val(),
+                        "colonia_dg" : $('#colonia_dg').val(),
+                        "entre_calles" : $('#entre_calles').val(),
+                        "municipio_dg" : $('#municipio_dg').val(),     
+                        "localidad_dg" : $('#localidad_dg').val(),
+                        "cp_dg" : $('#cp_dg').val(),
+                        "telefono_dg" : $('#telefono_dg').val(),
+                        "uso" : $('#uso').val(),
+                        "uso_sol" : $('#uso_sol').val(),
+                        "scian" : $('#scian').val(),
+                        "catastral" : $('#catastral').val(),
+                        "manzana"  : $('#manzana').val(),
+                        "lote" : $('#lote').val(),
+                        "distancia_esquina" : $('#distancia_esquina').val(),
+                        "cajones" : $('#cajones').val(),
+                        "inversion" : $('#inversion').val(),
+                        "personal_ocupado" : $('#personal_ocupado').val(),
+                        "servicios" : $('#servicios').val(),
+                        "latlong" : $('#latlong').val(),
+                    };
+                    
+                    $.ajax({
+                            data:  parametros_dg,
+                            url:   './model/solicitud/create_dg.php',
+                            type:  'post',
                             
                             success:  function (data) {
-                                var datadiv4 = data.split(",", 3);
-                                var mensaje4 = datadiv4[0];
-                                var id_dime = datadiv4[1];
+                                var datadiv = data.split(",", 3);
+                                var mensaje = datadiv[0];
+                                var id_dg = datadiv[1];
                                                                     
-                                if (mensaje4=='correcto'){
+                                if (mensaje==='correcto'){
                                     swal({
                                         title: "¡Datos guardados correctamente!",
                                         timer: 3000,
                                         icon: "success",
                                         button: "Aceptar"
-                                    });
-
-                                    var code_iddim='<input type="text" name="id_dim" id="id_dim" value="'+id_dime+'"/>';
-                                    document.getElementById("inst_iddim").innerHTML=code_iddim;
+                                    });                  
 
                                     $('#fuelux-wizard-container').wizard('selectedItem', {
-                                        step: 5
-                                    });                                                   
+                                        step: 4
+                                    });        
+
+                                    var code_iddg='<input type="text" name="id_dg" id="id_dg" value="'+id_dg+'"/>';
+                                    document.getElementById("inst_iddg").innerHTML=code_iddg;             
                                 }
                                 
-                                if (mensaje4=='error1'){
+                                if (mensaje==='error1'){
                                     swal({
                                         title: "¡Error!",
                                         text: "¡Ocurrio algo al guardar!",
@@ -1923,56 +1897,60 @@
                                 }
                             }
 
-                        });                        
-                    }
-                }                
-            }
+                    });
+                }
+            }                
+        }
 
 
-            if(info.step == 5) {
-                if(info.direction == 'next')
-                {
+        if(info.step == 4) {
+            if(info.direction == 'next')
+            {
+                if(!$('#form_dimensiones').valid()){
+                    e.preventDefault();
+                }
+                else{
                     
                     e.preventDefault();
 
-                    // PARA SELECCIONAR EL INPUT QUE SE ENVIARÁ DE LOS RADIOBUTTONS
-                    var radio_fisica = document.getElementsByName("tipo_persona")[0];
-                    var radio_moral = document.getElementsByName("tipo_persona")[1];
-                    
-                    if (radio_fisica.checked == true) {
-                        $(radio_fisica).appendTo('#form_documentos');
-                    }else if(radio_moral.checked == true){
-                        $(radio_moral).appendTo('#form_documentos');
-                    }
+                    var parametros_dim = {                     
+                        "frente" : $('#frente').val(),
+                        "fondo" : $('#fondo').val(), 
+                        "derecho" : $('#derecho').val(),
+                        "izquierdo" : $('#izquierdo').val(),
+                        "terreno" : $('#terreno').val(),
+                        "local" : $('#local').val(),
+                        "predial" : $('#predial').val()
+                    };
 
-                    var myForm = document.getElementById('form_documentos');
-
-                    var formData = new FormData(myForm);
-                 
                     $.ajax({
-                        data:  formData,
-                        url:   './model/solicitud/create_documentos.php',
-                        type:  'post',
-                        processData: false,
-                        contentType: false,
+                        data:  parametros_dim,
+                        url:   './model/solicitud/create_dimensiones.php',
+                        type: "POST",
                         
                         success:  function (data) {
+                            var datadiv4 = data.split(",", 3);
+                            var mensaje4 = datadiv4[0];
+                            var id_dime = datadiv4[1];
                                                                 
-                            if (data==='correcto'){
+                            if (mensaje4=='correcto'){
                                 swal({
                                     title: "¡Datos guardados correctamente!",
                                     timer: 3000,
                                     icon: "success",
                                     button: "Aceptar"
-                                }).then((value) => {
-                                    if(value) {
-                                        
-                                    }
-                                });   
-                                cambiarcont('view/solicitud/listado.php?pantalla=1');                 
+                                });
+
+                                //$("#btn_next").attr('disabled','disabled');
+                                var code_iddim='<input type="text" name="id_dim" id="id_dim" value="'+id_dime+'"/>';
+                                document.getElementById("inst_iddim").innerHTML=code_iddim;
+
+                                $('#fuelux-wizard-container').wizard('selectedItem', {
+                                    step: 5
+                                });
                             }
                             
-                            if (data==='error'){
+                            if (mensaje4=='error1'){
                                 swal({
                                     title: "¡Error!",
                                     text: "¡Ocurrio algo al guardar!",
@@ -1982,755 +1960,810 @@
                                 });
                             }
                         }
-                        
-                    });
-                    
-                }                
-            }
-        })
-        //.on('changed.fu.wizard', function() {
-        //})
-        .on('finished.fu.wizard', function(e) {
-            swal({
-                title: "Título creado correctamente",
-                timer: 3000,
-                icon: "success",
-                button: "Aceptar"
-            });
 
-            location.reload();
-           
-        }).on('stepclicked.fu.wizard', function(e){
-            e.preventDefault();//this will prevent clicking and selecting steps
-        });
-    
-    
-        //jump to a step
-        function salto(paso){
-            var wizard = $('#fuelux-wizard-container').data('fu.wizard')
-            wizard.currentStep = paso;
-            wizard.setState();
+                    });                        
+                }
+            }                
         }
-        
+
+
+        if(info.step == 5) {
+            if(info.direction == 'next')
+            {
+                
+                e.preventDefault();
+
+                // PARA SELECCIONAR EL INPUT QUE SE ENVIARÁ DE LOS RADIOBUTTONS
+                var radio_fisica = document.getElementsByName("tipo_persona")[0];
+                var radio_moral = document.getElementsByName("tipo_persona")[1];
+                
+                if (radio_fisica.checked == true) {
+                    $(radio_fisica).appendTo('#form_documentos');
+                    if (($("#titulo").val()=="")||($("#pred").val()=="")||($("#ine").val()=="")||($("#contrato").val()=="")||($("#no").val()=="")){swal("Tip", "Favor de cargar la documentación completa.", "info"); console.log("entro fis"); return;}
+                }else if(radio_moral.checked == true){
+                    $(radio_moral).appendTo('#form_documentos');
+                    if (($("#titulo").val()=="")||($("#pred").val()=="")||($("#ine").val()=="")||($("#contrato").val()=="")||($("#no").val()=="")||($("#acta").val()=="")||($("#poder").val()=="")||($("#solicitud").val()=="")){swal("Tip", "Favor de cargar la documentación completa.", "info"); console.log("entro_ mor"); return;}
+                }
+
+                var myForm = document.getElementById('form_documentos');
+
+                var formData = new FormData(myForm);
+             
+                $.ajax({
+                    data:  formData,
+                    url:   './model/solicitud/finalizar_solicitud.php',
+                    type:  'post',
+                    processData: false,
+                    contentType: false,
+                    
+                    success:  function (data) {
+                                                            
+                        if (data==='correcto'){
+                            swal({
+                                title: "¡Datos guardados correctamente!",
+                                timer: 3000,
+                                icon: "success",
+                                button: "Aceptar"
+                            }).then((value) => {
+                                if(value) {
+                                    
+                                }
+                            });   
+                            cambiarcont('view/solicitud/listado.php?pantalla=1');                 
+                        }
+                        
+                        if (data==='error'){
+                            swal({
+                                title: "¡Error!",
+                                text: "¡Ocurrio algo al guardar!",
+                                timer: 3000,
+                                icon: "error",
+                                button: "Aceptar"
+                            });
+                        }
+                    }
+                    
+                });
+                
+            }                
+        }
+    })
+    //.on('changed.fu.wizard', function() {
+    //})
+    .on('finished.fu.wizard', function(e) {
+        swal({
+            title: "Título creado correctamente",
+            timer: 3000,
+            icon: "success",
+            button: "Aceptar"
+        });
+
+        location.reload();
+       
+    }).on('stepclicked.fu.wizard', function(e){
+        e.preventDefault();//this will prevent clicking and selecting steps
+    });
     
-        //determine selected step
-        //wizard.selectedItem().step
+    
+    //jump to a step
+    function salto(paso){
+        var wizard = $('#fuelux-wizard-container').data('fu.wizard')
+        wizard.currentStep = paso;
+        wizard.setState();
+    }
 
+    //determine selected step
+    //wizard.selectedItem().step
 
-        $('#form_fisica').validate({
-            errorElement: 'div',
-            errorClass: 'help-block',
-            focusInvalid: false,
-            ignore: "",
-            rules: {
-                nombre: {
-                    required: true
-                },
-
-                calle: {
-                    required: true
-                },
-
-                no_ex: {
-                    required: true,
-                    number: true
-                },
-
-                colonia: {
-                    required: true
-                },
-
-                municipio: {
-                    required: true
-                },
-
-                localidad: {
-                    required: true
-                },
-
-                estado_f: {
-                    required: true
-                },
-
-                cp: {
-                    required: true,
-                    minlength: 5,
-                    maxlength: 5
-                },
-
-                rfc: {
-                    required: true
-                },
-
-                curp_fis: {
-                    required: true
-                },
-
-                telefono: {
-                    required: true,
-                    minlength: 10,
-                    maxlength: 10
-                },
-
-                email: {
-                    required: true,
-                    email: true
-                }
-            },     
-
-            messages: {
-                nombre: {
-                    required: "Favor de ingresar el nombre."
-                },
-
-                calle: {
-                    required: "Favor de ingresar la calle."
-                },
-
-                no_ex: {
-                    required: "Favor de ingresar el número exterior.",
-                    number: "Favor de ingresar solo números."
-                },
-
-                colonia: {
-                    required: "Favor de ingresar la colonia."
-                },
-
-                municipio: {
-                    required: "Favor de seleccionar el municipio."
-                },
-
-                localidad: {
-                    required: "Favor de ingresar la localidad."
-                },
-
-                estado_f: {
-                    required: "Favor de seleccionar el estado."
-                },
-
-                cp: {
-                    required: "Favor de ingresar el código postal.",
-                    minlength: "Ingresar el código postal completo.",
-                    maxlength: "Ingresar correctamente el código postal."
-                },
-
-                rfc: {
-                    required: "Favor de ingresar el RFC."
-                },
-
-                curp_fis: {
-                    required: "Favor de ingresar la CURP."
-                },
-
-                telefono: {
-                    required: "Favor de ingresar el teléfono.",
-                    minlength: "Ingresar el número telefónico completo.",
-                    maxlength: "Número telefónico demasiado largo."
-                },
-
-                email: {
-                    required: "Favor de ingresar el correo electrónico."
-                }
+    $('#form_fisica').validate({
+        errorElement: 'div',
+        errorClass: 'help-block',
+        focusInvalid: false,
+        ignore: "",
+        rules: {
+            nombre: {
+                required: true
             },
 
-
-            highlight: function (e) {
-                $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+            calle: {
+                required: true
             },
 
-            success: function (e) {
-                $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
-                $(e).remove();
+            no_ex: {
+                required: true,
+                number: true
             },
 
-            errorPlacement: function (error, element) {
-                if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
-                    var controls = element.closest('div[class*="col-"]');
-                    if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
-                    else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
-                }
-                else if(element.is('.select2')) {
-                    error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
-                }
-                else if(element.is('.chosen-select')) {
-                    error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
-                }
-                else error.insertAfter(element.parent());
+            colonia: {
+                required: true
             },
 
-            submitHandler: function (form) {
-                
-                
+            municipio: {
+                required: true
+            },
+
+            localidad: {
+                required: true
+            },
+
+            estado_f: {
+                required: true
+            },
+
+            cp: {
+                required: true,
+                minlength: 5,
+                maxlength: 5
+            },
+
+            rfc: {
+                required: true
+            },
+
+            curp_fis: {
+                required: true
+            },
+
+            telefono: {
+                required: true,
+                minlength: 10,
+                maxlength: 10
+            },
+
+            email: {
+                required: true,
+                email: true
             }
-        
-        });
+        },     
 
-
-
-        $('#form_moral').validate({
-            errorElement: 'div',
-            errorClass: 'help-block',
-            focusInvalid: false,
-            ignore: "",
-            rules: {
-                nombre_empresa: {
-                    required: true
-                },
-
-                fecha_constitucion: {
-                    required: true
-                },
-
-                rfc_pm: {
-                    required: true
-                },
-
-                telefono_pm: {
-                    required: true,
-                    digits: true,
-                    minlength: 10,
-                    maxlength: 10
-                },
-
-                email_pm: {
-                    email: true,
-                    required: true
-                },
-
-                nombre_rl: {
-                    required: true
-                },
-
-                rfc_rl: {
-                    required: true
-                },
-
-                curp_rl: {
-                    required: true
-                },
-
-                calle_rl: {
-                    required: true
-                },
-
-                no_ex_rl: {
-                    required: true,
-                    number: true
-                },
-
-                colonia_rl: {
-                    required: true
-                },
-
-                municipio_rl: {
-                    required: true
-                },
-
-                localidad_rl: {
-                    required: true
-                },
-
-                cp_rl: {
-                    required: true,
-                    digits: true,
-                    minlength : 5,
-                    maxlength: 5
-                },
-
-                estado_rl: {
-                    required: true
-                },
-
-                telefono_rl: {
-                     required: true,
-                    digits: true,
-                    minlength: 10,
-                    maxlength: 10
-                },
-
-                email_rl: {
-                    required: true,
-                    email: true
-                }
-            },     
-
-            messages: {
-                nombre_empresa: {
-                    required: "Favor de ingresar el nombre de la empresa."
-                },
-
-                fecha_constitucion: {
-                    required: "Favor de ingresar la fecha de constitución."
-                },
-
-                rfc_pm: {
-                    required: "Favor de ingresar el RFC de la empresa."
-                },
-
-                telefono_pm: {
-                    required: "Favor de ingresar el teléfono de la empresa.",
-                    digits: "Ingresa solamente números",
-                    minlength : "Número telefónico demasiado corto.",
-                    maxlength: "Número telefónico demasiado largo."
-                },
-
-                email_pm: {
-                    required: "Favor de ingresar el correo electrónico de la empresa.",
-                    email: "Ingresar un correo electrónico válido."
-                },
-
-                nombre_rl: {
-                    required: "Favor de ingresar el nombre."
-                },
-
-                rfc_rl: {
-                    required: "Favor de ingresar el RFC."
-                },
-
-                curp_rl: {
-                   required: "Favor de ingresar la CURP."
-                },
-
-                calle_rl: {
-                    required: "Favor de ingresar la calle."
-                },
-
-                no_ex_rl: {
-                    required: "Favor de ingresar el número exterior.",
-                    number: "Favor de ingresar solo números."
-                },
-
-                colonia_rl: {
-                    required: "Favor de ingresar la colonia."
-                },
-
-                municipio_rl: {
-                    required: "Favor de seleccionar el municipio."
-                },
-
-                localidad_rl: {
-                    required: "Favor de ingresar el nombre."
-                },
-
-                cp_rl: {
-                    required: "Favor de ingresar el código postal.",
-                    digits: "Ingresa solamente números",
-                    minlength : "Número telefónico demasiado corto.",
-                    maxlength: "Número telefónico demasiado largo."
-                },
-
-                estado_rl: {
-                    required: "Favor de seleccionar el estado."
-                },
-
-                telefono_rl: {
-                    required: "Favor de ingresar el teléfono de la empresa.",
-                    digits: "Ingresa solamente números",
-                    minlength : "Número telefónico demasiado corto.",
-                    maxlength: "Número telefónico demasiado largo."
-                },
-
-                email_rl: {
-                    required: "Favor de ingresar el correo electrónico.",
-                    email: "Ingresar un correo electrónico válido."
-                }
+        messages: {
+            nombre: {
+                required: "Favor de ingresar el nombre."
             },
 
-
-            highlight: function (e) {
-                $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+            calle: {
+                required: "Favor de ingresar la calle."
             },
 
-            success: function (e) {
-                $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
-                $(e).remove();
+            no_ex: {
+                required: "Favor de ingresar el número exterior.",
+                number: "Favor de ingresar solo números."
             },
 
-            errorPlacement: function (error, element) {
-                if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
-                    var controls = element.closest('div[class*="col-"]');
-                    if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
-                    else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
-                }
-                else if(element.is('.select2')) {
-                    error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
-                }
-                else if(element.is('.chosen-select')) {
-                    error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
-                }
-                else error.insertAfter(element.parent());
+            colonia: {
+                required: "Favor de ingresar la colonia."
             },
 
-            submitHandler: function (form) {
-                
-                
+            municipio: {
+                required: "Favor de seleccionar el municipio."
+            },
+
+            localidad: {
+                required: "Favor de ingresar la localidad."
+            },
+
+            estado_f: {
+                required: "Favor de seleccionar el estado."
+            },
+
+            cp: {
+                required: "Favor de ingresar el código postal.",
+                minlength: "Ingresar el código postal completo.",
+                maxlength: "Ingresar correctamente el código postal."
+            },
+
+            rfc: {
+                required: "Favor de ingresar el RFC."
+            },
+
+            curp_fis: {
+                required: "Favor de ingresar la CURP."
+            },
+
+            telefono: {
+                required: "Favor de ingresar el teléfono.",
+                minlength: "Ingresar el número telefónico completo.",
+                maxlength: "Número telefónico demasiado largo."
+            },
+
+            email: {
+                required: "Favor de ingresar el correo electrónico."
             }
-        
-        });
+        },
 
 
-        $('#form_dg').validate({
-            errorElement: 'div',
-            errorClass: 'help-block',
-            focusInvalid: false,
-            ignore: "",
-            rules: {
-                nombre_comercial: {
-                    required: true
-                },
+        highlight: function (e) {
+            $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+        },
 
-                horario_trabajo: {
-                    required: true
-                },
+        success: function (e) {
+            $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+            $(e).remove();
+        },
 
-                calle_dg: {
-                    required: true
-                },
-
-                no_ex_dg: {
-                    required: true,
-                    number: true
-                },
-
-                colonia_dg: {
-                    required: true
-                },
-
-                colonia_dg: {
-                    required: true
-                },
-
-                entre_calles: {
-                    required: true
-                },
-
-                municipio_dg: {
-                    required: true
-                },
-
-                localidad_dg: {
-                    required: true
-                },
-
-                cp_dg: {
-                    required: true
-                },
-
-                telefono_dg: {
-                    required: true
-                },
-
-                uso: {
-                    required: true
-                },
-
-                scian: {
-                    required: true
-                },
-
-                catastral: {
-                    required: true
-                },
-
-                manzana: {
-                    required: true
-                },
-
-                lote: {
-                    required: true
-                },
-
-                distancia_esquina: {
-                    required: true
-                },
-
-                cajones: {
-                    required: true
-                },
-
-                inversion: {
-                    required: true
-                },
-
-                personal_ocupado: {
-                    required: true
-                },
-
-                servicios: {
-                    required: true
-                },
-            },     
-
-            messages: {
-                nombre_comercial: {
-                    required: "Favor de ingresar el nombre comercial."
-                },
-
-                horario_trabajo: {
-                    required: "Favor de ingresar el horario de trabajo."
-                },
-
-                calle_dg: {
-                    required: "Favor de ingresar la calle."
-                },
-
-                no_ex_dg: {
-                    required: "Favor de ingresar el número exterior.",
-                    number: "Favor de ingresar solo números."
-                },
-
-                colonia_dg: {
-                    required: "Favor de ingresar la colonia."
-                },                
-
-                entre_calles: {
-                    required: "Favor de ingresar la colonia."
-                },
-
-                municipio_dg: {
-                    required: "Favor de seleccionar el municipio."
-                },
-
-                localidad_dg: {
-                    required: "Favor de ingresar el nombre."
-                },
-
-                cp_dg: {
-                    required: "Favor de ingresar el código postal."
-                },
-
-                telefono_dg: {
-                    required: "Favor de ingresar el teléfono."
-                },
-
-                uso: {
-                    required: "Favor de ingresar uso actual."
-                },
-
-                scian: {
-                    required: "Favor de ingresar el giro scian."
-                },
-
-                catastral: {
-                    required: "Favor de ingresar la cuenta catastral."
-                },
-
-                manzana: {
-                    required: "Favor de ingresar la manzana."
-                },
-
-                lote: {
-                    required: "Favor de ingresar el lote."
-                },
-
-                distancia_esquina: {
-                    required: "Favor de ingresar la distancia a la esquina más cercana."
-                },
-
-                cajones: {
-                    required: "Favor de ingresar el numero de cajones de estacionamiento."
-                },
-
-                inversion: {
-                    required: "Favor de ingresar el monto de la inversión capital social."
-                },
-
-                personal_ocupado: {
-                    required: "Favor de ingresar el personal ocupado."
-                },
-
-                servicios: {
-                    required: "Favor de ingresar los servicios existentes."
-                },
-            },
-
-
-            highlight: function (e) {
-                $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
-            },
-
-            success: function (e) {
-                $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
-                $(e).remove();
-            },
-
-            errorPlacement: function (error, element) {
-                if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
-                    var controls = element.closest('div[class*="col-"]');
-                    if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
-                    else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
-                }
-                else if(element.is('.select2')) {
-                    error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
-                }
-                else if(element.is('.chosen-select')) {
-                    error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
-                }
-                else error.insertAfter(element.parent());
-            },
-
-            submitHandler: function (form) {
-                
-                
+        errorPlacement: function (error, element) {
+            if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+                var controls = element.closest('div[class*="col-"]');
+                if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
+                else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
             }
-        
-        });
-
-
-
-        $('#form_dimensiones').validate({
-            errorElement: 'div',
-            errorClass: 'help-block',
-            focusInvalid: false,
-            ignore: "",
-            rules: {
-                frente: {
-                    required: true,
-                    number: true
-                },
-
-                fondo: {
-                    required: true,
-                    number: true
-                },
-
-                derecho: {
-                    required: true,
-                    number: true
-                },
-
-                izquierdo: {
-                    required: true,
-                    number: true
-                },
-
-                terreno: {
-                     required: true,
-                    number: true
-                },
-
-                local: {
-                     required: true,
-                    number: true
-                },
-
-                predial: {
-                    required: true,
-                    number: true
-                }
-            },     
-
-            messages: {
-                frente: {
-                    required: "Favor de ingresar los metros de frente.",
-                    number: "Favor de ingresar solo números."
-                },
-
-                fondo: {
-                    required: "Favor de ingresar los metros de fondo.",
-                    number: "Favor de ingresar solo números."
-                },
-
-                derecho: {
-                    required: "Favor de ingresar los metros del lado derecho.",
-                    number: "Favor de ingresar solo números."
-                },
-
-                izquierdo: {
-                    required: "Favor de ingresar los metros del lado izquierdo.",
-                    number: "Favor de ingresar solo números."
-                },
-
-                terreno: {
-                    required: "Favor de ingresar el área del terreno.",
-                    number: "Favor de ingresar solo números."
-                },
-
-                local: {
-                    required: "Favor de ingresar el área del local.",
-                    number: "Favor de ingresar solo números."
-                },
-
-                predial: {
-                    required: "Favor de ingresar su cuenta predial.",
-                    number: "Favor de ingresar solo números."
-                }
-            },
-
-
-            highlight: function (e) {
-                $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
-            },
-
-            success: function (e) {
-                $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
-                $(e).remove();
-            },
-
-            errorPlacement: function (error, element) {
-                if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
-                    var controls = element.closest('div[class*="col-"]');
-                    if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
-                    else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
-                }
-                else if(element.is('.select2')) {
-                    error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
-                }
-                else if(element.is('.chosen-select')) {
-                    error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
-                }
-                else error.insertAfter(element.parent());
-            },
-
-            submitHandler: function (form) {
-                
-                
+            else if(element.is('.select2')) {
+                error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
             }
-        
-        });
+            else if(element.is('.chosen-select')) {
+                error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+            }
+            else error.insertAfter(element.parent());
+        },
 
-        $('#form_documentos').validate({
-
-            errorElement: 'div',
-            errorClass: 'help-block',
-            focusInvalid: false,
-            ignore: "",
-            rules: {
-                
-            },     
-
-            messages: {
-                
-            },
-
-
-            highlight: function (e) {
-                $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
-            },
-
-            success: function (e) {
-                $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
-                $(e).remove();
-            },
-
-            errorPlacement: function (error, element) {
-                if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
-                    var controls = element.closest('div[class*="col-"]');
-                    if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
-                    else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
-                }
-                else if(element.is('.select2')) {
-                    error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
-                }
-                else if(element.is('.chosen-select')) {
-                    error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
-                }
-                else error.insertAfter(element.parent());
-            },
-
-            submitHandler: function (form) {
+        submitHandler: function (form) {
             
+            
+        }
+    
+    });
+
+    $('#form_moral').validate({
+        errorElement: 'div',
+        errorClass: 'help-block',
+        focusInvalid: false,
+        ignore: "",
+        rules: {
+            nombre_empresa: {
+                required: true
+            },
+
+            fecha_constitucion: {
+                required: true
+            },
+
+            rfc_pm: {
+                required: true
+            },
+
+            telefono_pm: {
+                required: true,
+                digits: true,
+                minlength: 10,
+                maxlength: 10
+            },
+
+            email_pm: {
+                email: true,
+                required: true
+            },
+
+            nombre_rl: {
+                required: true
+            },
+
+            rfc_rl: {
+                required: true
+            },
+
+            curp_rl: {
+                required: true
+            },
+
+            calle_rl: {
+                required: true
+            },
+
+            no_ex_rl: {
+                required: true,
+                number: true
+            },
+
+            colonia_rl: {
+                required: true
+            },
+
+            municipio_rl: {
+                required: true
+            },
+
+            localidad_rl: {
+                required: true
+            },
+
+            cp_rl: {
+                required: true,
+                digits: true,
+                minlength : 5,
+                maxlength: 5
+            },
+
+            estado_rl: {
+                required: true
+            },
+
+            telefono_rl: {
+                 required: true,
+                digits: true,
+                minlength: 10,
+                maxlength: 10
+            },
+
+            email_rl: {
+                required: true,
+                email: true
             }
+        },     
+
+        messages: {
+            nombre_empresa: {
+                required: "Favor de ingresar el nombre de la empresa."
+            },
+
+            fecha_constitucion: {
+                required: "Favor de ingresar la fecha de constitución."
+            },
+
+            rfc_pm: {
+                required: "Favor de ingresar el RFC de la empresa."
+            },
+
+            telefono_pm: {
+                required: "Favor de ingresar el teléfono de la empresa.",
+                digits: "Ingresa solamente números",
+                minlength : "Número telefónico demasiado corto.",
+                maxlength: "Número telefónico demasiado largo."
+            },
+
+            email_pm: {
+                required: "Favor de ingresar el correo electrónico de la empresa.",
+                email: "Ingresar un correo electrónico válido."
+            },
+
+            nombre_rl: {
+                required: "Favor de ingresar el nombre."
+            },
+
+            rfc_rl: {
+                required: "Favor de ingresar el RFC."
+            },
+
+            curp_rl: {
+               required: "Favor de ingresar la CURP."
+            },
+
+            calle_rl: {
+                required: "Favor de ingresar la calle."
+            },
+
+            no_ex_rl: {
+                required: "Favor de ingresar el número exterior.",
+                number: "Favor de ingresar solo números."
+            },
+
+            colonia_rl: {
+                required: "Favor de ingresar la colonia."
+            },
+
+            municipio_rl: {
+                required: "Favor de seleccionar el municipio."
+            },
+
+            localidad_rl: {
+                required: "Favor de ingresar el nombre."
+            },
+
+            cp_rl: {
+                required: "Favor de ingresar el código postal.",
+                digits: "Ingresa solamente números",
+                minlength : "Número telefónico demasiado corto.",
+                maxlength: "Número telefónico demasiado largo."
+            },
+
+            estado_rl: {
+                required: "Favor de seleccionar el estado."
+            },
+
+            telefono_rl: {
+                required: "Favor de ingresar el teléfono de la empresa.",
+                digits: "Ingresa solamente números",
+                minlength : "Número telefónico demasiado corto.",
+                maxlength: "Número telefónico demasiado largo."
+            },
+
+            email_rl: {
+                required: "Favor de ingresar el correo electrónico.",
+                email: "Ingresar un correo electrónico válido."
+            }
+        },
+
+
+        highlight: function (e) {
+            $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+        },
+
+        success: function (e) {
+            $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+            $(e).remove();
+        },
+
+        errorPlacement: function (error, element) {
+            if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+                var controls = element.closest('div[class*="col-"]');
+                if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
+                else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+            }
+            else if(element.is('.select2')) {
+                error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+            }
+            else if(element.is('.chosen-select')) {
+                error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+            }
+            else error.insertAfter(element.parent());
+        },
+
+        submitHandler: function (form) {
+            
+            
+        }
+    
+    });
+
+    $('#form_dg').validate({
+        errorElement: 'div',
+        errorClass: 'help-block',
+        focusInvalid: false,
+        ignore: "",
+        rules: {
+            nombre_comercial: {
+                required: true
+            },
+
+            horario_trabajo: {
+                required: true
+            },
+
+            calle_dg: {
+                required: true
+            },
+
+            no_ex_dg: {
+                required: true,
+                number: true
+            },
+
+            colonia_dg: {
+                required: true
+            },
+
+            colonia_dg: {
+                required: true
+            },
+
+            entre_calles: {
+                required: true
+            },
+
+            municipio_dg: {
+                required: true
+            },
+
+            localidad_dg: {
+                required: true
+            },
+
+            cp_dg: {
+                required: true
+            },
+
+            telefono_dg: {
+                required: true
+            },
+
+            uso: {
+                required: true
+            },
+
+            scian: {
+                required: true
+            },
+
+            catastral: {
+                required: true
+            },
+
+            manzana: {
+                required: true
+            },
+
+            lote: {
+                required: true
+            },
+
+            distancia_esquina: {
+                required: true
+            },
+
+            cajones: {
+                required: true
+            },
+
+            inversion: {
+                required: true
+            },
+
+            personal_ocupado: {
+                required: true
+            },
+
+            servicios: {
+                required: true
+            },
+        },     
+
+        messages: {
+            nombre_comercial: {
+                required: "Favor de ingresar el nombre comercial."
+            },
+
+            horario_trabajo: {
+                required: "Favor de ingresar el horario de trabajo."
+            },
+
+            calle_dg: {
+                required: "Favor de ingresar la calle."
+            },
+
+            no_ex_dg: {
+                required: "Favor de ingresar el número exterior.",
+                number: "Favor de ingresar solo números."
+            },
+
+            colonia_dg: {
+                required: "Favor de ingresar la colonia."
+            },                
+
+            entre_calles: {
+                required: "Favor de ingresar la colonia."
+            },
+
+            municipio_dg: {
+                required: "Favor de seleccionar el municipio."
+            },
+
+            localidad_dg: {
+                required: "Favor de ingresar el nombre."
+            },
+
+            cp_dg: {
+                required: "Favor de ingresar el código postal."
+            },
+
+            telefono_dg: {
+                required: "Favor de ingresar el teléfono."
+            },
+
+            uso: {
+                required: "Favor de ingresar uso actual."
+            },
+
+            scian: {
+                required: "Favor de ingresar el giro scian."
+            },
+
+            catastral: {
+                required: "Favor de ingresar la cuenta catastral."
+            },
+
+            manzana: {
+                required: "Favor de ingresar la manzana."
+            },
+
+            lote: {
+                required: "Favor de ingresar el lote."
+            },
+
+            distancia_esquina: {
+                required: "Favor de ingresar la distancia a la esquina más cercana."
+            },
+
+            cajones: {
+                required: "Favor de ingresar el numero de cajones de estacionamiento."
+            },
+
+            inversion: {
+                required: "Favor de ingresar el monto de la inversión capital social."
+            },
+
+            personal_ocupado: {
+                required: "Favor de ingresar el personal ocupado."
+            },
+
+            servicios: {
+                required: "Favor de ingresar los servicios existentes."
+            },
+        },
+
+
+        highlight: function (e) {
+            $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+        },
+
+        success: function (e) {
+            $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+            $(e).remove();
+        },
+
+        errorPlacement: function (error, element) {
+            if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+                var controls = element.closest('div[class*="col-"]');
+                if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
+                else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+            }
+            else if(element.is('.select2')) {
+                error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+            }
+            else if(element.is('.chosen-select')) {
+                error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+            }
+            else error.insertAfter(element.parent());
+        },
+
+        submitHandler: function (form) {
+            
+            
+        }
+    
+    });
+
+    $('#form_dimensiones').validate({
+        errorElement: 'div',
+        errorClass: 'help-block',
+        focusInvalid: false,
+        ignore: "",
+        rules: {
+            frente: {
+                required: true,
+                number: true
+            },
+
+            fondo: {
+                required: true,
+                number: true
+            },
+
+            derecho: {
+                required: true,
+                number: true
+            },
+
+            izquierdo: {
+                required: true,
+                number: true
+            },
+
+            terreno: {
+                 required: true,
+                number: true
+            },
+
+            local: {
+                 required: true,
+                number: true
+            },
+
+            predial: {
+                required: true,
+                number: true
+            }
+        },     
+
+        messages: {
+            frente: {
+                required: "Favor de ingresar los metros de frente.",
+                number: "Favor de ingresar solo números."
+            },
+
+            fondo: {
+                required: "Favor de ingresar los metros de fondo.",
+                number: "Favor de ingresar solo números."
+            },
+
+            derecho: {
+                required: "Favor de ingresar los metros del lado derecho.",
+                number: "Favor de ingresar solo números."
+            },
+
+            izquierdo: {
+                required: "Favor de ingresar los metros del lado izquierdo.",
+                number: "Favor de ingresar solo números."
+            },
+
+            terreno: {
+                required: "Favor de ingresar el área del terreno.",
+                number: "Favor de ingresar solo números."
+            },
+
+            local: {
+                required: "Favor de ingresar el área del local.",
+                number: "Favor de ingresar solo números."
+            },
+
+            predial: {
+                required: "Favor de ingresar su cuenta predial.",
+                number: "Favor de ingresar solo números."
+            }
+        },
+
+
+        highlight: function (e) {
+            $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+        },
+
+        success: function (e) {
+            $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+            $(e).remove();
+        },
+
+        errorPlacement: function (error, element) {
+            if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+                var controls = element.closest('div[class*="col-"]');
+                if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
+                else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+            }
+            else if(element.is('.select2')) {
+                error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+            }
+            else if(element.is('.chosen-select')) {
+                error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+            }
+            else error.insertAfter(element.parent());
+        },
+
+        submitHandler: function (form) {
+            
+            
+        }
+    
+    });
+
+    $('#form_documentos').validate({
+
+        errorElement: 'div',
+        errorClass: 'help-block',
+        focusInvalid: false,
+        ignore: "",
+        rules: {
+            
+        },     
+
+        messages: {
+            
+        },
+
+
+        highlight: function (e) {
+            $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
+        },
+
+        success: function (e) {
+            $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
+            $(e).remove();
+        },
+
+        errorPlacement: function (error, element) {
+            if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
+                var controls = element.closest('div[class*="col-"]');
+                if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
+                else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
+            }
+            else if(element.is('.select2')) {
+                error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
+            }
+            else if(element.is('.chosen-select')) {
+                error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
+            }
+            else error.insertAfter(element.parent());
+        },
+
+        submitHandler: function (form) {
         
-        });
+        }
+    
+    });
 </script>

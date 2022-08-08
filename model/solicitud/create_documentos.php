@@ -12,7 +12,7 @@
 	{
 		if(!mkdir($ruta,0777, true))
 		{
-			echo "Fallo la creacion de carpeta";
+			$mensaje = "error";
 		}		
 	}
 	if(isset($_FILES['titulo']))
@@ -47,7 +47,7 @@
 		{
 			if(!mkdir($ruta_pago,0777, true))
 			{
-				echo "Fallo la creacion de carpeta";
+				$mensaje = "error";
 			}		
 		}
 		$archivo = $ruta_pago.'/'.basename($_FILES['cp_no']['name']);
