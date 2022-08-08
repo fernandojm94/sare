@@ -599,6 +599,7 @@
                                     <div class="" id="inst_idpf"></div>
                                     <div class="" id="inst_idpm"></div>
                                     <input type="text" id="img_map" name="img_map" />
+                                    <input type="text" class="fill_fol" name="folio" id="folio">
                                     <div class="" id="inst_iddg"></div>
                                     <div class="" id="inst_iddim"></div>
                                 </fieldset>
