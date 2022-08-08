@@ -1,7 +1,10 @@
 <?php
-	
+	if($_POST['folio'] == "")
+	{
 		$folio = "SARE/".date("Y/m/d H:m:s");	
-	
+	}else{
+		$folio = $_POST['folio'];
+	}
 	
 	$docs =str_replace(' ', '-', str_replace(':', '-',str_replace('/', '-', $folio)));	
 	$ruta = "../../assets/expedientes/".$docs."/docs/documentacion";
