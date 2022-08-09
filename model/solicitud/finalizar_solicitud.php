@@ -1,23 +1,18 @@
 <?php
-var_dump($_POST);
+include('../../controller/solicitud/funciones_solicitud.php');
 $data = explode(",", $_POST['img_map']);	
 $data_64 = base64_decode($data[1]);	
 $data = getImageSizeFromString($data_64);
-$ruta_img = "../../assets/expedientes/".$docs."/docs/mapa.".substr($data['mime'], 6);
-
 $docs =str_replace(' ', '-', str_replace(':', '-',str_replace('/', '-', $_POST['folio'])));	
+$ruta_img = "../../assets/expedientes/".$docs."/docs/mapa.".substr($data['mime'], 6);
 $id_persona = $_POST['id_per'];
 $id_dg = $_POST['id_dg'];
 $id_dimensiones = $_POST['id_dim'];
-$noficial = $tipo_persona = 0;
+$noficial = $_POST['check_num'];
+$tipo_persona = 0;
 if ($_POST['tipo_persona'] == 'p_moral') 
 {
 		$tipo_persona = 1;
-}
-
-if(isset($_POST['checkNumOficial']))
-{
-	$noficial = 1;	
 }
 
 $id_expediente = create_expediente($docs, $tipo_persona, $id_persona, $id_dg, $id_dimensiones, $noficial);

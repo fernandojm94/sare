@@ -291,7 +291,7 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                                <input name="cp_dg" id="cp_dg" placeholder="Código Postal" class="form-control mask_cp" type="text" required />
+                                                <input name="cp_dg" id="cp_dg" placeholder="Código Postal" class="form-control mask_cp" type="number" required />
                                             </div>
                                         </div>
                                     </div>
@@ -428,7 +428,7 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-road"></i></span>
-                                                <input  name="distancia_esquina" id="distancia_esquina" placeholder="Distancia en metros" class="form-control" type="text" required/>
+                                                <input  name="distancia_esquina" id="distancia_esquina" placeholder="Distancia en metros" class="form-control" type="number" required/>
                                                 <span class="input-group-addon"><i></i>m</span>
                                             </div>
                                         </div>
@@ -596,12 +596,13 @@
                                 <fieldset>
                                     <legend class="center">Carga de Documentos</legend>
 
-                                    <div class="" id="inst_idpf"></div>
-                                    <div class="" id="inst_idpm"></div>
-                                    <input type="text" id="img_map" name="img_map" />
-                                    <input type="text" class="fill_fol" name="folio" id="folio">
-                                    <div class="" id="inst_iddg"></div>
-                                    <div class="" id="inst_iddim"></div>
+                                    <div class="hidden" id="inst_idpf"></div>
+                                    <div class="hidden" id="inst_idpm"></div>
+                                    <input type="hidden" id="img_map" name="img_map" />
+                                    <input type="hidden" class="fill_fol" name="folio" id="folio">
+                                    <input type="hidden" name="check_num" id="check_num" value="0">
+                                    <div class="hidden" id="inst_iddg"></div>
+                                    <div class="hidden" id="inst_iddim"></div>
                                 </fieldset>
                             </form>        
                                    
@@ -610,7 +611,7 @@
                                     <label class="col-md-4 control-label">Escritura o titulo de propiedad (en su caso carta notariada de escritura en trámite).</label>  
                                     <div class="col-md-4 inputGroupContainer">
                                         <input type="file" id="titulo" name="titulo" required/> 
-                                        <input type="text" class="fill_fol" name="folio" id="folio">                                           
+                                        <input type="hidden" class="fill_fol" name="folio" id="folio">                                           
                                     </div>
                                 </div>                                
                             </form>
@@ -620,7 +621,7 @@
                                     <label class="col-md-4 control-label">Recibo predial año en curso.</label>  
                                     <div class="col-md-4 inputGroupContainer">
                                         <input type="file" id="pred" name="pred" required/>     
-                                        <input type="text" class="fill_fol" name="folio" id="folio">                                        
+                                        <input type="hidden" class="fill_fol" name="folio" id="folio">                                        
                                     </div>
                                 </div>
                             </form>
@@ -630,7 +631,7 @@
                                     <label class="col-md-4 control-label">Identificación oficial (de los implicados).</label>  
                                     <div class="col-md-4 inputGroupContainer">
                                         <input type="file" id="ine" name="ine" required/>     
-                                        <input type="text" class="fill_fol" name="folio" id="folio">                                        
+                                        <input type="hidden" class="fill_fol" name="folio" id="folio">                                        
                                     </div>
                                 </div>
                             </form>
@@ -640,7 +641,7 @@
                                     <label class="col-md-4 control-label">Contrato de arrendamiento (en donde se especifiquen las medidas rentadas, el giro comercial, la ubicación del local y la vigencia del contrato).</label>  
                                     <div class="col-md-4 inputGroupContainer">
                                         <input type="file" id="contrato" name="contrato" required/>  
-                                        <input type="text" class="fill_fol" name="folio" id="folio">                                           
+                                        <input type="hidden" class="fill_fol" name="folio" id="folio">                                           
                                     </div>
                                 </div>
                             </form>
@@ -650,7 +651,7 @@
                                     <label class="col-md-4 control-label">Número oficial.</label>  
                                     <div class="col-md-4 inputGroupContainer">
                                         <input type="file" id="no" name="no" required/>
-                                        <input type="text" class="fill_fol" name="folio" id="folio">
+                                        <input type="hidden" class="fill_fol" name="folio" id="folio">
                                     </div>
                                 </div>
                             </form>
@@ -660,7 +661,7 @@
                                     <label class="col-md-4 control-label">Comprobante de Pago del Número oficial.</label>  
                                     <div class="col-md-4 inputGroupContainer">
                                         <input type="file" id="cp_no" name="cp_no"/>
-                                        <input type="text" class="fill_fol" name="folio" id="folio">
+                                        <input type="hidden" class="fill_fol" name="folio" id="folio">
                                     </div>
                                 </div>
                             </form>
@@ -708,9 +709,12 @@
         var numOficial = document.getElementById("no");
         var comNumOficial = document.getElementById("cp_no");
 
+        var check_inp = document.getElementById("check_num");
+
         reqNumOficial = numOficial.getAttribute("required");
 
         if (reqNumOficial == null) {
+            check_inp.value=0;
             //REQUIRED
             numOficial.setAttribute("required", "true");
             comNumOficial.removeAttribute("required", "false");
@@ -720,6 +724,7 @@
             //ERROR-CLASS
             $("#comnoOf").removeClass("has-error");
         }else{
+            check_inp.value=1;
             //REQUIRED
             numOficial.removeAttribute("required");
             comNumOficial.setAttribute("required", "true");
@@ -821,6 +826,21 @@
             });
         }
 
+        function delete_archivo(archivo)
+        {
+            $.ajax({
+                data:  archivo,
+                url:   './model/solicitud/delete_documento.php',
+                type:  'post',
+                success:  function (data) {
+                    if (data==='correcto'){
+                       console.log("Se eliminó archivo anterior");
+                    }                    
+                }
+            });
+        }
+
+        var tit_ant ="";
         $('#titulo').ace_file_input({
 
             no_file:'Seleccione un documento ...',
@@ -832,6 +852,10 @@
             icon_remove : false
 
         }).on('change', function() {
+            if (tit_ant!=""){
+                console.log("tenia un archivito");
+                delete_archivo(tit_ant);
+            }        
             swal({
                 title: "¿El documento cumple con lo siguiente?:",
                 text: "La escritura o titulo de propiedad debe coincidir con el comprobante de domicilio, el form_preial actual y el contrato de arrendamiento en cuanto a dueño de la propiedad, ubicación de la propiedad, área de la propiedad total y de uso comercial, asi como la vigencia del contrato de arrendamiento.",
@@ -843,13 +867,18 @@
                 if (value) {
                     $("#"+this.id).next().next().click();
                 } else{
+                    tit_ant = $('#titulo').data('ace_input_files');
+                    tit_ant = tit_ant[0]["name"];
+                    console.log(tit_ant);
+
                     fd_title = new FormData(document.getElementById("form_title"));
                     send_file(fd_title);
                 }
             });
         });
 
-
+        
+        var pred_ant ="";
         $('#pred').ace_file_input({
             no_file:'Seleccione un documento ...',
             btn_choose:'Seleccionar',
@@ -859,6 +888,10 @@
             thumbnail:true,
             icon_remove : false
         }).on('change', function() {
+            if (pred_ant!=""){
+                console.log("tenia un archivito");
+                delete_archivo(pred_ant);
+            } 
             swal({
                 title: "¿El documento cumple con lo siguiente?:",
                 text: "Recibo del predial actual (2022).",
@@ -871,12 +904,17 @@
                 if (value) {
                     $("#"+this.id).next().next().click();
                 } else{
-                   fd_pred = new FormData(document.getElementById("form_pre"));
-                   send_file(fd_pred); 
+                    pred_ant = $('#pred').data('ace_input_files');
+                    pred_ant = pred_ant[0]["name"];
+                    console.log(pred_ant);
+
+                    fd_pred = new FormData(document.getElementById("form_pre"));
+                    send_file(fd_pred); 
                 }
             });
         });
 
+        var int_ant ="";
         $('#ine').ace_file_input({
             no_file:'Seleccione un documento ...',
             btn_choose:'Seleccionar',
@@ -886,6 +924,10 @@
             thumbnail:true,
             icon_remove : false
         }).on('change', function() {
+            if (int_ant!=""){
+                console.log("tenia un archivito");
+                delete_archivo(int_ant);
+            }
             swal({
                 title: "¿El documento cumple con lo siguiente?:",
                 text: "Las identificaciones oficiales de los implicados debe coincidir con la escritura o titulo de propiedad, uso de suelo, numero oficial, comprobante de domicilio, recibo predial actual, contrato de arrendamiento, acta constitutiva, poder notarial y formato único para sistema de apertura.",
@@ -898,12 +940,17 @@
                 if (value) {
                     $("#"+this.id).next().next().click();
                 } else{
+                    int_ant = $('#ine').data('ace_input_files');
+                    int_ant = int_ant[0]["name"];
+                    console.log(int_ant);
+
                     fd_ine = new FormData(document.getElementById("form_ine"));
                     send_file(fd_ine);
                 }
             });
         });
 
+        var cont_ant ="";
         $('#contrato').ace_file_input({
             no_file:'Seleccione un documento ...',
             btn_choose:'Seleccionar',
@@ -913,6 +960,11 @@
             thumbnail:true,
             icon_remove : false
         }).on('change', function() {
+            if (cont_ant!=""){
+                console.log("tenia un archivito");
+                delete_archivo(cont_ant);
+            }
+
             swal({
                 title: "¿El documento cumple con lo siguiente?:",
                 text: "El contrato de arrendamiento debe coincidir en cuanto a dueño de la propiedad, ubicación de la propiedad, área de la propiedad total y de uso comercial, asi como la vigencia del mismo.",
@@ -925,12 +977,17 @@
                 if (value) {
                     $("#"+this.id).next().next().click();
                 } else{
+                    cont_ant = $('#contrato').data('ace_input_files');
+                    cont_ant = cont_ant[0]["name"];
+                    console.log(cont_ant);
+
                     fd_cont = new FormData(document.getElementById("form_cont"));
                     send_file(fd_cont);
                 }
             });
         });
 
+        var no_ant ="";
         $('#no').ace_file_input({
             no_file:'Seleccione un documento ...',
             btn_choose:'Seleccionar',
@@ -940,6 +997,11 @@
             thumbnail:true,
             icon_remove : false
         }).on('change', function() {
+            if (no_ant!=""){
+                console.log("tenia un archivito");
+                delete_archivo(no_ant);
+            }
+
             swal({
                 title: "¿Está usted seguro?:",
                 text: "",
@@ -952,12 +1014,17 @@
                 if (value) {
                     $("#"+this.id).next().next().click();
                 } else{
+                    no_ant = $('#no').data('ace_input_files');
+                    no_ant = no_ant[0]["name"];
+                    console.log(no_ant);
+
                     fd_no = new FormData(document.getElementById("form_no"));
                     send_file(fd_no);
                 }
             });
         });
 
+        var cpno_ant ="";
         $('#cp_no').ace_file_input({
             no_file:'Seleccione un documento ...',
             btn_choose:'Seleccionar',
@@ -967,6 +1034,11 @@
             thumbnail:true,
             icon_remove : false
         }).on('change', function() {
+            if (cpno_ant!=""){
+                console.log("tenia un archivito");
+                delete_archivo(cpno_ant);
+            }
+
             swal({
                 title: "¿Está usted seguro?:",
                 text: "",
@@ -979,6 +1051,10 @@
                 if (value) {
                     $("#"+this.id).next().next().click();
                 } else{
+                    cpno_ant = $('#cp_no').data('ace_input_files');
+                    cpno_ant = cpno_ant[0]["name"];
+                    console.log(cpno_ant);
+
                     fd_num = new FormData(document.getElementById("form_num"));
                     send_file(fd_num);
                 }
@@ -1551,6 +1627,20 @@
             return false;
         }
 
+        function delete_archivo(archivo)
+        {
+            $.ajax({
+                data:  archivo,
+                url:   './model/solicitud/delete_documento.php',
+                type:  'post',
+                success:  function (data) {
+                    if (data==='correcto'){
+                       console.log("Se eliminó archivo anterior");
+                    }                    
+                }
+            });
+        }
+
         if(info.step == 1) {
             e.preventDefault();
 
@@ -1574,9 +1664,10 @@
                     });
                     tags_moral();
 
-                    var codehtml='<h3 class="header smaller lighter center"><small>Persona Moral</small></h3><form id="form_acta" class=" form-horizontal"><div class="form-group"><label class="col-md-4 control-label">Acta constitutiva de la empresa.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="acta" name="acta"/><input type="text" class="fill_fol" name="folio" id="folio"></div></div></form><form id="form_pod" class=" form-horizontal"><div class="form-group"><label class="col-md-4 control-label">Poder notarial.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="poder" name="poder"/><input type="text" class="fill_fol" name="folio" id="folio"></div></div></form><form id="form_sol" class=" form-horizontal"><div class="form-group"><label class="col-md-4 control-label">Solicitud firmada por el representante legal de la empresa.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="solicitud" name="solicitud" /><input type="text" class="fill_fol" name="folio" id="folio"></div></div></form>';
+                    var codehtml='<h3 class="header smaller lighter center"><small>Persona Moral</small></h3><form id="form_acta" class=" form-horizontal"><div class="form-group"><label class="col-md-4 control-label">Acta constitutiva de la empresa.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="acta" name="acta"/><input type="hidden" class="fill_fol" name="folio" id="folio"></div></div></form><form id="form_pod" class=" form-horizontal"><div class="form-group"><label class="col-md-4 control-label">Poder notarial.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="poder" name="poder"/><input type="hidden" class="fill_fol" name="folio" id="folio"></div></div></form><form id="form_sol" class=" form-horizontal"><div class="form-group"><label class="col-md-4 control-label">Solicitud firmada por el representante legal de la empresa.</label><div class="col-md-4 inputGroupContainer"><input type="file" id="solicitud" name="solicitud" /><input type="hidden" class="fill_fol" name="folio" id="folio"></div></div></form>';
                     document.getElementById("upmoral").innerHTML=codehtml;
 
+                    var acta_ant ="";
                     $('#acta').ace_file_input({
                         no_file:'Seleccione un documento ...',
                         btn_choose:'Seleccionar',
@@ -1586,6 +1677,10 @@
                         thumbnail:true,
                         icon_remove : false
                     }).on('change', function() {
+                        if (acta_ant!=""){
+                            console.log("tenia un archivito");
+                            delete_archivo(acta_ant);
+                        }
                         swal({
                             title: "¿El documento cumple con los requerimientos?:",
                             text: "",
@@ -1598,12 +1693,17 @@
                             if (value) {
                                 $("#"+this.id).next().next().click();
                             } else{
+                                acta_ant = $('#acta').data('ace_input_files');
+                                acta_ant = acta_ant[0]["name"];
+                                console.log(acta_ant);
+
                                 fd_act = new FormData(document.getElementById("form_acta"));
                                 send_file(fd_act);
                             }
                         });
                     });
 
+                    var pod_ant ="";
                     $('#poder').ace_file_input({
                         no_file:'Seleccione un documento ...',
                         btn_choose:'Seleccionar',
@@ -1613,6 +1713,11 @@
                         thumbnail:true,
                         icon_remove : false
                     }).on('change', function() {
+                        if (pod_ant!=""){
+                            console.log("tenia un archivito");
+                            delete_archivo(pod_ant);
+                        }
+
                         swal({
                             title: "¿El documento cumple con los requerimientos?:",
                             text: "",
@@ -1625,12 +1730,17 @@
                             if (value) {
                                 $("#"+this.id).next().next().click();
                             } else{
+                                pod_ant = $('#poder').data('ace_input_files');
+                                pod_ant = pod_ant[0]["name"];
+                                console.log(pod_ant);
+
                                 fd_pod = new FormData(document.getElementById("form_pod"));
                                 send_file(fd_pod);
                             }
                         });
                     });
 
+                    var sol_ant ="";
                     $('#solicitud').ace_file_input({
                         no_file:'Seleccione un documento ...',
                         btn_choose:'Seleccionar',
@@ -1640,6 +1750,11 @@
                         thumbnail:true,
                         icon_remove : false
                     }).on('change', function() {
+                        if (sol_ant!=""){
+                            console.log("tenia un archivito");
+                            delete_archivo(sol_ant);
+                        }
+
                         swal({
                             title: "¿El documento cumple con los requerimientos?:",
                             text: "",
@@ -1652,6 +1767,10 @@
                             if (value) {
                                 $("#"+this.id).next().next().click();
                             } else{
+                                sol_ant = $('#solicitud').data('ace_input_files');
+                                sol_ant = sol_ant[0]["name"];
+                                console.log(sol_ant);
+
                                 fd_sol = new FormData(document.getElementById("form_sol"));
                                 send_file(fd_sol);
                             }
@@ -1725,7 +1844,7 @@
                                             step: 3
                                         });
 
-                                        var code_idpf='<input type="text" name="id_per" id="id_per" value="'+datos[1]+'"/>';
+                                        var code_idpf='<input type="hidden" name="id_per" id="id_per" value="'+datos[1]+'"/>';
                                         document.getElementById("inst_idpf").innerHTML=code_idpf;
 
                                         mapa_inicial();             
@@ -1800,7 +1919,7 @@
                                             step: 3
                                         });
 
-                                        var code_idpm='<input type="text" name="id_per" id="id_per" value="'+datos[1]+'"/>';
+                                        var code_idpm='<input type="hidden" name="id_per" id="id_per" value="'+datos[1]+'"/>';
                                         document.getElementById("inst_idpm").innerHTML=code_idpm;
 
                                         mapa_inicial();                 
@@ -1883,7 +2002,7 @@
                                         step: 4
                                     });        
 
-                                    var code_iddg='<input type="text" name="id_dg" id="id_dg" value="'+id_dg+'"/>';
+                                    var code_iddg='<input type="hidden" name="id_dg" id="id_dg" value="'+id_dg+'"/>';
                                     document.getElementById("inst_iddg").innerHTML=code_iddg;             
                                 }
                                 
@@ -1943,7 +2062,7 @@
                                 });
 
                                 //$("#btn_next").attr('disabled','disabled');
-                                var code_iddim='<input type="text" name="id_dim" id="id_dim" value="'+id_dime+'"/>';
+                                var code_iddim='<input type="hidden" name="id_dim" id="id_dim" value="'+id_dime+'"/>';
                                 document.getElementById("inst_iddim").innerHTML=code_iddim;
 
                                 $('#fuelux-wizard-container').wizard('selectedItem', {
@@ -1974,16 +2093,29 @@
                 
                 e.preventDefault();
 
+                var numOficial = document.getElementById("no");
+                //var comNumOficial = document.getElementById("cp_no");
+                var reqNumOficial = numOficial.getAttribute("required");
+                var input_val = "";
+
+                if (reqNumOficial == null) {
+                    input_val = "cp_no";
+                    console.log("se requiere numero oficial");
+                }else{
+                    input_val = "no";
+                    console.log("numero oficial");
+                }
+
                 // PARA SELECCIONAR EL INPUT QUE SE ENVIARÁ DE LOS RADIOBUTTONS
                 var radio_fisica = document.getElementsByName("tipo_persona")[0];
                 var radio_moral = document.getElementsByName("tipo_persona")[1];
                 
                 if (radio_fisica.checked == true) {
                     $(radio_fisica).appendTo('#form_documentos');
-                    if (($("#titulo").val()=="")||($("#pred").val()=="")||($("#ine").val()=="")||($("#contrato").val()=="")||($("#no").val()=="")){swal("Tip", "Favor de cargar la documentación completa.", "info"); console.log("entro fis"); return;}
+                    if (($("#titulo").val()=="")||($("#pred").val()=="")||($("#ine").val()=="")||($("#contrato").val()=="")||($("#"+input_val).val()=="")){swal("Tip", "Favor de cargar la documentación completa.", "info"); console.log("entro fis"); return;}
                 }else if(radio_moral.checked == true){
                     $(radio_moral).appendTo('#form_documentos');
-                    if (($("#titulo").val()=="")||($("#pred").val()=="")||($("#ine").val()=="")||($("#contrato").val()=="")||($("#no").val()=="")||($("#acta").val()=="")||($("#poder").val()=="")||($("#solicitud").val()=="")){swal("Tip", "Favor de cargar la documentación completa.", "info"); console.log("entro_ mor"); return;}
+                    if (($("#titulo").val()=="")||($("#pred").val()=="")||($("#ine").val()=="")||($("#contrato").val()=="")||($("#"+input_val).val()=="")||($("#acta").val()=="")||($("#poder").val()=="")||($("#solicitud").val()=="")){swal("Tip", "Favor de cargar la documentación completa.", "info"); console.log("entro_ mor"); return;}
                 }
 
                 var myForm = document.getElementById('form_documentos');
