@@ -1,8 +1,8 @@
 <?php
 
 	$archivo = $_POST['nombre_archivo'];
-	$expediente = $_POST['nivel-1'];
-	$carpeta = $_POST['nivel-3'];
+	$expediente = str_replace(' ', '-', str_replace(':', '-',str_replace('/', '-', $_POST['nivel-1'])));
+	$carpeta = $_POST['nivel-3'];	
 	$ruta = "../../assets/expedientes/".$expediente."/docs/".$carpeta."/".$archivo;
 	if(unlink($ruta))
 	{
