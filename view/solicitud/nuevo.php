@@ -826,15 +826,30 @@
             });
         }
 
-        function delete_archivo(archivo)
+        function delete_archivo(archivo,no)
         {
+            var n3="";
+            if (no==1){
+                n3="pagos";
+            }else{
+                n3="documentacion";
+            }
+            var parametros = {                      
+                "nombre_archivo": archivo,
+                "nivel-1" : $('#folio').val(),
+                "nivel-3" : n3
+            };
             $.ajax({
-                data:  archivo,
-                url:   './model/solicitud/delete_documento.php',
+                data:  parametros,
+                url:   './model/solicitud/delete_file.php',
                 type:  'post',
                 success:  function (data) {
                     if (data==='correcto'){
                        console.log("Se eliminó archivo anterior");
+                    }
+
+                    if (data==='error'){
+                       console.log("Ocurrio algo al eliminar");
                     }                    
                 }
             });
@@ -854,7 +869,7 @@
         }).on('change', function() {
             if (tit_ant!=""){
                 console.log("tenia un archivito");
-                delete_archivo(tit_ant);
+                delete_archivo(tit_ant,0);
             }        
             swal({
                 title: "¿El documento cumple con lo siguiente?:",
@@ -890,7 +905,7 @@
         }).on('change', function() {
             if (pred_ant!=""){
                 console.log("tenia un archivito");
-                delete_archivo(pred_ant);
+                delete_archivo(pred_ant,0);
             } 
             swal({
                 title: "¿El documento cumple con lo siguiente?:",
@@ -926,7 +941,7 @@
         }).on('change', function() {
             if (int_ant!=""){
                 console.log("tenia un archivito");
-                delete_archivo(int_ant);
+                delete_archivo(int_ant,0);
             }
             swal({
                 title: "¿El documento cumple con lo siguiente?:",
@@ -962,7 +977,7 @@
         }).on('change', function() {
             if (cont_ant!=""){
                 console.log("tenia un archivito");
-                delete_archivo(cont_ant);
+                delete_archivo(cont_ant,0);
             }
 
             swal({
@@ -999,7 +1014,7 @@
         }).on('change', function() {
             if (no_ant!=""){
                 console.log("tenia un archivito");
-                delete_archivo(no_ant);
+                delete_archivo(no_ant,0);
             }
 
             swal({
@@ -1036,7 +1051,7 @@
         }).on('change', function() {
             if (cpno_ant!=""){
                 console.log("tenia un archivito");
-                delete_archivo(cpno_ant);
+                delete_archivo(cpno_ant,1);
             }
 
             swal({
@@ -1627,11 +1642,22 @@
             return false;
         }
 
-        function delete_archivo(archivo)
+        function delete_archivo(archivo,no)
         {
+            var n3="";
+            if (no==1){
+                n3="pagos";
+            }else{
+                n3="documentacion";
+            }
+            var parametros = {                      
+                "nombre_archivo": archivo,
+                "nivel-1" : $('#folio').val(),
+                "nivel-3" : n3
+            };
             $.ajax({
-                data:  archivo,
-                url:   './model/solicitud/delete_documento.php',
+                data:  parametros,
+                url:   './model/solicitud/delete_file.php',
                 type:  'post',
                 success:  function (data) {
                     if (data==='correcto'){
@@ -1679,7 +1705,7 @@
                     }).on('change', function() {
                         if (acta_ant!=""){
                             console.log("tenia un archivito");
-                            delete_archivo(acta_ant);
+                            delete_archivo(acta_ant,0);
                         }
                         swal({
                             title: "¿El documento cumple con los requerimientos?:",
@@ -1715,7 +1741,7 @@
                     }).on('change', function() {
                         if (pod_ant!=""){
                             console.log("tenia un archivito");
-                            delete_archivo(pod_ant);
+                            delete_archivo(pod_ant,0);
                         }
 
                         swal({
@@ -1752,7 +1778,7 @@
                     }).on('change', function() {
                         if (sol_ant!=""){
                             console.log("tenia un archivito");
-                            delete_archivo(sol_ant);
+                            delete_archivo(sol_ant,0);
                         }
 
                         swal({
