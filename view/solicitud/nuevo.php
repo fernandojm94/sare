@@ -149,7 +149,7 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <input type="hidden" name="id_solicitud" id="id_solicitud" />
-                                                <input  name="nombre" id="nombre" placeholder="Nombre completo" class="form-control" type="text" required/>
+                                                <input  name="nombre" id="nombre" placeholder="Nombre completo" class="form-control" type="text" />
                                             </div>
                                         </div>
                                     </div>
@@ -172,7 +172,7 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <input type="hidden" name="id_solicitud" id="id_solicitud" />
-                                                <input  name="nombre_empresa" id="nombre_empresa" placeholder="Nombre de la empresa" class="form-control" type="text" required/>
+                                                <input  name="nombre_empresa" id="nombre_empresa" placeholder="Nombre de la empresa" class="form-control" type="text" />
                                             </div>
                                         </div>
                                     </div>
@@ -200,7 +200,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-building"></i></span>
                                                 <input type="hidden" name="id_solicitud" id="id_solicitud" />
-                                                <input  name="nombre_comercial" id="nombre_comercial" placeholder="Nombre de la empresa" class="form-control" type="text" required/>
+                                                <input  name="nombre_comercial" id="nombre_comercial" placeholder="Nombre de la empresa" class="form-control" type="text" />
                                             </div>
                                         </div>
                                     </div>
@@ -211,7 +211,7 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-building"></i></span>
-                                                <input  name="horario_trabajo" id="horario_trabajo" placeholder="Fecha de constitución" class="form-control date_picker" type="text" required/>
+                                                <input  name="horario_trabajo" id="horario_trabajo" placeholder="Fecha de constitución" class="form-control date_picker" type="text" />
                                             </div>
                                         </div>
                                     </div>
@@ -222,7 +222,7 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                                <input  name="calle_dg" id="calle_dg" placeholder="Calle" class="form-control" type="text" required/>
+                                                <input  name="calle_dg" id="calle_dg" placeholder="Calle" class="form-control" type="text" />
                                             </div>
                                         </div>
                                     </div>
@@ -232,7 +232,7 @@
                                         <div class="col-md-2 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                                <input  name="no_ex_dg" id="no_ex_dg" placeholder="No. Exterior" class="form-control" type="number" required/>
+                                                <input  name="no_ex_dg" id="no_ex_dg" placeholder="No. Exterior" class="form-control" type="number" />
                                             </div>
                                         </div>
                                         
@@ -250,7 +250,7 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                                <input  name="colonia_dg" id="colonia_dg" placeholder="Colonia" class="form-control" type="text" required/>
+                                                <input  name="colonia_dg" id="colonia_dg" placeholder="Colonia" class="form-control" type="text" />
                                             </div>
                                         </div>
                                     </div>
@@ -260,7 +260,7 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                                <input name="entre_calles" id="entre_calles" placeholder="Entre calles" class="form-control" type="text" required/>
+                                                <input name="entre_calles" id="entre_calles" placeholder="Entre calles" class="form-control" type="text" />
                                             </div>
                                         </div>
                                     </div>
@@ -271,7 +271,7 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                                <input  name="municipio_dg" id="municipio_dg" placeholder="Municipio" class="form-control" type="text" value="Jesús María" required readonly/>
+                                                <input  name="municipio_dg" id="municipio_dg" placeholder="Municipio" class="form-control" type="text" value="Jesús María"  readonly/>
                                             </div>
                                         </div>
                                     </div>
@@ -281,7 +281,7 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                                <input  name="localidad_dg" id="localidad_dg" placeholder="Localidad" class="form-control" type="text" required/>
+                                                <input  name="localidad_dg" id="localidad_dg" placeholder="Localidad" class="form-control" type="text" />
                                             </div>
                                         </div>
                                     </div>
@@ -291,7 +291,7 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                                <input name="cp_dg" id="cp_dg" placeholder="Código Postal" class="form-control mask_cp" type="number" required />
+                                                <input name="cp_dg" id="cp_dg" placeholder="Código Postal" class="form-control mask_cp" type="text"  />
                                             </div>
                                         </div>
                                     </div>
@@ -323,7 +323,7 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                                <input name="latlong" id="latlong" placeholder="Latitud y Longitud" class="form-control" type="text" required/>
+                                                <input name="latlong" id="latlong" placeholder="Latitud y Longitud" class="form-control" type="text" />
                                             </div>
                                         </div>
                                     </div>
@@ -333,7 +333,7 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                                <input name="telefono_dg" id="telefono_dg" placeholder="Teléfono" class="form-control mask_tel" type="tel" required/>
+                                                <input name="telefono_dg" id="telefono_dg" placeholder="Teléfono" class="form-control mask_tel" type="tel" />
                                             </div>
                                         </div>
                                     </div>
@@ -344,7 +344,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-building"></i></span>
                                         
-                                                <select class="chosen-select form-control" name="uso" id="uso" data-placeholder="Elige una opción..." required>
+                                                <select class="chosen-select form-control" name="uso" id="uso" data-placeholder="Elige una opción..." >
                                                     <option value=""></option>
                                                     <option value="Habitacional">Habitacional</option>
                                                     <option value="Comercial">Comercial</option>
@@ -367,7 +367,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-building"></i></span>
                                         
-                                                <select class="chosen-select form-control" name="uso_sol" id="uso_sol" data-placeholder="Elige una opción..." required>
+                                                <select class="chosen-select form-control" name="uso_sol" id="uso_sol" data-placeholder="Elige una opción..." >
                                                     <option value=""></option>
                                                     <option value="Habitacional">Habitacional</option>
                                                     <option value="Comercial">Comercial</option>
@@ -389,7 +389,7 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-building"></i></span>
-                                                <select class="chosen-select form-control" name="scian" id="scian" data-placeholder="Elige una opción..." required>
+                                                <select class="chosen-select form-control" name="scian" id="scian" data-placeholder="Elige una opción..." >
                                                     <?= $options; ?>
                                                 </select>
                                             </div>
@@ -401,7 +401,7 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-home"></i></span>
-                                                <input  name="catastral" id="catastral" placeholder="Cuenta catastral" class="form-control" type="text" required/>
+                                                <input  name="catastral" id="catastral" placeholder="Cuenta catastral" class="form-control" type="text" />
                                             </div>
                                         </div>
                                     </div>
@@ -411,14 +411,14 @@
                                         <div class="col-md-2 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                                <input  name="manzana" id="manzana" placeholder="Manzana" class="form-control" type="text" required/>
+                                                <input  name="manzana" id="manzana" placeholder="Manzana" class="form-control" type="text" />
                                             </div>
                                         </div>
  
                                         <div class="col-md-2 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                                <input  name="lote" id="lote" placeholder="Lote" class="form-control" type="text" required/>
+                                                <input  name="lote" id="lote" placeholder="Lote" class="form-control" type="text" />
                                             </div>
                                         </div>
                                     </div>
@@ -428,7 +428,7 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-road"></i></span>
-                                                <input  name="distancia_esquina" id="distancia_esquina" placeholder="Distancia en metros" class="form-control" type="number" required/>
+                                                <input  name="distancia_esquina" id="distancia_esquina" placeholder="Distancia en metros" class="form-control" type="number" />
                                                 <span class="input-group-addon"><i></i>m</span>
                                             </div>
                                         </div>
@@ -439,7 +439,7 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-car"></i></span>
-                                                <input  name="cajones" id="cajones" placeholder="Cajones de estacionamiento" class="form-control" type="text" required/>
+                                                <input  name="cajones" id="cajones" placeholder="Cajones de estacionamiento" class="form-control" type="text" />
                                             </div>
                                         </div>
                                     </div>
@@ -449,7 +449,7 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                                                <input  name="inversion" id="inversion" placeholder="Monto de la inversión capital social (M.N.)" class="form-control" type="text" required/>
+                                                <input  name="inversion" id="inversion" placeholder="Monto de la inversión capital social (M.N.)" class="form-control" type="text" />
                                             </div>
                                         </div>
                                     </div>
@@ -459,7 +459,7 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                                                <input  name="personal_ocupado" id="personal_ocupado" placeholder="Personal ocupado (PO)" class="form-control" type="text" required/>
+                                                <input  name="personal_ocupado" id="personal_ocupado" placeholder="Personal ocupado (PO)" class="form-control" type="text" />
                                             </div>
                                         </div>
                                     </div>
@@ -469,7 +469,7 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <!-- <span class="input-group-addon"><i class="fa fa-check-circle-o"></i></span>
-                                                <input  name="servicios" id="servicios" placeholder="Servicios existentes" class="form-control" type="text" required/> -->
+                                                <input  name="servicios" id="servicios" placeholder="Servicios existentes" class="form-control" type="text" /> -->
                                                 <span class="input-group-addon"><i class="fa fa-check-circle-o"></i></span>
                                                 <select multiple="" class="chosen-select form-control tag-input-style" name="servicios" id="servicios" data-placeholder="Seleccionar los servicios...">
                                                     <option value="Agua">Agua</option>
@@ -581,7 +581,7 @@
                                         <div class="col-md-4 inputGroupContainer">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-home"></i></span>
-                                                <input  name="predial" id="predial" placeholder="Cuenta predial" class="form-control" type="text" required/>
+                                                <input  name="predial" id="predial" placeholder="Cuenta predial" class="form-control" type="text" />
                                             </div>
                                         </div>
                                     </div>                                
@@ -610,7 +610,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Escritura o titulo de propiedad (en su caso carta notariada de escritura en trámite).</label>  
                                     <div class="col-md-4 inputGroupContainer">
-                                        <input type="file" id="titulo" name="titulo" required/> 
+                                        <input type="file" id="titulo" name="titulo" /> 
                                         <input type="hidden" class="fill_fol" name="folio" id="folio">                                           
                                     </div>
                                 </div>                                
@@ -620,7 +620,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Recibo predial año en curso.</label>  
                                     <div class="col-md-4 inputGroupContainer">
-                                        <input type="file" id="pred" name="pred" required/>     
+                                        <input type="file" id="pred" name="pred" />     
                                         <input type="hidden" class="fill_fol" name="folio" id="folio">                                        
                                     </div>
                                 </div>
@@ -630,7 +630,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Identificación oficial (de los implicados).</label>  
                                     <div class="col-md-4 inputGroupContainer">
-                                        <input type="file" id="ine" name="ine" required/>     
+                                        <input type="file" id="ine" name="ine" />     
                                         <input type="hidden" class="fill_fol" name="folio" id="folio">                                        
                                     </div>
                                 </div>
@@ -640,7 +640,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Contrato de arrendamiento (en donde se especifiquen las medidas rentadas, el giro comercial, la ubicación del local y la vigencia del contrato).</label>  
                                     <div class="col-md-4 inputGroupContainer">
-                                        <input type="file" id="contrato" name="contrato" required/>  
+                                        <input type="file" id="contrato" name="contrato" />  
                                         <input type="hidden" class="fill_fol" name="folio" id="folio">                                           
                                     </div>
                                 </div>
@@ -650,7 +650,7 @@
                                 <div class="form-group" id="noOf">
                                     <label class="col-md-4 control-label">Número oficial.</label>  
                                     <div class="col-md-4 inputGroupContainer">
-                                        <input type="file" id="no" name="no" required/>
+                                        <input type="file" id="no" name="no" />
                                         <input type="hidden" class="fill_fol" name="folio" id="folio">
                                     </div>
                                 </div>
@@ -690,7 +690,7 @@
                         Anterior
                     </button>
 
-                    <button class="btn btn-success btn-next" data-last="Finalizar" id="btn_next">
+                    <button class="btn btn-success btn-next" data-last="Finalizar">
                         Continuar
                         <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
                     </button>
@@ -873,7 +873,7 @@
             }        
             swal({
                 title: "¿El documento cumple con lo siguiente?:",
-                text: "La escritura o titulo de propiedad debe coincidir con el comprobante de domicilio, el form_preial actual y el contrato de arrendamiento en cuanto a dueño de la propiedad, ubicación de la propiedad, área de la propiedad total y de uso comercial, asi como la vigencia del contrato de arrendamiento.",
+                text: "La escritura o titulo de propiedad debe coincidir con el comprobante de domicilio, el predial actual y el contrato de arrendamiento en cuanto a dueño de la propiedad, ubicación de la propiedad, área de la propiedad total y de uso comercial, asi como la vigencia del contrato de arrendamiento.",
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
@@ -1536,18 +1536,18 @@
 <script type="text/javascript">
 
     $.mask.definitions['~']='[+-]';
-    $('.mask_curp').mask('aaaa999999aaaaaa99', {reverse: true});
+    $('.mask_curp').mask('aaaa999999aaaaaa**', {reverse: true});
     $('.mask_tel').mask('9999999999', {reverse: true});
     $('.mask_cp').mask('99999', {reverse: true});
-    $('.mask_rfc_fis').mask('aaaa999999aa9', {reverse: true});
+    //$('.mask_rfc_fis').mask('aaaa999999aa9', {reverse: true});
 
     function mask_data(){
         $.mask.definitions['~']='[+-]';
-        $('.mask_curp').mask('aaaa999999aaaaaa99', {reverse: true});
+        $('.mask_curp').mask('aaaa999999aaaaaa**', {reverse: true});
         $('.mask_tel').mask('9999999999', {reverse: true});
         $('.mask_cp').mask('99999', {reverse: true});
-        $('.mask_rfc_fis').mask('aaaa999999aa9', {reverse: true});
-        $('.mask_rfc_mor').mask('aaa999999aa9', {reverse: true});
+        //$('.mask_rfc_fis').mask('aaaa999999aa9', {reverse: true});
+        //$('.mask_rfc_mor').mask('aaa999999aa9', {reverse: true});
     }
 
     function mayus(e) {
@@ -2138,10 +2138,8 @@
                 
                 if (radio_fisica.checked == true) {
                     $(radio_fisica).appendTo('#form_documentos');
-                    if (($("#titulo").val()=="")||($("#pred").val()=="")||($("#ine").val()=="")||($("#contrato").val()=="")||($("#"+input_val).val()=="")){swal("Tip", "Favor de cargar la documentación completa.", "info"); console.log("entro fis"); return;}
                 }else if(radio_moral.checked == true){
                     $(radio_moral).appendTo('#form_documentos');
-                    if (($("#titulo").val()=="")||($("#pred").val()=="")||($("#ine").val()=="")||($("#contrato").val()=="")||($("#"+input_val).val()=="")||($("#acta").val()=="")||($("#poder").val()=="")||($("#solicitud").val()=="")){swal("Tip", "Favor de cargar la documentación completa.", "info"); console.log("entro_ mor"); return;}
                 }
 
                 var myForm = document.getElementById('form_documentos');
@@ -2220,7 +2218,7 @@
         focusInvalid: false,
         ignore: "",
         rules: {
-            nombre: {
+            /*nombre: {
                 required: true
             },
 
@@ -2272,11 +2270,11 @@
             email: {
                 required: true,
                 email: true
-            }
+            }*/
         },     
 
         messages: {
-            nombre: {
+            /*nombre: {
                 required: "Favor de ingresar el nombre."
             },
 
@@ -2327,7 +2325,7 @@
 
             email: {
                 required: "Favor de ingresar el correo electrónico."
-            }
+            }*/
         },
 
 
@@ -2368,7 +2366,7 @@
         focusInvalid: false,
         ignore: "",
         rules: {
-            nombre_empresa: {
+            /*nombre_empresa: {
                 required: true
             },
 
@@ -2446,11 +2444,11 @@
             email_rl: {
                 required: true,
                 email: true
-            }
+            }*/
         },     
 
         messages: {
-            nombre_empresa: {
+            /*nombre_empresa: {
                 required: "Favor de ingresar el nombre de la empresa."
             },
 
@@ -2528,7 +2526,7 @@
             email_rl: {
                 required: "Favor de ingresar el correo electrónico.",
                 email: "Ingresar un correo electrónico válido."
-            }
+            }*/
         },
 
 
@@ -2776,7 +2774,7 @@
         focusInvalid: false,
         ignore: "",
         rules: {
-            frente: {
+            /*frente: {
                 required: true,
                 number: true
             },
@@ -2809,11 +2807,11 @@
             predial: {
                 required: true,
                 number: true
-            }
+            }*/
         },     
 
         messages: {
-            frente: {
+           /* frente: {
                 required: "Favor de ingresar los metros de frente.",
                 number: "Favor de ingresar solo números."
             },
@@ -2846,7 +2844,7 @@
             predial: {
                 required: "Favor de ingresar su cuenta predial.",
                 number: "Favor de ingresar solo números."
-            }
+            }*/
         },
 
 

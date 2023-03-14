@@ -583,38 +583,8 @@ $croquis = '
             <td></td>
         </tr>
         <tr>
-            <td width="50%">
-                <table border="1" cellpadding="1" align="center">
-                    <tr>
-                        <td>D</td>
-                        <td>L</td>
-                        <td>M</td>
-                        <td>M</td>
-                        <td>J</td>
-                        <td>V</td>
-                        <td>S</td>
-                        <td>de</td>
-                        <td></td>
-                        <td>hrs a</td>
-                        <td></td>
-                        <td>hrs</td>
-                    </tr>
-
-                    <tr>
-                        <td>D</td>
-                        <td>L</td>
-                        <td>M</td>
-                        <td>M</td>
-                        <td>J</td>
-                        <td>V</td>
-                        <td>S</td>
-                        <td>de</td>
-                        <td></td>
-                        <td>hrs a</td>
-                        <td></td>
-                        <td>hrs</td>
-                    </tr>
-                </table>
+            <td width="50%" class="border_b">
+                '.$establecimiento['horario_trabajo'].'
             </td>
 
             <td width="50%">
@@ -698,10 +668,10 @@ $tplIdx = $tcpdf->importPage(1);
 $tcpdf->useTemplate($tplIdx,0, 0, 216, 280);
 
 // Añade un segundo pdf.
-$tcpdf->AddPage();
-$tcpdf->setSourceFile('FUSARE3.pdf');
-$tplIdx = $tcpdf->importPage(1);
-$tcpdf->useTemplate($tplIdx,0, 0, 216, 280);
+//$tcpdf->AddPage();
+//$tcpdf->setSourceFile('FUSARE3.pdf');
+//$tplIdx = $tcpdf->importPage(1);
+//$tcpdf->useTemplate($tplIdx,0, 0, 216, 280);
 
 // Genera el pdf completo.
 $tcpdf->Output($_SERVER['DOCUMENT_ROOT'] . '/assets/expedientes/'.$folio_str.'/docs/documentacion/Fusare.pdf', 'FI');

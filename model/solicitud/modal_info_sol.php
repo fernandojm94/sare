@@ -349,6 +349,14 @@
 														<input id="de0" name="de0" type="text" class="sinborde"  value="<?=$establecimiento['nombre_comercial'];?>" disabled size="50">
 													</div>
 												</div>
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Giro comercial: </div>
+
+													<div class="profile-info-value">
+														<i class="fa fa-user green bigger-110"></i>&nbsp;
+														<input id="de0" name="de0" type="text" class="sinborde"  value="<?=$establecimiento['giro_scian'];?>" disabled size="50">
+													</div>
+												</div>
 
 												<div class="profile-info-row">
 													<div class="profile-info-name"> Dirección: </div>
@@ -397,10 +405,10 @@
 												</div>
 
 												<div class="profile-info-row">
-													<div class="profile-info-name"> Horario de trabajo: </div>
+													<div class="profile-info-name"> Fecha de constitución: </div>
 
 													<div class="profile-info-value">
-													<i class="fa fa-clock-o green bigger-110"></i>&nbsp;
+													<i class="fa fa-calendar green bigger-110"></i>&nbsp;
 														<input id="de8" name="de8" type="text" class="sinborde"  value="<?=$establecimiento['horario_trabajo'];?>" disabled size="50">
 													</div>
 												</div>
@@ -412,7 +420,16 @@
 													<i class="fa fa-building green bigger-110"></i>&nbsp;
 														<input id="de9" name="de9" type="text" class="sinborde"  value="<?=$establecimiento['uso_actual'];?>" disabled size="50">
 													</div>
-												</div>									
+												</div>	
+												
+												<div class="profile-info-row">
+													<div class="profile-info-name"> Uso solicitado: </div>
+
+													<div class="profile-info-value">
+													<i class="fa fa-building green bigger-110"></i>&nbsp;
+														<input id="de9" name="de9" type="text" class="sinborde"  value="<?=$establecimiento['uso_solicitado'];?>" disabled size="50">
+													</div>
+												</div>	
 
 												<div class="profile-info-row">
 													<div class="profile-info-name"> Teléfono: </div>
