@@ -120,7 +120,9 @@ function create_html($ruta, $adicional_1, $adicional_2, $nombre)
 	}else{
 		$archivo = fopen($ruta.$nombre."".$file_type."", "w");
 	}
-	 fwrite($archivo, PHP_EOL ."$adicional_1");
+	
+	//fwrite($archivo, PHP_EOL .'<meta charset="UTF-8"/>');
+	fwrite($archivo, PHP_EOL ."$adicional_1");
 	fclose($archivo);
 
 	if (file_exists($ruta."observaciones".$file_type.""))

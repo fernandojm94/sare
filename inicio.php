@@ -1547,6 +1547,9 @@
 					  	icon: "warning",
 					});
 				} else{
+				    const input_recha = document.createElement('div');				
+					input_recha.innerHTML = '<textarea class="col-md-12" name="mot_recha" id="mot_recha" placeholder="Descripción del rechazo" required minlength="0" ></textarea><br>';
+					
 					swal({
 					  	title: titulo,
 					  	text: texto,
@@ -1558,21 +1561,22 @@
 
 							if(status==2)
 							{
+							    $('#modal_info').modal('hide');
 								swal({
 								  	title: "Descripción",
 								  	text: "Describa el motivo del rechazo:",
 								  	buttons: ["Cancelar", "Enviar"],
 								  	icon: "info",
-								  	content: "input",
+								  	content: input_recha,
 							    }).then((value) => {
 							    	if (value) {
 							    		//console.log("id:"+id_solicitud+" etapa: "+etapa+" status: "+status+" adicional_1: "+complemento+" adicional_2: "+complemento2+" director: "+director+" tipo_usuario: "+tipo_usuario+" id_usuario: "+id_usuario+" folio: "+folio);
-
+                                        if ($("#mot_recha").val()=="") { swal("Tip", "Ingresa la descripción del rechazo.", "info"); return;}
 							    		var data = {
 											'id' : id_solicitud,
 											'etapa' : etapa,
 											'status' : status,
-											'adicional_1' : value,
+											'adicional_1' : $("#mot_recha").val(),
 											'adicional_2' : "",
 											'director' : director,
 											'tipo_usuario' : tipo_usuario,
