@@ -65,6 +65,16 @@
                                     </div>
                                 </div>
                             </div>
+                            <br><br><br><br>
+                            <div class="form-group">
+                                <label class="col-md-12 control-label">Folio interno SEDATUM </label>  
+                                <div class="col-md-12 inputGroupContainer">
+                                    <div class="input-group col-sm-12">
+                                        <span class="input-group-addon"><i class="fa fa-list-ol"></i></span>
+                                        <input name="fol_sedatum" id="fol_sedatum" placeholder="Folio interno SEDATUM" class="col-xs-10 col-sm-10" type="text" required/>
+                                    </div>
+                                </div>
+                            </div>
                        		<br><br><br><br>
 
 						</form>

@@ -1,5 +1,6 @@
 <?php
 	include('../../controller/solicitud/funciones_solicitud.php');
+	/*var_dump($_POST); exit();*/
 	$expediente = $_POST['id'];
 	//echo $usuario = $_POST['usuario'];
 	$adicional_1 = $_POST['adicional_1'];
