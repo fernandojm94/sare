@@ -875,8 +875,8 @@
 		</script>
 
 		<script type="text/javascript">
-		   function fill_modal_comp_uso(id)
-		   {
+		   	function fill_modal_comp_uso(id)
+		   	{
 		    	var xmlhttp;
 
 		        if (window.XMLHttpRequest){
@@ -898,6 +898,7 @@
 		                show_hide_modals();
 		                wysiwyg();
 		                $('#modal_comp').modal('show');
+		                dropzone_uso();
 		            }
 		        }
 
@@ -1060,7 +1061,8 @@
 		        xmlhttp.send(datos_modal);
 		    }
 
-		    function switch_editar(){
+		    function switch_editar()
+		    {
 
 	            $("#check_edit",).change(function() {
 
@@ -1119,7 +1121,8 @@
 	            });
 	        }
 
-	        function revivir_sol(id_sol){
+	        function revivir_sol(id_sol)
+	        {
 	        	swal({
 	        		title: "Guardar",
 				  	text: "¿Desea reiniciar la solicutud?",
@@ -1162,11 +1165,13 @@
 	        	});
 	        }
 
-	        function new_step(paso_new){
+	        function new_step(paso_new)
+	        {
 	        	document.getElementById("paso_actual").value=paso_new;
 	        }
 
-	        function reinicia_solicitud(tipo_persona,origen,id_persona,id_dg_establecimiento,id_dimensiones_establecimiento){
+	        function reinicia_solicitud(tipo_persona,origen,id_persona,id_dg_establecimiento,id_dimensiones_establecimiento)
+	        {
 		        
 	        	if(document.getElementById('boton_actualiza').style.display == 'inline'){
 	        		var titulo="";
@@ -1468,8 +1473,8 @@
 				});
 			}
 
-		   function show_hide_modals()
-		   {
+		   	function show_hide_modals()
+		   	{
 				$('#modal_comp').on('shown.bs.modal', function (e) {
 		  			$('#modal_info').modal('hide');
 				});
@@ -1497,16 +1502,12 @@
 				var titulo="";
 				var texto="";
 				var pantalla="";
-
-				//console.log("id:"+id_solicitud+" etapa: "+etapa+" status: "+status+" adicional_1: "+complemento+" adicional_2: "+complemento2+" director: "+director+" tipo_usuario: "+tipo_usuario+" id_usuario: "+id_usuario+" folio: "+folio);
-
-				//console.log(complemento==="");console.log(complemento2==="");
-
-				//console.log(complemento.length);console.log(complemento2.length);
+				var folio_sedatum="";
 				
 				if (etapa==2)
 				{
 					pantalla="ventanilla";
+					folio_sedatum=$("#fol_sedatum").val();
 				}else if(etapa==4)
 				{
 					pantalla="uso_suelo";
@@ -1570,8 +1571,7 @@
 								  	content: input_recha,
 							    }).then((value) => {
 							    	if (value) {
-							    		//console.log("id:"+id_solicitud+" etapa: "+etapa+" status: "+status+" adicional_1: "+complemento+" adicional_2: "+complemento2+" director: "+director+" tipo_usuario: "+tipo_usuario+" id_usuario: "+id_usuario+" folio: "+folio);
-                                        if ($("#mot_recha").val()=="") { swal("Tip", "Ingresa la descripción del rechazo.", "info"); return;}
+							    		if ($("#mot_recha").val()=="") { swal("Tip", "Ingresa la descripción del rechazo.", "info"); return;}
 							    		var data = {
 											'id' : id_solicitud,
 											'etapa' : etapa,
@@ -1617,12 +1617,10 @@
 							    });								
 							} else{
 								
-								//console.log("id:"+id_solicitud+" etapa: "+etapa+" status: "+status+" adicional_1: "+complemento+" adicional_2: "+complemento2+" director: "+director+" tipo_usuario: "+tipo_usuario+" id_usuario: "+id_usuario+" folio: "+folio);
-
 								if ((etapa==2)&&(complemento===0)&&(complemento2===0))
 								{
 									fill_modal_gen_recibo(id_solicitud);
-								} else if((etapa==2) && ((complemento.length===0) || (complemento2.length===0))){
+								} else if((etapa==2) && ((complemento.length===0) || (complemento2.length===0) || (folio_sedatum.length===0))){
 									swal({
 									  	title: "¡Error!",
 									  	text: "¡Favor de llenar todos los campos!",
@@ -1640,6 +1638,7 @@
 										'tipo_usuario' : tipo_usuario,
 										'id_usuario' : id_usuario,
 										'ruta' : folio,
+										'folio_sedatum' : folio_sedatum,
 									}
 
 									
@@ -1668,6 +1667,10 @@
 												if ((etapa==2)&&(complemento!="na")){
 													window.open('pdf/sare/orden_pago_licencia.php?id='+id_solicitud+'&monto='+complemento2, '_blank');
 													window.open('pdf/sedatum/numero_oficial.php?id='+id_solicitud+'&numero_oficial='+complemento, '_blank');
+												}
+
+												if (etapa==3){
+													upload_doc_uso();
 												}
 
 											}
@@ -1724,7 +1727,8 @@
 		        }
 			}			
 
-			function carga_arbol(id){
+			function carga_arbol(id)
+			{
 				var tree = [
 				  	{
 					    text: "Documentación",
@@ -1820,7 +1824,8 @@
 				setTimeout(show_tree, 500, tree);
 			}
 
-			function show_tree(tree){
+			function show_tree(tree)
+			{
 				
 				$('#tree_new').treeview({
 					data: tree,
@@ -1832,7 +1837,8 @@
 			}			
 
 			//esta es la función que viene del ace min
-			function documentacion(id){
+			function documentacion(id)
+			{
 				
 				var folio_exp = $('#folio_ruta').val();
 				jQuery(function($){
@@ -1954,7 +1960,8 @@
 				});
 			}
 
-			function delete_file(deleteSpan){
+			function delete_file(deleteSpan)
+			{
 				var aElement = deleteSpan.previousSibling;
 				var hrefFile = aElement.getAttribute("href");
 				// console.info();
@@ -2006,7 +2013,8 @@
 	        	});
 			}
 
-			function reupload_files(){
+			function reupload_files()
+			{
 				var form_docs = document.getElementById("form_drop_docs");
 				form_docs = new FormData(form_docs);
 				// console.info(form_docs);
@@ -2050,7 +2058,42 @@
 				});
 			}
 
-			function dropzone_documentacion(){
+			function dropzone_uso()
+			{
+		    	$('#file_uso').ace_file_input({
+					style: 'well',
+					btn_choose: 'Da click para agregar la parte frontal del informe',
+					btn_change: null,
+					no_icon: 'ace-icon fa fa-cloud-upload',
+					droppable: true,
+					thumbnail: 'small'//large | fit
+					//,icon_remove:null//set null, to hide remove/reset button
+					/**,before_change:function(files, dropped) {
+						//Check an example below
+						//or examples/file-upload.html
+						return true;
+					}*/
+					/**,before_remove : function() {
+						return true;
+					}*/
+					,
+					preview_error : function(filename, error_code) {
+						//name of the file that failed
+						//error_code values
+						//1 = 'FILE_LOAD_FAILED',
+						//2 = 'IMAGE_LOAD_FAILED',
+						//3 = 'THUMBNAIL_FAILED'
+						//alert(error_code);
+					}
+			
+				}).on('change', function(){
+					//console.log($(this).data('ace_input_files'));
+					//console.log($(this).data('ace_input_method'));
+				});
+		    }
+
+			function dropzone_documentacion()
+			{
 				$('#dropFileInput').ace_file_input({
 					style: 'well',
 					btn_choose: 'Seleccionar o arrastrar archivo(s) a anexar',
@@ -2091,14 +2134,16 @@
 				//]);
 			}
 
-			function toggDelete(){
+			function toggDelete()
+			{
 				const treeElements = $(".treeEditFile");
 				treeElements.each(function(){
 					$(this).toggle();
 				});
 			}
 
-			function inputs_width(element){
+			function inputs_width(element)
+			{
 				var valor = element.value;
 				if(valor == ''){
 					element.parentNode.dataset.value = element.placeholder;
@@ -2107,8 +2152,8 @@
 				}
 			}
 
-
-			function input_size(){
+			function input_size()
+			{
 				var inputs = document.getElementsByClassName("sinborde");
 				var largo = inputs.length;
 				for(i=0; i < largo; i++){
@@ -2116,7 +2161,8 @@
 				}
 			}
 
-			function push(){
+			function push()
+			{
 				if(typeof(EventSource)!=="undefined")
 				{
 					var pantalla = $("#pantalla").val();
@@ -2145,6 +2191,67 @@
 					document.getElementById("push").innerHTML="0";
 		  		}
 		  		setTimeout('push()',10000);
+			}
+
+			function show_msg(type)
+	        {
+	        	if (type==1){
+		            $.gritter.add({
+		                title: '<i class="fa fa-check"></i> Archivo cargado correctamente',
+		                text: '',
+		                class_name: 'gritter-success'
+		            });	        		
+	        	} else{
+	        		$.gritter.add({
+		                title: '<i class="fa fa-times"></i> Ocurrió algo al cargar el archivo',
+		                text: '',
+		                class_name: 'gritter-error'
+		            });
+	        	}
+	            return false;
+	        }
+
+			function upload_doc_uso(id_solicitud,status,complemento,complemento2)
+			{
+				var comp = $('#file_uso').next();
+				comp = $(comp).hasClass("selected");
+				
+				if(comp == true){
+					waitingDialog.show('Subiendo archivo', {dialogSize: 'sm', progressType: 'warning'})
+					show_msg(0);
+					var myForm = document.getElementById('form_comp_uso');
+			        var formData = new FormData(myForm);
+			     
+			        $.ajax({
+			            data:  formData,
+			            url:   './model/sedatum/upload_doc_uso.php',
+			            type:  'post',
+			            processData: false,
+			            contentType: false,
+			            
+			            success:  function (data) {
+			                                                    
+			                if (data==='correcto'){
+			                	show_msg(1);
+			                	actualiza_status(id_solicitud,status,complemento,complemento2);               
+			                }
+			                
+			                if (data==='error'){
+			                	show_msg(0);
+			                }
+			            }
+
+			        });
+
+				}else{
+					swal({
+		                title: "¡Error!",
+		                text: "No has seleccionado ningún archivo",
+		                icon: "error",
+		                button: "Aceptar"
+		            });
+				}
+
 			}
 
 			setTimeout('push()',10000);
