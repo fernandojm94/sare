@@ -20,7 +20,12 @@
 				$etapa = 3;
 				if(create_historico_pago($expediente, $adicional_2))
 				{
-					$mensaje = "correcto";
+					if(creater_folio_sedatum($expediente, $_POST['folio_sedatum']))
+					{
+						$mensaje = "correcto";	
+					}else{
+						$mensaje = "error5";
+					}					
 				}else{
 					$mensaje = "error5";
 				}

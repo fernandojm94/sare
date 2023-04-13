@@ -116,7 +116,7 @@ function get_pendientes_etapa($etapa)
 
 function get_expediente($id)
 {
-	$sql = "SELECT folio, fecha_apertura, tipo_persona, id_persona, id_dg_establecimiento, id_dimensiones_establecimiento, solicita_noficial, status
+	$sql = "SELECT folio,folio_sedatum, fecha_apertura, tipo_persona, id_persona, id_dg_establecimiento, id_dimensiones_establecimiento, solicita_noficial, status
 					FROM expedientes
 			WHERE id = $id";
 
@@ -308,5 +308,12 @@ function create_ventanilla_id($id)
 
 	$result = querys($sql);
 
+	return $result;
+}
+
+function creater_folio_sedatum($expediente, $folio_sedatum)
+{
+	$sql = "UPDATE expedientes SET folio_sedatum = '".$folio_sedatum."' WHERE id = ".$expediente;
+	$result = querys($sql);
 	return $result;
 }

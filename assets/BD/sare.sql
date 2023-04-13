@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 30-06-2021 a las 15:28:54
+-- Tiempo de generación: 13-04-2023 a las 22:01:46
 -- Versión del servidor: 5.7.24
--- Versión de PHP: 7.3.22
+-- Versión de PHP: 7.2.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,8 +32,8 @@ CREATE TABLE `dg_establecimiento` (
   `nombre_comercial` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `horario_trabajo` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `calle` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
-  `no_exterior` int(10) NOT NULL,
-  `no_interior` int(10) DEFAULT NULL,
+  `no_exterior` varchar(5) COLLATE utf8_spanish2_ci NOT NULL,
+  `no_interior` varchar(5) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `colonia` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `entre_calles` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
   `municipio` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
@@ -42,6 +42,7 @@ CREATE TABLE `dg_establecimiento` (
   `latitud_longitud` varchar(200) COLLATE utf8_spanish2_ci NOT NULL,
   `telefono` varchar(20) COLLATE utf8_spanish2_ci NOT NULL,
   `uso_actual` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `uso_solicitado` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `giro_scian` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
   `cuenta_catastral` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
   `manzana` varchar(50) COLLATE utf8_spanish2_ci NOT NULL,
@@ -57,25 +58,15 @@ CREATE TABLE `dg_establecimiento` (
 -- Volcado de datos para la tabla `dg_establecimiento`
 --
 
-INSERT INTO `dg_establecimiento` (`id`, `nombre_comercial`, `horario_trabajo`, `calle`, `no_exterior`, `no_interior`, `colonia`, `entre_calles`, `municipio`, `localidad`, `cp`, `latitud_longitud`, `telefono`, `uso_actual`, `giro_scian`, `cuenta_catastral`, `manzana`, `lote`, `distancia_esquina`, `cajones_estacionamiento`, `monto_inversion`, `pesonal_ocupado`, `servicios_existentes`) VALUES
-(1, 'abarrotes', '2021-03-10', 'beltran', 216, 1, 'la escalera', 'matamoros y beltran', 'Jesus Maria', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Alumbrado, '),
-(2, 'abarrotes2', '2021-03-10', 'beltran', 217, 1, 'la escalera', 'matamoros y beltran', 'Jesus Maria', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Alumbrado, '),
-(3, 'abarrotes', '2021-03-10', 'beltran', 216, 1, 'la escalera', 'matamoros y beltran', 'Jesus Maria', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Alumbrado, '),
-(4, 'abarrotes', '2021-03-10', 'beltran', 216, 1, 'la escalera', 'matamoros y beltran', 'Jesus Maria', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Alumbrado, '),
-(5, 'abarrotes', '2021-03-10', 'beltran', 216, 1, 'la escalera', 'matamoros y beltran', 'Jesus Maria', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Alumbrado, '),
-(6, 'abarrotes', '2021-03-10', 'beltran', 216, 1, 'la escalera', 'matamoros y beltran', 'Jesus Maria', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Alumbrado, '),
-(7, 'abarrotes', '2021-03-10', 'beltran', 216, 1, 'la escalera', 'matamoros y beltran', 'Jesus Maria', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Alumbrado, '),
-(8, 'abarrotes', '2021-02-01', 'beltran', 216, 1, 'la escalera', 'matamoros y beltran', 'Jesus Maria', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Alumbrado, Teléfono, '),
-(9, 'abarrotes', '2021-02-01', 'beltran', 216, 1, 'la escalera', 'matamoros y beltran', 'Jesus Maria', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Alumbrado, '),
-(10, 'abarrotes', '2021-02-01', 'beltran', 216, 1, 'la escalera', 'matamoros y beltran', 'Jesus Maria', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Alumbrado, '),
-(11, 'abarrotes', '2021-04-21', 'undefined', 333, 333, 'Jesús María Centro', 'asdfasdfasdf', 'Jesús María', 'Jesús María', 20920, '21.96148, -102.34366', '4496330125', 'sdfasdf', 'asdfasdf', '23-33-33-333-333-333', '23', '32', 'asdfasdf', 'asdfasdf', 'asdfasdf', 'asdfasdf', 'Drenaje, Pavimento, Electrificación, '),
-(12, 'abarrotes los tres', '2021-05-11', 'beltran', 216, 1, 'Jesús María Centro', 'matamoros y beltran', 'Jesús María', 'Jesús María', 20920, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '2', '3', '5', '5', '5000', '5', 'Agua, Drenaje, Alumbrado, '),
-(13, 'abarrotes los tres', '2021-03-10', 'beltran', 216, 1, 'la escalera', 'matamoros y beltran', 'Jesús María', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Teléfono, '),
-(14, 'abarrotes los tres', '2021-02-10', 'beltran', 216, 1, 'la escalera', 'matamoros y beltran', 'Jesús María', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Alumbrado, Teléfono, '),
-(15, 'abarrotes', '2021-02-01', 'beltran', 216, 1, 'la escalera', 'matamoros y beltran', 'Jesús María', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Alumbrado, '),
-(16, 'abarrotes', '2021-02-01', 'beltran', 216, 1, 'la escalera', 'matamoros y beltran', 'Jesús María', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'casa', 'tienda', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Teléfono, '),
-(17, 'empresa', '2021-03-10', 'emiliano zapata', 119, 5, 'Jesús María Centro', 'calle 1', 'Jesús María', 'La Ribera', 20358, '21.96137650007046, -102.34366270339672', '4491156367', 'comercio', '1', '56-56-56-565-656-565', '4', '512', '12', '2', '2125454', '4', 'Drenaje, Alumbrado, Banqueta, Electrificación, '),
-(18, 'Turismo 260', '2021-06-22', 'Paseos de las maravillas', 308, 2, 'Corral de Barrancos', 'Miguel de la Madrid y Paseo del Molino', 'Jesús María', 'Jesús María', 20900, '21.9453089, -102.3252149', '4499140370', 'Comercial', '1', '05-02-02-015-069-000', '0', '0', '0', '0', '0', '0', 'Agua, Alumbrado, Pavimento, Banqueta, Electrificación, Otro, ');
+INSERT INTO `dg_establecimiento` (`id`, `nombre_comercial`, `horario_trabajo`, `calle`, `no_exterior`, `no_interior`, `colonia`, `entre_calles`, `municipio`, `localidad`, `cp`, `latitud_longitud`, `telefono`, `uso_actual`, `uso_solicitado`, `giro_scian`, `cuenta_catastral`, `manzana`, `lote`, `distancia_esquina`, `cajones_estacionamiento`, `monto_inversion`, `pesonal_ocupado`, `servicios_existentes`) VALUES
+(1, 'abarrotes', 'jesus maria', 'beltran', '216', NULL, 'la escalera', 'matamoros y beltran', 'Jesús María', 'jesus maria', 20900, '20900', 'Habitacional', '2021-08-11', 'Comercial', 'Abarrotes', '4496330125', '01-40-10-101-010-101', '10', '2', '0', '1000', '5', 'Agua, Drenaje, Teléfono, '),
+(2, 'abarrotes tes tes', '2021-07-09', 'beltran', '216', '0', 'la escalera', 'matamoros y beltran', 'Jesús María', 'jesus maria', 20900, '21.96338, -102.34697', '4496330125', 'Habitacional', 'Comercial', 'Abarrotes', '02-02-02-020-202-020', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, '),
+(3, 'abarrotes', '2021-08-11', 'beltran', '216', '', 'la escalera', 'matamoros y beltran', 'Jesús María', 'jesus maria', 20900, '20900', '4496330125', 'Habitacional', 'Comercial', 'Abastecedora de Diésel y/o combustibles', '01-40-10-101-010-101', '10', '10', '2', '0', '1000', '5', 'Agua, Drenaje, Teléfono, '),
+(4, 'Una Tienda', '2021-08-03', 'beltran', '216', '0', 'la escalera', 'matamoros y beltran', 'Jesús María', 'Jesús María', 20900, '21.96338, -102.34697', '4496330125', 'Habitacional', 'Comercial', 'Abarrotes', '01-01-01-010-101-010', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Alumbrado, Teléfono, '),
+(5, 'Una Tienda 2', '2021-03-08', 'beltran', '216', '0', 'la escalera', 'matamoros y beltran', 'Jesús María', 'Jesús María', 20900, '21.96338, -102.34697', '4496330125', 'Habitacional', 'Comercial', 'Abarrotes', '03-03-03-030-303-033', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Alumbrado, '),
+(6, 'Una Tienda 3', '2021-03-10', 'beltran', '216', '0', 'la escalera', 'matamoros y beltran', 'Jesús María', 'Jesús María', 20900, '21.96338, -102.34697', '4496330125', 'Habitacional', 'Comercial', 'Abarrotes', '04-04-04-040-444-044', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Alumbrado, '),
+(7, 'Una Tienda 3', '2021-03-18', 'beltran', '216', '0', 'la escalera', 'matamoros y beltran', 'Jesús María', 'Jesús María', 20900, '21.96338, -102.34697', '4496330125', 'Habitacional', 'Comercial', 'Abarrotes', '05-05-05-050-515-050', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Alumbrado, '),
+(8, 'Una Tienda 3', '2021-03-18', 'beltran', '216', '0', 'la escalera', 'matamoros y beltran', 'Jesús María', 'Jesús María', 20900, '21.96338, -102.34697', '4496330125', 'Habitacional', 'Comercial', 'Abarrotes', '05-05-05-050-515-050', '10', '216', '2', '0', '1000', '5', 'Agua, Drenaje, Alumbrado, ');
 
 -- --------------------------------------------------------
 
@@ -114,8 +105,15 @@ INSERT INTO `dimensiones_establecimiento` (`id`, `frente`, `fondo`, `derecho`, `
 (13, '10', '10', '10', '10', '10', '10', '020202020202020'),
 (14, '10', '10', '10', '10', '10', '10', '020202020202020'),
 (15, '10', '10', '10', '10', '10', '10', '020202020202020'),
-(16, '55', '50', '65', '78', '149', '59', '21312312312312312'),
-(17, '4', '4', '5', '5', '20', '20', '050202015069000');
+(16, '10', '10', '10', '10', '10', '10', '020202020202020'),
+(17, '10', '10', '10', '10', '10', '100', '020202020202020'),
+(18, '10', '10', '10', '10', '10', '100', '020202020202020'),
+(19, '1', '2', '3', '4', '5', '6', '020202020202020'),
+(20, '10', '10', '01', '10', '10', '100', '020202020202020'),
+(21, '10', '10', '10', '10', '10', '100', '030303030303031'),
+(22, '10', '10', '10', '10', '10', '100', '030303030303031'),
+(23, '10', '10', '10', '10', '10', '100', '030303030303031'),
+(24, '10', '10', '10', '10', '10', '100', '030303030303031');
 
 -- --------------------------------------------------------
 
@@ -137,14 +135,14 @@ CREATE TABLE `director` (
 --
 
 INSERT INTO `director` (`id`, `id_expediente`, `status`, `recibido`, `visto`, `resuelto`) VALUES
-(1, 9, 2, '2021-05-28 10:27:05', '2021-06-10 14:40:03', '2021-06-10 14:40:07'),
-(2, 8, 1, '2021-06-09 15:53:48', '2021-06-09 15:54:29', '2021-06-09 15:54:36'),
-(3, 9, 2, '2021-06-10 13:20:09', '2021-06-10 14:40:03', '2021-06-10 14:40:07'),
-(4, 9, 2, '2021-06-10 13:22:38', '2021-06-10 14:40:03', '2021-06-10 14:40:07'),
-(5, 9, 2, '2021-06-10 13:33:19', '2021-06-10 14:40:03', '2021-06-10 14:40:07'),
-(6, 9, 2, '2021-06-10 14:37:26', '2021-06-10 14:40:03', '2021-06-10 14:40:07'),
-(7, 11, 1, '2021-06-22 10:35:57', '2021-06-22 10:36:08', '2021-06-22 10:36:54'),
-(8, 12, 1, '2021-06-22 13:02:17', '2021-06-22 13:02:34', '2021-06-22 13:02:45');
+(1, 8, 1, '2021-09-09 15:31:28', '2021-09-07 10:31:23', '2021-09-07 10:33:21'),
+(2, 8, 1, '2021-09-07 10:29:09', '2021-09-07 10:31:23', '2021-09-07 10:33:21'),
+(3, 8, 1, '2021-09-07 10:29:20', '2021-09-07 10:31:23', '2021-09-07 10:33:21'),
+(4, 8, 1, '2021-09-07 10:31:08', '2021-09-07 10:31:23', '2021-09-07 10:33:21'),
+(5, 9, 1, '2021-09-07 10:35:44', '2021-09-07 10:36:31', '2021-09-07 10:36:34'),
+(6, 10, 1, '2021-09-07 10:38:43', '2021-09-07 10:38:51', '2021-09-07 10:38:54'),
+(7, 14, 0, NULL, NULL, NULL),
+(8, 13, 0, '2021-10-21 14:36:10', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -155,6 +153,7 @@ INSERT INTO `director` (`id`, `id_expediente`, `status`, `recibido`, `visto`, `r
 CREATE TABLE `expedientes` (
   `id` int(11) NOT NULL,
   `folio` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `folio_sedatum` varchar(25) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `fecha_apertura` datetime NOT NULL,
   `tipo_persona` tinyint(1) NOT NULL COMMENT '0: persona fisica; 1 persona moral',
   `id_persona` int(10) NOT NULL,
@@ -163,6 +162,7 @@ CREATE TABLE `expedientes` (
   `etapa` varchar(50) COLLATE utf8_spanish2_ci NOT NULL DEFAULT '' COMMENT '2.- ventanilla unica. 3.- Pago. 4.- Uso de suelo. 5.- Director. 6.- Secretario',
   `tipo_usuario` varchar(50) COLLATE utf8_spanish2_ci NOT NULL DEFAULT '0',
   `id_usuario` int(11) NOT NULL DEFAULT '0',
+  `solicita_noficial` int(11) NOT NULL DEFAULT '0' COMMENT '0.- no solicita. 1.- Sí solicita',
   `status` int(11) NOT NULL DEFAULT '0' COMMENT '0.- Revision. 1.- Aprobado. 2.- Denegado'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
@@ -170,12 +170,26 @@ CREATE TABLE `expedientes` (
 -- Volcado de datos para la tabla `expedientes`
 --
 
-INSERT INTO `expedientes` (`id`, `folio`, `fecha_apertura`, `tipo_persona`, `id_persona`, `id_dg_establecimiento`, `id_dimensiones_establecimiento`, `etapa`, `tipo_usuario`, `id_usuario`, `status`) VALUES
-(8, 'SARE-2021-05-11-18-05-52', '2021-05-11 13:50:52', 0, 1, 14, 13, '7', '0', 0, 0),
-(9, 'SARE-2021-05-11-19-05-57', '2021-05-11 14:05:57', 0, 1, 15, 14, '6', '1', 1, 2),
-(10, 'SARE-2021-05-20-14-05-04', '2021-05-20 09:49:04', 0, 10, 16, 15, '2', '0', 0, 2),
-(11, 'SARE-2021-06-22-15-06-22', '2021-06-22 10:28:22', 0, 11, 17, 16, '7', '1', 1, 1),
-(12, 'SARE-2021-06-22-17-06-28', '2021-06-22 12:40:28', 0, 12, 18, 17, '7', '1', 1, 1);
+INSERT INTO `expedientes` (`id`, `folio`, `folio_sedatum`, `fecha_apertura`, `tipo_persona`, `id_persona`, `id_dg_establecimiento`, `id_dimensiones_establecimiento`, `etapa`, `tipo_usuario`, `id_usuario`, `solicita_noficial`, `status`) VALUES
+(8, 'SARE-2021-05-11-18-05-52', '', '2021-05-11 13:50:52', 0, 1, 14, 13, '7', '1', 1, 0, 1),
+(9, 'SARE-2021-05-11-19-05-57', '', '2021-05-11 14:05:57', 0, 1, 15, 14, '7', '1', 1, 0, 1),
+(10, 'SARE-2021-05-20-14-05-04', '', '2021-05-20 09:49:04', 0, 10, 16, 15, '7', '1', 1, 0, 1),
+(11, 'SARE-2021-06-22-15-06-14', '', '2021-06-22 10:42:14', 0, 11, 17, 16, '4', '0', 0, 0, 0),
+(12, 'SARE-2021-08-03-20-08-38', 'SEDATUM-12345', '2021-08-03 15:58:38', 0, 1, 1, 17, '4', '0', 0, 1, 0),
+(13, 'SARE-2021-08-09-17-08-44', '', '2021-08-09 12:57:44', 0, 1, 2, 18, '4', '0', 0, 1, 2),
+(14, 'SARE-2021-08-09-18-08-09', '', '2021-10-20 16:15:17', 1, 1, 3, 19, '4', '0', 0, 1, 0),
+(15, 'SARE-2021-08-09-20-08-47', 'SEDATUM-12346', '2021-08-09 15:57:47', 0, 1, 4, 20, '4', '0', 0, 1, 0),
+(16, 'SARE-2021-08-09-20-08-35', '', '2021-08-09 15:58:35', 0, 1, 4, 20, '2', '0', 0, 1, 0),
+(17, 'SARE-2021-08-09-20-08-24', '', '2021-08-09 15:59:24', 0, 1, 4, 20, '2', '0', 0, 1, 0),
+(18, 'SARE-2021-08-09-20-08-51', '', '2021-08-09 15:59:51', 0, 1, 4, 20, '2', '0', 0, 1, 0),
+(19, 'SARE-2021-08-09-21-08-33', '', '2021-08-09 16:01:33', 0, 1, 4, 20, '2', '0', 0, 1, 0),
+(20, 'SARE-2021-08-09-21-08-52', '', '2021-08-09 16:03:52', 0, 1, 4, 20, '2', '0', 0, 1, 0),
+(21, 'SARE-2021-08-09-21-08-25', '', '2021-08-09 16:04:25', 0, 1, 4, 20, '2', '0', 0, 1, 0),
+(22, 'SARE-2021-08-09-21-08-12', '', '2021-08-09 16:06:12', 0, 1, 4, 20, '2', '0', 0, 1, 0),
+(23, 'SARE-2021-08-09-21-08-07', '', '2021-08-09 16:09:07', 0, 1, 4, 20, '2', '0', 0, 1, 0),
+(24, 'SARE-2021-08-09-21-08-53', '', '2021-08-09 16:13:53', 0, 1, 5, 21, '2', '0', 0, 1, 0),
+(25, 'SARE-2021-08-09-21-08-33', '', '2021-08-09 16:17:33', 0, 1, 6, 22, '2', '0', 0, 1, 0),
+(26, 'SARE-2021-08-13-18-08-07', '', '2021-08-13 13:03:07', 0, 1, 8, 24, '2', '0', 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -419,8 +433,19 @@ CREATE TABLE `historico` (
 --
 
 INSERT INTO `historico` (`id`, `id_expediente`, `pago`, `fecha`) VALUES
-(1, 11, '189', '2021-06-22 10:31:28'),
-(2, 12, '150', '2021-06-22 12:57:51');
+(4, 8, '500', '2021-07-27 10:29:00'),
+(5, 13, '222222', '2021-08-09 12:58:43'),
+(6, 9, '510', '2021-09-07 10:28:20'),
+(7, 10, '555', '2021-09-07 10:34:05'),
+(8, 14, '56', '2021-10-20 15:51:32'),
+(9, 14, '505', '2021-10-20 15:57:06'),
+(10, 14, '220', '2021-10-20 15:59:33'),
+(11, 14, '220', '2021-10-20 16:00:40'),
+(12, 14, '500', '2023-04-13 10:22:54'),
+(13, 11, '430', '2023-04-13 13:44:05'),
+(14, 12, '600', '2023-04-13 13:45:20'),
+(15, 12, '600', '2023-04-13 13:47:14'),
+(16, 15, '2445', '2023-04-13 13:47:57');
 
 -- --------------------------------------------------------
 
@@ -442,13 +467,16 @@ CREATE TABLE `pagos` (
 --
 
 INSERT INTO `pagos` (`id`, `id_expediente`, `status`, `recibido`, `visto`, `resuelto`) VALUES
-(1, 10, 0, '2021-06-08 15:39:29', '2021-06-09 15:45:31', NULL),
-(2, 9, 1, '2021-06-08 15:39:52', '2021-06-09 15:46:00', '2021-06-09 15:50:52'),
-(3, 8, 1, '2021-06-08 15:40:07', '2021-06-09 15:46:00', '2021-06-09 15:47:01'),
-(4, 10, 0, '2021-06-11 11:44:42', NULL, NULL),
-(5, 10, 0, '2021-06-22 10:30:08', NULL, NULL),
-(6, 11, 1, '2021-06-22 10:31:28', '2021-06-22 10:31:37', '2021-06-22 10:31:59'),
-(7, 12, 1, '2021-06-22 12:57:51', '2021-06-22 12:58:01', '2021-06-22 13:00:48');
+(7, 8, 1, '2021-07-27 10:29:00', '2021-07-27 10:29:06', '2021-07-27 10:35:23'),
+(8, 13, 1, '2021-08-09 12:58:43', '2021-08-09 13:04:30', '2021-09-07 10:34:46'),
+(9, 9, 1, '2021-09-07 10:28:20', '2021-09-07 10:28:24', '2021-09-07 10:34:39'),
+(10, 10, 1, '2021-09-07 10:34:05', '2021-09-07 10:34:09', '2021-09-07 10:34:58'),
+(15, 14, 1, NULL, '2023-04-13 10:23:01', '2023-04-13 10:23:25'),
+(16, 14, 1, '2023-04-13 10:22:54', '2023-04-13 10:23:01', '2023-04-13 10:23:25'),
+(17, 11, 1, '2023-04-13 13:44:05', '2023-04-13 13:44:54', '2023-04-13 13:49:40'),
+(18, 12, 1, '2023-04-13 13:45:20', '2023-04-13 13:47:28', '2023-04-13 13:49:54'),
+(19, 12, 1, '2023-04-13 13:47:14', '2023-04-13 13:47:28', '2023-04-13 13:49:54'),
+(20, 15, 1, '2023-04-13 13:47:57', '2023-04-13 13:48:50', '2023-04-13 13:50:11');
 
 -- --------------------------------------------------------
 
@@ -460,7 +488,7 @@ CREATE TABLE `pendientes` (
 `id` int(11)
 ,`fecha_apertura` datetime
 ,`nombre_comercial` varchar(100)
-,`domicilio` varchar(376)
+,`domicilio` varchar(364)
 ,`telefono` varchar(20)
 ,`status` int(11)
 ,`etapa` varchar(50)
@@ -503,8 +531,7 @@ INSERT INTO `personas_fisicas` (`id`, `nombre_completo`, `calle`, `no_exterior`,
 (8, 'tucan-ASDFASDF', 'Casa Blanca', '444', '444', 'adfgasdf', 'Aguascalientes', 'asdfasdf', 12341234, 'ASDFASDF', 'ASDFASDFASDF', '12341234123', 'ASDaasd@gmail.com'),
 (9, 'jose manuel-CAEM860323ES3', 'la misma', '123', '', 'la colonia', 'Jesus Maria', 'la misma', 20292, '', '', '2147483647', 'correo@gmail.com'),
 (10, 'jose manuel', 'la misma', '123', '', 'la colonia', 'Jesus Maria', 'la misma', 20292, 'CAEM860323ES3', 'CAEM860323HASSSS00', '2147483647', 'correo@gmail.com'),
-(11, 'Eleazar Cortez', 'Calle', '115', '', 'Centro', 'Aguascalientes', 'La Ribera', 20358, 'COME911105PE1', 'COME911105HASRRL05', '4491156367', 'tokr2010@gmail.com'),
-(12, 'Jennifer Padilla Loza', 'San Mateo', '169', '', 'Alcazar', 'Jesus Maria', 'Jesús María', 20900, 'XAXX000000XA0', 'PALJ910124MASDZN07', '4499140370', 'tokr2010@gmail.com');
+(11, 'juan de las cuerdas', 'Casa Blanca', '806', '', 'casa blanca', 'casa blanca', 'jesus maria', 20900, 'casa blanca', 'jesus maria', '20900', 'Jesus Maria');
 
 -- --------------------------------------------------------
 
@@ -539,11 +566,11 @@ CREATE TABLE `personas_morales` (
 --
 
 INSERT INTO `personas_morales` (`id`, `nombre_empresa`, `fecha_constitucion`, `rfc_empresa`, `telefono_empresa`, `email_empresa`, `nombre_rl`, `rfc_rl`, `curp`, `calle`, `no_exterior`, `no_interior`, `colonia`, `estado`, `municipio`, `localidad`, `cp`, `telefono_rl`, `email_rl`) VALUES
-(1, 'los tres', '2012-03-23 00:00:00', 'LTR120323ES4', '4491234567', 'contacto@lostres.com', 'jose manuel castañeda espino', 'CAEM860323', 'CAEM860323HASSSN00', 'calle', 201, '', 'colonia', 'Aguascalientes', 'Jesús María', 'jesus maria', 20900, '4491234567', 'contacto@lostres.com'),
-(2, 'los tres', '2012-03-23 00:00:00', 'LTR120323ES4', '4491234567', 'contacto@lostres.com', 'jose manuel castañeda espino', 'CAEM860323ES3', 'CAEM860323HASSSN00', 'calle', 201, '', 'colonia', 'Aguascalientes', 'Jesús María', 'jesus maria', 20900, '4491234567', 'contacto@lostres.com'),
-(3, 'los tres', '2012-03-23 00:00:00', 'LTR120323ES4', '4491234567', 'contacto@lostres.com', 'jose manuel castañeda espino', 'CAEM860323ES3', 'CAEM860323HASSSN00', 'calle', 201, '', 'colonia', 'Aguascalientes', 'Jesús María', 'jesus maria', 20900, '4491234567', 'contacto@lostres.com'),
-(5, 'juan manuelk', '2012-03-23 00:00:00', 'LTR120323ES4', '4496330125', 'contacto@lostres.com', 'jose manuel castañeda espino', 'CAEM860323ES3', 'CAEM860323HASSSN00', 'calle', 1, '', 'colonia', 'Aguascalientes', 'Jesús María', 'jesus maria', 20900, '4496330125', 'contacto@lostres.com'),
-(10, 'los tres', '2012-03-23 00:00:00', 'LTR120323ES4', '4491234567', 'contacto@lostres.com', 'jose manuel castañeda espino', 'CAEM860323ES3', 'CAEM860323HASSSN00', 'calle', 201, '', 'colonia', 'Aguascalientes', 'Jesús María', 'jesus maria', 20900, '4491234567', 'contacto@lostres.com');
+(1, 'los tres', '2012-03-23 00:00:00', 'LTR120323ES4', '4491234567', 'contacto1@lostres.com', 'jose manuel castañeda espino', 'jesus maria', 'colonia', 'calle', 201, '', 'colonia', 'Aguascalientes', 'colonia', 'jesus maria', 20900, '20900', 'Aguascalientes'),
+(2, 'los tres2', '2012-03-23 00:00:00', 'LTR120323ES4', '4491234567', 'contacto1@lostres.com', 'jose manuel castañeda espino', 'CAEM860323ES3', 'CAEM860323HASSSN00', 'calle', 201, '', 'colonia', 'Aguascalientes', 'Jesús María', 'jesus maria', 20900, '4491234568', 'contacto@lostres.com'),
+(3, 'los tres', '2012-03-23 00:00:00', 'LTR120323ES4', '4491234567', 'contacto1@lostres.com', 'jose manuel castañeda espino', 'colonia', 'jesus maria', 'calle', 201, '', 'colonia', 'Aguascalientes', 'colonia', 'jesus maria', 20900, '20900', 'colonia'),
+(5, 'juan manuelk', '2012-03-23 00:00:00', 'LTR120323ES4', '4496330125', 'contacto1@lostres.com', 'jose manuel castañeda espino', 'CAEM860323ES3', 'CAEM860323HASSSN00', 'calle', 1, '', 'colonia', 'Aguascalientes', 'Jesús María', 'jesus maria', 20900, '4496330126', 'contacto@lostres.com'),
+(10, 'los tres', '2012-03-23 00:00:00', 'LTR120323ES4', '4491234567', 'contacto1@lostres.com', 'jose manuel castañeda espino', 'CAEM860323ES3', 'CAEM860323HASSSN00', 'calle', 201, '', 'colonia', 'Aguascalientes', 'Jesús María', 'jesus maria', 20900, '4491234568', 'contacto@lostres.com');
 
 -- --------------------------------------------------------
 
@@ -555,7 +582,7 @@ CREATE TABLE `resueltas` (
 `id` int(11)
 ,`fecha_apertura` datetime
 ,`nombre_comercial` varchar(100)
-,`domicilio` varchar(376)
+,`domicilio` varchar(364)
 ,`telefono` varchar(20)
 ,`status` int(11)
 ,`etapa` varchar(50)
@@ -581,14 +608,10 @@ CREATE TABLE `secretario` (
 --
 
 INSERT INTO `secretario` (`id`, `id_expediente`, `status`, `recibido`, `visto`, `resuelto`) VALUES
-(1, 9, 2, '2021-05-28 10:47:08', '2021-06-10 15:14:38', '2021-06-11 11:39:10'),
-(2, 8, 1, '2021-06-09 15:54:36', '2021-06-09 15:54:55', '2021-06-09 15:57:54'),
-(3, 9, 2, '2021-06-10 13:36:25', '2021-06-10 15:14:38', '2021-06-11 11:39:10'),
-(4, 9, 2, '2021-06-10 14:19:46', '2021-06-10 15:14:38', '2021-06-11 11:39:10'),
-(5, 9, 2, '2021-06-10 14:22:35', '2021-06-10 15:14:38', '2021-06-11 11:39:10'),
-(6, 9, 2, '2021-06-10 14:40:07', '2021-06-10 15:14:38', '2021-06-11 11:39:10'),
-(7, 11, 1, '2021-06-22 10:36:54', '2021-06-22 10:38:41', '2021-06-22 10:38:45'),
-(8, 12, 1, '2021-06-22 13:02:45', '2021-06-22 13:02:59', '2021-06-22 13:03:03');
+(1, 8, 1, '2021-09-07 10:33:21', '2021-09-07 10:33:36', '2021-09-07 10:33:40'),
+(2, 9, 1, '2021-09-07 10:36:34', '2021-09-07 10:36:45', '2021-09-07 10:36:55'),
+(3, 10, 1, '2021-09-07 10:38:54', '2021-09-07 10:39:04', '2021-09-07 10:39:10'),
+(4, 14, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -610,11 +633,15 @@ CREATE TABLE `suelo` (
 --
 
 INSERT INTO `suelo` (`id`, `id_expediente`, `status`, `recibido`, `visto`, `resuelto`) VALUES
-(19, 10, 0, '2021-06-08 15:52:58', '2021-06-08 16:31:40', NULL),
-(20, 8, 1, '2021-06-09 15:47:01', '2021-06-09 15:47:22', '2021-06-09 15:53:48'),
-(21, 9, 2, '2021-06-09 15:50:52', '2021-06-09 15:51:40', '2021-06-10 14:37:26'),
-(22, 11, 1, '2021-06-22 10:31:59', '2021-06-22 10:33:56', '2021-06-22 10:35:57'),
-(23, 12, 1, '2021-06-22 13:00:48', '2021-06-22 13:01:03', '2021-06-22 13:02:17');
+(21, 8, 1, '2021-07-27 10:35:23', '2021-07-27 10:42:52', '2021-09-07 10:31:08'),
+(22, 9, 1, '2021-09-07 10:34:39', '2021-09-07 10:35:23', '2021-09-07 10:35:44'),
+(23, 13, 2, '2021-09-07 10:34:46', '2021-09-15 12:52:29', '2021-10-21 14:36:10'),
+(24, 10, 1, '2021-09-07 10:34:58', '2021-09-07 10:36:06', '2021-09-07 10:38:43'),
+(25, 14, 1, '2021-10-20 16:01:31', '2023-04-13 10:23:31', '2021-10-20 16:03:12'),
+(26, 14, 0, '2023-04-13 10:23:25', '2023-04-13 10:23:31', NULL),
+(27, 11, 0, '2023-04-13 13:49:40', '2023-04-13 14:00:04', NULL),
+(28, 12, 0, '2023-04-13 13:49:54', '2023-04-13 13:50:20', NULL),
+(29, 15, 0, '2023-04-13 13:50:11', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -633,7 +660,7 @@ CREATE TABLE `suplente` (
 --
 
 INSERT INTO `suplente` (`id`, `id_suplente`, `status`) VALUES
-(1, 3, 1);
+(1, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -645,19 +672,6 @@ CREATE TABLE `tipo_usuario` (
   `id` int(11) NOT NULL,
   `tipo` varchar(50) COLLATE utf8_spanish2_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
---
--- Volcado de datos para la tabla `tipo_usuario`
---
-
-INSERT INTO `tipo_usuario` (`id`, `tipo`) VALUES
-(1, 'Administrador'),
-(2, 'SARE'),
-(3, 'Ventanilla Unica'),
-(4, 'Uso de Suelo'),
-(5, 'Director'),
-(6, 'Secretario'),
-(7, 'Anexos');
 
 -- --------------------------------------------------------
 
@@ -681,12 +695,7 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id_usuario`, `nombre_usuario`, `usuario`, `password`, `id_tipo_usuario`, `status`) VALUES
 (1, 'SUPER ADMIN', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 1, 0x31),
 (2, 'Fernando', 'fermar', 'e10adc3949ba59abbe56e057f20f883e', 1, 0x31),
-(3, 'Director SEDATUM', 'director', '3d4e992d8d8a7d848724aa26ed7f4176', 5, 0x31),
-(4, 'SARE', 'sare', '0a83c364fbc08ae01c5d4da2f52b901e', 2, 0x31),
-(7, 'Ventanilla Unica', 'ventanilla', 'cc5637a974d5e9a68966054a88bb6dd9', 3, 0x31),
-(8, 'Uso de Suelo', 'uso_suelo', '13c593f256c372906cbf7eaec91f6c16', 4, 0x31),
-(9, 'Secretario', 'secretario', '09ca0d5095609fe35bb7c9c7246e3cae', 6, 0x31),
-(10, 'Anexos', 'anexos', '9985dc49496c2f7dcd78199e1145aeed', 7, 0x31);
+(3, 'Director SEDATUM', 'director', 'e10adc3949ba59abbe56e057f20f883e', 4, 0x31);
 
 -- --------------------------------------------------------
 
@@ -708,9 +717,23 @@ CREATE TABLE `ventanilla` (
 --
 
 INSERT INTO `ventanilla` (`id`, `id_expediente`, `status`, `recibido`, `visto`, `resuelto`) VALUES
-(1, 9, 1, '2021-05-28 10:39:01', '2021-05-28 10:39:03', '2021-05-28 10:39:05'),
-(2, 8, 0, '2021-06-08 10:14:15', '2021-06-09 10:14:26', NULL),
-(3, 10, 2, '2021-06-08 10:15:07', '2021-06-09 10:15:14', '2021-06-22 10:30:08');
+(1, 8, 1, '2021-07-27 09:53:46', '2021-07-27 09:54:41', NULL),
+(2, 9, 1, '2021-07-27 09:54:01', '2021-07-27 10:14:09', '2021-09-07 10:28:20'),
+(3, 10, 1, '2021-07-27 09:54:13', '2021-09-07 10:33:58', '2021-09-07 10:34:05'),
+(4, 11, 1, '2021-07-27 09:54:23', '2021-07-27 10:08:55', '2023-04-13 13:44:05'),
+(5, 14, 1, NULL, '2022-02-09 15:22:26', '2023-04-13 10:22:54'),
+(6, 15, 1, '2021-08-09 15:57:48', '2021-09-15 12:52:33', '2023-04-13 13:47:57'),
+(7, 16, 0, '2021-08-09 15:58:35', '2023-04-13 13:53:42', NULL),
+(8, 17, 0, '2021-08-09 15:59:24', '2023-04-13 13:54:42', NULL),
+(9, 18, 0, '2021-08-09 15:59:51', '2023-04-13 13:54:51', NULL),
+(10, 19, 0, '2021-08-09 16:01:33', '2023-04-13 13:54:54', NULL),
+(11, 20, 0, '2021-08-09 16:03:52', '2023-04-13 13:56:03', NULL),
+(12, 21, 0, '2021-08-09 16:04:25', NULL, NULL),
+(13, 22, 0, '2021-08-09 16:06:12', NULL, NULL),
+(14, 23, 0, '2021-08-09 16:09:07', '2021-08-13 13:19:48', NULL),
+(15, 24, 0, '2021-08-09 16:13:53', NULL, NULL),
+(16, 25, 0, '2021-08-09 16:17:33', '2021-08-09 16:18:12', NULL),
+(17, 26, 0, '2021-08-13 13:03:07', '2021-08-13 13:03:15', NULL);
 
 -- --------------------------------------------------------
 
@@ -719,7 +742,7 @@ INSERT INTO `ventanilla` (`id`, `id_expediente`, `status`, `recibido`, `visto`, 
 --
 DROP TABLE IF EXISTS `pendientes`;
 
-CREATE VIEW `pendientes`  AS SELECT `e`.`id` AS `id`, `e`.`fecha_apertura` AS `fecha_apertura`, `dg`.`nombre_comercial` AS `nombre_comercial`, concat(`dg`.`calle`,' ',`dg`.`no_exterior`,' ',`dg`.`no_interior`,' ',`dg`.`colonia`,' ',`dg`.`localidad`) AS `domicilio`, `dg`.`telefono` AS `telefono`, `e`.`status` AS `status`, `e`.`etapa` AS `etapa` FROM (`expedientes` `e` left join `dg_establecimiento` `dg` on((`dg`.`id` = `e`.`id_dg_establecimiento`))) WHERE ((`e`.`etapa` <> '7') AND (`e`.`status` <> 2)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `pendientes`  AS SELECT `e`.`id` AS `id`, `e`.`fecha_apertura` AS `fecha_apertura`, `dg`.`nombre_comercial` AS `nombre_comercial`, concat(`dg`.`calle`,' ',`dg`.`no_exterior`,' ',`dg`.`no_interior`,' ',`dg`.`colonia`,' ',`dg`.`localidad`) AS `domicilio`, `dg`.`telefono` AS `telefono`, `e`.`status` AS `status`, `e`.`etapa` AS `etapa` FROM (`expedientes` `e` left join `dg_establecimiento` `dg` on((`dg`.`id` = `e`.`id_dg_establecimiento`))) WHERE ((`e`.`etapa` <> '7') AND (`e`.`status` <> 2)) ;
 
 -- --------------------------------------------------------
 
@@ -728,7 +751,7 @@ CREATE VIEW `pendientes`  AS SELECT `e`.`id` AS `id`, `e`.`fecha_apertura` AS `f
 --
 DROP TABLE IF EXISTS `resueltas`;
 
-CREATE VIEW `resueltas`  AS SELECT `e`.`id` AS `id`, `e`.`fecha_apertura` AS `fecha_apertura`, `dg`.`nombre_comercial` AS `nombre_comercial`, concat(`dg`.`calle`,' ',`dg`.`no_exterior`,' ',`dg`.`no_interior`,' ',`dg`.`colonia`,' ',`dg`.`localidad`) AS `domicilio`, `dg`.`telefono` AS `telefono`, `e`.`status` AS `status`, `e`.`etapa` AS `etapa` FROM (`expedientes` `e` left join `dg_establecimiento` `dg` on((`dg`.`id` = `e`.`id_dg_establecimiento`))) WHERE ((`e`.`etapa` = '7') OR (`e`.`status` = 2)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `resueltas`  AS SELECT `e`.`id` AS `id`, `e`.`fecha_apertura` AS `fecha_apertura`, `dg`.`nombre_comercial` AS `nombre_comercial`, concat(`dg`.`calle`,' ',`dg`.`no_exterior`,' ',`dg`.`no_interior`,' ',`dg`.`colonia`,' ',`dg`.`localidad`) AS `domicilio`, `dg`.`telefono` AS `telefono`, `e`.`status` AS `status`, `e`.`etapa` AS `etapa` FROM (`expedientes` `e` left join `dg_establecimiento` `dg` on((`dg`.`id` = `e`.`id_dg_establecimiento`))) WHERE ((`e`.`etapa` = '7') OR (`e`.`status` = 2)) ;
 
 --
 -- Índices para tablas volcadas
@@ -756,12 +779,6 @@ ALTER TABLE `director`
 -- Indices de la tabla `expedientes`
 --
 ALTER TABLE `expedientes`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `giros`
---
-ALTER TABLE `giros`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -833,13 +850,13 @@ ALTER TABLE `ventanilla`
 -- AUTO_INCREMENT de la tabla `dg_establecimiento`
 --
 ALTER TABLE `dg_establecimiento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `dimensiones_establecimiento`
 --
 ALTER TABLE `dimensiones_establecimiento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `director`
@@ -851,25 +868,25 @@ ALTER TABLE `director`
 -- AUTO_INCREMENT de la tabla `expedientes`
 --
 ALTER TABLE `expedientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `historico`
 --
 ALTER TABLE `historico`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `personas_fisicas`
 --
 ALTER TABLE `personas_fisicas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `personas_morales`
@@ -881,13 +898,13 @@ ALTER TABLE `personas_morales`
 -- AUTO_INCREMENT de la tabla `secretario`
 --
 ALTER TABLE `secretario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `suelo`
 --
 ALTER TABLE `suelo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `suplente`
@@ -899,19 +916,19 @@ ALTER TABLE `suplente`
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
 --
 ALTER TABLE `tipo_usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `ventanilla`
 --
 ALTER TABLE `ventanilla`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
