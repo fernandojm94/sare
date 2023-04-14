@@ -2214,6 +2214,7 @@
 			function upload_doc_uso(id_solicitud,status,complemento,complemento2)
 			{
 				var comp = $('#file_uso').next();
+				var folio_exp = $('#folio_ruta').val();
 				comp = $(comp).hasClass("selected");
 				
 				if(comp == true){
