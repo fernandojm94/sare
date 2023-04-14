@@ -1669,9 +1669,6 @@
 													window.open('pdf/sedatum/numero_oficial.php?id='+id_solicitud+'&numero_oficial='+complemento, '_blank');
 												}
 
-												if (etapa==3){
-													upload_doc_uso();
-												}
 
 											}
 
@@ -2215,6 +2212,7 @@
 			{
 				var comp = $('#file_uso').next();
 				var folio_exp = $('#folio_ruta').val();
+				$('#dictamen').val(complemento);
 				comp = $(comp).hasClass("selected");
 				
 				if(comp == true){

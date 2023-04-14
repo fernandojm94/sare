@@ -20,7 +20,8 @@
 							<br>
 						<form id="form_comp_uso" name="form_comp_uso">
 							<input type="hidden" name="id_solicitud" id="id_solicitud" value="<?=$id;?>">
-							<input type="hidden" name="folio" id="id_solicitud" value="<?=$expediente['folio'];?>">
+							<input type="hidden" name="dictamen" id="dictamen">
+							<input type="hidden" name="folio" id="folio" value="<?=$expediente['folio'];?>">
 							<div class="form-group">
 								<div class="col-xs-12">
 									<input type="file" id="file_uso" name="file_uso" accept="application/pdf"/>

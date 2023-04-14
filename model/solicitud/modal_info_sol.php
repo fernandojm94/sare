@@ -6,12 +6,16 @@
 	$etapa = $_POST['etapa'];
 	$id = $_POST['id']; 
 	valida_visto($id, $etapa);
-	$orden_btn = $alerta = '';
+	$orden_btn = $alerta = $folio_sedatum='';
 	$expediente = fill_expediente($id);	
 	$num_of = $expediente['solicita_noficial'];
 	$rechaz_btn = '<button type="button" class="btn btn-danger" onclick="actualiza_status('.$id.',2,0,0);"><i class="fa fa-ban"></i>&nbsp;Rechazar Solicitud</button>';
 	$aprob_btn = '<button type="button" class="btn btn-success" onclick="actualiza_status('.$id.',1,0,0);"><i class="fa fa-check"></i>&nbsp;Aprobar Solicitud</button>';
 	$reinicia_btn = '<button id="btn_re" name="btn_re" type="button" class="btn btn-danger" style="display: none" onclick="revivir_sol('.$id.');"><i class="fa fa-refresh"></i>&nbsp;Reiniciar Solicitud</button>';
+
+	if ($expediente['folio_sedatum']!="") {
+		$folio_sedatum='<h3 class="blue"><b>Folio SEDATUM:</b>'.$expediente['folio_sedatum'].'</h3>';
+	}
 	
 	if(($expediente['status'] == 2) && ($pantalla == 1)){
 		$parametros_editar = $expediente['tipo_persona'] . ',' . "'boton'" . ',' . $expediente['id_persona'] . ',' .$expediente['id_dg_establecimiento']  . ',' . $expediente['id_dimensiones_establecimiento'];
@@ -179,7 +183,8 @@
 		<div class="modal-content">
 			<div class="modal-header">				
 				<?= $editar_btn; ?>
-				<h1 class="blue">Solicitud <?=$expediente['folio'];?></h1>
+				<h2 class="blue"><b>Solicitud:</b> <?=$expediente['folio'];?></h2>
+				<?=$folio_sedatum;?>
 				<input type="hidden" id="folio_ruta" value="<?=$expediente['folio'];?>">
 				<input type="hidden" id="paso_actual" name="paso_actual" value="1">
 			</div>
