@@ -598,7 +598,7 @@
 
                                     <div class="hidden" id="inst_idpf"></div>
                                     <div class="hidden" id="inst_idpm"></div>
-                                    <input type="hidden" id="img_map" name="img_map" />
+                                    <input type="text" id="img_map" name="img_map" />
                                     <input type="hidden" class="fill_fol" name="folio" id="folio">
                                     <input type="hidden" name="check_num" id="check_num" value="0">
                                     <div class="hidden" id="inst_iddg"></div>

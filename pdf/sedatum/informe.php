@@ -25,7 +25,7 @@
     $dictamen = file_get_contents('../../assets/expedientes/'.$folio_str.'/docs/documentacion/Dictamen.html', FILE_USE_INCLUDE_PATH);
     $mapa = '../../assets/expedientes/'.$folio_str.'/docs/mapa.png';
     $dictamenLen = strip_tags($dictamen);
-    $dictamenLen = substr($dictamenLen, 0, 550);
+    $dictamenLen = substr($dictamenLen, 0, 450);
     
     $fecha_autorizacion = date('d / m / Y');
     ob_start();
@@ -41,22 +41,7 @@
             $this->SetFont('times', 'R', 14);
             $this->Image('../../img/2.png', '', '', 25, 28, '', '', 'T', false, 300, '', false, false, 1, false, false, false);
 
-            $cabeza = '<table>
-                     <tr>
-                      <td>Presidencia Municipal de Jesús María</td>
-                      
-                     </tr>
-
-                     <tr>
-                      <td>Gobierno Municipal 2019 - 2021</td>
-                        
-                     </tr>
-
-                     <tr>
-                      <td>SEDATUM</td>
-                     </tr>
-
-                    </table>';
+            $cabeza = '';
 
     
             $this->writeHTMLCell('', '', '', 12, $cabeza, $border=0, $ln=2, $fill=0, $reseth=true, $align='C', $autopadding=true);
@@ -120,229 +105,14 @@
 
     $pdf->SetAutoPageBreak(TRUE, 85);
 
-    $pdf->AddPage();
-
-    $html = '
-
-    <style>
-        .border_c{
-            border-style: solid solid solid solid;
-            border-width: 1px;
-        }
-
-        .border_b{
-            border-bottom-style: solid;
-            border-bottom-width: 1px;
-        }
-
-        td{
-            font-size: 10px;
-        }
-    </style>
-
-    <table>
-        <tr>
-            <td><h4 align="center">INFORME DE COMPATIBILIDAD URBANÍSTICA</h4></td>    
-        </tr>
-        <tr><td>
-                <h4>DATOS DE LA PERSONA '.$tipo_persona.'</h4>
-            </td>
-        </tr>
-    </table>
-
-    <table cellspacing="2" cellpadding="3">
-        <tr>
-            <td class="border_c" style="width:75%;">
-                <table>
-                    <tr>
-                        <td style="width: 10%;">Nombre: </td>
-                        <td style="width: 90%;" class="border_b">'.$datos_generales['nombre'].'</td>
-                    </tr>
-                </table>
-
-                <table>
-                    <tr>
-                        <td style="width: 7%;">Calle: </td>
-                        <td style="width: 40%;" class="border_b">'.$datos_generales['calle'].'</td>
-                        <td style="width: 10%;">Número: </td>
-                        <td style="width: 15%;" class="border_b">'.$datos_generales['no_exterior'].'</td>
-                        <td style="width: 5%;">Tel: </td>
-                        <td style="width: auto;" class="border_b">'.$datos_generales['telefono'].'</td>
-                    </tr>
-                </table>
-               
-                <table>
-                    <tr>
-                        <td style="width: 16%;">Colonia/Fracc: </td>
-                        <td style="width: 31%;" class="border_b">'.$datos_generales['colonia'].'</td>
-                        <td style="width: 12%;">Localidad: </td>
-                        <td style="width: auto;" class="border_b">'.$datos_generales['localidad'].'</td>
-                    </tr>
-                </table>
-
-                <table>
-                    <tr>
-                        <td style="width: 9%;">E-mail: </td>
-                        <td style="width: 89%;" class="border_b">'.$datos_generales['email'].'</td>
-                    </tr>
-                </table>
-            </td>
-
-            <td class="border_c" style="width:25%;">
-                <table>
-                    <tr>
-                        <td>Constancia No.</td>
-                    </tr>
-                    <tr>
-                        <td class="border_b">'.$folio_str.'</td>
-                    </tr>
-                    <tr>
-                        <td>Fecha de Ingreso</td>
-                    </tr>
-                    <tr>
-                        <td class="border_b">'.$recibido.'</td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>    
-
-    <table>
-        <tr>
-            <td width="75%;"><h4>UBICACIÓN Y DATOS DEL PREDIO</h4></td>
-            <td width="25%;"><h4>URBANIZACIÓN</h4></td>
-        </tr>
-    </table>        
-
-    <table cellspacing="2" cellpadding="3">
-        <tr>
-            <td class="border_c" style="width:75%;">
-                <table>
-                    <tr>
-                        <td style="width: 7%">Calle: </td>
-                        <td style="width: 53%" class="border_b">'.$establecimiento['calle'].'</td>
-                        <td style="width: 10%">Número: </td>
-                        <td style="width: 11%" class="border_b">'.$establecimiento['no_exterior'].'</td>
-                        <td style="width: 11%">Manzana: </td>
-                        <td style="width: 8%" class="border_b">'.$establecimiento['manzana'].'</td>
-                    </tr>
-                    <tr>
-                        <td style="width: 16%">Colonia/Fracc: </td>
-                        <td style="width: 44%" class="border_b">'.$establecimiento['colonia'].'</td>
-                        <td style="width: 16%">Código Postal: </td>
-                        <td style="width: 10%" class="border_b">'.$datos_generales['c_p'].'</td>
-                        <td style="width: 6%">Lote: </td>
-                        <td style="width: 8%" class="border_b">'.$establecimiento['lote'].'</td>
-                    </tr>
-                </table>
-
-                <table>
-                    <tr>
-                        <td style="width: 13%;">Uso Actual: </td>
-                        <td style="width: 39%;" class="border_b">'.$establecimiento['uso_actual'].'</td>
-                        <td style="width: 19%;">Cuenta Catastral: </td>
-                        <td style="width: 29%;" class="border_b">'.$establecimiento['cuenta_catastral'].'</td>
-                    </tr>
-                    <tr>
-                        <td style="width: 17%;">Uso Solicitado: </td>
-                        <td style="width: 35%;" class="border_b">'.$establecimiento['uso_solicitado'].'</td>
-                        <td style="width: 17%;">Cuenta Predial: </td>
-                        <td style="width: 31%;" class="border_b">'.$dimensiones['cuenta_predial'].'</td>
-                    </tr>
-                </table>
-            </td>
-            <td class="border_c" style="width:25%;">
-                <table>
-                    <tr>
-                         <td>'.$establecimiento['servicios_existentes'].'</td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
-
-    <table>
-        <tr>
-            <td><h4>LUGAR PARA CROQUIS</h4></td>
-        </tr>
-    </table> 
-
-    <table cellspacing="2" cellpadding="3" class="border_c">
-        <tr><td align="center">Identificar las calles que limitan a la manzana donde se ubica el predio señalando donde se encuentra el mismo.</td></tr>
-        <tr><td align="center"><img width="300" height="200" src="'.$mapa.'"></td></tr>
-    </table>
-
-    <table>
-        <tr>
-            <td><h4>MEDIDAS DEL PREDIO</h4></td>
-        </tr>
-    </table> 
-
-    <table cellspacing="2" cellpadding="3">
-        <tr>
-            <td class="border_c" style="width: 60%;">
-                <table>
-                    <tr>
-                        <td colspan="6"></td>
-                    </tr>
-                    <tr>
-                        <td style="width: 10%;">Frente: </td>
-                        <td style="width: 10%;" class="border_b">'.$dimensiones['frente'].'&nbsp;m</td>
-                        <td style="width: 15%;"> Derecho: </td>
-                        <td style="width: 10%;" class="border_b">'.$dimensiones['derecho'].'&nbsp;m</td>
-                        <td style="width: 16%;"> Superficie: </td>
-                        <td style="width: 39%;" class="border_b">'.$dimensiones['sup_local'].'&nbsp;m&sup2;</td>
-                    </tr>
-                    <tr>
-                        <td style="width: 10%;">Fondo: </td>
-                        <td style="width: 10%;" class="border_b">'.$dimensiones['fondo'].'&nbsp;m</td>
-                        <td style="width: 15%;"> Izquierdo: </td>
-                        <td style="width: 10%;" class="border_b">'.$dimensiones['izquierdo'].'&nbsp;m</td>
-                        <td style="width: 28%;"> Distancia a esquina: </td>
-                        <td style="width: 27%;" class="border_b">'.$establecimiento['distancia_esquina'].'</td>
-                    </tr>
-                </table>        
-            </td>
-            <td class="border_c" style="width: 40%;">
-                <table>
-                    <tr>
-                        <td style="width: 50%;">Densidad de Población: </td>
-                        <td class="border_b" style="width: 50%;"></td>
-                    </tr>
-                    <tr>
-                        <td style="width: 77%;">Coeficiente de Utilización del Suelo: </td>
-                        <td class="border_b" style="width: 23%;"></td>
-                    </tr>
-                    <tr>
-                        <td style="width: 77%;">Coeficiente de Ocupación del Suelo: </td>
-                        <td class="border_b" style="width: 23%;"></td>
-                    </tr>
-                </table>     
-            </td>
-        </tr>    
-    </table>   
-
-    <table>
-        <tr>
-            <td style="width: 70%;"><h4>OBSERVACIONES DE COMPATIBILIDAD URBANÍSTICA</h4></td>
-            <td style="width: 30%;"><h4>SELLO</h4></td>
-        </tr>
-    </table>
-
-    <table cellspacing="2" cellpadding="3">
-        <tr>
-            <td align="justify" class="border_c" style="width: 70%; height: 150px;">'.$dictamenLen.'...</td>
-            <td align="center" class="border_c" style="width: 30%; height: 150px;">
-            <img src="../../img/sello-min.png" width="130">
-            </td>
-        </tr>
-    </table>';
+    $html = '';
 
     $html_2 = '
     <style>
         .border_c{
             border-style: solid solid solid solid;
             border-width: 1px;
+            border-radius: 1px 1px 1px 1px;
         }
 
         .border_b{
@@ -351,7 +121,7 @@
         }
 
         td{
-            font-size: 10px;
+            font-size: 5px;
         }
     </style>
 
@@ -361,7 +131,7 @@
     
     <table cellspacing="2" cellpadding="3">
         <tr>
-            <td align="justify" class="border_c"><p>'.$dictamen.'</p></td>
+            <td align="justify" class="border_c">'.$dictamen.'</td>
         </tr>
     </table>';
 
