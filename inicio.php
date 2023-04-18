@@ -2216,8 +2216,7 @@
 				comp = $(comp).hasClass("selected");
 				
 				if(comp == true){
-					waitingDialog.show('Subiendo archivo', {dialogSize: 'sm', progressType: 'warning'})
-					show_msg(0);
+					waitingDialog.show('Subiendo archivo', {dialogSize: 'sm', progressType: 'warning'});
 					var myForm = document.getElementById('form_comp_uso');
 			        var formData = new FormData(myForm);
 			     

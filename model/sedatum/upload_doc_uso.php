@@ -34,7 +34,7 @@ class MYPDF extends TCPDF {
             // $today = str_replace('.', ' / ', date("d.m.Y"));
             // $this->SetY(-215); 
             $this->SetFont('times', 'R', 14);
-            $this->Image('../../img/2.png', '', '', 25, 28, '', '', 'T', false, 300, '', false, false, 1, false, false, false);
+            
 
             $cabeza = '';
 
@@ -62,23 +62,7 @@ class MYPDF extends TCPDF {
                         }
                     </style>
 
-                    <table cellspacing="2" cellpadding="3">
-                        <tr>
-                            <td style="width: 15%;"><h4>DICTAMINA</h4></td>
-                            <td style="width: 15%;"><h4>REVISA</h4></td>
-                            <td style="width: 40%;"><h4>AUTORIZA</h4></td>
-                            <td style="width: 30%;"><h4>FECHA DE AUTORIZACIÓN</h4></td>
-                        </tr>
-                        <tr>
-                            <td style="height: 70px;" class="border_c"></td>
-                            <td style="height: 70px;" class="border_c"></td>
-                            <td style="height: 70px;" class="border_c"></td>
-                            <td style="height: 70px;" class="border_c">
-                            <h2>'.$GLOBALS['fecha_autorizacion'].'</h2></td>
-                        </tr>
-                    </table>
-
-                    <h6 align="justify" style="font-size: 8px;">EL INFORME DE COMPATIBILIDAD URBANÍSTICA NO CONSTITUYE APEGO Y DESLINDE RESPECTO DEL INMUEBLE, NO ACREDITA LA PROPIEDAD O POSESIÓN DEL MISMO. ART. 138 DEL CÓDIGO DE ORDENAMIENTO TERRITORIAL, DESARROLLO URBANO Y VIVIENDA PARA EL ESTADO DE AGS. ESTE INFORME NO TIENE VALIDEZ LEGAL PARA REALIZAR TRÁMITES DE FRACCIONAMIENTOS, CONDOMINIOS, RELOTIFICACIONES, FUSIONES O SUBDIVISIONES DE ÁREAS Y PREDIOS, ASÍ COMO LICENCIAS DE CONSTRUCCIÓN O DE FUNCIONAMIENTO, TRÁMITES DE ESCRITURACIÓN, CONTRATOS DE AGUA Y DE LUZ. EL INFORME DE COMPATIBILIDAD URBANISTICA TENDRÁ UNA VIGENCIA DE 1 AÑO CONTANDO A PARTIR DE LA FECHA DE EXPEDICIÓN ART. 141 DEL CÓDIGO DE ORDENAMIENTO TERRITORIAL, DESARROLLO URBANO Y VIVIENDA PARA EL ESTADO DE AGS. NO SERÁ VALIDO DE PRESENTAR TACHADURAS O ENMENDADURAS. LOS RECUADROS SOMBREADOS SON DE USO EXCLUSIVO DE LA SECRETARÍA.</h6>';
+                    ';
 
             $this->writeHTMLCell('', '', '', 275, $pie, $border=0, $ln=2, $fill=0, $reseth=true, $align='C', $autopadding=true);
 
@@ -97,15 +81,12 @@ class MYPDF extends TCPDF {
 
     $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 
-    $pdf->SetMargins(PDF_MARGIN_LEFT, 35, PDF_MARGIN_RIGHT, TRUE);
-    $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+    $pdf->SetMargins(10, 15, 10, TRUE);
     $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
 
     $pdf->SetFont('times', '', 12, '', true);
 
-    $pdf->SetAutoPageBreak(TRUE, 85);
-
-    $html = '';
+    $pdf->SetAutoPageBreak(TRUE, 35);
 
     $html_2 = '
     <style>
@@ -119,24 +100,43 @@ class MYPDF extends TCPDF {
             border-bottom-style: solid;
             border-bottom-width: 1px;
         }
-
-        td{
-            font-size: 5px;
-        }
     </style>
-
-    <h3 align="center">INFORME DE COMPATIBILIDAD URBANÍSTICA</h3>
-
-    <p>OBSERVACIONES DE INFORME DE COMPATIBILIDAD URBANISTICA (Continuación)</p>
-    
     <table cellspacing="2" cellpadding="3">
-        <tr>
-            <td align="justify" class="border_c">'.$dictamen.'</td>
+	    <tr>
+            <td style="width: 50%;">
+            	<img src="../../img/informe.png" />
+            </td>            
         </tr>
-    </table>';
+		<tr>
+			<td style="width: 100%;" align="center"><h3>INFORME DE COMPATIBILIDAD URBANÍSTICA</h3></td>
+		</tr>
+		<tr>
+			<td style="width: 100%;"><p>OBSERVACIONES DE INFORME DE COMPATIBILIDAD URBANISTICA (Continuación)</p></td>
+		</tr>
 
-    // output the HTML content
-    $pdf->writeHTML($html, false, false, true, false, '');
+        <tr>
+            <td align="justify" style="height: 550px; width: 100%; style="font-size: 5px;"" class="border_c">'.$dictamen.'</td>
+        </tr>
+        <tr>
+            <td style="width: 12%;"><h6>DICTAMINA</h6></td>
+            <td style="width: 12%;"><h6>REVISA</h6></td>
+            <td style="width: 56%;" align="center"><h6>AUTORIZA</h6></td>
+            <td style="width: 20%;"><h6 style="font-size: 6px;">FECHA DE AUTORIZACIÓN</h6></td>
+        </tr>
+        <tr>
+            <td style="height: 70px;" class="border_c"></td>
+            <td style="height: 70px;" class="border_c"></td>
+            <td style="height: 70px; font-size: 8px;" class="border_c" align="center"><br><br><br><br><br>____________________________________________________<br>Lic. José Refugio Muñoz López<br>Secretario de Desarrollo Agrario, Territorial y Urbano</td>
+            <td style="height: 70px;" class="border_c">
+            <h2>'.$GLOBALS['fecha_autorizacion'].'</h2></td>
+            
+        </tr>
+        <tr>
+        	<td style="width: 100%;">
+            	<h6 align="justify" style="font-size: 6px;">EL INFORME DE COMPATIBILIDAD URBANÍSTICA NO CONSTITUYE APEO Y DESLINDE RESPECTO DEL INMUEBLE, NO ACREDITA LA PROPIEDAD O POSESIÓN DEL MISMO. ART. 177 DEL CÓDIGO URBANO PARA EL ESTADO DE AGUASCALIENTES. ESTE INFORME NO TENDRA VALIDEZ LEGAL PARA REALIZAR TRÁMITE ALGUNO. EL INFORME DE COMPATIBILIDAD URBANÍSTICA TENDRÁ VIGENCIA DE UN AÑO CONTANDO A PARTIR DE LA FECHA DE EXPEDICIÓN ART. 172 DEL CÓDIGO URBANO PARA EL ESTADO DE AGUASCALIENTES. NO SERÁ VALIDO DE PRESENTAR TACHADURAS O ENMENDADURAS.</h6>
+            </td>
+		</tr>
+    </table>';
     $pdf->AddPage();
     $pdf->writeHTML($html_2, true, false, true, false, '');
 
